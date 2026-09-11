@@ -1,4 +1,4 @@
-# Render Blueprint：一鍵部署 muse-site 後台（控制面）
+# Render Blueprint：一鍵部署 anime_movie_screening 後台（控制面）
 #
 # 用法：在 Render 儀表板 → New → Blueprint → 連接本 GitHub repo，選這個檔即可。
 # 會建立：一個 Web 服務（Django + gunicorn）＋ 一個 Postgres 資料庫。
@@ -47,7 +47,7 @@ services:
         value: "3.12.6"
       # 公開地圖網址（儀表板按鈕用），視需要修改
       - key: PUBLIC_MAP_URL
-        value: "https://dandadany.github.io/muse-site/"
+        value: "https://dandadany.github.io/anime_movie_screening/"
       # 初始管理員帳密：請在 Render 儀表板手動填入（sync:false 代表不寫進 repo）
       - key: DJANGO_SUPERUSER_USERNAME
         sync: false
