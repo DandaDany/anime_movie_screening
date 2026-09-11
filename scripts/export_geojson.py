@@ -300,7 +300,7 @@ def main() -> None:
             }
             first_movie = movie_payloads_by_date[movie_titles[0]][args.date]
             features = first_movie["features"]
-            collection_name = "木棉花電影全台上映地圖"
+            collection_name = "全台動畫電影上映地圖"
             movies = [
                 {
                     "title": movie_title,

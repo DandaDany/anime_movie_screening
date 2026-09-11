@@ -124,7 +124,7 @@ python scripts/daily_update.py
 3. 動作：啟動程式
    - 程式或指令碼：`py`
    - 引數：`-3 scripts\daily_update.py`
-   - 開始位置：`C:\你的路徑\muse-site`
+   - 開始位置：`C:\你的路徑\anime_movie_screening`
 4. **重要：勾選「只在使用者登入時執行」**。因為部分影城（如威秀）需要有畫面的瀏覽器（headful），背景服務模式沒有桌面會開不起來。
 5. 完成。之後每天到點自動更新並推送。
 
@@ -134,7 +134,7 @@ python scripts/daily_update.py
 
 ```cron
 # 每天 09:00 執行（請換成實際路徑與 python）
-0 9 * * * cd /path/to/muse-site && /usr/bin/python3 scripts/daily_update.py >> data/output/daily_update.log 2>&1
+0 9 * * * cd /path/to/anime_movie_screening && /usr/bin/python3 scripts/daily_update.py >> data/output/daily_update.log 2>&1
 ```
 
 ## 疑難排解
