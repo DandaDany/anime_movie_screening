@@ -1,27 +1,7 @@
-# Render Blueprint：一鍵部署 anime_movie_screening 後台（控制面）
+# Render Blueprint：anime_movie_screening 後台（控制面）
 #
-# 用法：在 Render 儀表板 → New → Blueprint → 連接本 GitHub repo，選這個檔即可。
-# 會建立：一個 Web 服務（Django + gunicorn）＋ 一個 Postgres 資料庫。
-#
-# 部署流程（Render 依此自動執行）：
-#   build ：backend/build.sh
-#           pip install + collectstatic
-#           → migrate（建 Django 自身表 + tracked_movie）
-#           → init_business_schema（在 Postgres 建 8 張業務表）
-#           → seed_roles（建管理員/編輯者群組）
-#           → ensure_admin（依環境變數建初始管理員帳號）
-#   start ：gunicorn 起服務
-#
-# 說明：資料庫初始化放在 build.sh 而非 preDeployCommand，因為 Render 免費方案
-# 不支援 preDeployCommand；build 階段已可存取 DATABASE_URL。
-# 注意：正式後台使用付費 Postgres，避免免費資料庫到期後中斷服務。
-
-databases:
-  - name: muse-backend-db
-    databaseName: muse
-    user: muse
-    plan: basic-256mb
-    diskSizeGB: 1
+# 目前僅保留免費 Web Service。Postgres 已從 Blueprint 移除，避免未來 Blueprint sync
+# 重新建立付費資料庫。若日後需要重新啟用持久化後台資料庫，請先重新評估成本後再新增。
 
 services:
   - type: web
@@ -33,11 +13,6 @@ services:
     # 必須綁定 Render 指定的 $PORT，否則 Render 連不到服務、部署會逾時失敗。
     startCommand: "gunicorn movie_map_admin.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
-      # 自動注入 Postgres 連線字串
-      - key: DATABASE_URL
-        fromDatabase:
-          name: muse-backend-db
-          property: connectionString
       # 自動產生安全的密鑰
       - key: DJANGO_SECRET_KEY
         generateValue: true
