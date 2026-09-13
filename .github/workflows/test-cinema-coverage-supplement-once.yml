@@ -6,14 +6,13 @@ on:
       - feat/cinema-coverage-0600-supplement-2026-09-13
     paths:
       - .github/workflows/test-cinema-coverage-supplement-once.yml
-      - scripts/supplemental_web_update.py
-      - scripts/apply_cinema_coverage_20260913.py
-      - tests/test_supplemental_web_update.py
-      - data/input/cinema_coverage_20260913.json
-      - data/input/supplemental_showtime_sources.json
 
 permissions:
   contents: write
+
+concurrency:
+  group: cinema-coverage-final-integration
+  cancel-in-progress: true
 
 jobs:
   integration:
@@ -50,14 +49,17 @@ jobs:
           p=json.loads(Path('data/control/cinema_master.json').read_text(encoding='utf-8'))
           chains={c['id']:c for c in p['chains']}
           locs={l['id']:l for l in p['locations']}
-          assert len(p['chains']) == 50, len(p['chains'])
-          assert len(p['locations']) == 114, len(p['locations'])
+          assert len(p['chains']) == 51, len(p['chains'])
+          assert len(p['locations']) == 115, len(p['locations'])
+          assert sum(1 for x in p['locations'] if x['active']) == 113
           assert locs[74]['chain_id'] == 33 and chains[33]['chain_name'] == '真善美劇院'
           assert locs[96]['active'] is False
           assert locs[97]['active'] is False
           assert locs[104]['location_name'] == '麻豆戲院'
+          assert locs[105]['location_name'] == '景美佳佳戲院'
           assert locs[112]['location_name'] == '高雄市電影館'
-          print('MASTER_QC_PASS chains=50 locations=114 active=', sum(1 for x in p['locations'] if x['active']))
+          assert locs[115]['location_name'] == '今日戲院' and locs[115]['chain_id'] == 51
+          print('MASTER_QC_PASS chains=51 locations=115 active=113')
           PY
 
       - name: Run supplemental regression tests
@@ -72,7 +74,6 @@ jobs:
           p=json.loads(Path('web/data/locations.geojson').read_text(encoding='utf-8'))
           assert p['show_date'] == '2026-09-13'
           assert p.get('supplemental_updated_at')
-          print('GEOJSON_QC_PASS movies=', len(p.get('movies', [])), 'dates=', len(p.get('available_dates', [])))
           hits=[]
           for title, by_date in p.get('movie_features_by_date', {}).items():
               for day, features in by_date.items():
@@ -80,8 +81,10 @@ jobs:
                       props=feature.get('properties', {})
                       if props.get('supplemental_web_source') and props.get('showtime_count', 0) > 0:
                           hits.append((title, day, props.get('location_name'), props.get('start_times')))
+          assert hits, 'expected at least one real supplemental hit'
+          print('GEOJSON_QC_PASS movies=', len(p.get('movies', [])), 'dates=', len(p.get('available_dates', [])))
           print('SUPPLEMENTAL_REAL_HITS=', len(hits))
-          for row in hits[:30]: print('SUPPLEMENTAL_HIT', *row, sep=' | ')
+          for row in hits[:40]: print('SUPPLEMENTAL_HIT', *row, sep=' | ')
           PY
 
       - name: Commit generated master and test GeoJSON to feature branch
@@ -92,6 +95,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
           else
-            git commit -m "Materialize verified cinema coverage and supplemental test data"
+            git commit -m "Materialize final verified cinema coverage"
             git push
           fi
