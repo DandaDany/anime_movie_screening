@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "notes": "Public-web sources used by the 06:00 Asia/Taipei supplemental pass and the post-primary preservation pass. A failed source never deletes existing map data.",
+  "sources": [
+    {"location_id": 68, "name": "台北大直美麗新皇家影城", "url_template": "https://www.atmovies.com.tw/showtime/t02d06/a02/{date}/", "reason": "official_miranew_403", "enabled": true},
+    {"location_id": 69, "name": "桃園台茂美麗新影城", "url_template": "https://www.atmovies.com.tw/showtime/t03301/a03/{date}/", "reason": "official_miranew_403", "enabled": true},
+    {"location_id": 72, "name": "高雄環球影城", "url_template": "https://www.atmovies.com.tw/showtime/t07704/a07/{date}/", "reason": "official_umovie_403_or_reset", "enabled": true},
+    {"location_id": 74, "name": "真善美劇院", "url_template": "https://www.atmovies.com.tw/showtime/t02b07/a02/{date}/", "reason": "legacy_chain_correction_and_fallback", "enabled": true},
+    {"location_id": 98, "name": "星橋國際影城", "url_template": "https://www.atmovies.com.tw/showtime/t03302/a03/{date}/", "reason": "coverage_gap", "enabled": true},
+    {"location_id": 99, "name": "日日新影城", "url_template": "https://www.atmovies.com.tw/showtime/t04404/a04/{date}/", "reason": "coverage_gap", "enabled": true},
+    {"location_id": 100, "name": "全球影城", "url_template": "https://www.atmovies.com.tw/showtime/t04424/a04/{date}/", "reason": "coverage_gap", "enabled": true},
+    {"location_id": 101, "name": "員林影城", "url_template": "https://www.atmovies.com.tw/showtime/t04703/a47/{date}/", "reason": "social_first_schedule", "enabled": true},
+    {"location_id": 102, "name": "嘉年華戲院", "url_template": "https://www.atmovies.com.tw/showtime/t05502/a05/{date}/", "reason": "coverage_gap", "enabled": true},
+    {"location_id": 103, "name": "全美戲院", "url_template": "https://www.atmovies.com.tw/showtime/t06623/a06/{date}/", "reason": "coverage_gap", "enabled": true},
+    {"location_id": 104, "name": "麻豆戲院", "url_template": "https://www.atmovies.com.tw/showtime/t06625/a06/{date}/", "reason": "social_first_schedule", "enabled": true},
+    {"location_id": 105, "name": "佳佳來來戲院", "url_template": "https://www.atmovies.com.tw/showtime/t02f05/a02/{date}/", "reason": "coverage_gap_second_run", "enabled": true},
+    {"location_id": 106, "name": "光點台北電影院", "url_template": "https://www.atmovies.com.tw/showtime/t02d20/a02/{date}/", "reason": "tracked_title_only_art_cinema", "enabled": true},
+    {"location_id": 107, "name": "府中15", "url_template": "https://www.atmovies.com.tw/showtime/t02e08/a02/{date}/", "reason": "tracked_title_only_public_venue", "enabled": true},
+    {"location_id": 108, "name": "國家電影及視聽文化中心", "url_template": "https://www.atmovies.com.tw/showtime/t02e22/a02/{date}/", "reason": "tracked_title_only_archive", "enabled": true},
+    {"location_id": 109, "name": "桃園光影文化館", "url_template": "https://www.atmovies.com.tw/showtime/t03311/a03/{date}/", "reason": "tracked_title_only_public_venue", "enabled": true},
+    {"location_id": 110, "name": "中壢光影電影館", "url_template": "https://www.atmovies.com.tw/showtime/t03312/a03/{date}/", "reason": "tracked_title_only_public_venue", "enabled": true},
+    {"location_id": 111, "name": "中山73影視藝文空間", "url_template": "https://www.atmovies.com.tw/showtime/t04427/a04/{date}/", "reason": "tracked_title_only_public_venue", "enabled": true},
+    {"location_id": 112, "name": "高雄市電影館", "url_template": "https://www.atmovies.com.tw/showtime/t07726/a07/{date}/", "reason": "tracked_title_only_public_venue", "enabled": true},
+    {"location_id": 113, "name": "內惟藝術中心", "url_template": "https://www.atmovies.com.tw/showtime/t07731/a07/{date}/", "reason": "tracked_title_only_art_cinema", "enabled": true},
+    {"location_id": 114, "name": "花蓮鐵道電影院", "url_template": "https://www.atmovies.com.tw/showtime/t03804/a38/{date}/", "reason": "tracked_title_only_curated_cinema", "enabled": true}
+  ]
+}
