@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "notes": "Sources that need a 06:00 web-research pass because schedules can be social-first, image-post based, or not cleanly separated by deterministic theater pages. Only explicit tracked-title + venue + date/time evidence may be written to the map.",
+  "sources": [
+    {
+      "location_id": 104,
+      "name": "麻豆戲院",
+      "official_url": null,
+      "social_urls": [
+        "https://www.facebook.com/pages/%E9%BA%BB%E8%B1%86%E6%88%B2%E9%99%A2/196018270491462",
+        "https://www.instagram.com/madoucinema/"
+      ],
+      "search_queries": ["麻豆戲院 時刻表", "麻豆戲院 Facebook", "麻豆戲院 Instagram"],
+      "deterministic_fallback": "https://www.atmovies.com.tw/showtime/t06625/a06/{date}/",
+      "rule": "Prefer an explicit current social schedule; use deterministic fallback when social posts are inaccessible."
+    },
+    {
+      "location_id": 101,
+      "name": "員林影城",
+      "official_url": null,
+      "social_urls": [],
+      "search_queries": ["員林影城 時刻表", "員林影城 Facebook"],
+      "deterministic_fallback": "https://www.atmovies.com.tw/showtime/t04703/a47/{date}/",
+      "rule": "Social-first local cinema; deterministic fallback remains acceptable."
+    },
+    {
+      "location_id": 115,
+      "name": "今日戲院",
+      "official_url": "https://www.cm-movie.com.tw/",
+      "social_urls": ["https://www.facebook.com/cmmovies"],
+      "search_queries": ["今日戲院 台南 時刻表", "今日全美戲院 Facebook 今日戲院", "今日戲院 台南 放映"],
+      "deterministic_fallback": null,
+      "rule": "Never copy 全美戲院 sessions to 今日戲院. Add a 今日戲院 pin only when the source explicitly says the screening is at 今日戲院 / 台南市中西區中正路249號."
+    }
+  ]
+}
