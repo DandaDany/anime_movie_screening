@@ -22,6 +22,7 @@
     {"location_id":111,"name":"中山73影視藝文空間","url_template":"https://www.atmovies.com.tw/showtime/t04427/a04/{date}/","reason":"tracked_title_only_public_venue","enabled":true},
     {"location_id":112,"name":"高雄市電影館","url_template":"https://www.atmovies.com.tw/showtime/t07726/a07/{date}/","reason":"tracked_title_only_public_venue","enabled":true},
     {"location_id":113,"name":"內惟藝術中心","url_template":"https://www.atmovies.com.tw/showtime/t07731/a07/{date}/","reason":"tracked_title_only_art_cinema","enabled":true},
-    {"location_id":114,"name":"花蓮鐵道電影院","url_template":"https://www.atmovies.com.tw/showtime/t03804/a38/{date}/","reason":"tracked_title_only_curated_cinema","enabled":true}
+    {"location_id":114,"name":"花蓮鐵道電影院","url_template":"https://www.atmovies.com.tw/showtime/t03804/a38/{date}/","reason":"tracked_title_only_curated_cinema","enabled":true},
+    {"location_id":116,"name":"百老匯影城公館店","url_template":"https://www.atmovies.com.tw/showtime/t02c01/a02/{date}/","reason":"coverage_gap_first_run","enabled":true}
   ]
 }
