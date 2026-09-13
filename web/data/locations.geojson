@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
   "generated_at": "2026-09-13",
-  "updated_at": "2026-09-13T22:49:25+08:00",
+  "updated_at": "2026-09-13T23:35:30+08:00",
   "movie_title": "你的名字。（十周年重映）",
   "show_date": "2026-09-13",
   "movies": [
@@ -12709,6 +12709,50 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              121.53657,
+              25.01093
+            ]
+          },
+          "properties": {
+            "location_id": 116,
+            "chain_name": "百老匯影城",
+            "location_name": "百老匯影城公館店",
+            "map_name": "百老匯影城 百老匯影城公館店",
+            "address": "台北市文山區羅斯福路四段200號3-5樓",
+            "city": "臺北市",
+            "location_url": "https://www.broadway-cineplex.com.tw/",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-14",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:50",
+                "format": "劇場版 吉伊卡哇 人魚島的秘密",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+                "label": "10:50 劇場版 吉伊卡哇 人魚島的秘密"
+              },
+              {
+                "time": "17:25",
+                "format": "劇場版 吉伊卡哇 人魚島的秘密",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+                "label": "17:25 劇場版 吉伊卡哇 人魚島的秘密"
+              }
+            ],
+            "start_times": "10:50, 17:25",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.3,
               23.57
             ]
@@ -13520,8 +13564,8 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.25122,
-              23.18357
+              120.25125,
+              23.18362
             ]
           },
           "properties": {
@@ -13529,9 +13573,9 @@
             "chain_name": "麻豆戲院",
             "location_name": "麻豆戲院",
             "map_name": "麻豆戲院 麻豆戲院",
-            "address": "台南市麻豆區興中路106號",
+            "address": "台南市麻豆區興中路106號3樓",
             "city": "臺南市",
-            "location_url": "https://www.atmovies.com.tw/showtime/t06625/a06/",
+            "location_url": "https://www.facebook.com/pages/%E9%BA%BB%E8%B1%86%E6%88%B2%E9%99%A2/196018270491462",
             "official_url": null,
             "crawl_url": "https://www.atmovies.com.tw/showtime/t06625/a06/20260914/",
             "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
@@ -22374,6 +22418,50 @@
               }
             ],
             "start_times": "13:00, 18:30, 20:50"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.53657,
+              25.01093
+            ]
+          },
+          "properties": {
+            "location_id": 116,
+            "chain_name": "百老匯影城",
+            "location_name": "百老匯影城公館店",
+            "map_name": "百老匯影城 百老匯影城公館店",
+            "address": "台北市文山區羅斯福路四段200號3-5樓",
+            "city": "臺北市",
+            "location_url": "https://www.broadway-cineplex.com.tw/",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-14",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:40",
+                "format": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+                "label": "10:40 劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉"
+              },
+              {
+                "time": "16:50",
+                "format": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+                "label": "16:50 劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉"
+              }
+            ],
+            "start_times": "10:40, 16:50",
+            "supplemental_web_source": true
           }
         },
         {
@@ -40289,6 +40377,42 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              121.53657,
+              25.01093
+            ]
+          },
+          "properties": {
+            "location_id": 116,
+            "chain_name": "百老匯影城",
+            "location_name": "百老匯影城公館店",
+            "map_name": "百老匯影城 百老匯影城公館店",
+            "address": "台北市文山區羅斯福路四段200號3-5樓",
+            "city": "臺北市",
+            "location_url": "https://www.broadway-cineplex.com.tw/",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+            "show_date": "2026-09-14",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "11:10",
+                "format": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260914/",
+                "label": "11:10 電影蠟筆小新：奇奇怪怪！我的妖怪假期"
+              }
+            ],
+            "start_times": "11:10",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.3,
               23.57
             ]
@@ -44200,5 +44324,5 @@
   ],
   "feature_count": 0,
   "features": [],
-  "supplemental_updated_at": "2026-09-13T22:49:25+08:00"
+  "supplemental_updated_at": "2026-09-13T23:35:30+08:00"
 }

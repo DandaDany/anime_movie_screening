@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-13T22:39:00+08:00",
+  "generated_at": "2026-09-13T23:23:28+08:00",
   "chains": [
     {
       "id": 1,
@@ -389,7 +389,7 @@
       "crawl_url": "https://www.atmovies.com.tw/showtime/t06623/a06/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": true,
-      "notes": "Local commercial cinema; @movies supplemental source.",
+      "notes": "Historic Tainan cinema currently operating with curated/current releases; @movies supplemental source.",
       "active": true
     },
     {
@@ -399,17 +399,17 @@
       "crawl_url": "https://www.atmovies.com.tw/showtime/t06625/a06/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": true,
-      "notes": "Local cinema; future schedules are primarily announced on social media. @movies provides a deterministic daily web fallback.",
+      "notes": "Tainan Xibei first-run cinema; future schedules are social-first. @movies is the deterministic supplement.",
       "active": true
     },
     {
       "id": 41,
-      "chain_name": "佳佳來來戲院",
+      "chain_name": "景美佳佳戲院",
       "official_url": null,
       "crawl_url": "https://www.atmovies.com.tw/showtime/t02f05/a02/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": true,
-      "notes": "Second-run cinema; @movies supplemental source.",
+      "notes": "Current canonical name used by @movies/MovieGo; second-run cinema.",
       "active": true
     },
     {
@@ -419,7 +419,7 @@
       "crawl_url": "https://www.atmovies.com.tw/showtime/t02d20/a02/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": false,
-      "notes": "Art cinema; only appears when a tracked movie actually matches.",
+      "notes": "Art cinema; tracked-title-only.",
       "active": true
     },
     {
@@ -499,7 +499,17 @@
       "crawl_url": "https://www.atmovies.com.tw/showtime/t03804/a38/{date}/",
       "booking_url": "https://hlfccinema.com/",
       "all_locations_assumed_showing": false,
-      "notes": "Non-commercial professional cinema with regular curated and ticketed screenings; tracked-title-only.",
+      "notes": "Professional curated cinema; tracked-title-only.",
+      "active": true
+    },
+    {
+      "id": 51,
+      "chain_name": "今日戲院",
+      "official_url": "https://www.cm-movie.com.tw/",
+      "crawl_url": null,
+      "booking_url": null,
+      "all_locations_assumed_showing": false,
+      "notes": "Tainan municipal registry still lists this as an active cinema venue. Current programme information is social/official-web first and not reliably separated by @movies; tracked-title-only via the 06:00 web-research pass.",
       "active": true
     }
   ],
@@ -2125,9 +2135,9 @@
       "chain_id": 38,
       "location_name": "嘉年華戲院",
       "display_name": null,
-      "address": "嘉義市西區中山路615號",
+      "address": "嘉義市東區中山路617號",
       "city": "嘉義市",
-      "district": "西區",
+      "district": "東區",
       "latitude": 23.47799,
       "longitude": 120.44181,
       "source_location_code": "t05502",
@@ -2157,21 +2167,21 @@
       "chain_id": 40,
       "location_name": "麻豆戲院",
       "display_name": null,
-      "address": "台南市麻豆區興中路106號",
+      "address": "台南市麻豆區興中路106號3樓",
       "city": "台南市",
       "district": "麻豆區",
-      "latitude": 23.18357,
-      "longitude": 120.25122,
+      "latitude": 23.18362,
+      "longitude": 120.25125,
       "source_location_code": "t06625",
-      "location_url": "https://www.atmovies.com.tw/showtime/t06625/a06/",
+      "location_url": "https://www.facebook.com/pages/%E9%BA%BB%E8%B1%86%E6%88%B2%E9%99%A2/196018270491462",
       "source_url": "https://www.atmovies.com.tw/showtime/t06625/a06/",
-      "notes": "Future schedules are primarily announced via social media; @movies is used for deterministic daily supplementation.",
+      "notes": "Schedules announced primarily on Facebook/Instagram; deterministic @movies supplement retained.",
       "active": true
     },
     {
       "id": 105,
       "chain_id": 41,
-      "location_name": "佳佳來來戲院",
+      "location_name": "景美佳佳戲院",
       "display_name": null,
       "address": "台北市文山區羅斯福路六段403號4樓",
       "city": "台北市",
@@ -2181,7 +2191,7 @@
       "source_location_code": "t02f05",
       "location_url": "https://www.atmovies.com.tw/showtime/t02f05/a02/",
       "source_url": "https://www.atmovies.com.tw/showtime/t02f05/a02/",
-      "notes": "Second-run cinema at MRT Jingmei; pin uses the cinema building / station geocode.",
+      "notes": "Second-run cinema at MRT Jingmei; current canonical name verified on 2026 listings.",
       "active": true
     },
     {
@@ -2277,7 +2287,7 @@
       "source_location_code": "t04427",
       "location_url": "https://www.tfdf.org.tw/",
       "source_url": "https://www.atmovies.com.tw/showtime/t04427/a04/",
-      "notes": "Tracked-title-only; pin geocoded from official address and adjacent OSM features.",
+      "notes": "Tracked-title-only public film-and-art venue.",
       "active": true
     },
     {
@@ -2326,6 +2336,38 @@
       "location_url": "https://hlfccinema.com/",
       "source_url": "https://www.atmovies.com.tw/showtime/t03804/a38/",
       "notes": "Tracked-title-only; located inside 花蓮鐵道文化園區一館.",
+      "active": true
+    },
+    {
+      "id": 115,
+      "chain_id": 51,
+      "location_name": "今日戲院",
+      "display_name": null,
+      "address": "台南市中西區中正路249號",
+      "city": "台南市",
+      "district": "中西區",
+      "latitude": 22.99297,
+      "longitude": 120.19665,
+      "source_location_code": null,
+      "location_url": "https://www.facebook.com/cmmovies",
+      "source_url": "https://www.cm-movie.com.tw/",
+      "notes": "Active cinema venue in Tainan municipal registry. Do not infer 全美戲院 sessions as 今日戲院 sessions; only add this pin when a web/social source explicitly identifies 今日戲院.",
+      "active": true
+    },
+    {
+      "id": 116,
+      "chain_id": 9,
+      "location_name": "百老匯影城公館店",
+      "display_name": null,
+      "address": "台北市文山區羅斯福路四段200號3-5樓",
+      "city": "台北市",
+      "district": "文山區",
+      "latitude": 25.01093,
+      "longitude": 121.53657,
+      "source_location_code": null,
+      "location_url": "https://www.broadway-cineplex.com.tw/",
+      "source_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/",
+      "notes": "Commercial first-run cinema. Primary Broadway crawler uses official cinema codes, so this location deliberately leaves source_location_code null and is covered by the deterministic supplemental source until an official API code is verified.",
       "active": true
     }
   ]
