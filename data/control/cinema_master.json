@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-13T23:23:28+08:00",
+  "generated_at": "2026-09-14T01:16:31+08:00",
   "chains": [
     {
       "id": 1,
@@ -2352,22 +2352,6 @@
       "location_url": "https://www.facebook.com/cmmovies",
       "source_url": "https://www.cm-movie.com.tw/",
       "notes": "Active cinema venue in Tainan municipal registry. Do not infer 全美戲院 sessions as 今日戲院 sessions; only add this pin when a web/social source explicitly identifies 今日戲院.",
-      "active": true
-    },
-    {
-      "id": 116,
-      "chain_id": 9,
-      "location_name": "百老匯影城公館店",
-      "display_name": null,
-      "address": "台北市文山區羅斯福路四段200號3-5樓",
-      "city": "台北市",
-      "district": "文山區",
-      "latitude": 25.01093,
-      "longitude": 121.53657,
-      "source_location_code": null,
-      "location_url": "https://www.broadway-cineplex.com.tw/",
-      "source_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/",
-      "notes": "Commercial first-run cinema. Primary Broadway crawler uses official cinema codes, so this location deliberately leaves source_location_code null and is covered by the deterministic supplemental source until an official API code is verified.",
       "active": true
     }
   ]
