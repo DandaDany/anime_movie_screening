@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 import time
 import urllib.request
 from collections import defaultdict
@@ -11,6 +12,11 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
+
+# Keep the script usable both as `python scripts/...py` and as an imported test module.
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
 
 import control_data
 from movie_title_matching import movie_matches
@@ -95,10 +101,10 @@ def parse_atmovies_page(
 ) -> dict[str, list[dict[str, str | None]]]:
     """Extract tracked-title showtimes from one @movies theater/date page.
 
-    We deliberately parse rendered text instead of fragile CSS classes.  A page is
-    accepted only when it contains the requested date.  For each tracked title we
+    We deliberately parse rendered text instead of fragile CSS classes. A page is
+    accepted only when it contains the requested date. For each tracked title we
     collect only clock-only lines after a matching title and stop at the site's
-    `其他戲院` / update boundary.  This makes a stale redirect fail closed instead
+    `其他戲院` / update boundary. This makes a stale redirect fail closed instead
     of assigning today's sessions to the wrong date.
     """
     lines = html_lines(raw)
@@ -125,7 +131,6 @@ def parse_atmovies_page(
         for follower in lines[index + 1 : index + 35]:
             if follower.startswith("其他戲院") or follower.startswith("更新時間"):
                 break
-            # Once another tracked title begins, the current movie block is over.
             if any(
                 title != matched_title and movie_matches(follower, aliases)
                 for title, aliases in all_aliases.items()
@@ -214,7 +219,6 @@ def merge_feature(existing: dict | None, incoming: dict) -> tuple[dict, int]:
 
     props = existing.setdefault("properties", {})
     incoming_props = incoming["properties"]
-    # A real supplemental result supersedes an unavailable placeholder for the same location.
     for key in ("showtime_unavailable", "showtime_unavailable_reason"):
         props.pop(key, None)
     for key in (
@@ -227,15 +231,12 @@ def merge_feature(existing: dict | None, incoming: dict) -> tuple[dict, int]:
 
     current = list(props.get("showtimes") or [])
     seen = {
-        (
-            item.get("time"), item.get("format"), item.get("language"), item.get("auditorium")
-        )
+        (item.get("time"), item.get("format"), item.get("language"), item.get("auditorium"))
         for item in current
     }
     added = 0
     for item in incoming_props.get("showtimes") or []:
         key = (item.get("time"), item.get("format"), item.get("language"), item.get("auditorium"))
-        # Time is the strongest stable identity across first-party and fallback sources.
         time_already_present = any(existing_item.get("time") == item.get("time") for existing_item in current)
         if key in seen or time_already_present:
             continue
@@ -267,7 +268,6 @@ def merge_records_into_geojson(
     features_added = 0
     showtimes_added = 0
 
-    # Drop past date buckets while preserving all current/future first-pass information.
     for title in list(by_date):
         if title not in movie_titles:
             by_date.pop(title, None)
