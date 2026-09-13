@@ -87,6 +87,33 @@ class BatchShowtimeRunnerTests(unittest.TestCase):
             2500,
         )
 
+    def test_same_run_failure_cache_skips_second_ace_timeout(self) -> None:
+        batch_runner._same_run_failure_cache.clear()
+        url = "https://www.acecinema.com.tw/movie/now"
+        with patch.object(
+            batch_runner,
+            "_original_request_bytes",
+            side_effect=TimeoutError("official timeout"),
+        ) as original_request:
+            with self.assertRaises(TimeoutError):
+                batch_runner.request_bytes_with_same_run_failure_cache(url)
+            with self.assertRaisesRegex(RuntimeError, "same_run_cached_failure"):
+                batch_runner.request_bytes_with_same_run_failure_cache(url)
+        self.assertEqual(original_request.call_count, 1)
+
+    def test_same_run_failure_cache_does_not_apply_to_fallback_host(self) -> None:
+        batch_runner._same_run_failure_cache.clear()
+        url = "https://www.atmovies.com.tw/showtime/example/"
+        with patch.object(
+            batch_runner,
+            "_original_request_bytes",
+            side_effect=TimeoutError("fallback timeout"),
+        ) as original_request:
+            for _ in range(2):
+                with self.assertRaises(TimeoutError):
+                    batch_runner.request_bytes_with_same_run_failure_cache(url)
+        self.assertEqual(original_request.call_count, 2)
+
     def test_shin_kong_double_failure_is_re_raised(self) -> None:
         def failing_fallback(*_args, **_kwargs):
             raise RuntimeError("fallback down")
