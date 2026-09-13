@@ -43,6 +43,7 @@ jobs:
       - name: Apply and validate cinema coverage migration
         run: |
           python scripts/apply_cinema_coverage_20260913.py
+          python scripts/apply_cinema_coverage_20260913.py --plan data/input/cinema_coverage_addendum_20260913.json
           python scripts/pull_cinema_master.py --require-codes
           python - <<'PY'
           import json
@@ -51,8 +52,8 @@ jobs:
           chains={c['id']:c for c in p['chains']}
           locs={l['id']:l for l in p['locations']}
           assert len(p['chains']) == 51, len(p['chains'])
-          assert len(p['locations']) == 115, len(p['locations'])
-          assert sum(1 for x in p['locations'] if x['active']) == 113
+          assert len(p['locations']) == 116, len(p['locations'])
+          assert sum(1 for x in p['locations'] if x['active']) == 114
           assert locs[74]['chain_id'] == 33 and chains[33]['chain_name'] == '真善美劇院'
           assert locs[96]['active'] is False
           assert locs[97]['active'] is False
@@ -60,7 +61,9 @@ jobs:
           assert locs[105]['location_name'] == '景美佳佳戲院'
           assert locs[112]['location_name'] == '高雄市電影館'
           assert locs[115]['location_name'] == '今日戲院' and locs[115]['chain_id'] == 51
-          print('MASTER_QC_PASS chains=51 locations=115 active=113')
+          assert locs[116]['location_name'] == '百老匯影城公館店' and locs[116]['chain_id'] == 9
+          assert locs[116]['source_location_code'] is None
+          print('MASTER_QC_PASS chains=51 locations=116 active=114')
           PY
 
       - name: Run supplemental regression tests
@@ -83,9 +86,10 @@ jobs:
                       if props.get('supplemental_web_source') and props.get('showtime_count', 0) > 0:
                           hits.append((title, day, props.get('location_name'), props.get('start_times')))
           assert hits, 'expected at least one real supplemental hit'
+          assert any(row[2] == '百老匯影城公館店' for row in hits), 'expected a real Gongguan Broadway tracked-title hit'
           print('GEOJSON_QC_PASS movies=', len(p.get('movies', [])), 'dates=', len(p.get('available_dates', [])))
           print('SUPPLEMENTAL_REAL_HITS=', len(hits))
-          for row in hits[:40]: print('SUPPLEMENTAL_HIT', *row, sep=' | ')
+          for row in hits[:50]: print('SUPPLEMENTAL_HIT', *row, sep=' | ')
           PY
 
       - name: Commit generated master and test GeoJSON to feature branch
