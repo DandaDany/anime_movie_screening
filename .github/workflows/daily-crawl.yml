@@ -109,9 +109,13 @@ jobs:
           if [ -n "${{ github.event.inputs.date }}" ]; then
             DATE_ARG="--date ${{ github.event.inputs.date }}"
           fi
-          python -m unittest tests.test_supplemental_web_update
+          python -m unittest \
+            tests.test_supplemental_web_update \
+            tests.test_supplemental_finalize \
+            tests.test_cinema_master_integrity
           python scripts/preserve_supplemental_geojson.py --from /tmp/pre-crawl-locations.geojson $DATE_ARG
           python scripts/supplemental_web_update.py $DATE_ARG
+          python scripts/finalize_supplemental_geojson.py $DATE_ARG
 
       - name: Commit and push updated map data
         run: |
