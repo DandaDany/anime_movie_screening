@@ -16,6 +16,7 @@ jobs:
     timeout-minutes: 120
     env:
       TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
       MUSE_API_BASE_URL: ${{ secrets.MUSE_API_BASE_URL }}
       MUSE_API_TOKEN: ${{ secrets.MUSE_API_TOKEN }}
       MUSE_WORKER_NAME: github-actions-pr39-once
@@ -35,6 +36,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Verify batch crawler wiring
+        run: |
+          python -m unittest tests.test_batch_showtime_runner tests.test_daily_update_multiday
 
       - name: Install Playwright Chromium and system deps
         run: python -m playwright install --with-deps chromium
@@ -71,11 +76,11 @@ jobs:
       - name: Persist refreshed cinema codes
         run: python scripts/push_cinema_codes.py
 
-      - name: Run crawl for 2026-09-13
+      - name: Run shared-cache crawl for 2026-09-13
         env:
           SKCINEMAS_HEADLESS: "false"
         run: |
-          xvfb-run -a --server-args="-screen 0 1366x900x24" \
+          time xvfb-run -a --server-args="-screen 0 1366x900x24" \
             python scripts/daily_update.py --no-git --date 2026-09-13
 
       - name: Commit updated map data to PR branch
@@ -86,6 +91,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No map changes"
           else
-            git commit -m "Update map data from PR39 one-off crawl"
+            git commit -m "Update map data from PR39 shared-cache crawl"
             git push origin HEAD:chore/movie-library-2026-09-13
           fi
