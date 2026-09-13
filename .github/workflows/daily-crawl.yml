@@ -6,7 +6,7 @@ name: Daily crawl and publish map
 # the legacy backend fallback so production cannot be cut over half-way.
 #
 # Runtime: control data → ephemeral SQLite → cinema code refresh → showtime crawlers → GeoJSON
-#          → commit public data / last-known-good codes → deploy GitHub Pages.
+#          → supplemental public-web pass → commit public data / last-known-good codes → deploy GitHub Pages.
 #
 # MUSE_API_BASE_URL / MUSE_API_TOKEN are migration/legacy compatibility only. Once both control
 # files exist they are not required by the scheduled crawl and may later be removed safely.
@@ -119,6 +119,18 @@ jobs:
           fi
           xvfb-run -a --server-args="-screen 0 1366x900x24" \
             python scripts/daily_update.py --no-git $DATE_ARG
+
+      - name: Preserve supplemental cinemas after full export
+        # The full 07:00 export rebuilds GeoJSON from the primary crawler DB. Re-apply the
+        # deterministic web supplement immediately afterwards so the 06:00 additions and
+        # official-site blind spots are not erased by the full export.
+        run: |
+          DATE_ARG=""
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          fi
+          python -m unittest tests.test_supplemental_web_update
+          python scripts/supplemental_web_update.py $DATE_ARG
 
       - name: Commit and push updated map data
         run: |
