@@ -87,6 +87,42 @@ class BatchShowtimeRunnerTests(unittest.TestCase):
             2500,
         )
 
+    def test_shin_kong_double_failure_is_re_raised(self) -> None:
+        def failing_fallback(*_args, **_kwargs):
+            raise RuntimeError("fallback down")
+
+        def legacy_adapter(*_args, **_kwargs):
+            try:
+                batch_runner.crawler.fetch_skcinemas_atmovies([], [], "2026-09-13")
+            except RuntimeError:
+                return []
+            return []
+
+        with patch.object(
+            batch_runner,
+            "_original_fetch_skcinemas_atmovies",
+            side_effect=failing_fallback,
+        ), patch.object(batch_runner, "_original_fetch_skcinemas", side_effect=legacy_adapter):
+            with self.assertRaisesRegex(RuntimeError, "last-known-good"):
+                batch_runner.safe_fetch_skcinemas(None, ["測試電影"], "2026-09-13")
+
+    def test_shin_kong_successful_empty_fallback_remains_empty_success(self) -> None:
+        def empty_fallback(*_args, **_kwargs):
+            return []
+
+        def legacy_adapter(*_args, **_kwargs):
+            return batch_runner.crawler.fetch_skcinemas_atmovies([], [], "2026-09-13")
+
+        with patch.object(
+            batch_runner,
+            "_original_fetch_skcinemas_atmovies",
+            side_effect=empty_fallback,
+        ), patch.object(batch_runner, "_original_fetch_skcinemas", side_effect=legacy_adapter):
+            self.assertEqual(
+                batch_runner.safe_fetch_skcinemas(None, ["測試電影"], "2026-09-13"),
+                [],
+            )
+
     def test_update_map_builds_one_batch_command_for_all_dates(self) -> None:
         command = update_map.build_batch_fetch_args(
             Path("電影清單.txt"),
