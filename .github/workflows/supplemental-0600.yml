@@ -1,20 +1,22 @@
-name: Supplemental web update (manual)
+name: Apply 06:00 web research supplement
 
-# Production 06:00 scheduling is handled by the ChatGPT web-research automation so social/image-post
-# sources can be checked as well. This workflow remains a deterministic manual recovery/verification path.
+# The only 06:00 clock schedule is the ChatGPT automation. It researches web/social sources and
+# commits the small auditable data/control/web_research_supplement.json file to main. That push
+# triggers this workflow, which validates/merges those records plus deterministic fallback sources
+# into the map and deploys Pages. This avoids an LLM rewriting the large GeoJSON directly.
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - data/control/web_research_supplement.json
   workflow_dispatch:
-    inputs:
-      date:
-        description: "補充場次日期 YYYY-MM-DD（留空＝台灣時區的今天）"
-        required: false
-        default: ""
 
 permissions:
   contents: write
 
 concurrency:
-  group: supplemental-manual-map-update
+  group: supplemental-web-research-map-update
   cancel-in-progress: false
 
 jobs:
@@ -26,7 +28,7 @@ jobs:
       PYTHONUNBUFFERED: "1"
 
     steps:
-      - name: Checkout
+      - name: Checkout triggering main revision
         uses: actions/checkout@v4
         with:
           ref: main
@@ -45,13 +47,16 @@ jobs:
       - name: Verify supplemental regressions
         run: python -m unittest tests.test_supplemental_web_update
 
-      - name: Supplement map from public web sources
-        run: |
-          DATE_ARG=""
-          if [ -n "${{ github.event.inputs.date }}" ]; then
-            DATE_ARG="--date ${{ github.event.inputs.date }}"
-          fi
-          python scripts/supplemental_web_update.py $DATE_ARG
+      - name: Merge verified ChatGPT web research
+        run: python scripts/apply_web_research_supplement.py
+
+      - name: Refresh deterministic blind spots and coverage-gap cinemas
+        run: python scripts/supplemental_web_update.py --date "$(python - <<'PY'
+          import json
+          from pathlib import Path
+          print(json.loads(Path('data/control/web_research_supplement.json').read_text(encoding='utf-8'))['for_date'])
+          PY
+          )"
 
       - name: Commit supplemental map data
         run: |
@@ -59,9 +64,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add web/data/locations.geojson
           if git diff --cached --quiet; then
-            echo "補充來源沒有新增或更新場次，無須發佈。"
+            echo "補充來源沒有新增或更新場次，無須另建地圖 commit。"
           else
-            git commit -m "Update map data (manual supplemental web pass)"
+            git commit -m "Update map data (06:00 web supplement)"
             git push
           fi
 
