@@ -50,16 +50,22 @@ jobs:
             tests.test_supplemental_web_update \
             tests.test_web_research_supplement
 
+      - name: Read supplement date
+        run: |
+          python - <<'PY' >> "$GITHUB_ENV"
+          import json
+          from datetime import date
+          from pathlib import Path
+          payload = json.loads(Path('data/control/web_research_supplement.json').read_text(encoding='utf-8'))
+          value = date.fromisoformat(str(payload['for_date'])).isoformat()
+          print(f"SUPPLEMENT_DATE={value}")
+          PY
+
       - name: Merge verified ChatGPT web research
         run: python scripts/apply_web_research_supplement.py
 
       - name: Refresh deterministic blind spots and coverage-gap cinemas
-        run: python scripts/supplemental_web_update.py --date "$(python - <<'PY'
-          import json
-          from pathlib import Path
-          print(json.loads(Path('data/control/web_research_supplement.json').read_text(encoding='utf-8'))['for_date'])
-          PY
-          )"
+        run: python scripts/supplemental_web_update.py --date "$SUPPLEMENT_DATE"
 
       - name: Commit supplemental map data
         run: |
