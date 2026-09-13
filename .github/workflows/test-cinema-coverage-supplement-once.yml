@@ -75,6 +75,22 @@ jobs:
       - name: Validate empty 06:00 research control file
         run: python scripts/apply_web_research_supplement.py --dry-run
 
+      - name: Verify production workflow contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          daily = Path('.github/workflows/daily-crawl.yml').read_text(encoding='utf-8')
+          supplement = Path('.github/workflows/supplemental-0600.yml').read_text(encoding='utf-8')
+          assert 'cron: "0 23 * * *"' in daily
+          assert 'Snapshot 06:00 supplemental records' in daily
+          assert 'preserve_supplemental_geojson.py' in daily
+          assert 'data/control/web_research_supplement.json' in supplement
+          assert 'cron:' not in supplement
+          assert 'SUPPLEMENT_DATE=' in supplement
+          assert 'supplemental_web_update.py --date "$SUPPLEMENT_DATE"' in supplement
+          print('WORKFLOW_CONTRACT_PASS 07:00 unchanged; 06:00 research push-triggered')
+          PY
+
       - name: Run real deterministic public-web supplement
         run: |
           python scripts/supplemental_web_update.py --date 2026-09-13
