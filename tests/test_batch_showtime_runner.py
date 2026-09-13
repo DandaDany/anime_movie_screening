@@ -61,6 +61,32 @@ class BatchShowtimeRunnerTests(unittest.TestCase):
             self.assertEqual(seen[0][1], "第一部")
             self.assertEqual(seen[1][1], "第二部")
 
+    def test_dynamic_select_render_is_cached_across_movies(self) -> None:
+        batch_runner.cached_render_select_option_html.cache_clear()
+        with patch.object(
+            batch_runner,
+            "_original_render_select_option_html",
+            return_value="<html>cached</html>",
+        ) as original_render:
+            first = batch_runner.cached_render_select_option_html(
+                "https://example.invalid/time",
+                "#date",
+                "2026-09-13",
+            )
+            second = batch_runner.cached_render_select_option_html(
+                "https://example.invalid/time",
+                "#date",
+                "2026-09-13",
+            )
+
+        self.assertEqual(first, second)
+        original_render.assert_called_once_with(
+            "https://example.invalid/time",
+            "#date",
+            "2026-09-13",
+            2500,
+        )
+
     def test_update_map_builds_one_batch_command_for_all_dates(self) -> None:
         command = update_map.build_batch_fetch_args(
             Path("電影清單.txt"),
