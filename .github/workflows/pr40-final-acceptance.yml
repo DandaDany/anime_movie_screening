@@ -1,5 +1,6 @@
 name: PR40 final acceptance
 
+# Rerun after refining the duplicate gate to allow intentional GC/MUCROWN same-pin splits.
 on:
   push:
     branches:
