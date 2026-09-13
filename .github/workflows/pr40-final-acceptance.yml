@@ -1,0 +1,146 @@
+name: PR40 final acceptance
+
+on:
+  push:
+    branches:
+      - feat/cinema-coverage-0600-supplement-2026-09-13
+    paths:
+      - .github/workflows/pr40-final-acceptance.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr40-final-acceptance
+  cancel-in-progress: false
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/cinema-coverage-0600-supplement-2026-09-13
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Remove duplicate Gongguan Broadway record from canonical master
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          path = Path('data/control/cinema_master.json')
+          payload = json.loads(path.read_text(encoding='utf-8'))
+          before = len(payload['locations'])
+          duplicate = [row for row in payload['locations'] if int(row['id']) == 116]
+          assert len(duplicate) == 1, f'expected exactly one legacy duplicate id=116, found {len(duplicate)}'
+          payload['locations'] = [row for row in payload['locations'] if int(row['id']) != 116]
+          assert len(payload['locations']) == before - 1
+          assert any(int(row['id']) == 51 and row['active'] for row in payload['locations'])
+          payload['generated_at'] = datetime.now(ZoneInfo('Asia/Taipei')).isoformat(timespec='seconds')
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(f'MASTER_DUPLICATE_FIX_PASS before={before} after={len(payload["locations"])}')
+          PY
+
+      - name: Run regression and integrity tests
+        run: |
+          python -m unittest \
+            tests.test_supplemental_web_update \
+            tests.test_web_research_supplement \
+            tests.test_web_research_source_policy \
+            tests.test_supplemental_finalize \
+            tests.test_cinema_master_integrity
+
+      - name: Validate fixed configuration contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          master = json.loads(Path('data/control/cinema_master.json').read_text(encoding='utf-8'))
+          sources = json.loads(Path('data/input/supplemental_showtime_sources.json').read_text(encoding='utf-8'))
+          locs = {int(row['id']): row for row in master['locations']}
+          assert len(master['chains']) == 51
+          assert len(master['locations']) == 115
+          assert sum(1 for row in master['locations'] if row['active']) == 113
+          assert 116 not in locs
+          assert locs[51]['location_name'] == '公館百老匯影城'
+          assert not Path('data/input/cinema_coverage_addendum_20260913.json').exists()
+          broadway = [row for row in sources['sources'] if int(row['location_id']) == 51]
+          assert len(broadway) == 1
+          assert 't02c01' in broadway[0]['url_template']
+          assert all(int(row['location_id']) != 116 for row in sources['sources'])
+          print('CONFIG_CONTRACT_PASS chains=51 locations=115 active=113 broadway_location_id=51')
+          PY
+
+      - name: Validate 06:00 source policy
+        run: python scripts/web_research_source_policy.py
+
+      - name: Run real deterministic public-web supplement for 2026-09-14
+        run: python scripts/supplemental_web_update.py --date 2026-09-14
+
+      - name: Finalize map invariants
+        run: python scripts/finalize_supplemental_geojson.py --date 2026-09-14
+
+      - name: Verify final generated map
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('web/data/locations.geojson').read_text(encoding='utf-8'))
+          assert payload['show_date'] == '2026-09-14'
+          assert payload.get('movie_title'), 'default movie missing'
+          assert int(payload.get('feature_count') or 0) > 0, 'default movie must have real showtimes today'
+
+          all_features = []
+          supplemental_hits = []
+          for title, by_date in payload.get('movie_features_by_date', {}).items():
+              for day, features in by_date.items():
+                  for feature in features:
+                      props = feature.get('properties') or {}
+                      all_features.append((title, day, props))
+                      if props.get('supplemental_web_source') and int(props.get('showtime_count') or 0) > 0:
+                          supplemental_hits.append((title, day, props))
+
+          assert all(int(props.get('location_id', -1)) != 116 for _, _, props in all_features)
+          broadway_hits = [row for row in supplemental_hits if int(row[2].get('location_id', -1)) == 51]
+          assert broadway_hits, 'expected real Gongguan Broadway supplemental hit on canonical location_id=51'
+          assert not any(int(row[2].get('location_id', -1)) == 116 for row in supplemental_hits)
+
+          print('FINAL_MAP_PASS')
+          print('DEFAULT_MOVIE', payload['movie_title'], 'features=', payload['feature_count'])
+          print('SUPPLEMENTAL_REAL_HITS', len(supplemental_hits))
+          for title, day, props in broadway_hits:
+              print('BROADWAY_CANONICAL_HIT', title, day, props.get('start_times'), sep=' | ')
+          PY
+
+      - name: Commit corrected canonical master and generated map
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/control/cinema_master.json web/data/locations.geojson
+          if git diff --cached --quiet; then
+            echo "No generated corrections to commit."
+          else
+            git commit -m "Fix PR40 acceptance blockers"
+            git push
+          fi
