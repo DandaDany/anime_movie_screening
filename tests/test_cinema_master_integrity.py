@@ -8,6 +8,7 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 MASTER_PATH = PROJECT_DIR / "data" / "control" / "cinema_master.json"
 ADDRESS_BASE_RE = re.compile(r"^(.*?\d+號)")
+SPECIAL_HALL_RE = re.compile(r"\((?:GC|MUCROWN)\)", re.IGNORECASE)
 
 
 def normalize_address_base(value: object) -> str:
@@ -16,8 +17,23 @@ def normalize_address_base(value: object) -> str:
     return match.group(1) if match else text
 
 
+def intentional_special_hall_split(first: dict, second: dict) -> bool:
+    """Allow the project's existing same-pin special-auditorium records.
+
+    VIESHOW/MUVIE intentionally models GC/MUCROWN as separate source records when
+    they have the exact same physical coordinates as the base cinema. This is not
+    the same failure mode as accidentally creating a second physical cinema row.
+    """
+    same_coordinates = (
+        first.get("latitude") == second.get("latitude")
+        and first.get("longitude") == second.get("longitude")
+    )
+    names = f"{first.get('location_name', '')} {second.get('location_name', '')}"
+    return same_coordinates and bool(SPECIAL_HALL_RE.search(names))
+
+
 class CinemaMasterIntegrityTests(unittest.TestCase):
-    def test_active_same_chain_locations_do_not_share_same_physical_address(self):
+    def test_active_same_chain_locations_do_not_duplicate_physical_cinema(self):
         payload = json.loads(MASTER_PATH.read_text(encoding="utf-8"))
         seen: dict[tuple[int, str], dict] = {}
         duplicates: list[tuple[dict, dict]] = []
@@ -30,6 +46,8 @@ class CinemaMasterIntegrityTests(unittest.TestCase):
                 continue
             previous = seen.get(key)
             if previous is not None:
+                if intentional_special_hall_split(previous, location):
+                    continue
                 duplicates.append((previous, location))
             else:
                 seen[key] = location
