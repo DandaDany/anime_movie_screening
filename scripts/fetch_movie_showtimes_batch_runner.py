@@ -46,6 +46,42 @@ def cached_render_select_option_html(
 
 crawler.render_select_option_html = cached_render_select_option_html
 
+# Shin Kong has an official source plus an @movies fallback.  The legacy adapter
+# deliberately catches a failure of both and returns [], but run_source interprets [] as
+# a successful empty refresh and clears last-known-good rows.  Track fallback exceptions
+# at the batch boundary and re-raise only the double-source failure; a genuinely successful
+# fallback with zero matching sessions remains a legitimate empty result.
+_original_fetch_skcinemas_atmovies = crawler.fetch_skcinemas_atmovies
+_original_fetch_skcinemas = crawler.fetch_skcinemas
+_skcinemas_fallback_error: Exception | None = None
+
+
+def tracked_fetch_skcinemas_atmovies(*args, **kwargs):
+    global _skcinemas_fallback_error
+    _skcinemas_fallback_error = None
+    try:
+        return _original_fetch_skcinemas_atmovies(*args, **kwargs)
+    except Exception as exc:
+        _skcinemas_fallback_error = exc
+        raise
+
+
+def safe_fetch_skcinemas(conn, aliases: list[str], show_date: str):
+    global _skcinemas_fallback_error
+    _skcinemas_fallback_error = None
+    result = _original_fetch_skcinemas(conn, aliases, show_date)
+    if _skcinemas_fallback_error is not None:
+        error = _skcinemas_fallback_error
+        _skcinemas_fallback_error = None
+        raise RuntimeError(
+            f"新光官方來源與 @movies fallback 皆失敗；保留 last-known-good：{error}"
+        ) from error
+    return result
+
+
+crawler.fetch_skcinemas_atmovies = tracked_fetch_skcinemas_atmovies
+crawler.fetch_skcinemas = safe_fetch_skcinemas
+
 
 def run_movie(
     movie_title: str,
