@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import sys
 from datetime import date
+from functools import lru_cache
 from pathlib import Path
 
 import fetch_movie_showtimes as crawler
@@ -26,6 +27,24 @@ DEFAULT_MOVIE_LIST = PROJECT_DIR / "電影清單.txt"
 # Keep the same production-wide matching policy as the single-movie runner.
 crawler.normalize_text = normalize_text
 crawler.movie_matches = movie_matches
+
+# Most expensive source/render helpers in the legacy crawler already cache by URL/date.
+# ASP.NET select/postback rendering is the exception: without this wrapper it launches a
+# fresh Chromium instance for every movie/date even though the rendered page is identical.
+_original_render_select_option_html = crawler.render_select_option_html
+
+
+@lru_cache(maxsize=None)
+def cached_render_select_option_html(
+    url: str,
+    selector: str,
+    value: str,
+    wait_ms: int = 2500,
+) -> str:
+    return _original_render_select_option_html(url, selector, value, wait_ms)
+
+
+crawler.render_select_option_html = cached_render_select_option_html
 
 
 def run_movie(
@@ -88,7 +107,7 @@ def main() -> None:
     print("========================================")
     print(f"Movies: {len(movie_titles)}")
     print(f"Dates : {requested_dates[0]} through {requested_dates[-1]}")
-    print("Mode  : shared in-process request/render/VIESHOW caches")
+    print("Mode  : shared request/render/VIESHOW/select-postback caches")
 
     for index, movie_title in enumerate(movie_titles, start=1):
         print()
