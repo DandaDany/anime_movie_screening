@@ -8,7 +8,6 @@ from zoneinfo import ZoneInfo
 
 import control_data
 
-
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_PLAN = PROJECT_DIR / "data" / "input" / "cinema_coverage_20260913.json"
 TAIPEI = ZoneInfo("Asia/Taipei")
@@ -27,22 +26,26 @@ def load_plan(path: Path) -> dict:
 
 def upsert_by_id(records: list[dict], incoming: dict, *, name_field: str) -> str:
     by_id = {record["id"]: record for record in records}
-    by_name = {record[name_field]: record for record in records}
     current = by_id.get(incoming["id"])
-    name_collision = by_name.get(incoming[name_field])
-    if current is None and name_collision is not None:
+    collision = next(
+        (
+            record
+            for record in records
+            if record.get(name_field) == incoming.get(name_field) and record.get("id") != incoming.get("id")
+        ),
+        None,
+    )
+    if collision is not None:
         raise ValueError(
-            f"{name_field} collision: {incoming[name_field]!r} already uses id={name_collision['id']}"
-        )
-    if current is not None and current.get(name_field) != incoming.get(name_field):
-        raise ValueError(
-            f"id={incoming['id']} belongs to {current.get(name_field)!r}, not {incoming.get(name_field)!r}"
+            f"{name_field} collision: {incoming[name_field]!r} already uses id={collision['id']}"
         )
     if current is None:
         records.append(dict(incoming))
         return "added"
     if current == incoming:
         return "unchanged"
+    # Canonical-name corrections are permitted only when the stable ID is unchanged and
+    # the new name is not owned by another record.  ID collisions still fail closed.
     current.clear()
     current.update(incoming)
     return "updated"
@@ -53,33 +56,26 @@ def apply_plan(master: dict, plan: dict) -> dict[str, int]:
 
     for chain in plan["chains"]:
         status = upsert_by_id(master["chains"], chain, name_field="chain_name")
-        if status == "added":
-            counters["chains_added"] += 1
-        elif status == "updated":
-            counters["chains_updated"] += 1
+        if status == "added": counters["chains_added"] += 1
+        elif status == "updated": counters["chains_updated"] += 1
 
     for location in plan["locations"]:
         status = upsert_by_id(master["locations"], location, name_field="location_name")
-        if status == "added":
-            counters["locations_added"] += 1
-        elif status == "updated":
-            counters["locations_updated"] += 1
+        if status == "added": counters["locations_added"] += 1
+        elif status == "updated": counters["locations_updated"] += 1
 
     location_by_id = {location["id"]: location for location in master["locations"]}
     for patch in plan.get("patch_locations", []):
-        location_id = patch.get("id")
-        target = location_by_id.get(location_id)
+        target = location_by_id.get(patch.get("id"))
         if target is None:
-            raise ValueError(f"patch references missing location id={location_id}")
+            raise ValueError(f"patch references missing location id={patch.get('id')}")
         changed = False
         for key, value in patch.items():
-            if key == "id":
-                continue
+            if key == "id": continue
             if target.get(key) != value:
                 target[key] = value
                 changed = True
-        if changed:
-            counters["patches"] += 1
+        if changed: counters["patches"] += 1
 
     master["chains"].sort(key=lambda item: item["id"])
     master["locations"].sort(key=lambda item: item["id"])
@@ -100,7 +96,6 @@ def main() -> None:
     plan = load_plan(plan_path)
     master = control_data.load_cinema_master(master_path)
     counters = apply_plan(master, plan)
-
     if not args.check:
         control_data._atomic_json_write(master_path, master)
 
