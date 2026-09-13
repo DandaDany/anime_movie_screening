@@ -38,10 +38,22 @@ def run_step(args: list[str]) -> None:
 
 
 def build_fetch_args(movie_title: str, show_dates: list[str], aliases: list[str]) -> list[str]:
-    """Build the crawler command with backend aliases and all requested dates."""
+    """Build the legacy single-movie crawler command for targeted/debug use."""
     args = ["scripts/fetch_movie_showtimes_runner.py", movie_title]
     for alias in aliases:
         args.extend(["--alias", alias])
+    for show_date in show_dates:
+        args.extend(["--date", show_date])
+    return args
+
+
+def build_batch_fetch_args(movie_list_path: Path, show_dates: list[str]) -> list[str]:
+    """Build one shared-process crawl command for the whole runtime movie list."""
+    args = [
+        "scripts/fetch_movie_showtimes_batch_runner.py",
+        "--movie-list",
+        str(movie_list_path),
+    ]
     for show_date in show_dates:
         args.extend(["--date", show_date])
     return args
@@ -104,11 +116,11 @@ def main() -> None:
         print(f"  {index}. {movie_title} (aliases={alias_count})")
     print()
 
-    for movie_title in movie_titles:
-        print(f"Fetching showtimes: {movie_title}")
-        fetch_args = build_fetch_args(movie_title, show_dates, alias_map.get(movie_title, []))
-        run_step(fetch_args)
-        print()
+    # Important: crawl the whole runtime list in one Python process.  The source
+    # crawler already has request/render/VIESHOW caches; keeping one process lets
+    # later movies reuse the same cinema pages instead of re-fetching every source.
+    print("Fetching showtimes in shared-cache batch ...")
+    run_step(build_batch_fetch_args(movie_list_path, show_dates))
 
     print()
     print("Exporting web/data/locations.geojson ...")
