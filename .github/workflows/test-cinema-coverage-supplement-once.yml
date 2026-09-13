@@ -6,6 +6,11 @@ on:
       - feat/cinema-coverage-0600-supplement-2026-09-13
     paths:
       - .github/workflows/test-cinema-coverage-supplement-once.yml
+      - scripts/supplemental_web_update.py
+      - scripts/apply_cinema_coverage_20260913.py
+      - tests/test_supplemental_web_update.py
+      - data/input/cinema_coverage_20260913.json
+      - data/input/supplemental_showtime_sources.json
 
 permissions:
   contents: write
