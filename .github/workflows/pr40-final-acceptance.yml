@@ -1,6 +1,7 @@
 name: PR40 final acceptance
 
-# Rerun after refining the duplicate gate to allow intentional GC/MUCROWN same-pin splits.
+# Final rerun: live-source success is required, but a specific cinema is not required to have
+# tracked sessions every day. The Broadway canonical-id invariant is covered deterministically.
 on:
   push:
     branches:
@@ -68,6 +69,7 @@ jobs:
             tests.test_web_research_supplement \
             tests.test_web_research_source_policy \
             tests.test_supplemental_finalize \
+            tests.test_broadway_canonical_merge \
             tests.test_cinema_master_integrity
 
       - name: Validate fixed configuration contract
@@ -122,16 +124,19 @@ jobs:
                       if props.get('supplemental_web_source') and int(props.get('showtime_count') or 0) > 0:
                           supplemental_hits.append((title, day, props))
 
+          assert supplemental_hits, 'expected at least one real supplemental hit in the retained lookahead window'
           assert all(int(props.get('location_id', -1)) != 116 for _, _, props in all_features)
-          broadway_hits = [row for row in supplemental_hits if int(row[2].get('location_id', -1)) == 51]
-          assert broadway_hits, 'expected real Gongguan Broadway supplemental hit on canonical location_id=51'
           assert not any(int(row[2].get('location_id', -1)) == 116 for row in supplemental_hits)
+          broadway_hits = [row for row in supplemental_hits if int(row[2].get('location_id', -1)) == 51]
 
           print('FINAL_MAP_PASS')
           print('DEFAULT_MOVIE', payload['movie_title'], 'features=', payload['feature_count'])
           print('SUPPLEMENTAL_REAL_HITS', len(supplemental_hits))
-          for title, day, props in broadway_hits:
-              print('BROADWAY_CANONICAL_HIT', title, day, props.get('start_times'), sep=' | ')
+          if broadway_hits:
+              for title, day, props in broadway_hits:
+                  print('BROADWAY_CANONICAL_HIT', title, day, props.get('start_times'), sep=' | ')
+          else:
+              print('BROADWAY_CANONICAL_HIT none_today; deterministic merge regression covers location_id=51')
           PY
 
       - name: Commit corrected canonical master and generated map
