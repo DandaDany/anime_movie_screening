@@ -51,6 +51,7 @@ jobs:
             tests.test_web_research_supplement \
             tests.test_web_research_source_policy \
             tests.test_supplemental_finalize \
+            tests.test_broadway_canonical_merge \
             tests.test_cinema_master_integrity
 
       - name: Read supplement date
