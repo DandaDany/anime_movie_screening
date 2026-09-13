@@ -1,0 +1,103 @@
+name: 06:00 supplemental web update
+
+on:
+  schedule:
+    # 每天台灣時間 06:00（UTC+8）＝ 前一天 UTC 22:00。
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "補充場次日期 YYYY-MM-DD（留空＝台灣時區的今天）"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supplemental-0600-map-update
+  cancel-in-progress: false
+
+jobs:
+  supplement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify supplemental regressions
+        run: python -m unittest tests.test_supplemental_web_update
+
+      - name: Supplement map from public web sources
+        run: |
+          DATE_ARG=""
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          fi
+          python scripts/supplemental_web_update.py $DATE_ARG
+
+      - name: Commit supplemental map data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/data/locations.geojson
+          if git diff --cached --quiet; then
+            echo "補充來源沒有新增或更新場次，無須發佈。"
+          else
+            git commit -m "Update map data (06:00 supplemental web pass)"
+            git push
+          fi
+
+  deploy-pages:
+    needs: supplement
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout main after supplemental update
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Build browser runtime config
+        env:
+          CARTO_BASEMAP_KEY: ${{ secrets.CARTO_BASEMAP_KEY }}
+        run: python3 scripts/build_web_runtime_config.py --require-carto-key
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
