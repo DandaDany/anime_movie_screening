@@ -1,5 +1,6 @@
 name: Cinema coverage + supplement integration test once
 
+# Final gate: intentionally triggers only when this workflow is touched, so the tested SHA is frozen.
 on:
   push:
     branches:
