@@ -112,6 +112,7 @@ jobs:
           python -m unittest \
             tests.test_supplemental_web_update \
             tests.test_supplemental_finalize \
+            tests.test_broadway_canonical_merge \
             tests.test_cinema_master_integrity
           python scripts/preserve_supplemental_geojson.py --from /tmp/pre-crawl-locations.geojson $DATE_ARG
           python scripts/supplemental_web_update.py $DATE_ARG
