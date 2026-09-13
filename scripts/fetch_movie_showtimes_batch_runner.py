@@ -46,6 +46,53 @@ def cached_render_select_option_html(
 
 crawler.render_select_option_html = cached_render_select_option_html
 
+# Benchmark-only same-run negative cache for two official endpoints that repeatedly time out
+# before their existing @movies fallback succeeds.  Successful responses are still handled by
+# the crawler's normal request cache.  Only a real first failure is remembered, and only for
+# the ACE Cinema / PTCinema official hosts; parser and fallback behavior remain unchanged.
+_original_request_bytes = crawler.request_bytes
+_same_run_failure_cache: dict[tuple[object, ...], str] = {}
+_NEGATIVE_CACHE_HOST_MARKERS = ("acecinema.com.tw", "ptcinema.movie.com.tw")
+
+
+def request_bytes_with_same_run_failure_cache(
+    url: str,
+    *,
+    method: str = "GET",
+    data: bytes | None = None,
+    headers: dict[str, str] | None = None,
+    verify_ssl: bool = True,
+) -> bytes:
+    cacheable = any(marker in url for marker in _NEGATIVE_CACHE_HOST_MARKERS)
+    cache_key = (
+        url,
+        method,
+        data,
+        tuple(sorted((headers or {}).items())),
+        verify_ssl,
+    )
+    if cacheable and cache_key in _same_run_failure_cache:
+        detail = _same_run_failure_cache[cache_key]
+        print(f"[SAME-RUN-FAILURE-CACHE] skip known failing official request: {url} | {detail}")
+        raise RuntimeError(f"same_run_cached_failure:{detail}")
+    try:
+        return _original_request_bytes(
+            url,
+            method=method,
+            data=data,
+            headers=headers,
+            verify_ssl=verify_ssl,
+        )
+    except Exception as exc:
+        if cacheable:
+            detail = f"{type(exc).__name__}: {exc}"
+            _same_run_failure_cache[cache_key] = detail
+            print(f"[SAME-RUN-FAILURE-CACHE] remember official failure: {url} | {detail}")
+        raise
+
+
+crawler.request_bytes = request_bytes_with_same_run_failure_cache
+
 # Shin Kong has an official source plus an @movies fallback.  The legacy adapter
 # deliberately catches a failure of both and returns [], but run_source interprets [] as
 # a successful empty refresh and clears last-known-good rows.  Track fallback exceptions
@@ -143,7 +190,7 @@ def main() -> None:
     print("========================================")
     print(f"Movies: {len(movie_titles)}")
     print(f"Dates : {requested_dates[0]} through {requested_dates[-1]}")
-    print("Mode  : shared request/render/VIESHOW/select-postback caches")
+    print("Mode  : shared request/render/VIESHOW/select-postback caches + ACE/PTC same-run failure cache")
 
     for index, movie_title in enumerate(movie_titles, start=1):
         print()
