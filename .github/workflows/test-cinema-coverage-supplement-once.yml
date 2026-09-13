@@ -66,10 +66,16 @@ jobs:
           print('MASTER_QC_PASS chains=51 locations=116 active=114')
           PY
 
-      - name: Run supplemental regression tests
-        run: python -m unittest tests.test_supplemental_web_update
+      - name: Run all supplemental regression tests
+        run: |
+          python -m unittest \
+            tests.test_supplemental_web_update \
+            tests.test_web_research_supplement
 
-      - name: Run real public-web supplement
+      - name: Validate empty 06:00 research control file
+        run: python scripts/apply_web_research_supplement.py --dry-run
+
+      - name: Run real deterministic public-web supplement
         run: |
           python scripts/supplemental_web_update.py --date 2026-09-13
           python - <<'PY'
@@ -89,7 +95,7 @@ jobs:
           assert any(row[2] == '百老匯影城公館店' for row in hits), 'expected a real Gongguan Broadway tracked-title hit'
           print('GEOJSON_QC_PASS movies=', len(p.get('movies', [])), 'dates=', len(p.get('available_dates', [])))
           print('SUPPLEMENTAL_REAL_HITS=', len(hits))
-          for row in hits[:50]: print('SUPPLEMENTAL_HIT', *row, sep=' | ')
+          for row in hits[:60]: print('SUPPLEMENTAL_HIT', *row, sep=' | ')
           PY
 
       - name: Commit generated master and test GeoJSON to feature branch
