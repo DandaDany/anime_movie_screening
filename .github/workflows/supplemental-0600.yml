@@ -48,7 +48,10 @@ jobs:
         run: |
           python -m unittest \
             tests.test_supplemental_web_update \
-            tests.test_web_research_supplement
+            tests.test_web_research_supplement \
+            tests.test_web_research_source_policy \
+            tests.test_supplemental_finalize \
+            tests.test_cinema_master_integrity
 
       - name: Read supplement date
         run: |
@@ -61,11 +64,17 @@ jobs:
           print(f"SUPPLEMENT_DATE={value}")
           PY
 
+      - name: Validate web research source policy
+        run: python scripts/web_research_source_policy.py
+
       - name: Merge verified ChatGPT web research
         run: python scripts/apply_web_research_supplement.py
 
       - name: Refresh deterministic blind spots and coverage-gap cinemas
         run: python scripts/supplemental_web_update.py --date "$SUPPLEMENT_DATE"
+
+      - name: Finalize supplemental map invariants
+        run: python scripts/finalize_supplemental_geojson.py --date "$SUPPLEMENT_DATE"
 
       - name: Commit supplemental map data
         run: |
