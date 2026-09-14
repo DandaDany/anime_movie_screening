@@ -52,7 +52,9 @@ jobs:
             tests.test_web_research_source_policy \
             tests.test_supplemental_finalize \
             tests.test_broadway_canonical_merge \
-            tests.test_cinema_master_integrity
+            tests.test_cinema_master_integrity \
+            tests.test_madou_atmovies_fallback \
+            tests.test_new_cinema_metadata
 
       - name: Read supplement date
         run: |
@@ -73,6 +75,9 @@ jobs:
 
       - name: Refresh deterministic blind spots and coverage-gap cinemas
         run: python scripts/supplemental_web_update.py --date "$SUPPLEMENT_DATE"
+
+      - name: Recover Madou through redundant AtMovies hosts
+        run: python scripts/madou_atmovies_fallback.py --date "$SUPPLEMENT_DATE"
 
       - name: Finalize supplemental map invariants
         run: python scripts/finalize_supplemental_geojson.py --date "$SUPPLEMENT_DATE"
