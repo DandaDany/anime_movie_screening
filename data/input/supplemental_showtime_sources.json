@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "notes": "Deterministic public-web fallback sources. They are used by the post-primary preservation pass and are also the canonical source list for the 06:00 web-research automation. A failed source never deletes existing map data.",
+  "notes": "Deterministic public-web fallback sources. They are used by the post-primary preservation pass and are also the canonical source list for the 07:00 web-research automation. A failed source never deletes existing map data.",
   "sources": [
     {"location_id":68,"name":"台北大直美麗新皇家影城","url_template":"https://www.atmovies.com.tw/showtime/t02d06/a02/{date}/","reason":"official_miranew_403","enabled":true},
     {"location_id":69,"name":"桃園台茂美麗新影城","url_template":"https://www.atmovies.com.tw/showtime/t03301/a03/{date}/","reason":"official_miranew_403","enabled":true},
@@ -12,7 +12,7 @@
     {"location_id":101,"name":"員林影城","url_template":"https://www.atmovies.com.tw/showtime/t04703/a47/{date}/","reason":"social_first_schedule","enabled":true},
     {"location_id":102,"name":"嘉年華戲院","url_template":"https://www.atmovies.com.tw/showtime/t05502/a05/{date}/","reason":"coverage_gap","enabled":true},
     {"location_id":103,"name":"全美戲院","url_template":"https://www.atmovies.com.tw/showtime/t06623/a06/{date}/","reason":"coverage_gap","enabled":true},
-    {"location_id":104,"name":"麻豆戲院","url_template":"https://www.atmovies.com.tw/showtime/t06625/a06/{date}/","reason":"social_first_schedule","enabled":true},
+    {"location_id":104,"name":"麻豆戲院","url_template":"https://www.atmovies.com.tw/showtime/t06625/a06/{date}/","fallback_url_templates":["https://atmovies.com.tw/showtime/t06625/a06/{date}/","https://origin.atmovies.com.tw/showtime/t06625/a06/{date}/","https://cdn.atmovies.com.tw/showtime/t06625/a06/{date}/"],"reason":"social_first_schedule_with_atmovies_mirror_failover","enabled":true},
     {"location_id":105,"name":"景美佳佳戲院","url_template":"https://www.atmovies.com.tw/showtime/t02f05/a02/{date}/","reason":"coverage_gap_second_run","enabled":true},
     {"location_id":106,"name":"光點台北電影院","url_template":"https://www.atmovies.com.tw/showtime/t02d20/a02/{date}/","reason":"tracked_title_only_art_cinema","enabled":true},
     {"location_id":107,"name":"府中15","url_template":"https://www.atmovies.com.tw/showtime/t02e08/a02/{date}/","reason":"tracked_title_only_public_venue","enabled":true},

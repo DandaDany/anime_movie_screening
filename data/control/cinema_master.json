@@ -365,11 +365,11 @@
     {
       "id": 37,
       "chain_name": "員林影城",
-      "official_url": null,
+      "official_url": "https://www.facebook.com/YuanlinCinema",
       "crawl_url": "https://www.atmovies.com.tw/showtime/t04703/a47/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": true,
-      "notes": "Local cinema; schedules are social-first, with @movies as reproducible supplemental source.",
+      "notes": "Local cinema; official Facebook page plus @movies as reproducible supplemental source.",
       "active": true
     },
     {
@@ -395,11 +395,11 @@
     {
       "id": 40,
       "chain_name": "麻豆戲院",
-      "official_url": null,
+      "official_url": "https://www.facebook.com/196018270491462",
       "crawl_url": "https://www.atmovies.com.tw/showtime/t06625/a06/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": true,
-      "notes": "Tainan Xibei first-run cinema; future schedules are social-first. @movies is the deterministic supplement.",
+      "notes": "Tainan Xibei first-run cinema; official Facebook/Instagram schedules are social-first. @movies is the deterministic supplement.",
       "active": true
     },
     {
@@ -2125,9 +2125,9 @@
       "latitude": 23.95426,
       "longitude": 120.57262,
       "source_location_code": "t04703",
-      "location_url": "https://www.atmovies.com.tw/showtime/t04703/a47/",
+      "location_url": "https://www.facebook.com/YuanlinCinema",
       "source_url": "https://www.atmovies.com.tw/showtime/t04703/a47/",
-      "notes": "Social-first local schedule; @movies is the automated fallback.",
+      "notes": "Official Facebook page is the venue-owned public entry; @movies remains the automated fallback.",
       "active": true
     },
     {
@@ -2173,9 +2173,9 @@
       "latitude": 23.18362,
       "longitude": 120.25125,
       "source_location_code": "t06625",
-      "location_url": "https://www.facebook.com/pages/%E9%BA%BB%E8%B1%86%E6%88%B2%E9%99%A2/196018270491462",
+      "location_url": "https://www.facebook.com/196018270491462",
       "source_url": "https://www.atmovies.com.tw/showtime/t06625/a06/",
-      "notes": "Schedules announced primarily on Facebook/Instagram; deterministic @movies supplement retained.",
+      "notes": "Schedules announced primarily on official Facebook/Instagram; redundant @movies mirrors are retained as deterministic fallback.",
       "active": true
     },
     {
