@@ -1,6 +1,6 @@
-name: Apply 06:00 web research supplement
+name: Apply 07:00 web research supplement
 
-# The only 06:00 clock schedule is the ChatGPT automation. It researches web/social sources and
+# The 07:00 clock schedule is the ChatGPT automation. It researches web/social sources and
 # commits the small auditable data/control/web_research_supplement.json file to main. That push
 # triggers this workflow, which validates/merges those records plus deterministic fallback sources
 # into the map and deploys Pages. This avoids an LLM rewriting the large GeoJSON directly.
@@ -85,7 +85,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "補充來源沒有新增或更新場次，無須另建地圖 commit。"
           else
-            git commit -m "Update map data (06:00 web supplement)"
+            git commit -m "Update map data (07:00 web supplement)"
             git push
           fi
 
