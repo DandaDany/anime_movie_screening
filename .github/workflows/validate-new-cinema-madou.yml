@@ -1,0 +1,107 @@
+name: Validate new cinema metadata and Madou fallback
+
+on:
+  push:
+    branches:
+      - fix/new-cinema-logos-madou-fallback-2026-09-14
+    paths:
+      - web/data/chain_logos.json
+      - web/assets/logos/**
+      - data/control/cinema_master.json
+      - data/input/supplemental_showtime_sources.json
+      - data/input/social_showtime_sources.json
+      - scripts/madou_atmovies_fallback.py
+      - tests/test_madou_atmovies_fallback.py
+      - tests/test_new_cinema_metadata.py
+      - .github/workflows/supplemental-0600.yml
+      - .github/workflows/daily-crawl.yml
+      - .github/workflows/validate-new-cinema-madou.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/new-cinema-logos-madou-fallback-2026-09-14
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run supplemental and metadata regressions
+        run: |
+          python -m unittest \
+            tests.test_supplemental_web_update \
+            tests.test_web_research_supplement \
+            tests.test_web_research_source_policy \
+            tests.test_supplemental_finalize \
+            tests.test_broadway_canonical_merge \
+            tests.test_cinema_master_integrity \
+            tests.test_madou_atmovies_fallback \
+            tests.test_new_cinema_metadata
+
+      - name: Validate all new logo mappings resolve
+        run: |
+          python - <<'PY'
+          import json
+          import mimetypes
+          import urllib.request
+          from pathlib import Path
+
+          root = Path('.')
+          logos = json.loads(Path('web/data/chain_logos.json').read_text(encoding='utf-8'))
+          names = [
+              '星橋國際影城','日日新影城','全球影城','員林影城','嘉年華戲院','全美戲院',
+              '麻豆戲院','景美佳佳戲院','光點台北電影院','府中15','國家電影及視聽文化中心',
+              '桃園光影文化館','中壢光影電影館','中山73影視藝文空間','高雄市電影館',
+              '內惟藝術中心','花蓮鐵道電影院','今日戲院'
+          ]
+          missing = []
+          failed = []
+          for name in names:
+              value = logos.get(name)
+              if not value:
+                  missing.append(name)
+                  continue
+              if value.startswith(('http://','https://')):
+                  req = urllib.request.Request(value, headers={'User-Agent':'Mozilla/5.0'})
+                  try:
+                      with urllib.request.urlopen(req, timeout=15) as response:
+                          body = response.read(64)
+                          status = getattr(response, 'status', 200)
+                          content_type = response.headers.get('Content-Type','')
+                      if status >= 400 or not body:
+                          failed.append(f'{name}: HTTP {status}')
+                      elif 'image' not in content_type and 'octet-stream' not in content_type:
+                          failed.append(f'{name}: content-type={content_type}')
+                  except Exception as exc:
+                      failed.append(f'{name}: {type(exc).__name__}: {exc}')
+              else:
+                  path = root / 'web' / value
+                  if not path.is_file() or path.stat().st_size == 0:
+                      failed.append(f'{name}: missing local file {path}')
+          print('LOGO_CHECK names=', len(names), 'missing=', missing, 'failed=', failed)
+          if missing or failed:
+              raise SystemExit(1)
+          PY
+
+      - name: Validate source policy
+        run: python scripts/web_research_source_policy.py
+
+      - name: Live Madou mirror dry-run
+        run: python scripts/madou_atmovies_fallback.py --date 2026-09-14 --dry-run
