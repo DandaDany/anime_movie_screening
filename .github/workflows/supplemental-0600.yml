@@ -1,0 +1,122 @@
+name: Apply 06:00 web research supplement
+
+# The only 06:00 clock schedule is the ChatGPT automation. It researches web/social sources and
+# commits the small auditable data/control/web_research_supplement.json file to main. That push
+# triggers this workflow, which validates/merges those records plus deterministic fallback sources
+# into the map and deploys Pages. This avoids an LLM rewriting the large GeoJSON directly.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - data/control/web_research_supplement.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: supplemental-web-research-map-update
+  cancel-in-progress: false
+
+jobs:
+  supplement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout triggering main revision
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify supplemental regressions
+        run: |
+          python -m unittest \
+            tests.test_supplemental_web_update \
+            tests.test_web_research_supplement \
+            tests.test_web_research_source_policy \
+            tests.test_supplemental_finalize \
+            tests.test_broadway_canonical_merge \
+            tests.test_cinema_master_integrity
+
+      - name: Read supplement date
+        run: |
+          python - <<'PY' >> "$GITHUB_ENV"
+          import json
+          from datetime import date
+          from pathlib import Path
+          payload = json.loads(Path('data/control/web_research_supplement.json').read_text(encoding='utf-8'))
+          value = date.fromisoformat(str(payload['for_date'])).isoformat()
+          print(f"SUPPLEMENT_DATE={value}")
+          PY
+
+      - name: Validate web research source policy
+        run: python scripts/web_research_source_policy.py
+
+      - name: Merge verified ChatGPT web research
+        run: python scripts/apply_web_research_supplement.py
+
+      - name: Refresh deterministic blind spots and coverage-gap cinemas
+        run: python scripts/supplemental_web_update.py --date "$SUPPLEMENT_DATE"
+
+      - name: Finalize supplemental map invariants
+        run: python scripts/finalize_supplemental_geojson.py --date "$SUPPLEMENT_DATE"
+
+      - name: Commit supplemental map data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/data/locations.geojson
+          if git diff --cached --quiet; then
+            echo "補充來源沒有新增或更新場次，無須另建地圖 commit。"
+          else
+            git commit -m "Update map data (06:00 web supplement)"
+            git push
+          fi
+
+  deploy-pages:
+    needs: supplement
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout main after supplemental update
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Build browser runtime config
+        env:
+          CARTO_BASEMAP_KEY: ${{ secrets.CARTO_BASEMAP_KEY }}
+        run: python3 scripts/build_web_runtime_config.py --require-carto-key
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
