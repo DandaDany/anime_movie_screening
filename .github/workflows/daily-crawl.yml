@@ -113,9 +113,12 @@ jobs:
             tests.test_supplemental_web_update \
             tests.test_supplemental_finalize \
             tests.test_broadway_canonical_merge \
-            tests.test_cinema_master_integrity
+            tests.test_cinema_master_integrity \
+            tests.test_madou_atmovies_fallback \
+            tests.test_new_cinema_metadata
           python scripts/preserve_supplemental_geojson.py --from /tmp/pre-crawl-locations.geojson $DATE_ARG
           python scripts/supplemental_web_update.py $DATE_ARG
+          python scripts/madou_atmovies_fallback.py $DATE_ARG
           python scripts/finalize_supplemental_geojson.py $DATE_ARG
 
       - name: Commit and push updated map data
