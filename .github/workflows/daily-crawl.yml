@@ -1,13 +1,13 @@
 name: Daily crawl and publish map
 
-# GitHub-native full crawl. The 07:00 Taiwan schedule remains unchanged.
-# A separate 06:00 ChatGPT web-research pass may add verified supplemental records.
-# Before rebuilding GeoJSON, preserve those records; after the full export, restore them and
-# refresh deterministic public-web fallback sources so a primary-source failure cannot erase them.
+# GitHub-native full crawl. The full crawl runs at 06:00 Asia/Taipei.
+# A separate 07:00 ChatGPT web-research pass may add verified supplemental records.
+# Before rebuilding GeoJSON, preserve existing supplemental records; after the full export, restore
+# valid current/future supplemental features and refresh deterministic public-web fallback sources.
 
 on:
   schedule:
-    - cron: "0 23 * * *" # 07:00 Asia/Taipei
+    - cron: "0 22 * * *" # 06:00 Asia/Taipei
   workflow_dispatch:
     inputs:
       date:
@@ -90,7 +90,7 @@ jobs:
       - name: Persist refreshed cinema codes
         run: python scripts/push_cinema_codes.py
 
-      - name: Snapshot 06:00 supplemental records
+      - name: Snapshot existing supplemental records
         run: cp web/data/locations.geojson /tmp/pre-crawl-locations.geojson
 
       - name: Run daily crawl (headful via Xvfb)
