@@ -23,10 +23,11 @@ def install_fixture(page: Page) -> None:
         f"""
         (() => {{
           const fixedNow = {FIXED_NOW_MS};
+          window.__TEST_NOW_MS = fixedNow;
           const NativeDate = Date;
           class FixedDate extends NativeDate {{
-            constructor(...args) {{ super(...(args.length ? args : [fixedNow])); }}
-            static now() {{ return fixedNow; }}
+            constructor(...args) {{ super(...(args.length ? args : [window.__TEST_NOW_MS])); }}
+            static now() {{ return window.__TEST_NOW_MS; }}
           }}
           FixedDate.parse = NativeDate.parse;
           FixedDate.UTC = NativeDate.UTC;
@@ -63,7 +64,11 @@ def run_desktop(page: Page, report: dict) -> None:
 
     checks["summary_today"] = page.locator("#summaryText").inner_text() == "更新於 8/12 07:05"
     checks["supply_summary_removed"] = "影城上映中，共" not in page.locator("body").inner_text()
-    checks["date_chips"] = chip_texts(page) == ["今天 8/12", "明天 8/13", "五 8/14"]
+    checks["date_chips"] = chip_texts(page) == ["今天 8/12", "明天 8/13", "五 8/14", "六 8/15"]
+    checks["movie_remaining_counts"] = page.locator("#movieSelect option").all_text_contents() == [
+        "電影 A (4)",
+        "電影 B (3)",
+    ]
     checks["today_auto_now"] = page.locator("#timeFilterCaption").inner_text() == "15:20 後"
     checks["today_markers_and_badges"] = marker_count(page) == 3 and sorted(
         int(value) for value in page.locator(".cinema-showtime-count").all_text_contents()
@@ -132,17 +137,34 @@ def run_desktop(page: Page, report: dict) -> None:
     )
 
     page.get_by_role("button", name="五 8/14").click()
-    page.locator("#movieSelect").select_option(label="電影 B (0)")
-    checks["movie_a_814_to_b_812"] = (
-        chip_texts(page) == ["今天 8/12", "六 8/15"]
-        and page.locator("#dateChips .is-selected").inner_text() == "今天 8/12"
-    )
-    checks["movie_b_excludes_a_dates"] = "8/13" not in " ".join(chip_texts(page)) and "8/14" not in " ".join(chip_texts(page))
+    checks["zero_movie_hidden_on_date"] = page.locator("#movieSelect option").all_text_contents() == [
+        "電影 A (2)"
+    ]
     page.get_by_role("button", name="六 8/15").click()
-    checks["movie_b_815"] = marker_count(page) == 2
-    page.locator("#movieSelect").select_option(label="電影 A (0)")
-    page.locator("#movieSelect").select_option(label="電影 B (2)")
-    checks["movie_a_812_to_b_preserved"] = page.locator("#dateChips .is-selected").inner_text() == "今天 8/12"
+    checks["movie_reappears_on_other_date"] = (
+        page.locator("#movieSelect option").all_text_contents() == ["電影 B (3)"]
+        and page.locator("#movieSelect").input_value() == "電影 B"
+        and marker_count(page) == 2
+    )
+    checks["global_date_navigation"] = chip_texts(page) == [
+        "今天 8/12",
+        "明天 8/13",
+        "五 8/14",
+        "六 8/15",
+    ]
+
+    page.get_by_role("button", name="今天 8/12").click()
+    page.evaluate("window.__TEST_NOW_MS = Date.parse('2026-08-12T12:30:00Z')")
+    page.evaluate("document.dispatchEvent(new Event('visibilitychange'))")
+    page.wait_for_timeout(100)
+    checks["minute_progress_updates_movie_options"] = (
+        page.locator("#movieSelect option").all_text_contents() == ["電影 A (1)"]
+        and page.locator("#movieSelect").input_value() == "電影 A"
+    )
+    checks["minute_progress_updates_filter_counts"] = (
+        page.locator("#chainFilterList .filter-option strong").all_text_contents() == ["1"]
+        and page.locator("#cityFilterList .filter-option strong").all_text_contents() == ["1"]
+    )
 
     page.screenshot(path=str(REPO / "artifacts" / "desktop.png"), full_page=True)
 

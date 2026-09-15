@@ -1,5 +1,6 @@
 const assert = require("assert");
 const {
+  availableDatesAcrossMovies,
   availableDatesForMovie,
   dateChipLabel,
   formatUpdatedAt,
@@ -42,6 +43,22 @@ const movieB = new Map([
   ["2026-08-15", [{}]],
 ]);
 assert.deepStrictEqual(availableDatesForMovie(movieB), ["2026-08-12", "2026-08-15"]);
+const realFeature = { properties: { showtime_count: 1, showtimes: [{ time: "12:00" }] } };
+const noShowtimeFeature = { properties: { showtime_count: 0, showtimes: [] } };
+assert.deepStrictEqual(
+  availableDatesAcrossMovies(new Map([
+    ["電影 A", new Map([
+      ["2026-08-12", [realFeature]],
+      ["2026-08-13", [realFeature]],
+      ["2026-08-14", [noShowtimeFeature]],
+    ])],
+    ["電影 B", new Map([
+      ["2026-08-14", [realFeature]],
+      ["2026-08-15", [realFeature]],
+    ])],
+  ])),
+  ["2026-08-12", "2026-08-13", "2026-08-14", "2026-08-15"],
+);
 assert.strictEqual(
   selectedDateForMovie("2026-08-14", availableDatesForMovie(movieB), "2026-08-12"),
   "2026-08-12",

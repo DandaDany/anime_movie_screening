@@ -75,6 +75,25 @@
       .sort();
   }
 
+  function availableDatesAcrossMovies(byTitle) {
+    if (!byTitle) return [];
+    const movieEntries = byTitle instanceof Map ? [...byTitle.values()] : Object.values(byTitle);
+    const dates = new Set();
+    for (const byDate of movieEntries) {
+      const dateEntries = byDate instanceof Map ? [...byDate.entries()] : Object.entries(byDate || {});
+      for (const [showDate, features] of dateEntries) {
+        if (!showDate || !Array.isArray(features)) continue;
+        const hasRealShowtime = features.some((feature) => {
+          const props = feature?.properties || {};
+          return Number(props.showtime_count) > 0
+            || (Array.isArray(props.showtimes) && props.showtimes.length > 0);
+        });
+        if (hasRealShowtime) dates.add(showDate);
+      }
+    }
+    return [...dates].sort();
+  }
+
   function selectedDateForMovie(currentDate, movieDates, today = taipeiToday()) {
     const dates = [...new Set(Array.isArray(movieDates) ? movieDates.filter(Boolean) : [])].sort();
     if (dates.includes(currentDate)) return currentDate;
@@ -84,6 +103,7 @@
 
   return {
     TAIPEI_TIME_ZONE,
+    availableDatesAcrossMovies,
     availableDatesForMovie,
     dateChipLabel,
     formatUpdatedAt,

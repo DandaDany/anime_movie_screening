@@ -141,7 +141,7 @@ const {
   taipeiNowMinutes,
 } = window.MuseTimeFilter;
 const {
-  availableDatesForMovie,
+  availableDatesAcrossMovies,
   dateChipLabel,
   selectedDateForMovie,
   summaryTextForDate,
@@ -505,13 +505,13 @@ function facetCounts(key, predicates) {
     if (!predicates.every((predicate) => predicate(feature))) continue;
     const value = feature.properties[key];
     if (!value) continue;
-    counts.set(value, (counts.get(value) || 0) + 1);
+    counts.set(value, (counts.get(value) || 0) + visibleShowtimeCount(feature));
   }
   return counts;
 }
 
 // 清單與排序固定用整部電影的品牌（順序不會因篩選而跳動），
-// 顯示的數字則用「排除影城本身」的分面計數；數字為 0 者不顯示
+// 顯示的數字則用「排除影城本身」後的剩餘場次數；數字為 0 者不顯示
 //（已選取的仍保留，才能再點一下取消）。
 function sortedChains() {
   const baseline = countBy(features, "chain_name");
@@ -527,7 +527,7 @@ function sortedChains() {
     });
 }
 
-// 縣市固定用 CITY_ORDER 排序，數字用「排除縣市本身」的分面計數；
+// 縣市固定用 CITY_ORDER 排序，數字用「排除縣市本身」後的剩餘場次數；
 // 數字為 0 者不顯示（已選取的仍保留，才能再點一下取消）。
 function sortedCities() {
   const baseline = countBy(features, "city");
@@ -675,7 +675,7 @@ function normalizeMovieData(data) {
 
   const today = taipeiToday();
   selectedMovieTitle = movieFeaturesByTitleAndDate.keys().next().value || "";
-  availableDates = availableDatesForMovie(movieFeaturesByTitleAndDate.get(selectedMovieTitle));
+  availableDates = availableDatesAcrossMovies(movieFeaturesByTitleAndDate);
   selectedDate = selectedDateForMovie(data.show_date, availableDates, today);
   refreshMovieDateData();
 }
@@ -685,12 +685,9 @@ function refreshMovieDateData() {
   movieFeaturesByTitle = new Map();
   for (const [title, byDate] of movieFeaturesByTitleAndDate) {
     const movieFeatures = byDate.get(selectedDate) || [];
-    const showtimeTotal = movieFeatures.reduce((sum, feature) => sum + showtimeCount(feature), 0);
     movieSummaries.push({
       title,
       showDate: selectedDate,
-      featureCount: movieFeatures.length,
-      showtimeTotal,
     });
     movieFeaturesByTitle.set(title, movieFeatures);
   }
@@ -725,38 +722,50 @@ function selectDate(showDate) {
   applyFilters();
 }
 
+function movieOptionsForCurrentState() {
+  return movieSummaries
+    .map((movie) => {
+      const movieFeatures = movieFeaturesByTitle.get(movie.title) || [];
+      const remainingShowtimes = movieFeatures.reduce(
+        (sum, feature) => sum + visibleShowtimeCount(feature),
+        0,
+      );
+      return { ...movie, remainingShowtimes };
+    })
+    .filter((movie) => movie.remainingShowtimes > 0);
+}
+
 function renderMovieOptions() {
+  const visibleMovies = movieOptionsForCurrentState();
+  if (!visibleMovies.some((movie) => movie.title === selectedMovieTitle)) {
+    selectedMovieTitle = visibleMovies[0]?.title || "";
+    features = movieFeaturesByTitle.get(selectedMovieTitle) || [];
+    activeId = null;
+    selectedChain = "";
+    selectedCity = "";
+  }
+
   const fragment = document.createDocumentFragment();
-  for (const movie of movieSummaries) {
+  for (const movie of visibleMovies) {
     const option = document.createElement("option");
     option.value = movie.title;
-    option.textContent = `${movie.title} (${movie.featureCount})`;
+    option.textContent = `${movie.title} (${movie.remainingShowtimes})`;
     option.selected = movie.title === selectedMovieTitle;
     fragment.appendChild(option);
   }
   movieSelect.replaceChildren(fragment);
-  movieSelect.disabled = movieSummaries.length <= 1;
-  renderMobileMovies();
+  movieSelect.disabled = visibleMovies.length <= 1;
+  renderMobileMovies(visibleMovies);
 }
 
 function selectMovie(movieTitle) {
-  if (!movieFeaturesByTitleAndDate.has(movieTitle)) return;
+  if (!movieFeaturesByTitle.has(movieTitle)) return;
   if (window.trackEvent) window.trackEvent("select_movie", { movie_title: movieTitle });
   selectedMovieTitle = movieTitle;
-  availableDates = availableDatesForMovie(movieFeaturesByTitleAndDate.get(movieTitle));
-  const nextDate = selectedDateForMovie(selectedDate, availableDates);
-  if (nextDate !== selectedDate) {
-    selectedDate = nextDate;
-    setQuickPeriod("all");
-    // refreshMovieDateData() 尚未切換 features；此處只更新時間 state，
-    // 最後由本函式既有的 applyFilters() 統一 render，避免舊 features 閃現一次。
-    setAutoTimeMode(false);
-  }
-  refreshMovieDateData();
+  features = movieFeaturesByTitle.get(movieTitle) || [];
   activeId = null;
   selectedChain = "";
   selectedCity = "";
-  renderDateChips();
   renderMovieOptions();
   renderFilters();
   applyFilters();
@@ -976,7 +985,8 @@ function renderSummaryText(message = null) {
 }
 
 function applyFilters() {
-  // 先重繪地區／影城膠囊，讓分面數字隨當前所有篩選連動更新
+  // 電影、地區與影城數字共用即時時間狀態；分鐘推進時一起重繪。
+  renderMovieOptions();
   renderFilters();
   const filtered = features.filter(matchesFilters);
   renderMarkers(filtered);
@@ -1217,16 +1227,16 @@ mSeg.addEventListener("click", (event) => {
 });
 
 /* ---- 手機電影清單（片名＋場次，單選） ---- */
-function renderMobileMovies() {
+function renderMobileMovies(visibleMovies = movieOptionsForCurrentState()) {
   const fragment = document.createDocumentFragment();
-  for (const movie of movieSummaries) {
+  for (const movie of visibleMovies) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "m-movie-row";
     button.classList.toggle("is-selected", movie.title === selectedMovieTitle);
     button.innerHTML = `
       <span class="mm-name">${escapeHtml(movie.title)}</span>
-      <span class="mm-count">${movie.showtimeTotal} 場</span>
+      <span class="mm-count">${movie.remainingShowtimes} 場</span>
       <span class="mm-radio" aria-hidden="true"></span>
     `;
     button.addEventListener("click", () => selectMovie(movie.title));
