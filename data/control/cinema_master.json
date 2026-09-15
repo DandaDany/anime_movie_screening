@@ -395,7 +395,7 @@
     {
       "id": 40,
       "chain_name": "麻豆戲院",
-      "official_url": "https://www.facebook.com/196018270491462",
+      "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
       "crawl_url": "https://www.atmovies.com.tw/showtime/t06625/a06/{date}/",
       "booking_url": null,
       "all_locations_assumed_showing": true,
@@ -2173,7 +2173,7 @@
       "latitude": 23.18362,
       "longitude": 120.25125,
       "source_location_code": "t06625",
-      "location_url": "https://www.facebook.com/196018270491462",
+      "location_url": "https://www.facebook.com/profile.php?id=61564946135169",
       "source_url": "https://www.atmovies.com.tw/showtime/t06625/a06/",
       "notes": "Schedules announced primarily on official Facebook/Instagram; redundant @movies mirrors are retained as deterministic fallback.",
       "active": true
