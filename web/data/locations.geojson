@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
   "generated_at": "2026-09-15",
-  "updated_at": "2026-09-15T10:57:51+08:00",
+  "updated_at": "2026-09-15T12:14:04+08:00",
   "movie_title": "你的名字。（十周年重映）",
   "show_date": "2026-09-15",
   "movies": [
@@ -34,7 +34,7 @@
         "2026-09-18",
         "2026-09-19"
       ],
-      "feature_count": 72
+      "feature_count": 74
     },
     {
       "title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
@@ -717,6 +717,42 @@
             }
           ],
           "start_times": "16:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.57262,
+            23.95426
+          ]
+        },
+        "properties": {
+          "location_id": 101,
+          "chain_name": "員林影城",
+          "location_name": "員林影城",
+          "map_name": "員林影城 員林影城",
+          "address": "彰化縣員林市南昌路39號3樓",
+          "city": "彰化縣",
+          "location_url": "https://www.facebook.com/YuanlinCinema",
+          "official_url": "https://www.facebook.com/YuanlinCinema",
+          "crawl_url": "https://www.facebook.com/YuanlinCinema/posts/pfbid0QUGSXnrqqGF6QwSDesmeV4RxqpfoLotw4WS2SVXT2EfS4ADZf9pzLrgPptm33XAvl",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-15",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "12:40",
+              "format": null,
+              "language": "中文版",
+              "auditorium": null,
+              "booking_url": "https://www.facebook.com/YuanlinCinema/posts/pfbid0QUGSXnrqqGF6QwSDesmeV4RxqpfoLotw4WS2SVXT2EfS4ADZf9pzLrgPptm33XAvl",
+              "label": "12:40"
+            }
+          ],
+          "start_times": "12:40",
+          "supplemental_web_source": true
         }
       },
       {
@@ -3476,6 +3512,42 @@
             }
           ],
           "start_times": "12:05"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.25125,
+            23.18362
+          ]
+        },
+        "properties": {
+          "location_id": 104,
+          "chain_name": "麻豆戲院",
+          "location_name": "麻豆戲院",
+          "map_name": "麻豆戲院 麻豆戲院",
+          "address": "台南市麻豆區興中路106號3樓",
+          "city": "臺南市",
+          "location_url": "https://www.facebook.com/196018270491462",
+          "official_url": "https://www.facebook.com/196018270491462",
+          "crawl_url": "https://www.instagram.com/madoucinema/p/DdORVLCIOgK/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-15",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "17:25",
+              "format": null,
+              "language": "日文版",
+              "auditorium": null,
+              "booking_url": "https://www.instagram.com/madoucinema/p/DdORVLCIOgK/",
+              "label": "17:25"
+            }
+          ],
+          "start_times": "17:25",
+          "supplemental_web_source": true
         }
       }
     ],
@@ -11543,6 +11615,42 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.57262,
+              23.95426
+            ]
+          },
+          "properties": {
+            "location_id": 101,
+            "chain_name": "員林影城",
+            "location_name": "員林影城",
+            "map_name": "員林影城 員林影城",
+            "address": "彰化縣員林市南昌路39號3樓",
+            "city": "彰化縣",
+            "location_url": "https://www.facebook.com/YuanlinCinema",
+            "official_url": "https://www.facebook.com/YuanlinCinema",
+            "crawl_url": "https://www.facebook.com/YuanlinCinema/posts/pfbid0QUGSXnrqqGF6QwSDesmeV4RxqpfoLotw4WS2SVXT2EfS4ADZf9pzLrgPptm33XAvl",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-15",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "12:40",
+                "format": null,
+                "language": "中文版",
+                "auditorium": null,
+                "booking_url": "https://www.facebook.com/YuanlinCinema/posts/pfbid0QUGSXnrqqGF6QwSDesmeV4RxqpfoLotw4WS2SVXT2EfS4ADZf9pzLrgPptm33XAvl",
+                "label": "12:40"
+              }
+            ],
+            "start_times": "12:40",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.604793,
               25.052363
             ]
@@ -14295,6 +14403,42 @@
               }
             ],
             "start_times": "12:05"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.25125,
+              23.18362
+            ]
+          },
+          "properties": {
+            "location_id": 104,
+            "chain_name": "麻豆戲院",
+            "location_name": "麻豆戲院",
+            "map_name": "麻豆戲院 麻豆戲院",
+            "address": "台南市麻豆區興中路106號3樓",
+            "city": "臺南市",
+            "location_url": "https://www.facebook.com/196018270491462",
+            "official_url": "https://www.facebook.com/196018270491462",
+            "crawl_url": "https://www.instagram.com/madoucinema/p/DdORVLCIOgK/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-15",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:25",
+                "format": null,
+                "language": "日文版",
+                "auditorium": null,
+                "booking_url": "https://www.instagram.com/madoucinema/p/DdORVLCIOgK/",
+                "label": "17:25"
+              }
+            ],
+            "start_times": "17:25",
+            "supplemental_web_source": true
           }
         }
       ],
@@ -32455,7 +32599,7 @@
       }
     }
   ],
-  "supplemental_updated_at": "2026-09-15T10:57:24+08:00",
+  "supplemental_updated_at": "2026-09-15T12:13:36+08:00",
   "supplemental_preserved_at": "2026-09-15T08:47:01+08:00",
-  "supplemental_finalized_at": "2026-09-15T10:57:51+08:00"
+  "supplemental_finalized_at": "2026-09-15T12:14:04+08:00"
 }
