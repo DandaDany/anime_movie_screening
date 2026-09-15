@@ -1,6 +1,37 @@
 {
   "schema_version": 1,
   "for_date": "2026-09-15",
-  "generated_at": "2026-09-15T09:52:00+08:00",
-  "records": []
+  "generated_at": "2026-09-15T12:02:08+08:00",
+  "records": [
+    {
+      "location_id": 104,
+      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+      "show_date": "2026-09-15",
+      "source_url": "https://www.instagram.com/madoucinema/p/DdORVLCIOgK/",
+      "evidence": "麻豆戲院官方 Instagram 置頂／最新時刻表貼文，圖片明示適用 2026-09-14 至 2026-09-16；列出《劇場版 吉伊卡哇 人魚島的秘密》日文版 17:25。",
+      "showtimes": [
+        {
+          "time": "17:25",
+          "format": null,
+          "language": "日文版",
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 101,
+      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+      "show_date": "2026-09-15",
+      "source_url": "https://www.facebook.com/YuanlinCinema/posts/pfbid0QUGSXnrqqGF6QwSDesmeV4RxqpfoLotw4WS2SVXT2EfS4ADZf9pzLrgPptm33XAvl",
+      "evidence": "員林影城官方 Facebook 精選時刻表貼文，文字與圖片明示適用 2026-09-15 至 2026-09-16；列出《劇場版 吉伊卡哇 人魚島的秘密》中文版 12:40。",
+      "showtimes": [
+        {
+          "time": "12:40",
+          "format": null,
+          "language": "中文版",
+          "auditorium": null
+        }
+      ]
+    }
+  ]
 }
