@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
   "generated_at": "2026-09-15",
-  "updated_at": "2026-09-15T08:58:47+08:00",
+  "updated_at": "2026-09-15T10:57:51+08:00",
   "movie_title": "你的名字。（十周年重映）",
   "show_date": "2026-09-15",
   "movies": [
@@ -32455,7 +32455,7 @@
       }
     }
   ],
-  "supplemental_updated_at": "2026-09-15T08:58:18+08:00",
+  "supplemental_updated_at": "2026-09-15T10:57:24+08:00",
   "supplemental_preserved_at": "2026-09-15T08:47:01+08:00",
-  "supplemental_finalized_at": "2026-09-15T08:58:47+08:00"
+  "supplemental_finalized_at": "2026-09-15T10:57:51+08:00"
 }
