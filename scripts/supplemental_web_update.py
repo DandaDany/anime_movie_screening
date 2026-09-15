@@ -10,6 +10,7 @@ from collections import defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
@@ -28,6 +29,11 @@ DEFAULT_GEOJSON = PROJECT_DIR / "web" / "data" / "locations.geojson"
 DEFAULT_SOURCES = PROJECT_DIR / "data" / "input" / "supplemental_showtime_sources.json"
 TAIPEI = ZoneInfo("Asia/Taipei")
 TIME_RE = re.compile(r"^(\d{1,2})\s*[：:]\s*(\d{2})$")
+INLINE_TIME_RE = re.compile(r"(?<!\d)([01]?\d|2[0-3])\s*[：:]\s*([0-5]\d)(?!\d)")
+DATE_RANGE_RE = re.compile(
+    r"(?<!\d)(\d{1,2})\s*/\s*(\d{1,2})"
+    r"(?:\s*(?:至|到|[-–—~～])\s*(\d{1,2})\s*/\s*(\d{1,2}))?"
+)
 
 
 def load_json(path: Path) -> dict:
@@ -91,6 +97,8 @@ def infer_language(text: str) -> str | None:
         return "日語"
     if any(token in text for token in ("英語", "英文")):
         return "英語"
+    if any(token in text for token in ("韓語", "韓文")):
+        return "韓語"
     return None
 
 
@@ -153,6 +161,134 @@ def parse_atmovies_page(
                 }
             )
     return dict(result)
+
+
+def _month_day_ordinal(month: int, day: int) -> int | None:
+    try:
+        return date(2000, month, day).timetuple().tm_yday
+    except ValueError:
+        return None
+
+
+def parse_cm_movie_detail_page(
+    raw: bytes,
+    show_dates: list[str],
+) -> dict[str, list[dict[str, str | None]]]:
+    """Parse one official 今日全美 film page into explicit dated showtimes.
+
+    The official WordPress page publishes one date or date range followed by the
+    applicable clock times. We intersect those ranges with the repository's
+    supported lookahead dates, so old posts cannot leak stale sessions forward.
+    """
+    lines = html_lines(raw)
+    language = next((value for line in lines if (value := infer_language(line))), None)
+    result: dict[str, list[dict[str, str | None]]] = defaultdict(list)
+    seen: set[tuple[str, str]] = set()
+
+    candidates: list[tuple[str, int]] = []
+    for show_date in show_dates:
+        parsed_date = date.fromisoformat(show_date)
+        ordinal = _month_day_ordinal(parsed_date.month, parsed_date.day)
+        if ordinal is not None:
+            candidates.append((show_date, ordinal))
+
+    for line in lines:
+        date_match = DATE_RANGE_RE.search(line)
+        if date_match is None:
+            continue
+        start_ordinal = _month_day_ordinal(int(date_match.group(1)), int(date_match.group(2)))
+        end_ordinal = _month_day_ordinal(
+            int(date_match.group(3) or date_match.group(1)),
+            int(date_match.group(4) or date_match.group(2)),
+        )
+        if start_ordinal is None or end_ordinal is None:
+            continue
+
+        times = [
+            f"{int(hour):02d}:{minute}"
+            for hour, minute in INLINE_TIME_RE.findall(line[date_match.end() :])
+        ]
+        if not times:
+            continue
+
+        for show_date, ordinal in candidates:
+            in_range = (
+                start_ordinal <= ordinal <= end_ordinal
+                if start_ordinal <= end_ordinal
+                else ordinal >= start_ordinal or ordinal <= end_ordinal
+            )
+            if not in_range:
+                continue
+            for start_time in times:
+                key = (show_date, start_time)
+                if key in seen:
+                    continue
+                seen.add(key)
+                result[show_date].append(
+                    {
+                        "time": start_time,
+                        "format": None,
+                        "language": language,
+                        "auditorium": None,
+                    }
+                )
+    return dict(result)
+
+
+def cm_movie_article_urls(raw: bytes, movies: list[dict], index_url: str) -> dict[str, str]:
+    """Return the newest official timetable article matching each tracked movie."""
+    soup = BeautifulSoup(raw, "html.parser")
+    aliases_by_title = {
+        movie["title"]: [movie["title"], *(movie.get("aliases") or [])]
+        for movie in movies
+    }
+    result: dict[str, str] = {}
+    for anchor in soup.select("article h2 a, h2.entry-title a, h2 a"):
+        label = re.sub(r"\s+", " ", anchor.get_text(" ", strip=True)).strip()
+        href = str(anchor.get("href") or "").strip()
+        if not label or not href:
+            continue
+        for movie_title, aliases in aliases_by_title.items():
+            if movie_title not in result and movie_matches(label, aliases):
+                result[movie_title] = urljoin(index_url, href)
+                break
+    return result
+
+
+def collect_cm_movie_source(
+    *,
+    source: dict,
+    show_dates: list[str],
+    movies: list[dict],
+) -> tuple[dict[tuple[str, str, int], tuple[str, list[dict[str, str | None]]]], int, int]:
+    """Collect the official 今日全美 timetable once, then fetch matched film pages."""
+    records: dict[tuple[str, str, int], tuple[str, list[dict[str, str | None]]]] = {}
+    success = failure = 0
+    location_id = int(source["location_id"])
+    source_name = str(source.get("name") or location_id)
+    index_url = str(source["url_template"])
+
+    index_raw = fetch_bytes(index_url)
+    success += 1
+    article_urls = cm_movie_article_urls(index_raw, movies, index_url)
+    for movie_title, article_url in article_urls.items():
+        try:
+            detail_raw = fetch_bytes(article_url)
+            success += 1
+            parsed = parse_cm_movie_detail_page(detail_raw, show_dates)
+            found = sum(len(items) for items in parsed.values())
+            if found:
+                print(f"[supplement] {source_name} {movie_title}: {found} tracked showtime(s)")
+            for show_date, showtimes in parsed.items():
+                if showtimes:
+                    records[(movie_title, show_date, location_id)] = (article_url, showtimes)
+        except Exception as exc:
+            failure += 1
+            print(
+                f"[supplement][degraded] {source_name} {movie_title}: "
+                f"{type(exc).__name__}: {exc}"
+            )
+    return records, success, failure
 
 
 def map_context(master: dict) -> tuple[dict[int, dict], dict[int, dict]]:
@@ -365,6 +501,30 @@ def collect_records(
             continue
         location_id = int(source["location_id"])
         source_name = str(source.get("name") or location_id)
+        source_type = str(source.get("source_type") or "atmovies")
+
+        if source_type == "cm_movie_wordpress":
+            try:
+                source_records, source_success, source_failure = collect_cm_movie_source(
+                    source=source,
+                    show_dates=show_dates,
+                    movies=movies,
+                )
+                records.update(source_records)
+                success += source_success
+                failure += source_failure
+            except Exception as exc:
+                failure += 1
+                print(
+                    f"[supplement][degraded] {source_name}: "
+                    f"{type(exc).__name__}: {exc}"
+                )
+            continue
+        if source_type != "atmovies":
+            failure += 1
+            print(f"[supplement][degraded] {source_name}: unsupported source_type={source_type}")
+            continue
+
         for show_date in show_dates:
             compact_date = show_date.replace("-", "")
             url = str(source["url_template"]).format(date=compact_date)

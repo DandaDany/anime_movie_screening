@@ -3,7 +3,13 @@ from __future__ import annotations
 import unittest
 
 from scripts.preserve_supplemental_geojson import preserve_supplemental_features
-from scripts.supplemental_web_update import merge_feature, merge_records_into_geojson, parse_atmovies_page
+from scripts.supplemental_web_update import (
+    cm_movie_article_urls,
+    merge_feature,
+    merge_records_into_geojson,
+    parse_atmovies_page,
+    parse_cm_movie_detail_page,
+)
 
 
 class SupplementalAtMoviesParserTests(unittest.TestCase):
@@ -29,6 +35,49 @@ class SupplementalAtMoviesParserTests(unittest.TestCase):
         movies = [{"title": "電影哆啦A夢：新．大雄的海底鬼岩城", "aliases": ["電影哆啦A夢：新‧大雄的海底鬼岩城"]}]
         parsed = parse_atmovies_page(raw, "2026-09-13", movies)
         self.assertEqual(parsed[movies[0]["title"]][0]["time"], "08:30")
+
+
+class SupplementalCmMovieParserTests(unittest.TestCase):
+    def test_parses_explicit_date_ranges_within_supported_window(self):
+        raw = """
+        <html><body><h1>希望:末日血戰</h1>
+        <p>9/4至9/5 13:00、17:00</p>
+        <p>9/8至9/10 11:00、15:10</p>
+        <p>語言: 韓語</p>
+        </body></html>
+        """.encode("utf-8")
+        parsed = parse_cm_movie_detail_page(
+            raw,
+            ["2026-09-09", "2026-09-10", "2026-09-11"],
+        )
+        self.assertEqual(sorted(parsed), ["2026-09-09", "2026-09-10"])
+        self.assertEqual(
+            [item["time"] for item in parsed["2026-09-09"]],
+            ["11:00", "15:10"],
+        )
+        self.assertEqual(parsed["2026-09-09"][0]["language"], "韓語")
+        self.assertIsNone(parsed["2026-09-09"][0]["format"])
+
+    def test_discovers_only_tracked_movie_articles(self):
+        raw = """
+        <html><body>
+        <article><h2><a href="/2026/09/01/tracked/">希望:末日血戰</a></h2></article>
+        <article><h2><a href="/2026/09/01/other/">其他電影</a></h2></article>
+        </body></html>
+        """.encode("utf-8")
+        movies = [{"title": "希望：末日血戰", "aliases": ["希望:末日血戰"]}]
+        urls = cm_movie_article_urls(raw, movies, "https://www.cm-movie.com.tw/category/time/")
+        self.assertEqual(
+            urls,
+            {"希望：末日血戰": "https://www.cm-movie.com.tw/2026/09/01/tracked/"},
+        )
+
+    def test_old_post_dates_fail_closed(self):
+        raw = "<html><body><p>8/1 10:00、12:00</p></body></html>".encode("utf-8")
+        self.assertEqual(
+            parse_cm_movie_detail_page(raw, ["2026-09-15", "2026-09-16"]),
+            {},
+        )
 
 
 class SupplementalGeoJsonMergeTests(unittest.TestCase):

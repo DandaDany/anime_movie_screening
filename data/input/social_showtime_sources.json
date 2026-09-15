@@ -35,19 +35,19 @@
       "rule": "Official Facebook page plus deterministic @movies fallback. Only explicit venue/date/title/time evidence may be written."
     },
     {
-      "location_id": 115,
-      "name": "今日戲院",
+      "location_id": 103,
+      "name": "今日全美戲院（全美戲院官方）",
       "official_url": "https://www.cm-movie.com.tw/",
       "social_urls": [
         "https://www.facebook.com/cmmovies"
       ],
       "search_queries": [
-        "今日戲院 台南 時刻表",
-        "今日全美戲院 Facebook 今日戲院",
-        "今日戲院 台南 放映"
+        "今日全美戲院 全美戲院 時刻表",
+        "全美戲院 台南 Facebook 放映",
+        "台南市中西區永福路二段187號 電影"
       ],
-      "deterministic_fallback": null,
-      "rule": "Never copy 全美戲院 sessions to 今日戲院. Add a 今日戲院 pin only when the source explicitly says the screening is at 今日戲院 / 台南市中西區中正路249號."
+      "deterministic_fallback": "https://www.cm-movie.com.tw/category/time/",
+      "rule": "Treat 今日全美戲院 as the official brand account for location_id=103 全美戲院 (台南市中西區永福路二段187號). Do not assign any session to location_id=115 今日戲院 unless a source explicitly identifies 今日戲院 / 台南市中西區中正路249號."
     }
   ]
 }
