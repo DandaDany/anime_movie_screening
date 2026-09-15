@@ -5,12 +5,17 @@
     {
       "location_id": 104,
       "name": "麻豆戲院",
-      "official_url": "https://www.facebook.com/196018270491462",
+      "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
       "social_urls": [
-        "https://www.facebook.com/196018270491462",
+        "https://www.facebook.com/profile.php?id=61564946135169",
         "https://www.instagram.com/madoucinema/"
       ],
-      "search_queries": ["麻豆戲院 時刻表", "麻豆戲院 Facebook", "麻豆戲院 Instagram", "site:instagram.com/madoucinema 麻豆戲院"],
+      "search_queries": [
+        "麻豆戲院 時刻表",
+        "麻豆戲院 Facebook",
+        "麻豆戲院 Instagram",
+        "site:instagram.com/madoucinema 麻豆戲院"
+      ],
       "deterministic_fallback": "https://www.atmovies.com.tw/showtime/t06625/a06/{date}/",
       "rule": "Prefer an explicit current official social schedule. If the primary @movies host fails, try the configured @movies mirrors before treating the source as degraded. If all @movies hosts fail, search the official Facebook/Instagram sources; an inaccessible social page is UNKNOWN, not evidence of no sessions."
     },
@@ -21,7 +26,11 @@
       "social_urls": [
         "https://www.facebook.com/YuanlinCinema"
       ],
-      "search_queries": ["員林影城 時刻表", "員林影城 Facebook", "site:facebook.com/YuanlinCinema 員林影城"],
+      "search_queries": [
+        "員林影城 時刻表",
+        "員林影城 Facebook",
+        "site:facebook.com/YuanlinCinema 員林影城"
+      ],
       "deterministic_fallback": "https://www.atmovies.com.tw/showtime/t04703/a47/{date}/",
       "rule": "Official Facebook page plus deterministic @movies fallback. Only explicit venue/date/title/time evidence may be written."
     },
@@ -29,8 +38,14 @@
       "location_id": 115,
       "name": "今日戲院",
       "official_url": "https://www.cm-movie.com.tw/",
-      "social_urls": ["https://www.facebook.com/cmmovies"],
-      "search_queries": ["今日戲院 台南 時刻表", "今日全美戲院 Facebook 今日戲院", "今日戲院 台南 放映"],
+      "social_urls": [
+        "https://www.facebook.com/cmmovies"
+      ],
+      "search_queries": [
+        "今日戲院 台南 時刻表",
+        "今日全美戲院 Facebook 今日戲院",
+        "今日戲院 台南 放映"
+      ],
       "deterministic_fallback": null,
       "rule": "Never copy 全美戲院 sessions to 今日戲院. Add a 今日戲院 pin only when the source explicitly says the screening is at 今日戲院 / 台南市中西區中正路249號."
     }
