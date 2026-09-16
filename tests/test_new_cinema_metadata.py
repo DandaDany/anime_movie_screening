@@ -82,7 +82,7 @@ class NewCinemaMetadataTests(unittest.TestCase):
         )
         self.assertEqual(
             self.social_by_location[104]["official_url"],
-            "https://www.facebook.com/196018270491462",
+            "https://www.facebook.com/profile.php?id=61564946135169",
         )
         self.assertIn(
             "https://www.instagram.com/madoucinema/",
