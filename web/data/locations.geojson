@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
-  "generated_at": "2026-09-20",
-  "updated_at": "2026-09-21T07:24:07+08:00",
+  "generated_at": "2026-09-21",
+  "updated_at": "2026-09-21T09:33:14+08:00",
   "movie_title": "你的名字。（十周年重映）",
   "show_date": "2026-09-21",
   "movies": [
@@ -14,7 +14,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 1
+      "feature_count": 2
     },
     {
       "title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
@@ -24,7 +24,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 15
+      "feature_count": 16
     },
     {
       "title": "劇場版 吉伊卡哇 人魚島的秘密",
@@ -33,9 +33,11 @@
         "2026-09-21",
         "2026-09-22",
         "2026-09-23",
-        "2026-09-24"
+        "2026-09-24",
+        "2026-09-26",
+        "2026-09-28"
       ],
-      "feature_count": 58
+      "feature_count": 68
     },
     {
       "title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
@@ -44,9 +46,10 @@
         "2026-09-21",
         "2026-09-22",
         "2026-09-23",
-        "2026-09-24"
+        "2026-09-24",
+        "2026-09-26"
       ],
-      "feature_count": 40
+      "feature_count": 43
     },
     {
       "title": "名偵探柯南 高速公路的墮天使",
@@ -57,7 +60,7 @@
         "2026-09-23",
         "2026-09-24"
       ],
-      "feature_count": 11
+      "feature_count": 12
     },
     {
       "title": "攻殼機動隊(1995) 4K 數位修復版",
@@ -67,7 +70,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 2
+      "feature_count": 3
     },
     {
       "title": "最終樂章 吹響吧！上低音號 前篇",
@@ -77,7 +80,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 4
+      "feature_count": 6
     },
     {
       "title": "航海王劇場版：Z",
@@ -87,7 +90,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 8
+      "feature_count": 9
     },
     {
       "title": "航海王劇場版：死亡盡頭大冒險",
@@ -97,7 +100,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 23
+      "feature_count": 24
     },
     {
       "title": "超時空甩尾 經典重映",
@@ -107,7 +110,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 4
+      "feature_count": 5
     },
     {
       "title": "電影 Idol光之美少女 你與我♪久等了！為你送上閃耀的現場演唱會！",
@@ -117,7 +120,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 1
+      "feature_count": 2
     },
     {
       "title": "電影哆啦A夢：新．大雄的海底鬼岩城",
@@ -127,7 +130,7 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "feature_count": 5
+      "feature_count": 8
     },
     {
       "title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
@@ -138,7 +141,7 @@
         "2026-09-23",
         "2026-09-24"
       ],
-      "feature_count": 32
+      "feature_count": 31
     },
     {
       "title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
@@ -184,6 +187,34 @@
             }
           ],
           "start_times": "17:45"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "你的名字。（十周年重映）",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -952,6 +983,34 @@
           ],
           "start_times": "10:10, 13:00, 19:10"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "劇場版 吉伊卡哇 人魚島的秘密": [
@@ -1038,42 +1097,42 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            120.706113763482,
-            24.25198528648
+            120.4920364,
+            22.6706255
           ]
         },
         "properties": {
-          "location_id": 5,
-          "chain_name": "in89 豪華影城",
-          "location_name": "台中豐原 in89豪華影城",
-          "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-          "address": "台中市豐原區成功路500號5樓",
-          "city": "臺中市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+          "location_id": 73,
+          "chain_name": "中影屏東影城",
+          "location_name": "中影屏東影城",
+          "map_name": "中影屏東影城 中影屏東影城",
+          "address": "屏東縣屏東市民生路248號",
+          "city": "屏東縣",
+          "location_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+          "official_url": "https://ptcinema.movie.com.tw/",
+          "crawl_url": "https://ptcinema.movie.com.tw/lightbox/index?id=3260",
           "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
           "show_date": "2026-09-21",
           "showtime_count": 2,
           "showtimes": [
             {
-              "time": "12:50",
-              "format": "09廳",
-              "language": "日語",
+              "time": "14:30",
+              "format": "(中文版)劇場版 吉伊卡哇 人魚島的秘密",
+              "language": "國語",
               "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-              "label": "12:50 09廳"
+              "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+              "label": "14:30 (中文版)劇場版 吉伊卡哇 人魚島的秘密"
             },
             {
-              "time": "19:10",
-              "format": "09廳",
+              "time": "18:50",
+              "format": "(日文版)劇場版 吉伊卡哇 人魚島的秘密",
               "language": "日語",
               "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-              "label": "19:10 09廳"
+              "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+              "label": "18:50 (日文版)劇場版 吉伊卡哇 人魚島的秘密"
             }
           ],
-          "start_times": "12:50, 19:10"
+          "start_times": "14:30, 18:50"
         }
       },
       {
@@ -1081,104 +1140,34 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            120.452734194907,
-            23.476437792869
+            120.1952489153395,
+            22.992528850781422
           ]
         },
         "properties": {
-          "location_id": 6,
-          "chain_name": "in89 豪華影城",
-          "location_name": "嘉義影食匯 in89豪華影城",
-          "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-          "address": "嘉義市東區民族路328號",
-          "city": "嘉義市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+          "location_id": 75,
+          "chain_name": "南台影城",
+          "location_name": "南台影城",
+          "map_name": "南台影城 南台影城",
+          "address": "台南市中西區友愛街317號",
+          "city": "臺南市",
+          "location_url": "https://www.nt-movie.com.tw/showtime.php?day=1",
+          "official_url": "https://www.nt-movie.com.tw/",
+          "crawl_url": "https://www.nt-movie.com.tw/showtime.php?day=1",
           "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
           "show_date": "2026-09-21",
           "showtime_count": 1,
           "showtimes": [
             {
-              "time": "10:00",
-              "format": "01廳(8樓)",
+              "time": "10:20",
+              "format": "劇場版 吉伊卡哇 人魚島的秘密《日文版》 Chiikawa the Movie: The Secret of Mermaid Island",
               "language": "日語",
               "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-              "label": "10:00 01廳(8樓)"
+              "booking_url": "https://www.nt-movie.com.tw/showtime.php?day=1",
+              "label": "10:20 劇場版 吉伊卡哇 人魚島的秘密《日文版》 Chiikawa the Movie: The Secret of Mermaid Island"
             }
           ],
-          "start_times": "10:00"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            119.573996891908,
-            23.568495338401
-          ]
-        },
-        "properties": {
-          "location_id": 8,
-          "chain_name": "in89 豪華影城",
-          "location_name": "澎湖昇恆昌 in89豪華影城",
-          "map_name": "in89 豪華影城 澎湖昇恆昌 in89豪華影城",
-          "address": "澎湖縣馬公市同和路158號4樓",
-          "city": "澎湖縣",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://penghu.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-          "show_date": "2026-09-21",
-          "showtime_count": 1,
-          "showtimes": [
-            {
-              "time": "13:00",
-              "format": "COACH廳",
-              "language": "日語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-              "label": "13:00 COACH廳"
-            }
-          ],
-          "start_times": "13:00"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            120.298119010543,
-            22.621851005881
-          ]
-        },
-        "properties": {
-          "location_id": 9,
-          "chain_name": "in89 豪華影城",
-          "location_name": "高雄大立 in89豪華影城",
-          "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-          "address": "高雄市前金區五福三路57號9樓",
-          "city": "高雄市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-          "show_date": "2026-09-21",
-          "showtime_count": 1,
-          "showtimes": [
-            {
-              "time": "10:00",
-              "format": "05廳C+(9F)",
-              "language": "日語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-              "label": "10:00 05廳C+(9F)"
-            }
-          ],
-          "start_times": "10:00"
+          "start_times": "10:20"
         }
       },
       {
@@ -1222,6 +1211,205 @@
             }
           ],
           "start_times": "11:20, 15:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.61127671349537,
+            25.070089175979927
+          ]
+        },
+        "properties": {
+          "location_id": 76,
+          "chain_name": "哈拉影城",
+          "location_name": "哈拉影城",
+          "map_name": "哈拉影城 哈拉影城",
+          "address": "臺北市內湖區南湖里康寧路三段72號",
+          "city": "臺北市",
+          "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "official_url": "https://www.halarcity.com/",
+          "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "13:15",
+              "format": "(日)劇場版 吉伊卡哇 人魚島的秘密",
+              "language": null,
+              "auditorium": "V-hall",
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "13:15 (日)劇場版 吉伊卡哇 人魚島的秘密 / V-hall"
+            }
+          ],
+          "start_times": "13:15"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.604793,
+            25.052363
+          ]
+        },
+        "properties": {
+          "location_id": 86,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城南港店",
+          "map_name": "喜樂時代影城 喜樂時代影城南港店",
+          "address": "台北市南港區忠孝東路七段299號",
+          "city": "臺北市",
+          "location_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 3,
+          "showtimes": [
+            {
+              "time": "11:00",
+              "format": "2D日語",
+              "language": "日語",
+              "auditorium": "4廳",
+              "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+              "label": "11:00 2D日語 / 4廳"
+            },
+            {
+              "time": "17:05",
+              "format": "2D日語",
+              "language": "日語",
+              "auditorium": "25廳",
+              "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+              "label": "17:05 2D日語 / 25廳"
+            },
+            {
+              "time": "21:00",
+              "format": "2D日語",
+              "language": "日語",
+              "auditorium": "25廳",
+              "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+              "label": "21:00 2D日語 / 25廳"
+            }
+          ],
+          "start_times": "11:00, 17:05, 21:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.507646,
+            25.007836
+          ]
+        },
+        "properties": {
+          "location_id": 87,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城永和店",
+          "map_name": "喜樂時代影城 喜樂時代影城永和店",
+          "address": "新北市永和區中山路一段238號",
+          "city": "新北市",
+          "location_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0009&siteid=Beyond&sernum=1&date=2026-09-21 13:00&eventsn=85&computerid=517760&IsOMW=False&backetplfo=0000154",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://beyond.centuryasia.com.tw/ticket_online.aspx?page=1",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "13:00",
+              "format": "數位國語",
+              "language": "國語",
+              "auditorium": "9廳",
+              "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0009&siteid=Beyond&sernum=1&date=2026-09-21 13:00&eventsn=85&computerid=517760&IsOMW=False&backetplfo=0000154",
+              "label": "13:00 數位國語 / 9廳"
+            },
+            {
+              "time": "16:50",
+              "format": "數位日語",
+              "language": "日語",
+              "auditorium": "9廳",
+              "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&Progsubid=DIGJAPCHTA00&platform=Century&roomid=0009&siteid=Beyond&sernum=1&date=2026-09-21 16:50&eventsn=242&computerid=517761&IsOMW=False&backetplfo=0000154",
+              "label": "16:50 數位日語 / 9廳"
+            }
+          ],
+          "start_times": "13:00, 16:50"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.505399,
+            25.043803
+          ]
+        },
+        "properties": {
+          "location_id": 85,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城西門今日店",
+          "map_name": "喜樂時代影城 喜樂時代影城西門今日店",
+          "address": "台北市萬華區峨眉街52號",
+          "city": "臺北市",
+          "location_url": "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000187&Progsubid=DIGJAPCHTA00&platform=Century&roomid=0003&siteid=Ximen&sernum=1&date=2026-09-21 17:10&eventsn=143&computerid=16051&IsOMW=False&backetplfo=0000187",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://ximen.centuryasia.com.tw/ticket_online.aspx?page=1",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "17:10",
+              "format": "數位日語",
+              "language": "日語",
+              "auditorium": "3廳 4樓",
+              "booking_url": "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000187&Progsubid=DIGJAPCHTA00&platform=Century&roomid=0003&siteid=Ximen&sernum=1&date=2026-09-21 17:10&eventsn=143&computerid=16051&IsOMW=False&backetplfo=0000187",
+              "label": "17:10 數位日語 / 3廳 4樓"
+            }
+          ],
+          "start_times": "17:10"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.30209,
+            22.609271
+          ]
+        },
+        "properties": {
+          "location_id": 88,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城高雄總圖店",
+          "map_name": "喜樂時代影城 喜樂時代影城高雄總圖店",
+          "address": "高雄市前鎮區林森四路189號",
+          "city": "高雄市",
+          "location_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001869&Progsubid=DIGJAPNOTA00&platform=Century&roomid=0004&siteid=Kaohsiung&sernum=1&date=2026-09-21 16:30&eventsn=132&computerid=137094&IsOMW=False&backetplfo=0001869",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=2",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "16:30",
+              "format": "數位日語",
+              "language": "日語",
+              "auditorium": "四廳",
+              "booking_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001869&Progsubid=DIGJAPNOTA00&platform=Century&roomid=0004&siteid=Kaohsiung&sernum=1&date=2026-09-21 16:30&eventsn=132&computerid=137094&IsOMW=False&backetplfo=0001869",
+              "label": "16:30 數位日語 / 四廳"
+            }
+          ],
+          "start_times": "16:30"
         }
       },
       {
@@ -2725,6 +2913,146 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.64371,
+            24.16526
+          ]
+        },
+        "properties": {
+          "location_id": 43,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台中中港",
+          "map_name": "新光影城 新光影城台中中港",
+          "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+          "city": "臺中市",
+          "location_url": "https://www.skcinemas.com/films?c=1003",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "11:15",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1003",
+              "label": "11:15 日文版"
+            }
+          ],
+          "start_times": "11:15"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.5342,
+            25.118
+          ]
+        },
+        "properties": {
+          "location_id": 44,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台北天母",
+          "map_name": "新光影城 新光影城台北天母",
+          "address": "台北市士林區忠誠路二段202號4樓（新光三越台北天母店B棟）",
+          "city": "臺北市",
+          "location_url": "https://www.skcinemas.com/films?c=1005",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t02d04/a02/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "12:00",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1005",
+              "label": "12:00 日文版"
+            }
+          ],
+          "start_times": "12:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.197693,
+            22.986882
+          ]
+        },
+        "properties": {
+          "location_id": 46,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台南西門",
+          "map_name": "新光影城 新光影城台南西門",
+          "address": "台南市中西區西門路一段658號9樓（新光三越台南新天地）",
+          "city": "臺南市",
+          "location_url": "https://www.skcinemas.com/films?c=1002",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t06607/a06/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "16:55",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1002",
+              "label": "16:55 日文版"
+            }
+          ],
+          "start_times": "16:55"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.213758,
+            25.017327
+          ]
+        },
+        "properties": {
+          "location_id": 47,
+          "chain_name": "新光影城",
+          "location_name": "新光影城桃園青埔",
+          "map_name": "新光影城 新光影城桃園青埔",
+          "address": "桃園市中壢區春德路107號3-5樓（置地廣場·桃園）",
+          "city": "桃園市",
+          "location_url": "https://www.skcinemas.com/films?c=1004",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t03315/a03/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "17:00",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1004",
+              "label": "17:00 日文版"
+            }
+          ],
+          "start_times": "17:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.67534,
             24.14367
           ]
@@ -2769,6 +3097,41 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.661777770455,
+            24.1552672182
+          ]
+        },
+        "properties": {
+          "location_id": 50,
+          "chain_name": "王牌映画影城",
+          "location_name": "王牌映画影城－廣三SOGO店",
+          "map_name": "王牌映画影城 王牌映画影城－廣三SOGO店",
+          "address": "台中市西區臺灣大道二段459號18樓",
+          "city": "臺中市",
+          "location_url": "https://www.acecinema.com.tw/movie/now",
+          "official_url": "https://www.acecinema.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04428/a04/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "16:20",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.acecinema.com.tw/movie/now",
+              "label": "16:20 日文版"
+            }
+          ],
+          "start_times": "16:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.536644362629,
             25.010805770294
           ]
@@ -2789,23 +3152,58 @@
           "showtimes": [
             {
               "time": "11:00",
-              "format": "劇場版 吉伊卡哇 人魚島的秘密",
-              "language": null,
-              "auditorium": null,
-              "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
-              "label": "11:00 劇場版 吉伊卡哇 人魚島的秘密"
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "7廳 4樓",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+              "label": "11:00 數位/日語 / 7廳 4樓"
             },
             {
               "time": "18:45",
-              "format": "劇場版 吉伊卡哇 人魚島的秘密",
-              "language": null,
-              "auditorium": null,
-              "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
-              "label": "18:45 劇場版 吉伊卡哇 人魚島的秘密"
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "7廳 4樓",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+              "label": "18:45 數位/日語 / 7廳 4樓"
             }
           ],
           "start_times": "11:00, 18:45",
           "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.02123777733,
+            24.809823168098
+          ]
+        },
+        "properties": {
+          "location_id": 52,
+          "chain_name": "百老匯影城",
+          "location_name": "竹北百老匯影城",
+          "map_name": "百老匯影城 竹北百老匯影城",
+          "address": "新竹縣竹北市自強南路36號3~5樓",
+          "city": "新竹縣",
+          "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+          "official_url": "https://www.broadway-cineplex.com.tw/",
+          "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "15:30",
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "10廳",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+              "label": "15:30 數位/日語 / 10廳"
+            }
+          ],
+          "start_times": "15:30"
         }
       },
       {
@@ -3632,6 +4030,41 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            121.42482718650463,
+            25.023188244257295
+          ]
+        },
+        "properties": {
+          "location_id": 80,
+          "chain_name": "鴻金寶麻吉影城",
+          "location_name": "鴻金寶麻吉影城",
+          "map_name": "鴻金寶麻吉影城 鴻金寶麻吉影城",
+          "address": "新北市新莊區八德里民安路188巷5號4F",
+          "city": "新北市",
+          "location_url": "https://fmmfilmmate.tixi.com.tw/",
+          "official_url": "https://machicinema.wordpress.com/",
+          "crawl_url": "https://fmmfilmmate.tixi.com.tw/",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "17:05",
+              "format": "2廳 (2D)劇場版 吉伊卡哇 人魚島的秘密 -國",
+              "language": "國語",
+              "auditorium": "2廳",
+              "booking_url": "https://fmmfilmmate.tixi.com.tw/",
+              "label": "17:05 2廳 (2D)劇場版 吉伊卡哇 人魚島的秘密 -國 / 2廳"
+            }
+          ],
+          "start_times": "17:05"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.25125,
             23.18362
           ]
@@ -3741,84 +4174,6 @@
             }
           ],
           "start_times": "17:05"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            120.706113763482,
-            24.25198528648
-          ]
-        },
-        "properties": {
-          "location_id": 5,
-          "chain_name": "in89 豪華影城",
-          "location_name": "台中豐原 in89豪華影城",
-          "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-          "address": "台中市豐原區成功路500號5樓",
-          "city": "臺中市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-          "show_date": "2026-09-21",
-          "showtime_count": 2,
-          "showtimes": [
-            {
-              "time": "10:30",
-              "format": "09廳",
-              "language": "日語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-              "label": "10:30 09廳"
-            },
-            {
-              "time": "16:50",
-              "format": "09廳",
-              "language": "日語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-              "label": "16:50 09廳"
-            }
-          ],
-          "start_times": "10:30, 16:50"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            120.452734194907,
-            23.476437792869
-          ]
-        },
-        "properties": {
-          "location_id": 6,
-          "chain_name": "in89 豪華影城",
-          "location_name": "嘉義影食匯 in89豪華影城",
-          "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-          "address": "嘉義市東區民族路328號",
-          "city": "嘉義市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-          "show_date": "2026-09-21",
-          "showtime_count": 1,
-          "showtimes": [
-            {
-              "time": "20:30",
-              "format": "LUXE廳(3樓)",
-              "language": "日語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-              "label": "20:30 LUXE廳(3樓)"
-            }
-          ],
-          "start_times": "20:30"
         }
       },
       {
@@ -4187,6 +4542,89 @@
             }
           ],
           "start_times": "10:05, 14:15, 20:25, 22:45"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.617582534262,
+            25.059344952488
+          ]
+        },
+        "properties": {
+          "location_id": 25,
+          "chain_name": "威秀影城 / VIESHOW",
+          "location_name": "台北南港 LaLaport威秀影城",
+          "map_name": "威秀影城 / VIESHOW 台北南港 LaLaport威秀影城",
+          "address": "台北市南港區經貿二路131號5樓",
+          "city": "臺北市",
+          "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+          "official_url": "https://www.vscinemas.com.tw/",
+          "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-09-21",
+          "showtime_count": 7,
+          "showtimes": [
+            {
+              "time": "10:50",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "10:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "13:10",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "13:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "15:50",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "15:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "16:50",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "16:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "18:10",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "18:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "20:30",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "20:30 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "22:50",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "22:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            }
+          ],
+          "start_times": "10:50, 13:10, 15:50, 16:50, 18:10, 20:30, 22:50"
         }
       },
       {
@@ -4712,6 +5150,81 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            121.312523000553,
+            24.991112991698
+          ]
+        },
+        "properties": {
+          "location_id": 38,
+          "chain_name": "威秀影城 / VIESHOW",
+          "location_name": "桃園統領威秀影城",
+          "map_name": "威秀影城 / VIESHOW 桃園統領威秀影城",
+          "address": "桃園市桃園區中正路61號9樓",
+          "city": "桃園市",
+          "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+          "official_url": "https://www.vscinemas.com.tw/",
+          "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-09-21",
+          "showtime_count": 6,
+          "showtimes": [
+            {
+              "time": "11:35",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "11:35 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "12:20",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "12:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "14:40",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "14:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "17:00",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "17:00 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "19:20",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "19:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            },
+            {
+              "time": "21:40",
+              "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+              "label": "21:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+            }
+          ],
+          "start_times": "11:35, 12:20, 14:40, 17:00, 19:20, 21:40"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.594678077023,
             23.940428728193
           ]
@@ -4865,6 +5378,76 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.64371,
+            24.16526
+          ]
+        },
+        "properties": {
+          "location_id": 43,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台中中港",
+          "map_name": "新光影城 新光影城台中中港",
+          "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+          "city": "臺中市",
+          "location_url": "https://www.skcinemas.com/films?c=1003",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "18:40",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1003",
+              "label": "18:40 日語版"
+            }
+          ],
+          "start_times": "18:40"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.769854976688,
+            24.674599000567
+          ]
+        },
+        "properties": {
+          "location_id": 49,
+          "chain_name": "日新戲院 / 宜蘭電影資訊網",
+          "location_name": "羅東日新戲院本館",
+          "map_name": "日新戲院 / 宜蘭電影資訊網 羅東日新戲院本館",
+          "address": "宜蘭縣羅東鎮中山西街17之1號",
+          "city": "宜蘭縣",
+          "location_url": "https://ilanmovie.com/index.php",
+          "official_url": "https://ilanmovie.com/",
+          "crawl_url": "https://ilanmovie.com/index.php",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "17:20",
+              "format": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+              "language": null,
+              "auditorium": "羅東日新戲院本館",
+              "booking_url": "https://ilanmovie.com/index.php",
+              "label": "17:20 劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉 / 羅東日新戲院本館"
+            }
+          ],
+          "start_times": "17:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.536644362629,
             25.010805770294
           ]
@@ -4881,7 +5464,7 @@
           "crawl_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
           "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
           "show_date": "2026-09-21",
-          "showtime_count": 1,
+          "showtime_count": 2,
           "showtimes": [
             {
               "time": "13:10",
@@ -4890,10 +5473,53 @@
               "auditorium": null,
               "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
               "label": "13:10 劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉"
+            },
+            {
+              "time": "15:10",
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "2廳 3樓",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+              "label": "15:10 數位/日語 / 2廳 3樓"
             }
           ],
-          "start_times": "13:10",
+          "start_times": "13:10, 15:10",
           "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.02123777733,
+            24.809823168098
+          ]
+        },
+        "properties": {
+          "location_id": 52,
+          "chain_name": "百老匯影城",
+          "location_name": "竹北百老匯影城",
+          "map_name": "百老匯影城 竹北百老匯影城",
+          "address": "新竹縣竹北市自強南路36號3~5樓",
+          "city": "新竹縣",
+          "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+          "official_url": "https://www.broadway-cineplex.com.tw/",
+          "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "16:10",
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "6廳",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+              "label": "16:10 數位/日語 / 6廳"
+            }
+          ],
+          "start_times": "16:10"
         }
       },
       {
@@ -5861,6 +6487,34 @@
           ],
           "start_times": "12:40"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "名偵探柯南 高速公路的墮天使",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "攻殼機動隊(1995) 4K 數位修復版": [
@@ -5933,9 +6587,72 @@
           ],
           "start_times": "22:10"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "攻殼機動隊(1995) 4K 數位修復版",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "最終樂章 吹響吧！上低音號 前篇": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.30209,
+            22.609271
+          ]
+        },
+        "properties": {
+          "location_id": 88,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城高雄總圖店",
+          "map_name": "喜樂時代影城 喜樂時代影城高雄總圖店",
+          "address": "高雄市前鎮區林森四路189號",
+          "city": "高雄市",
+          "location_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=3",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=3",
+          "movie_title": "最終樂章 吹響吧！上低音號 前篇",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "10:30",
+              "format": "數位日語",
+              "language": "日語",
+              "auditorium": "七廳",
+              "booking_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=3",
+              "label": "10:30 數位日語 / 七廳"
+            }
+          ],
+          "start_times": "10:30"
+        }
+      },
       {
         "type": "Feature",
         "geometry": {
@@ -6082,6 +6799,34 @@
             }
           ],
           "start_times": "16:05"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "最終樂章 吹響吧！上低音號 前篇",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -6372,6 +7117,34 @@
             }
           ],
           "start_times": "11:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "航海王劇場版：Z",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -7333,6 +8106,34 @@
           ],
           "start_times": "14:40"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "航海王劇場版：死亡盡頭大冒險",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "超時空甩尾 經典重映": [
@@ -7475,6 +8276,34 @@
           ],
           "start_times": "15:50"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "超時空甩尾 經典重映",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "電影 Idol光之美少女 你與我♪久等了！為你送上閃耀的現場演唱會！": [
@@ -7512,9 +8341,107 @@
           ],
           "start_times": "10:40"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "電影 Idol光之美少女 你與我♪久等了！為你送上閃耀的現場演唱會！",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "電影哆啦A夢：新．大雄的海底鬼岩城": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.604793,
+            25.052363
+          ]
+        },
+        "properties": {
+          "location_id": 86,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城南港店",
+          "map_name": "喜樂時代影城 喜樂時代影城南港店",
+          "address": "台北市南港區忠孝東路七段299號",
+          "city": "臺北市",
+          "location_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+          "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "17:10",
+              "format": "2D國語",
+              "language": "國語",
+              "auditorium": "22廳",
+              "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+              "label": "17:10 2D國語 / 22廳"
+            }
+          ],
+          "start_times": "17:10"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.30209,
+            22.609271
+          ]
+        },
+        "properties": {
+          "location_id": 88,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城高雄總圖店",
+          "map_name": "喜樂時代影城 喜樂時代影城高雄總圖店",
+          "address": "高雄市前鎮區林森四路189號",
+          "city": "高雄市",
+          "location_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001856&Progsubid=DIGCHTNOTA00&platform=Century&roomid=0013&siteid=Kaohsiung&sernum=1&date=2026-09-21 10:50&eventsn=117&computerid=137165&IsOMW=False&backetplfo=0001856",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=1",
+          "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+          "show_date": "2026-09-21",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "10:50",
+              "format": "數位國語",
+              "language": "國語",
+              "auditorium": "十三廳",
+              "booking_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001856&Progsubid=DIGCHTNOTA00&platform=Century&roomid=0013&siteid=Kaohsiung&sernum=1&date=2026-09-21 10:50&eventsn=117&computerid=137165&IsOMW=False&backetplfo=0001856",
+              "label": "10:50 數位國語 / 十三廳"
+            }
+          ],
+          "start_times": "10:50"
+        }
+      },
       {
         "type": "Feature",
         "geometry": {
@@ -7691,6 +8618,34 @@
           ],
           "start_times": "13:50"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+          "show_date": "2026-09-21",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "電影蠟筆小新：奇奇怪怪！我的妖怪假期": [
@@ -7699,42 +8654,34 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            120.706113763482,
-            24.25198528648
+            121.604793,
+            25.052363
           ]
         },
         "properties": {
-          "location_id": 5,
-          "chain_name": "in89 豪華影城",
-          "location_name": "台中豐原 in89豪華影城",
-          "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-          "address": "台中市豐原區成功路500號5樓",
-          "city": "臺中市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+          "location_id": 86,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城南港店",
+          "map_name": "喜樂時代影城 喜樂時代影城南港店",
+          "address": "台北市南港區忠孝東路七段299號",
+          "city": "臺北市",
+          "location_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
           "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
           "show_date": "2026-09-21",
-          "showtime_count": 2,
+          "showtime_count": 1,
           "showtimes": [
             {
-              "time": "12:50",
-              "format": "12廳",
+              "time": "17:25",
+              "format": "2D國語",
               "language": "國語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-              "label": "12:50 12廳"
-            },
-            {
-              "time": "14:50",
-              "format": "09廳",
-              "language": "國語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-              "label": "14:50 09廳"
+              "auditorium": "19廳",
+              "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+              "label": "17:25 2D國語 / 19廳"
             }
           ],
-          "start_times": "12:50, 14:50"
+          "start_times": "17:25"
         }
       },
       {
@@ -7742,69 +8689,34 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            121.313019879774,
-            24.991207497656
+            121.507646,
+            25.007836
           ]
         },
         "properties": {
-          "location_id": 7,
-          "chain_name": "in89 豪華影城",
-          "location_name": "桃園站前 in89豪華影城",
-          "map_name": "in89 豪華影城 桃園站前 in89豪華影城",
-          "address": "桃園市桃園區中正路56號",
-          "city": "桃園市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://taoyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+          "location_id": 87,
+          "chain_name": "喜樂時代影城",
+          "location_name": "喜樂時代影城永和店",
+          "map_name": "喜樂時代影城 喜樂時代影城永和店",
+          "address": "新北市永和區中山路一段238號",
+          "city": "新北市",
+          "location_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000190&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0005&siteid=Beyond&sernum=1&date=2026-09-21 12:20&eventsn=162&computerid=517932&IsOMW=False&backetplfo=0000190",
+          "official_url": "https://www.centuryasia.com.tw/",
+          "crawl_url": "https://beyond.centuryasia.com.tw/ticket_online.aspx?page=1",
           "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
           "show_date": "2026-09-21",
           "showtime_count": 1,
           "showtimes": [
             {
               "time": "12:20",
-              "format": "BOOM 2廳(3F)",
+              "format": "數位國語",
               "language": "國語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-              "label": "12:20 BOOM 2廳(3F)"
+              "auditorium": "5廳",
+              "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000190&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0005&siteid=Beyond&sernum=1&date=2026-09-21 12:20&eventsn=162&computerid=517932&IsOMW=False&backetplfo=0000190",
+              "label": "12:20 數位國語 / 5廳"
             }
           ],
           "start_times": "12:20"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            120.298119010543,
-            22.621851005881
-          ]
-        },
-        "properties": {
-          "location_id": 9,
-          "chain_name": "in89 豪華影城",
-          "location_name": "高雄大立 in89豪華影城",
-          "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-          "address": "高雄市前金區五福三路57號9樓",
-          "city": "高雄市",
-          "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-          "official_url": "https://www.in89cinemax.com/",
-          "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-          "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-          "show_date": "2026-09-21",
-          "showtime_count": 1,
-          "showtimes": [
-            {
-              "time": "17:10",
-              "format": "BOOM廳(10F)",
-              "language": "國語",
-              "auditorium": null,
-              "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-              "label": "17:10 BOOM廳(10F)"
-            }
-          ],
-          "start_times": "17:10"
         }
       },
       {
@@ -8913,6 +9825,34 @@
             ],
             "start_times": "17:45"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "你的名字。（十周年重映）",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-09-22": [
@@ -9755,6 +10695,34 @@
               }
             ],
             "start_times": "10:10, 13:00, 19:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -11370,42 +12338,42 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.706113763482,
-              24.25198528648
+              120.4920364,
+              22.6706255
             ]
           },
           "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "location_id": 73,
+            "chain_name": "中影屏東影城",
+            "location_name": "中影屏東影城",
+            "map_name": "中影屏東影城 中影屏東影城",
+            "address": "屏東縣屏東市民生路248號",
+            "city": "屏東縣",
+            "location_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+            "official_url": "https://ptcinema.movie.com.tw/",
+            "crawl_url": "https://ptcinema.movie.com.tw/lightbox/index?id=3260",
             "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
             "show_date": "2026-09-21",
             "showtime_count": 2,
             "showtimes": [
               {
-                "time": "12:50",
-                "format": "09廳",
-                "language": "日語",
+                "time": "14:30",
+                "format": "(中文版)劇場版 吉伊卡哇 人魚島的秘密",
+                "language": "國語",
                 "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "12:50 09廳"
+                "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+                "label": "14:30 (中文版)劇場版 吉伊卡哇 人魚島的秘密"
               },
               {
-                "time": "19:10",
-                "format": "09廳",
+                "time": "18:50",
+                "format": "(日文版)劇場版 吉伊卡哇 人魚島的秘密",
                 "language": "日語",
                 "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "19:10 09廳"
+                "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+                "label": "18:50 (日文版)劇場版 吉伊卡哇 人魚島的秘密"
               }
             ],
-            "start_times": "12:50, 19:10"
+            "start_times": "14:30, 18:50"
           }
         },
         {
@@ -11413,104 +12381,34 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.452734194907,
-              23.476437792869
+              120.1952489153395,
+              22.992528850781422
             ]
           },
           "properties": {
-            "location_id": 6,
-            "chain_name": "in89 豪華影城",
-            "location_name": "嘉義影食匯 in89豪華影城",
-            "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-            "address": "嘉義市東區民族路328號",
-            "city": "嘉義市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "location_id": 75,
+            "chain_name": "南台影城",
+            "location_name": "南台影城",
+            "map_name": "南台影城 南台影城",
+            "address": "台南市中西區友愛街317號",
+            "city": "臺南市",
+            "location_url": "https://www.nt-movie.com.tw/showtime.php?day=1",
+            "official_url": "https://www.nt-movie.com.tw/",
+            "crawl_url": "https://www.nt-movie.com.tw/showtime.php?day=1",
             "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
             "show_date": "2026-09-21",
             "showtime_count": 1,
             "showtimes": [
               {
-                "time": "10:00",
-                "format": "01廳(8樓)",
+                "time": "10:20",
+                "format": "劇場版 吉伊卡哇 人魚島的秘密《日文版》 Chiikawa the Movie: The Secret of Mermaid Island",
                 "language": "日語",
                 "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-                "label": "10:00 01廳(8樓)"
+                "booking_url": "https://www.nt-movie.com.tw/showtime.php?day=1",
+                "label": "10:20 劇場版 吉伊卡哇 人魚島的秘密《日文版》 Chiikawa the Movie: The Secret of Mermaid Island"
               }
             ],
-            "start_times": "10:00"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              119.573996891908,
-              23.568495338401
-            ]
-          },
-          "properties": {
-            "location_id": 8,
-            "chain_name": "in89 豪華影城",
-            "location_name": "澎湖昇恆昌 in89豪華影城",
-            "map_name": "in89 豪華影城 澎湖昇恆昌 in89豪華影城",
-            "address": "澎湖縣馬公市同和路158號4樓",
-            "city": "澎湖縣",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://penghu.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "13:00",
-                "format": "COACH廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-                "label": "13:00 COACH廳"
-              }
-            ],
-            "start_times": "13:00"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.298119010543,
-              22.621851005881
-            ]
-          },
-          "properties": {
-            "location_id": 9,
-            "chain_name": "in89 豪華影城",
-            "location_name": "高雄大立 in89豪華影城",
-            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-            "address": "高雄市前金區五福三路57號9樓",
-            "city": "高雄市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "10:00",
-                "format": "05廳C+(9F)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-                "label": "10:00 05廳C+(9F)"
-              }
-            ],
-            "start_times": "10:00"
+            "start_times": "10:20"
           }
         },
         {
@@ -11554,6 +12452,205 @@
               }
             ],
             "start_times": "11:20, 15:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.61127671349537,
+              25.070089175979927
+            ]
+          },
+          "properties": {
+            "location_id": 76,
+            "chain_name": "哈拉影城",
+            "location_name": "哈拉影城",
+            "map_name": "哈拉影城 哈拉影城",
+            "address": "臺北市內湖區南湖里康寧路三段72號",
+            "city": "臺北市",
+            "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "official_url": "https://www.halarcity.com/",
+            "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "13:15",
+                "format": "(日)劇場版 吉伊卡哇 人魚島的秘密",
+                "language": null,
+                "auditorium": "V-hall",
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "13:15 (日)劇場版 吉伊卡哇 人魚島的秘密 / V-hall"
+              }
+            ],
+            "start_times": "13:15"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.604793,
+              25.052363
+            ]
+          },
+          "properties": {
+            "location_id": 86,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城南港店",
+            "map_name": "喜樂時代影城 喜樂時代影城南港店",
+            "address": "台北市南港區忠孝東路七段299號",
+            "city": "臺北市",
+            "location_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 3,
+            "showtimes": [
+              {
+                "time": "11:00",
+                "format": "2D日語",
+                "language": "日語",
+                "auditorium": "4廳",
+                "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+                "label": "11:00 2D日語 / 4廳"
+              },
+              {
+                "time": "17:05",
+                "format": "2D日語",
+                "language": "日語",
+                "auditorium": "25廳",
+                "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+                "label": "17:05 2D日語 / 25廳"
+              },
+              {
+                "time": "21:00",
+                "format": "2D日語",
+                "language": "日語",
+                "auditorium": "25廳",
+                "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+                "label": "21:00 2D日語 / 25廳"
+              }
+            ],
+            "start_times": "11:00, 17:05, 21:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.507646,
+              25.007836
+            ]
+          },
+          "properties": {
+            "location_id": 87,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城永和店",
+            "map_name": "喜樂時代影城 喜樂時代影城永和店",
+            "address": "新北市永和區中山路一段238號",
+            "city": "新北市",
+            "location_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0009&siteid=Beyond&sernum=1&date=2026-09-21 13:00&eventsn=85&computerid=517760&IsOMW=False&backetplfo=0000154",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://beyond.centuryasia.com.tw/ticket_online.aspx?page=1",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "13:00",
+                "format": "數位國語",
+                "language": "國語",
+                "auditorium": "9廳",
+                "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0009&siteid=Beyond&sernum=1&date=2026-09-21 13:00&eventsn=85&computerid=517760&IsOMW=False&backetplfo=0000154",
+                "label": "13:00 數位國語 / 9廳"
+              },
+              {
+                "time": "16:50",
+                "format": "數位日語",
+                "language": "日語",
+                "auditorium": "9廳",
+                "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&Progsubid=DIGJAPCHTA00&platform=Century&roomid=0009&siteid=Beyond&sernum=1&date=2026-09-21 16:50&eventsn=242&computerid=517761&IsOMW=False&backetplfo=0000154",
+                "label": "16:50 數位日語 / 9廳"
+              }
+            ],
+            "start_times": "13:00, 16:50"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.505399,
+              25.043803
+            ]
+          },
+          "properties": {
+            "location_id": 85,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城西門今日店",
+            "map_name": "喜樂時代影城 喜樂時代影城西門今日店",
+            "address": "台北市萬華區峨眉街52號",
+            "city": "臺北市",
+            "location_url": "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000187&Progsubid=DIGJAPCHTA00&platform=Century&roomid=0003&siteid=Ximen&sernum=1&date=2026-09-21 17:10&eventsn=143&computerid=16051&IsOMW=False&backetplfo=0000187",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://ximen.centuryasia.com.tw/ticket_online.aspx?page=1",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:10",
+                "format": "數位日語",
+                "language": "日語",
+                "auditorium": "3廳 4樓",
+                "booking_url": "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000187&Progsubid=DIGJAPCHTA00&platform=Century&roomid=0003&siteid=Ximen&sernum=1&date=2026-09-21 17:10&eventsn=143&computerid=16051&IsOMW=False&backetplfo=0000187",
+                "label": "17:10 數位日語 / 3廳 4樓"
+              }
+            ],
+            "start_times": "17:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.30209,
+              22.609271
+            ]
+          },
+          "properties": {
+            "location_id": 88,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城高雄總圖店",
+            "map_name": "喜樂時代影城 喜樂時代影城高雄總圖店",
+            "address": "高雄市前鎮區林森四路189號",
+            "city": "高雄市",
+            "location_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001869&Progsubid=DIGJAPNOTA00&platform=Century&roomid=0004&siteid=Kaohsiung&sernum=1&date=2026-09-21 16:30&eventsn=132&computerid=137094&IsOMW=False&backetplfo=0001869",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=2",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "16:30",
+                "format": "數位日語",
+                "language": "日語",
+                "auditorium": "四廳",
+                "booking_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001869&Progsubid=DIGJAPNOTA00&platform=Century&roomid=0004&siteid=Kaohsiung&sernum=1&date=2026-09-21 16:30&eventsn=132&computerid=137094&IsOMW=False&backetplfo=0001869",
+                "label": "16:30 數位日語 / 四廳"
+              }
+            ],
+            "start_times": "16:30"
           }
         },
         {
@@ -13057,6 +14154,146 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.64371,
+              24.16526
+            ]
+          },
+          "properties": {
+            "location_id": 43,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台中中港",
+            "map_name": "新光影城 新光影城台中中港",
+            "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+            "city": "臺中市",
+            "location_url": "https://www.skcinemas.com/films?c=1003",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "11:15",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1003",
+                "label": "11:15 日文版"
+              }
+            ],
+            "start_times": "11:15"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.5342,
+              25.118
+            ]
+          },
+          "properties": {
+            "location_id": 44,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台北天母",
+            "map_name": "新光影城 新光影城台北天母",
+            "address": "台北市士林區忠誠路二段202號4樓（新光三越台北天母店B棟）",
+            "city": "臺北市",
+            "location_url": "https://www.skcinemas.com/films?c=1005",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t02d04/a02/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "12:00",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1005",
+                "label": "12:00 日文版"
+              }
+            ],
+            "start_times": "12:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.197693,
+              22.986882
+            ]
+          },
+          "properties": {
+            "location_id": 46,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台南西門",
+            "map_name": "新光影城 新光影城台南西門",
+            "address": "台南市中西區西門路一段658號9樓（新光三越台南新天地）",
+            "city": "臺南市",
+            "location_url": "https://www.skcinemas.com/films?c=1002",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t06607/a06/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "16:55",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1002",
+                "label": "16:55 日文版"
+              }
+            ],
+            "start_times": "16:55"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.213758,
+              25.017327
+            ]
+          },
+          "properties": {
+            "location_id": 47,
+            "chain_name": "新光影城",
+            "location_name": "新光影城桃園青埔",
+            "map_name": "新光影城 新光影城桃園青埔",
+            "address": "桃園市中壢區春德路107號3-5樓（置地廣場·桃園）",
+            "city": "桃園市",
+            "location_url": "https://www.skcinemas.com/films?c=1004",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t03315/a03/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:00",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1004",
+                "label": "17:00 日文版"
+              }
+            ],
+            "start_times": "17:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.67534,
               24.14367
             ]
@@ -13101,6 +14338,41 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.661777770455,
+              24.1552672182
+            ]
+          },
+          "properties": {
+            "location_id": 50,
+            "chain_name": "王牌映画影城",
+            "location_name": "王牌映画影城－廣三SOGO店",
+            "map_name": "王牌映画影城 王牌映画影城－廣三SOGO店",
+            "address": "台中市西區臺灣大道二段459號18樓",
+            "city": "臺中市",
+            "location_url": "https://www.acecinema.com.tw/movie/now",
+            "official_url": "https://www.acecinema.com.tw/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04428/a04/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "16:20",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.acecinema.com.tw/movie/now",
+                "label": "16:20 日文版"
+              }
+            ],
+            "start_times": "16:20"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.536644362629,
               25.010805770294
             ]
@@ -13121,23 +14393,58 @@
             "showtimes": [
               {
                 "time": "11:00",
-                "format": "劇場版 吉伊卡哇 人魚島的秘密",
-                "language": null,
-                "auditorium": null,
-                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
-                "label": "11:00 劇場版 吉伊卡哇 人魚島的秘密"
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "7廳 4樓",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+                "label": "11:00 數位/日語 / 7廳 4樓"
               },
               {
                 "time": "18:45",
-                "format": "劇場版 吉伊卡哇 人魚島的秘密",
-                "language": null,
-                "auditorium": null,
-                "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
-                "label": "18:45 劇場版 吉伊卡哇 人魚島的秘密"
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "7廳 4樓",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+                "label": "18:45 數位/日語 / 7廳 4樓"
               }
             ],
             "start_times": "11:00, 18:45",
             "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.02123777733,
+              24.809823168098
+            ]
+          },
+          "properties": {
+            "location_id": 52,
+            "chain_name": "百老匯影城",
+            "location_name": "竹北百老匯影城",
+            "map_name": "百老匯影城 竹北百老匯影城",
+            "address": "新竹縣竹北市自強南路36號3~5樓",
+            "city": "新竹縣",
+            "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "15:30",
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "10廳",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+                "label": "15:30 數位/日語 / 10廳"
+              }
+            ],
+            "start_times": "15:30"
           }
         },
         {
@@ -13964,6 +15271,41 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              121.42482718650463,
+              25.023188244257295
+            ]
+          },
+          "properties": {
+            "location_id": 80,
+            "chain_name": "鴻金寶麻吉影城",
+            "location_name": "鴻金寶麻吉影城",
+            "map_name": "鴻金寶麻吉影城 鴻金寶麻吉影城",
+            "address": "新北市新莊區八德里民安路188巷5號4F",
+            "city": "新北市",
+            "location_url": "https://fmmfilmmate.tixi.com.tw/",
+            "official_url": "https://machicinema.wordpress.com/",
+            "crawl_url": "https://fmmfilmmate.tixi.com.tw/",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:05",
+                "format": "2廳 (2D)劇場版 吉伊卡哇 人魚島的秘密 -國",
+                "language": "國語",
+                "auditorium": "2廳",
+                "booking_url": "https://fmmfilmmate.tixi.com.tw/",
+                "label": "17:05 2廳 (2D)劇場版 吉伊卡哇 人魚島的秘密 -國 / 2廳"
+              }
+            ],
+            "start_times": "17:05"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.25125,
               23.18362
             ]
@@ -14081,154 +15423,6 @@
               }
             ],
             "start_times": "14:55, 18:40"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-22",
-            "showtime_count": 2,
-            "showtimes": [
-              {
-                "time": "12:50",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "12:50 09廳"
-              },
-              {
-                "time": "19:10",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "19:10 09廳"
-              }
-            ],
-            "start_times": "12:50, 19:10"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.452734194907,
-              23.476437792869
-            ]
-          },
-          "properties": {
-            "location_id": 6,
-            "chain_name": "in89 豪華影城",
-            "location_name": "嘉義影食匯 in89豪華影城",
-            "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-            "address": "嘉義市東區民族路328號",
-            "city": "嘉義市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-22",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "10:00",
-                "format": "01廳(8樓)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-                "label": "10:00 01廳(8樓)"
-              }
-            ],
-            "start_times": "10:00"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              119.573996891908,
-              23.568495338401
-            ]
-          },
-          "properties": {
-            "location_id": 8,
-            "chain_name": "in89 豪華影城",
-            "location_name": "澎湖昇恆昌 in89豪華影城",
-            "map_name": "in89 豪華影城 澎湖昇恆昌 in89豪華影城",
-            "address": "澎湖縣馬公市同和路158號4樓",
-            "city": "澎湖縣",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://penghu.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-22",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "13:00",
-                "format": "COACH廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-                "label": "13:00 COACH廳"
-              }
-            ],
-            "start_times": "13:00"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.298119010543,
-              22.621851005881
-            ]
-          },
-          "properties": {
-            "location_id": 9,
-            "chain_name": "in89 豪華影城",
-            "location_name": "高雄大立 in89豪華影城",
-            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-            "address": "高雄市前金區五福三路57號9樓",
-            "city": "高雄市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-22",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "10:00",
-                "format": "05廳C+(9F)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-                "label": "10:00 05廳C+(9F)"
-              }
-            ],
-            "start_times": "10:00"
           }
         },
         {
@@ -16596,154 +17790,6 @@
               }
             ],
             "start_times": "14:55, 18:40"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-23",
-            "showtime_count": 2,
-            "showtimes": [
-              {
-                "time": "12:50",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "12:50 09廳"
-              },
-              {
-                "time": "19:10",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "19:10 09廳"
-              }
-            ],
-            "start_times": "12:50, 19:10"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.452734194907,
-              23.476437792869
-            ]
-          },
-          "properties": {
-            "location_id": 6,
-            "chain_name": "in89 豪華影城",
-            "location_name": "嘉義影食匯 in89豪華影城",
-            "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-            "address": "嘉義市東區民族路328號",
-            "city": "嘉義市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-23",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "10:00",
-                "format": "01廳(8樓)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-                "label": "10:00 01廳(8樓)"
-              }
-            ],
-            "start_times": "10:00"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              119.573996891908,
-              23.568495338401
-            ]
-          },
-          "properties": {
-            "location_id": 8,
-            "chain_name": "in89 豪華影城",
-            "location_name": "澎湖昇恆昌 in89豪華影城",
-            "map_name": "in89 豪華影城 澎湖昇恆昌 in89豪華影城",
-            "address": "澎湖縣馬公市同和路158號4樓",
-            "city": "澎湖縣",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://penghu.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-23",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "13:00",
-                "format": "COACH廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=14",
-                "label": "13:00 COACH廳"
-              }
-            ],
-            "start_times": "13:00"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.298119010543,
-              22.621851005881
-            ]
-          },
-          "properties": {
-            "location_id": 9,
-            "chain_name": "in89 豪華影城",
-            "location_name": "高雄大立 in89豪華影城",
-            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-            "address": "高雄市前金區五福三路57號9樓",
-            "city": "高雄市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-            "show_date": "2026-09-23",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "10:00",
-                "format": "05廳C+(9F)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-                "label": "10:00 05廳C+(9F)"
-              }
-            ],
-            "start_times": "10:00"
           }
         },
         {
@@ -19263,6 +20309,88 @@
             "start_times": "13:50"
           }
         }
+      ],
+      "2026-09-26": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.403151968682,
+              22.729526987639
+            ]
+          },
+          "properties": {
+            "location_id": 19,
+            "chain_name": "國賓影城",
+            "location_name": "高雄義大國賓影城",
+            "map_name": "國賓影城 高雄義大國賓影城",
+            "address": "高雄市大樹區學城路一段12號3樓",
+            "city": "高雄市",
+            "location_url": "https://www.ambassador.com.tw/home/Showtime?ID=ec07626b-b382-474e-be39-ad45eac5cd1c&DT=2026/09/26",
+            "official_url": "https://www.ambassador.com.tw/",
+            "crawl_url": "https://www.ambassador.com.tw/home/Showtime?ID=ec07626b-b382-474e-be39-ad45eac5cd1c&DT=2026/09/26",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-26",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "12:25",
+                "format": "數位‧日文版",
+                "language": "日語",
+                "auditorium": "4廳 205席",
+                "booking_url": "https://www.ambassador.com.tw/home/Showtime?ID=ec07626b-b382-474e-be39-ad45eac5cd1c&DT=2026/09/26",
+                "label": "12:25 數位‧日文版 / 4廳 205席"
+              }
+            ],
+            "start_times": "12:25"
+          }
+        }
+      ],
+      "2026-09-28": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.5342607,
+              25.0546019
+            ]
+          },
+          "properties": {
+            "location_id": 12,
+            "chain_name": "國賓影城",
+            "location_name": "台北長春國賓影城",
+            "map_name": "國賓影城 台北長春國賓影城",
+            "address": "台北市長春路176號",
+            "city": "臺北市",
+            "location_url": "https://www.ambassador.com.tw/home/Showtime?ID=453b2966-f7c2-44a9-b2eb-687493855d0e&DT=2026/09/28",
+            "official_url": "https://www.ambassador.com.tw/",
+            "crawl_url": "https://www.ambassador.com.tw/home/Showtime?ID=453b2966-f7c2-44a9-b2eb-687493855d0e&DT=2026/09/28",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-09-28",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "14:30",
+                "format": "數位‧中文版",
+                "language": "國語",
+                "auditorium": "5廳 187席",
+                "booking_url": "https://www.ambassador.com.tw/home/Showtime?ID=453b2966-f7c2-44a9-b2eb-687493855d0e&DT=2026/09/28",
+                "label": "14:30 數位‧中文版 / 5廳 187席"
+              },
+              {
+                "time": "16:25",
+                "format": "數位‧日文版",
+                "language": "日語",
+                "auditorium": "5廳 187席",
+                "booking_url": "https://www.ambassador.com.tw/home/Showtime?ID=453b2966-f7c2-44a9-b2eb-687493855d0e&DT=2026/09/28",
+                "label": "16:25 數位‧日文版 / 5廳 187席"
+              }
+            ],
+            "start_times": "14:30, 16:25"
+          }
+        }
       ]
     },
     "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉": {
@@ -19335,84 +20463,6 @@
               }
             ],
             "start_times": "17:05"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-            "show_date": "2026-09-21",
-            "showtime_count": 2,
-            "showtimes": [
-              {
-                "time": "10:30",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "10:30 09廳"
-              },
-              {
-                "time": "16:50",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "16:50 09廳"
-              }
-            ],
-            "start_times": "10:30, 16:50"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.452734194907,
-              23.476437792869
-            ]
-          },
-          "properties": {
-            "location_id": 6,
-            "chain_name": "in89 豪華影城",
-            "location_name": "嘉義影食匯 in89豪華影城",
-            "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-            "address": "嘉義市東區民族路328號",
-            "city": "嘉義市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-            "show_date": "2026-09-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "20:30",
-                "format": "LUXE廳(3樓)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-                "label": "20:30 LUXE廳(3樓)"
-              }
-            ],
-            "start_times": "20:30"
           }
         },
         {
@@ -19781,6 +20831,89 @@
               }
             ],
             "start_times": "10:05, 14:15, 20:25, 22:45"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.617582534262,
+              25.059344952488
+            ]
+          },
+          "properties": {
+            "location_id": 25,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "台北南港 LaLaport威秀影城",
+            "map_name": "威秀影城 / VIESHOW 台北南港 LaLaport威秀影城",
+            "address": "台北市南港區經貿二路131號5樓",
+            "city": "臺北市",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "official_url": "https://www.vscinemas.com.tw/",
+            "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-21",
+            "showtime_count": 7,
+            "showtimes": [
+              {
+                "time": "10:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "10:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "13:10",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "13:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "15:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "15:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "16:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "16:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "18:10",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "18:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "20:30",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "20:30 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "22:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "22:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              }
+            ],
+            "start_times": "10:50, 13:10, 15:50, 16:50, 18:10, 20:30, 22:50"
           }
         },
         {
@@ -20306,6 +21439,81 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              121.312523000553,
+              24.991112991698
+            ]
+          },
+          "properties": {
+            "location_id": 38,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "桃園統領威秀影城",
+            "map_name": "威秀影城 / VIESHOW 桃園統領威秀影城",
+            "address": "桃園市桃園區中正路61號9樓",
+            "city": "桃園市",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "official_url": "https://www.vscinemas.com.tw/",
+            "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-21",
+            "showtime_count": 6,
+            "showtimes": [
+              {
+                "time": "11:35",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "11:35 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "12:20",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "12:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "14:40",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "14:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "17:00",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "17:00 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "19:20",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "19:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "21:40",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "21:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              }
+            ],
+            "start_times": "11:35, 12:20, 14:40, 17:00, 19:20, 21:40"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.594678077023,
               23.940428728193
             ]
@@ -20459,6 +21667,76 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.64371,
+              24.16526
+            ]
+          },
+          "properties": {
+            "location_id": 43,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台中中港",
+            "map_name": "新光影城 新光影城台中中港",
+            "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+            "city": "臺中市",
+            "location_url": "https://www.skcinemas.com/films?c=1003",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "18:40",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1003",
+                "label": "18:40 日語版"
+              }
+            ],
+            "start_times": "18:40"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.769854976688,
+              24.674599000567
+            ]
+          },
+          "properties": {
+            "location_id": 49,
+            "chain_name": "日新戲院 / 宜蘭電影資訊網",
+            "location_name": "羅東日新戲院本館",
+            "map_name": "日新戲院 / 宜蘭電影資訊網 羅東日新戲院本館",
+            "address": "宜蘭縣羅東鎮中山西街17之1號",
+            "city": "宜蘭縣",
+            "location_url": "https://ilanmovie.com/index.php",
+            "official_url": "https://ilanmovie.com/",
+            "crawl_url": "https://ilanmovie.com/index.php",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:20",
+                "format": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+                "language": null,
+                "auditorium": "羅東日新戲院本館",
+                "booking_url": "https://ilanmovie.com/index.php",
+                "label": "17:20 劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉 / 羅東日新戲院本館"
+              }
+            ],
+            "start_times": "17:20"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.536644362629,
               25.010805770294
             ]
@@ -20475,7 +21753,7 @@
             "crawl_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
             "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
             "show_date": "2026-09-21",
-            "showtime_count": 1,
+            "showtime_count": 2,
             "showtimes": [
               {
                 "time": "13:10",
@@ -20484,10 +21762,53 @@
                 "auditorium": null,
                 "booking_url": "https://www.atmovies.com.tw/showtime/t02c01/a02/20260921/",
                 "label": "13:10 劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉"
+              },
+              {
+                "time": "15:10",
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "2廳 3樓",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+                "label": "15:10 數位/日語 / 2廳 3樓"
               }
             ],
-            "start_times": "13:10",
+            "start_times": "13:10, 15:10",
             "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.02123777733,
+              24.809823168098
+            ]
+          },
+          "properties": {
+            "location_id": 52,
+            "chain_name": "百老匯影城",
+            "location_name": "竹北百老匯影城",
+            "map_name": "百老匯影城 竹北百老匯影城",
+            "address": "新竹縣竹北市自強南路36號3~5樓",
+            "city": "新竹縣",
+            "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "16:10",
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "6廳",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+                "label": "16:10 數位/日語 / 6廳"
+              }
+            ],
+            "start_times": "16:10"
           }
         },
         {
@@ -21154,92 +22475,6 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-            "show_date": "2026-09-22",
-            "showtime_count": 3,
-            "showtimes": [
-              {
-                "time": "10:30",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "10:30 09廳"
-              },
-              {
-                "time": "16:50",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "16:50 09廳"
-              },
-              {
-                "time": "18:50",
-                "format": "08廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "18:50 08廳"
-              }
-            ],
-            "start_times": "10:30, 16:50, 18:50"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.452734194907,
-              23.476437792869
-            ]
-          },
-          "properties": {
-            "location_id": 6,
-            "chain_name": "in89 豪華影城",
-            "location_name": "嘉義影食匯 in89豪華影城",
-            "map_name": "in89 豪華影城 嘉義影食匯 in89豪華影城",
-            "address": "嘉義市東區民族路328號",
-            "city": "嘉義市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://chiayi.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-            "show_date": "2026-09-22",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "20:30",
-                "format": "LUXE廳(3樓)",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17",
-                "label": "20:30 LUXE廳(3樓)"
-              }
-            ],
-            "start_times": "20:30"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
               121.299023610213,
               24.965043219256
             ]
@@ -21601,6 +22836,89 @@
               }
             ],
             "start_times": "10:05, 14:15, 20:25, 22:45"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.617582534262,
+              25.059344952488
+            ]
+          },
+          "properties": {
+            "location_id": 25,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "台北南港 LaLaport威秀影城",
+            "map_name": "威秀影城 / VIESHOW 台北南港 LaLaport威秀影城",
+            "address": "台北市南港區經貿二路131號5樓",
+            "city": "臺北市",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "official_url": "https://www.vscinemas.com.tw/",
+            "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-22",
+            "showtime_count": 7,
+            "showtimes": [
+              {
+                "time": "10:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "10:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "13:10",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "13:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "15:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "15:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "16:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "16:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "18:10",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "18:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "20:30",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "20:30 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "22:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "22:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              }
+            ],
+            "start_times": "10:50, 13:10, 15:50, 16:50, 18:10, 20:30, 22:50"
           }
         },
         {
@@ -22119,6 +23437,89 @@
               }
             ],
             "start_times": "11:05, 21:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.312523000553,
+              24.991112991698
+            ]
+          },
+          "properties": {
+            "location_id": 38,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "桃園統領威秀影城",
+            "map_name": "威秀影城 / VIESHOW 桃園統領威秀影城",
+            "address": "桃園市桃園區中正路61號9樓",
+            "city": "桃園市",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "official_url": "https://www.vscinemas.com.tw/",
+            "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-22",
+            "showtime_count": 7,
+            "showtimes": [
+              {
+                "time": "11:35",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "11:35 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "12:20",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "12:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "13:45",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "13:45 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "14:40",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "14:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "17:00",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "17:00 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "19:20",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "19:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "21:40",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "21:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              }
+            ],
+            "start_times": "11:35, 12:20, 13:45, 14:40, 17:00, 19:20, 21:40"
           }
         },
         {
@@ -22835,57 +24236,6 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-            "show_date": "2026-09-23",
-            "showtime_count": 3,
-            "showtimes": [
-              {
-                "time": "10:30",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "10:30 09廳"
-              },
-              {
-                "time": "16:50",
-                "format": "09廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "16:50 09廳"
-              },
-              {
-                "time": "18:50",
-                "format": "08廳",
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "18:50 08廳"
-              }
-            ],
-            "start_times": "10:30, 16:50, 18:50"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
               121.299023610213,
               24.965043219256
             ]
@@ -23247,6 +24597,89 @@
               }
             ],
             "start_times": "10:05, 14:15, 20:25, 22:45"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.617582534262,
+              25.059344952488
+            ]
+          },
+          "properties": {
+            "location_id": 25,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "台北南港 LaLaport威秀影城",
+            "map_name": "威秀影城 / VIESHOW 台北南港 LaLaport威秀影城",
+            "address": "台北市南港區經貿二路131號5樓",
+            "city": "臺北市",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "official_url": "https://www.vscinemas.com.tw/",
+            "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-23",
+            "showtime_count": 7,
+            "showtimes": [
+              {
+                "time": "10:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "10:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "13:10",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "13:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "15:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "15:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "16:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "16:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "18:10",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "18:10 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "20:30",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "20:30 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "22:50",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "22:50 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              }
+            ],
+            "start_times": "10:50, 13:10, 15:50, 16:50, 18:10, 20:30, 22:50"
           }
         },
         {
@@ -23765,6 +25198,81 @@
               }
             ],
             "start_times": "11:05, 20:50"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.312523000553,
+              24.991112991698
+            ]
+          },
+          "properties": {
+            "location_id": 38,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "桃園統領威秀影城",
+            "map_name": "威秀影城 / VIESHOW 桃園統領威秀影城",
+            "address": "桃園市桃園區中正路61號9樓",
+            "city": "桃園市",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "official_url": "https://www.vscinemas.com.tw/",
+            "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-23",
+            "showtime_count": 6,
+            "showtimes": [
+              {
+                "time": "11:35",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "11:35 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "12:20",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "12:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "14:40",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "14:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "17:00",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "17:00 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "19:20",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "19:20 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              },
+              {
+                "time": "21:40",
+                "format": "(數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)",
+                "language": null,
+                "auditorium": null,
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
+                "label": "21:40 (數位)劇場版 魔法少女小圓 〈瓦爾普吉斯的迴天〉 (普遍級)"
+              }
+            ],
+            "start_times": "11:35, 12:20, 14:40, 17:00, 19:20, 21:40"
           }
         },
         {
@@ -24503,6 +26011,43 @@
             "start_times": "17:20"
           }
         }
+      ],
+      "2026-09-26": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.403151968682,
+              22.729526987639
+            ]
+          },
+          "properties": {
+            "location_id": 19,
+            "chain_name": "國賓影城",
+            "location_name": "高雄義大國賓影城",
+            "map_name": "國賓影城 高雄義大國賓影城",
+            "address": "高雄市大樹區學城路一段12號3樓",
+            "city": "高雄市",
+            "location_url": "https://www.ambassador.com.tw/home/Showtime?ID=ec07626b-b382-474e-be39-ad45eac5cd1c&DT=2026/09/26",
+            "official_url": "https://www.ambassador.com.tw/",
+            "crawl_url": "https://www.ambassador.com.tw/home/Showtime?ID=ec07626b-b382-474e-be39-ad45eac5cd1c&DT=2026/09/26",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-09-26",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:10",
+                "format": "數位‧日文版",
+                "language": "日語",
+                "auditorium": "4廳 205席",
+                "booking_url": "https://www.ambassador.com.tw/home/Showtime?ID=ec07626b-b382-474e-be39-ad45eac5cd1c&DT=2026/09/26",
+                "label": "17:10 數位‧日文版 / 4廳 205席"
+              }
+            ],
+            "start_times": "17:10"
+          }
+        }
       ]
     },
     "名偵探柯南 高速公路的墮天使": {
@@ -24890,6 +26435,34 @@
               }
             ],
             "start_times": "12:40"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "名偵探柯南 高速公路的墮天使",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -25776,6 +27349,34 @@
             ],
             "start_times": "22:10"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "攻殼機動隊(1995) 4K 數位修復版",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-09-22": [
@@ -25965,6 +27566,41 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.30209,
+              22.609271
+            ]
+          },
+          "properties": {
+            "location_id": 88,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城高雄總圖店",
+            "map_name": "喜樂時代影城 喜樂時代影城高雄總圖店",
+            "address": "高雄市前鎮區林森四路189號",
+            "city": "高雄市",
+            "location_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=3",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=3",
+            "movie_title": "最終樂章 吹響吧！上低音號 前篇",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "10:30",
+                "format": "數位日語",
+                "language": "日語",
+                "auditorium": "七廳",
+                "booking_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=3",
+                "label": "10:30 數位日語 / 七廳"
+              }
+            ],
+            "start_times": "10:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.617582534262,
               25.059344952488
             ]
@@ -26107,6 +27743,34 @@
             ],
             "start_times": "16:05"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "最終樂章 吹響吧！上低音號 前篇",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-09-22": [
@@ -26213,6 +27877,49 @@
               }
             ],
             "start_times": "12:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.50474,
+              25.04473
+            ]
+          },
+          "properties": {
+            "location_id": 89,
+            "chain_name": "樂聲影城",
+            "location_name": "樂聲影城",
+            "map_name": "樂聲影城 樂聲影城",
+            "address": "台北市萬華區武昌街二段85號",
+            "city": "臺北市",
+            "location_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3452",
+            "official_url": null,
+            "crawl_url": "https://www.luxcinema.com.tw/web/2020.php?type=ShowTimes",
+            "movie_title": "最終樂章 吹響吧！上低音號 前篇",
+            "show_date": "2026-09-22",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "09:20",
+                "format": "最終樂章 吹響吧！上低音號 前篇",
+                "language": null,
+                "auditorium": "L",
+                "booking_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3452",
+                "label": "09:20 最終樂章 吹響吧！上低音號 前篇 / L"
+              },
+              {
+                "time": "11:35",
+                "format": "最終樂章 吹響吧！上低音號 前篇",
+                "language": null,
+                "auditorium": "L",
+                "booking_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3452",
+                "label": "11:35 最終樂章 吹響吧！上低音號 前篇 / L"
+              }
+            ],
+            "start_times": "09:20, 11:35"
           }
         },
         {
@@ -26647,6 +28354,34 @@
               }
             ],
             "start_times": "11:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "航海王劇場版：Z",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -28119,6 +29854,34 @@
               }
             ],
             "start_times": "14:40"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "航海王劇場版：死亡盡頭大冒險",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -30104,6 +31867,34 @@
             ],
             "start_times": "15:50"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "超時空甩尾 經典重映",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-09-22": [
@@ -30427,6 +32218,34 @@
             ],
             "start_times": "10:40"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "電影 Idol光之美少女 你與我♪久等了！為你送上閃耀的現場演唱會！",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-09-22": [
@@ -30506,6 +32325,76 @@
     },
     "電影哆啦A夢：新．大雄的海底鬼岩城": {
       "2026-09-21": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.604793,
+              25.052363
+            ]
+          },
+          "properties": {
+            "location_id": 86,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城南港店",
+            "map_name": "喜樂時代影城 喜樂時代影城南港店",
+            "address": "台北市南港區忠孝東路七段299號",
+            "city": "臺北市",
+            "location_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+            "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "17:10",
+                "format": "2D國語",
+                "language": "國語",
+                "auditorium": "22廳",
+                "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+                "label": "17:10 2D國語 / 22廳"
+              }
+            ],
+            "start_times": "17:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.30209,
+              22.609271
+            ]
+          },
+          "properties": {
+            "location_id": 88,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城高雄總圖店",
+            "map_name": "喜樂時代影城 喜樂時代影城高雄總圖店",
+            "address": "高雄市前鎮區林森四路189號",
+            "city": "高雄市",
+            "location_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001856&Progsubid=DIGCHTNOTA00&platform=Century&roomid=0013&siteid=Kaohsiung&sernum=1&date=2026-09-21 10:50&eventsn=117&computerid=137165&IsOMW=False&backetplfo=0001856",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://ksml.centuryasia.com.tw/ticket_online.aspx?page=1",
+            "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+            "show_date": "2026-09-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "10:50",
+                "format": "數位國語",
+                "language": "國語",
+                "auditorium": "十三廳",
+                "booking_url": "https://ticket.centuryasia.com.tw/Kaohsiung/buyticket_process.aspx?ProgramID=0001856&Progsubid=DIGCHTNOTA00&platform=Century&roomid=0013&siteid=Kaohsiung&sernum=1&date=2026-09-21 10:50&eventsn=117&computerid=137165&IsOMW=False&backetplfo=0001856",
+                "label": "10:50 數位國語 / 十三廳"
+              }
+            ],
+            "start_times": "10:50"
+          }
+        },
         {
           "type": "Feature",
           "geometry": {
@@ -30682,6 +32571,34 @@
             ],
             "start_times": "13:50"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+            "show_date": "2026-09-21",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-09-22": [
@@ -30754,6 +32671,41 @@
             ],
             "start_times": "14:25",
             "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.50474,
+              25.04473
+            ]
+          },
+          "properties": {
+            "location_id": 89,
+            "chain_name": "樂聲影城",
+            "location_name": "樂聲影城",
+            "map_name": "樂聲影城 樂聲影城",
+            "address": "台北市萬華區武昌街二段85號",
+            "city": "臺北市",
+            "location_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3403",
+            "official_url": null,
+            "crawl_url": "https://www.luxcinema.com.tw/web/2020.php?type=ShowTimes",
+            "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+            "show_date": "2026-09-22",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "11:25",
+                "format": "(日語)電影哆啦A夢：新‧大雄的海底鬼岩城",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3403",
+                "label": "11:25 (日語)電影哆啦A夢：新‧大雄的海底鬼岩城"
+              }
+            ],
+            "start_times": "11:25"
           }
         },
         {
@@ -30908,42 +32860,34 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.706113763482,
-              24.25198528648
+              121.604793,
+              25.052363
             ]
           },
           "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "location_id": 86,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城南港店",
+            "map_name": "喜樂時代影城 喜樂時代影城南港店",
+            "address": "台北市南港區忠孝東路七段299號",
+            "city": "臺北市",
+            "location_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
             "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
             "show_date": "2026-09-21",
-            "showtime_count": 2,
+            "showtime_count": 1,
             "showtimes": [
               {
-                "time": "12:50",
-                "format": "12廳",
+                "time": "17:25",
+                "format": "2D國語",
                 "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "12:50 12廳"
-              },
-              {
-                "time": "14:50",
-                "format": "09廳",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "14:50 09廳"
+                "auditorium": "19廳",
+                "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+                "label": "17:25 2D國語 / 19廳"
               }
             ],
-            "start_times": "12:50, 14:50"
+            "start_times": "17:25"
           }
         },
         {
@@ -30951,69 +32895,34 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              121.313019879774,
-              24.991207497656
+              121.507646,
+              25.007836
             ]
           },
           "properties": {
-            "location_id": 7,
-            "chain_name": "in89 豪華影城",
-            "location_name": "桃園站前 in89豪華影城",
-            "map_name": "in89 豪華影城 桃園站前 in89豪華影城",
-            "address": "桃園市桃園區中正路56號",
-            "city": "桃園市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://taoyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "location_id": 87,
+            "chain_name": "喜樂時代影城",
+            "location_name": "喜樂時代影城永和店",
+            "map_name": "喜樂時代影城 喜樂時代影城永和店",
+            "address": "新北市永和區中山路一段238號",
+            "city": "新北市",
+            "location_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000190&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0005&siteid=Beyond&sernum=1&date=2026-09-21 12:20&eventsn=162&computerid=517932&IsOMW=False&backetplfo=0000190",
+            "official_url": "https://www.centuryasia.com.tw/",
+            "crawl_url": "https://beyond.centuryasia.com.tw/ticket_online.aspx?page=1",
             "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
             "show_date": "2026-09-21",
             "showtime_count": 1,
             "showtimes": [
               {
                 "time": "12:20",
-                "format": "BOOM 2廳(3F)",
+                "format": "數位國語",
                 "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-                "label": "12:20 BOOM 2廳(3F)"
+                "auditorium": "5廳",
+                "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000190&Progsubid=DIGCHTCHTA00&platform=Century&roomid=0005&siteid=Beyond&sernum=1&date=2026-09-21 12:20&eventsn=162&computerid=517932&IsOMW=False&backetplfo=0000190",
+                "label": "12:20 數位國語 / 5廳"
               }
             ],
             "start_times": "12:20"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.298119010543,
-              22.621851005881
-            ]
-          },
-          "properties": {
-            "location_id": 9,
-            "chain_name": "in89 豪華影城",
-            "location_name": "高雄大立 in89豪華影城",
-            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-            "address": "高雄市前金區五福三路57號9樓",
-            "city": "高雄市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "17:10",
-                "format": "BOOM廳(10F)",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-                "label": "17:10 BOOM廳(10F)"
-              }
-            ],
-            "start_times": "17:10"
           }
         },
         {
@@ -32089,119 +33998,6 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-22",
-            "showtime_count": 2,
-            "showtimes": [
-              {
-                "time": "12:50",
-                "format": "12廳",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "12:50 12廳"
-              },
-              {
-                "time": "14:50",
-                "format": "09廳",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "14:50 09廳"
-              }
-            ],
-            "start_times": "12:50, 14:50"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              121.313019879774,
-              24.991207497656
-            ]
-          },
-          "properties": {
-            "location_id": 7,
-            "chain_name": "in89 豪華影城",
-            "location_name": "桃園站前 in89豪華影城",
-            "map_name": "in89 豪華影城 桃園站前 in89豪華影城",
-            "address": "桃園市桃園區中正路56號",
-            "city": "桃園市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://taoyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-22",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "12:20",
-                "format": "BOOM 2廳(3F)",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-                "label": "12:20 BOOM 2廳(3F)"
-              }
-            ],
-            "start_times": "12:20"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.298119010543,
-              22.621851005881
-            ]
-          },
-          "properties": {
-            "location_id": 9,
-            "chain_name": "in89 豪華影城",
-            "location_name": "高雄大立 in89豪華影城",
-            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-            "address": "高雄市前金區五福三路57號9樓",
-            "city": "高雄市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-22",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "17:10",
-                "format": "BOOM廳(10F)",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-                "label": "17:10 BOOM廳(10F)"
-              }
-            ],
-            "start_times": "17:10"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
               120.493406038961,
               22.673270000458
             ]
@@ -32725,6 +34521,49 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              121.50474,
+              25.04473
+            ]
+          },
+          "properties": {
+            "location_id": 89,
+            "chain_name": "樂聲影城",
+            "location_name": "樂聲影城",
+            "map_name": "樂聲影城 樂聲影城",
+            "address": "台北市萬華區武昌街二段85號",
+            "city": "臺北市",
+            "location_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3419",
+            "official_url": null,
+            "crawl_url": "https://www.luxcinema.com.tw/web/2020.php?type=ShowTimes",
+            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+            "show_date": "2026-09-22",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "09:30",
+                "format": "(日語)電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3419",
+                "label": "09:30 (日語)電影蠟筆小新：奇奇怪怪！我的妖怪假期"
+              },
+              {
+                "time": "13:50",
+                "format": "(日語)電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.luxcinema.com.tw/web/2020-movie_item.php?film_id=3419",
+                "label": "13:50 (日語)電影蠟筆小新：奇奇怪怪！我的妖怪假期"
+              }
+            ],
+            "start_times": "09:30, 13:50"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.3,
               23.57
             ]
@@ -33150,119 +34989,6 @@
         }
       ],
       "2026-09-23": [
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.706113763482,
-              24.25198528648
-            ]
-          },
-          "properties": {
-            "location_id": 5,
-            "chain_name": "in89 豪華影城",
-            "location_name": "台中豐原 in89豪華影城",
-            "map_name": "in89 豪華影城 台中豐原 in89豪華影城",
-            "address": "台中市豐原區成功路500號5樓",
-            "city": "臺中市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://fengyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-23",
-            "showtime_count": 2,
-            "showtimes": [
-              {
-                "time": "12:50",
-                "format": "12廳",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "12:50 12廳"
-              },
-              {
-                "time": "14:50",
-                "format": "09廳",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=15",
-                "label": "14:50 09廳"
-              }
-            ],
-            "start_times": "12:50, 14:50"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              121.313019879774,
-              24.991207497656
-            ]
-          },
-          "properties": {
-            "location_id": 7,
-            "chain_name": "in89 豪華影城",
-            "location_name": "桃園站前 in89豪華影城",
-            "map_name": "in89 豪華影城 桃園站前 in89豪華影城",
-            "address": "桃園市桃園區中正路56號",
-            "city": "桃園市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://taoyuan.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-23",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "12:20",
-                "format": "BOOM 2廳(3F)",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=1",
-                "label": "12:20 BOOM 2廳(3F)"
-              }
-            ],
-            "start_times": "12:20"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.298119010543,
-              22.621851005881
-            ]
-          },
-          "properties": {
-            "location_id": 9,
-            "chain_name": "in89 豪華影城",
-            "location_name": "高雄大立 in89豪華影城",
-            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
-            "address": "高雄市前金區五福三路57號9樓",
-            "city": "高雄市",
-            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-            "official_url": "https://www.in89cinemax.com/",
-            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
-            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-            "show_date": "2026-09-23",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "17:10",
-                "format": "BOOM廳(10F)",
-                "language": "國語",
-                "auditorium": null,
-                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
-                "label": "17:10 BOOM廳(10F)"
-              }
-            ],
-            "start_times": "17:10"
-          }
-        },
         {
           "type": "Feature",
           "geometry": {
@@ -33705,6 +35431,49 @@
               }
             ],
             "start_times": "16:15"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.751391823288,
+              24.754464707689
+            ]
+          },
+          "properties": {
+            "location_id": 48,
+            "chain_name": "新月豪華影城",
+            "location_name": "宜蘭新月豪華影城",
+            "map_name": "新月豪華影城 宜蘭新月豪華影城",
+            "address": "宜蘭縣宜蘭市民權路二段38巷2號",
+            "city": "宜蘭縣",
+            "location_url": "https://www.lunacinemax.com.tw/time_schedule.aspx",
+            "official_url": "https://www.lunacinemax.com.tw/",
+            "crawl_url": "https://www.lunacinemax.com.tw/time_schedule.aspx",
+            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+            "show_date": "2026-09-23",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:10",
+                "format": "電影蠟筆小新：奇奇怪怪！我的妖怪假期(中文版)",
+                "language": "國語",
+                "auditorium": "8廳",
+                "booking_url": "https://www.lunacinemax.com.tw/time_schedule.aspx",
+                "label": "10:10 電影蠟筆小新：奇奇怪怪！我的妖怪假期(中文版) / 8廳"
+              },
+              {
+                "time": "17:50",
+                "format": "電影蠟筆小新：奇奇怪怪！我的妖怪假期(中文版)",
+                "language": "國語",
+                "auditorium": "1廳",
+                "booking_url": "https://www.lunacinemax.com.tw/time_schedule.aspx",
+                "label": "17:50 電影蠟筆小新：奇奇怪怪！我的妖怪假期(中文版) / 1廳"
+              }
+            ],
+            "start_times": "10:10, 17:50"
           }
         },
         {
@@ -34297,9 +36066,11 @@
     "2026-09-21",
     "2026-09-22",
     "2026-09-23",
-    "2026-09-24"
+    "2026-09-24",
+    "2026-09-26",
+    "2026-09-28"
   ],
-  "feature_count": 1,
+  "feature_count": 2,
   "features": [
     {
       "type": "Feature",
@@ -34335,9 +36106,37 @@
         ],
         "start_times": "17:45"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.3253452,
+          22.6319673
+        ]
+      },
+      "properties": {
+        "location_id": 72,
+        "chain_name": "高雄環球影城",
+        "location_name": "高雄環球影城",
+        "map_name": "高雄環球影城 高雄環球影城",
+        "address": "高雄市苓雅區大順三路108號",
+        "city": "高雄市",
+        "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+        "official_url": "https://www.u-movie.com.tw/",
+        "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+        "movie_title": "你的名字。（十周年重映）",
+        "show_date": "2026-09-21",
+        "showtime_count": 0,
+        "showtimes": [],
+        "start_times": "",
+        "showtime_unavailable": true,
+        "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+      }
     }
   ],
-  "supplemental_updated_at": "2026-09-21T07:23:40+08:00",
-  "supplemental_preserved_at": "2026-09-20T08:23:21+08:00",
-  "supplemental_finalized_at": "2026-09-21T07:24:07+08:00"
+  "supplemental_updated_at": "2026-09-21T09:32:45+08:00",
+  "supplemental_preserved_at": "2026-09-21T09:21:19+08:00",
+  "supplemental_finalized_at": "2026-09-21T09:33:14+08:00"
 }
