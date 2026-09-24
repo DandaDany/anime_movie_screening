@@ -1,38 +1,23 @@
 {
   "schema_version": 1,
-  "for_date": "2026-09-23",
-  "generated_at": "2026-09-23T07:11:02+08:00",
+  "for_date": "2026-09-25",
+  "generated_at": "2026-09-25T07:06:00+08:00",
   "records": [
     {
       "location_id": 69,
-      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-09-23",
-      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "Cloud Browser 實際開啟美麗新官方場次頁並選擇桃園台茂影城；頁面明列 2026-09-23《劇場版 吉伊卡哇 人魚島的秘密》10:45，標準廳、日文版。",
-      "showtimes": [
-        {
-          "time": "10:45",
-          "format": "標準廳",
-          "language": "日文版",
-          "auditorium": null
-        }
-      ]
-    },
-    {
-      "location_id": 69,
       "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
-      "show_date": "2026-09-24",
+      "show_date": "2026-09-25",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "Cloud Browser 實際開啟美麗新官方場次頁並選擇桃園台茂影城；頁面明列 2026-09-24《劇場版 鋼之鍊金術師 香巴拉的征服者》10:55、15:25，標準廳。",
+      "evidence": "Cloud Browser 實際開啟美麗新官方場次頁並選擇桃園台茂影城；頁面明列 2026-09-25《劇場版 鋼之鍊金術師 香巴拉的征服者》11:20、14:50，標準廳。",
       "showtimes": [
         {
-          "time": "10:55",
+          "time": "11:20",
           "format": "標準廳",
           "language": null,
           "auditorium": null
         },
         {
-          "time": "15:25",
+          "time": "14:50",
           "format": "標準廳",
           "language": null,
           "auditorium": null
@@ -41,19 +26,19 @@
     },
     {
       "location_id": 72,
-      "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-      "show_date": "2026-09-23",
+      "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
+      "show_date": "2026-09-25",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-23《劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉》15:50（15廳）、20:20（12廳）。",
+      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-25《劇場版 鋼之鍊金術師 香巴拉的征服者》10:20、18:00，12廳。",
       "showtimes": [
         {
-          "time": "15:50",
+          "time": "10:20",
           "format": null,
           "language": null,
-          "auditorium": "15廳"
+          "auditorium": "12廳"
         },
         {
-          "time": "20:20",
+          "time": "18:00",
           "format": null,
           "language": null,
           "auditorium": "12廳"
@@ -62,28 +47,40 @@
     },
     {
       "location_id": 72,
-      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-09-23",
+      "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+      "show_date": "2026-09-25",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-23 日語版《劇場版 吉伊卡哇 人魚島的秘密》15:35（13廳）。",
+      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-25《劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉》10:20、20:15，11廳。",
       "showtimes": [
         {
-          "time": "15:35",
+          "time": "10:20",
           "format": null,
-          "language": "日語版",
-          "auditorium": "13廳"
+          "language": null,
+          "auditorium": "11廳"
+        },
+        {
+          "time": "20:15",
+          "format": null,
+          "language": null,
+          "auditorium": "11廳"
         }
       ]
     },
     {
       "location_id": 72,
       "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-      "show_date": "2026-09-23",
+      "show_date": "2026-09-25",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-23 國語版《電影蠟筆小新：奇奇怪怪！我的妖怪假期》13:20（11廳）。",
+      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-25 國語版《電影蠟筆小新：奇奇怪怪！我的妖怪假期》14:10、18:10，11廳。",
       "showtimes": [
         {
-          "time": "13:20",
+          "time": "14:10",
+          "format": null,
+          "language": "國語版",
+          "auditorium": "11廳"
+        },
+        {
+          "time": "18:10",
           "format": null,
           "language": "國語版",
           "auditorium": "11廳"
@@ -91,14 +88,44 @@
       ]
     },
     {
-      "location_id": 104,
+      "location_id": 72,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-09-23",
-      "source_url": "https://www.instagram.com/madoucinema/p/DdgZo8FINaO/",
-      "evidence": "Cloud Browser 實際開啟麻豆戲院官方 Instagram 個人頁及置頂貼文，確認置頂標示並展開完整排程圖片；caption 明列適用 2026-09-21 至 2026-09-24，圖片明列《劇場版 吉伊卡哇 人魚島的秘密》17:40，數位中文版。",
+      "show_date": "2026-09-25",
+      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+      "evidence": "Cloud Browser 實際開啟高雄環球影城官方時刻頁；頁面明列 2026-09-25 日語版《劇場版 吉伊卡哇 人魚島的秘密》12:35，15廳。",
       "showtimes": [
         {
-          "time": "17:40",
+          "time": "12:35",
+          "format": null,
+          "language": "日語版",
+          "auditorium": "15廳"
+        }
+      ]
+    },
+    {
+      "location_id": 104,
+      "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+      "show_date": "2026-09-25",
+      "source_url": "https://www.instagram.com/madoucinema/p/DdqkEKyoEYU/",
+      "evidence": "Cloud Browser 實際開啟麻豆戲院官方 Instagram 個人頁及置頂貼文，並展開完整排程圖片；caption 明列適用 2026-09-25 至 2026-09-28，圖片明列《電影蠟筆小新：奇奇怪怪！我的妖怪假期》10:45，數位中文版。",
+      "showtimes": [
+        {
+          "time": "10:45",
+          "format": "數位",
+          "language": "中文版",
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 104,
+      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+      "show_date": "2026-09-25",
+      "source_url": "https://www.instagram.com/madoucinema/p/DdqkEKyoEYU/",
+      "evidence": "Cloud Browser 實際開啟麻豆戲院官方 Instagram 個人頁及置頂貼文，並展開完整排程圖片；caption 明列適用 2026-09-25 至 2026-09-28，圖片明列《劇場版 吉伊卡哇 人魚島的秘密》17:30，數位中文版。",
+      "showtimes": [
+        {
+          "time": "17:30",
           "format": "數位",
           "language": "中文版",
           "auditorium": null
