@@ -72,8 +72,6 @@ def main() -> int:
                 const datetime = document.querySelector('#LabelSession_dtmDateTime')?.textContent?.trim() || '';
                 const cinema = document.querySelector('#LabelCinema_strName')?.textContent?.trim() || '';
                 const auditorium = document.querySelector('#LabelScreen_strName')?.textContent?.trim() || '';
-                const bodyText = document.body.innerText || '';
-                const systemMatch = bodyText.match(/系統時間\s*([^\n-]+(?:\s+\d{2}:\d{2}:\d{2})?)/);
 
                 return {
                     movie,
