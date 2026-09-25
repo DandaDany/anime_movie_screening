@@ -285,26 +285,27 @@ def inspect_venice_dom():
     out = []
     html = render_page_html(VENICE_URL.format(page=1), wait_ms=4000)
     soup = BeautifulSoup(html, "html.parser")
-    for node in soup.find_all(string=re.compile(r"蜘蛛人：重生日")):
-        title = str(node).strip()
-        if not title or not re.search(r"(2D|3D|Atmos|水影)", title, re.I):
+    for heading in soup.select("h1, h2, h3, h4"):
+        title = heading.get_text(" ", strip=True)
+        if "蜘蛛人：重生日" not in title:
             continue
-        parent = node.parent
         ancestry = []
-        cursor = parent
+        cursor = heading
         for _ in range(5):
+            cursor = cursor.parent
             if cursor is None:
                 break
             ancestry.append({
                 "tag": cursor.name,
                 "class": cursor.get("class"),
                 "id": cursor.get("id"),
-                "text": cursor.get_text(" ", strip=True)[:800],
-                "html": str(cursor)[:1800],
+                "heading_count": len(cursor.select("h1, h2, h3, h4")),
+                "time_count": len(re.findall(r"\\b\\d{1,2}:\\d{2}\\b", cursor.get_text(" ", strip=True))),
+                "text": cursor.get_text(" ", strip=True)[:1000],
+                "html": str(cursor)[:2400],
             })
-            cursor = cursor.parent
         out.append({"title": title, "ancestry": ancestry})
-    return out[:8]
+    return out[:12]
 
 def main():
     audits=[]
