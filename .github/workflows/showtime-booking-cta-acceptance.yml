@@ -1,0 +1,35 @@
+name: Showtime booking CTA acceptance
+
+on:
+  push:
+    branches:
+      - feat/showtime-select-booking-cta
+    paths:
+      - web/app.js
+      - web/styles.css
+      - tests/frontend_showtime_booking_cta_test.js
+      - .github/workflows/showtime-booking-cta-acceptance.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate frontend
+        run: |
+          node --check web/app.js
+          node tests/frontend_showtime_booking_cta_test.js
+          node tests/frontend_date_state_test.js
+          node tests/frontend_time_filter_test.js
+          node tests/frontend_empty_state_test.js
+          git diff --check
