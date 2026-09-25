@@ -2120,6 +2120,69 @@ def fetch_timescinema(conn: sqlite3.Connection, aliases: list[str], show_date: s
     return records
 
 
+def venice_version_options(soup: BeautifulSoup, aliases: list[str]) -> list[tuple[str, str]]:
+    """Return (display title/version, detail URL) pairs for all matching Venice variants."""
+    options: list[tuple[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+    for option in soup.select("#search_movie option[value][data-sn]"):
+        title = option.get_text(" ", strip=True)
+        if not title or not movie_matches(title, aliases):
+            continue
+        msn = str(option.get("value") or "").strip()
+        sn = str(option.get("data-sn") or "").strip()
+        if not msn or not sn:
+            continue
+        detail_url = (
+            "https://www.venice-cinemas.com.tw/showtime-view.php?"
+            + urllib.parse.urlencode({"msn": msn, "sn": sn})
+        )
+        key = (title, detail_url)
+        if key not in seen:
+            seen.add(key)
+            options.append(key)
+    return options
+
+
+def parse_venice_detail_page(
+    html_text: str,
+    *,
+    location_id: int,
+    aliases: list[str],
+    version_title: str,
+    show_date: str,
+    source_url: str,
+) -> list[ShowtimeRecord]:
+    """Parse one version-specific Venice detail page without mixing sibling formats."""
+    soup = BeautifulSoup(html_text, "html.parser")
+    text = soup.get_text("\n", strip=True)
+    records = records_from_text_block(
+        location_id=location_id,
+        show_date=show_date,
+        text=text,
+        aliases=aliases,
+        source_url=source_url,
+        booking_url=source_url,
+        format_text=version_title,
+        strict_date_sections=True,
+    )
+    # One detail page is one exact version.  Force the option title onto every
+    # record even if the page search controls contain other aliases.
+    return [
+        ShowtimeRecord(
+            location_id=record.location_id,
+            show_date=record.show_date,
+            start_time=record.start_time,
+            auditorium=record.auditorium,
+            format=version_title,
+            language=infer_language(version_title),
+            booking_url=record.booking_url,
+            source_url=record.source_url,
+            raw_text=f"{version_title} | {record.raw_text}",
+        )
+        for record in records
+    ]
+
+
 def fetch_venice(conn: sqlite3.Connection, aliases: list[str], show_date: str) -> list[ShowtimeRecord]:
     row = conn.execute(
         """
@@ -2132,7 +2195,9 @@ def fetch_venice(conn: sqlite3.Connection, aliases: list[str], show_date: str) -
     ).fetchone()
     if not row:
         return []
-    records: list[ShowtimeRecord] = []
+
+    versions: list[tuple[str, str]] = []
+    seen_versions: set[tuple[str, str]] = set()
     for page_number in range(1, 5):
         source_url = VENICE_URL.format(page=page_number)
         try:
@@ -2141,10 +2206,48 @@ def fetch_venice(conn: sqlite3.Connection, aliases: list[str], show_date: str) -
             continue
         save_raw(f"venice_showtime_{page_number}", html_text, "html")
         soup = BeautifulSoup(html_text, "html.parser")
-        if not movie_matches(soup.get_text("\n", strip=True), aliases):
+        for item in venice_version_options(soup, aliases):
+            if item not in seen_versions:
+                seen_versions.add(item)
+                versions.append(item)
+
+    records: list[ShowtimeRecord] = []
+    for index, (version_title, detail_url) in enumerate(versions, start=1):
+        try:
+            detail_html = render_page_html(detail_url, wait_ms=2500)
+        except Exception as exc:
+            print(f"[VENICE] version detail failed {version_title}: {exc}")
             continue
+        save_raw(f"venice_version_{index}", detail_html, "html")
+        records.extend(
+            parse_venice_detail_page(
+                detail_html,
+                location_id=int(row["id"]),
+                aliases=aliases,
+                version_title=version_title,
+                show_date=show_date,
+                source_url=detail_url,
+            )
+        )
+
+    # Preserve the old text fallback only when the site no longer exposes
+    # version-specific options; never merge it with the precise variant path.
+    if versions:
+        unique: dict[tuple[str, str | None], ShowtimeRecord] = {}
+        for record in records:
+            unique[(record.start_time, record.format)] = record
+        return list(unique.values())
+
+    fallback: list[ShowtimeRecord] = []
+    for page_number in range(1, 5):
+        source_url = VENICE_URL.format(page=page_number)
+        try:
+            html_text = render_page_html(source_url, wait_ms=4000)
+        except Exception:
+            continue
+        soup = BeautifulSoup(html_text, "html.parser")
         for block in html_blocks_with_movie(soup, aliases):
-            records.extend(
+            fallback.extend(
                 records_from_text_block(
                     location_id=int(row["id"]),
                     show_date=show_date,
@@ -2154,7 +2257,7 @@ def fetch_venice(conn: sqlite3.Connection, aliases: list[str], show_date: str) -
                     booking_url=source_url,
                 )
             )
-    return records
+    return fallback
 
 
 def fetch_uch(conn: sqlite3.Connection, aliases: list[str], show_date: str) -> list[ShowtimeRecord]:
