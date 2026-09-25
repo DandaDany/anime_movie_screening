@@ -66,7 +66,8 @@ def run_case(page, mobile: bool):
     assert "19:00" not in text
 
     if mobile:
-        # Selecting another filter tab closes no data; return to format tab if needed.
+        page.locator("#mSheetClose").click()
+        page.wait_for_timeout(100)
         page.locator("#mSeg button[data-tab='format']").click()
     page.locator("#formatFilterList .filter-option", has_text="IMAX").click()
     page.wait_for_timeout(100)
