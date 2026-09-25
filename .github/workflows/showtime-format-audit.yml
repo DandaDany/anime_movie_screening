@@ -1,0 +1,32 @@
+name: Showtime format source audit
+
+on:
+  push:
+    branches:
+      - research/showtime-format-audit
+    paths:
+      - scripts/audit_vieshow_formats.py
+      - .github/workflows/showtime-format-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Audit current VIESHOW format extraction
+        run: |
+          xvfb-run -a --server-args="-screen 0 1366x900x24" \
+            python scripts/audit_vieshow_formats.py
