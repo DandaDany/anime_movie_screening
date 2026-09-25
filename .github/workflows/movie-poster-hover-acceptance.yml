@@ -20,8 +20,10 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Chromium
-        run: npx -y playwright@1.55.0 install --with-deps chromium
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
 
       - name: Start local site
         run: |
@@ -54,7 +56,7 @@ jobs:
             await browser.close();
           })();
           EOF
-          NODE_PATH="$(npm root -g):$(pwd)/node_modules" npx -y -p playwright@1.55.0 node /tmp/hover-test.js
+          NODE_PATH="$(pwd)/node_modules" node /tmp/hover-test.js
 
       - name: Upload evidence
         if: always()
