@@ -424,6 +424,24 @@ function directVieshowBookingUrl(showtime) {
   return isDirectVieshowBooking ? bookingUrl : "";
 }
 
+function vieshowSeatPreviewUrl(showtime) {
+  const bookingUrl = directVieshowBookingUrl(showtime);
+  if (!bookingUrl) return "";
+  try {
+    const url = new URL(bookingUrl);
+    const cinemaCode = url.searchParams.get("cinemacode") || "";
+    const sessionId = url.searchParams.get("txtSessionId") || "";
+    if (!cinemaCode || !sessionId) return "";
+    const query = new URLSearchParams({
+      cinemacode: cinemaCode,
+      session: sessionId,
+    });
+    return `seat-preview.html?${query.toString()}`;
+  } catch {
+    return "";
+  }
+}
+
 function bindShowtimeBookingInteraction(root) {
   if (!root) return;
   const chips = [...root.querySelectorAll(".st-chip-select[data-booking-url]")];
@@ -431,12 +449,42 @@ function bindShowtimeBookingInteraction(root) {
   if (!chips.length || !cta) return;
 
   const ctaLabel = cta.querySelector("[data-booking-cta-label]");
+  const officialCta = root.querySelector("[data-official-cta]");
+  const officialLabel = officialCta?.querySelector("[data-official-cta-label]");
+  const officialHref = officialCta?.dataset.officialHref || officialCta?.getAttribute("href") || "";
+
+  const resetSelection = () => {
+    for (const chip of chips) {
+      chip.classList.remove("is-selected");
+      chip.setAttribute("aria-pressed", "false");
+    }
+    cta.removeAttribute("href");
+    cta.classList.add("is-disabled");
+    cta.setAttribute("aria-disabled", "true");
+    cta.removeAttribute("aria-label");
+    if (ctaLabel) ctaLabel.textContent = "場次入口";
+
+    if (officialCta) {
+      if (officialHref) officialCta.href = officialHref;
+      officialCta.removeAttribute("data-seat-preview-active");
+      if (officialLabel) officialLabel.textContent = "官方網站";
+    }
+  };
+
+  resetSelection();
+
   cta.addEventListener("click", (event) => {
     if (cta.getAttribute("aria-disabled") === "true") event.preventDefault();
   });
 
   for (const chip of chips) {
     chip.addEventListener("click", () => {
+      const wasSelected = chip.getAttribute("aria-pressed") === "true";
+      if (wasSelected) {
+        resetSelection();
+        return;
+      }
+
       for (const other of chips) {
         const selected = other === chip;
         other.classList.toggle("is-selected", selected);
@@ -444,7 +492,11 @@ function bindShowtimeBookingInteraction(root) {
       }
 
       const bookingUrl = chip.dataset.bookingUrl || "";
-      if (!bookingUrl) return;
+      if (!bookingUrl) {
+        resetSelection();
+        return;
+      }
+
       cta.href = bookingUrl;
       cta.classList.remove("is-disabled");
       cta.setAttribute("aria-disabled", "false");
@@ -453,6 +505,13 @@ function bindShowtimeBookingInteraction(root) {
         `${chip.dataset.showtimeTime || ""} 場次前往訂票`.trim(),
       );
       if (ctaLabel) ctaLabel.textContent = "前往訂票";
+
+      const seatPreviewUrl = chip.dataset.seatPreviewUrl || "";
+      if (officialCta && seatPreviewUrl) {
+        officialCta.href = seatPreviewUrl;
+        officialCta.setAttribute("data-seat-preview-active", "true");
+        if (officialLabel) officialLabel.textContent = "座位表入口";
+      }
     });
   }
 }
@@ -486,8 +545,9 @@ function popupHtml(feature) {
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
               const bookingUrl = directVieshowBookingUrl(showtime);
+              const seatPreviewUrl = vieshowSeatPreviewUrl(showtime);
               if (bookingUrl) {
-                return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;
+                return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-seat-preview-url="${escapeHtml(seatPreviewUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;
               }
               return `<span class="st-chip">${inner}</span>`;
             })
@@ -506,7 +566,7 @@ function popupHtml(feature) {
       ? `<a class="popup-link popup-link-primary" href="${escapeHtml(props.location_url)}" target="_blank" rel="noreferrer">${TICKET_SVG}場次入口</a>`
       : "";
   const officialLink = props.official_url
-    ? `<a class="popup-link popup-link-ghost" href="${escapeHtml(props.official_url)}" target="_blank" rel="noreferrer">${GLOBE_SVG}官方網站</a>`
+    ? `<a class="popup-link popup-link-ghost" href="${escapeHtml(props.official_url)}" data-official-href="${escapeHtml(props.official_url)}" data-official-cta target="_blank" rel="noreferrer">${GLOBE_SVG}<span data-official-cta-label>官方網站</span></a>`
     : "";
   // 方案一：品牌色帶頁首（標題＋地址反白）＋ 白底內容（場次膠囊＋連結）
   return `
