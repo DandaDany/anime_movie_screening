@@ -263,3 +263,98 @@ html.discovery-active .map-wrap {
   grid-column: 1;
   grid-row: 1;
 }
+
+
+/* Today has no remaining showtimes: keep the user in the discovery context and
+   ask whether the map should move to another available date for this movie. */
+.movie-choice-dialog {
+  position: fixed;
+  z-index: 12;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(5, 6, 9, 0.62);
+  backdrop-filter: blur(7px);
+}
+
+.movie-choice-dialog[hidden] {
+  display: none;
+}
+
+.movie-choice-dialog__card {
+  width: min(430px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(26, 27, 33, 0.98);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.52);
+  color: #fff;
+  padding: 26px;
+  text-align: center;
+}
+
+.movie-choice-dialog__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.movie-choice-dialog__question {
+  margin: 8px 0 22px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.movie-choice-dialog__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.movie-choice-dialog__button {
+  min-height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 750;
+  padding: 9px 12px;
+}
+
+.movie-choice-dialog__button--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.movie-choice-dialog__button--primary {
+  border: 1px solid var(--flame);
+  background: var(--flame);
+  color: #fff;
+}
+
+.movie-choice-dialog__button:hover,
+.movie-choice-dialog__button:focus-visible {
+  filter: brightness(1.08);
+}
+
+.movie-choice-dialog__button:focus-visible {
+  outline: 3px solid rgba(245, 100, 30, 0.28);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .movie-choice-dialog {
+    padding: 18px;
+  }
+
+  .movie-choice-dialog__card {
+    border-radius: 16px;
+    padding: 22px 18px 18px;
+  }
+
+  .movie-choice-dialog__actions {
+    grid-template-columns: 1fr;
+  }
+}
