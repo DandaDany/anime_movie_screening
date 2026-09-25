@@ -1316,7 +1316,7 @@ input[type="search"]::-webkit-search-cancel-button {
   /* ---- 分段控制（底線分頁，樣式 C） ---- */
   .m-seg {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2px;
     flex: 0 0 auto;
     border-bottom: 1px solid #e6e2da;
@@ -1373,7 +1373,6 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   #cityBlock,
-  #formatBlock,
   #chainBlock {
     display: none;
   }
@@ -1411,7 +1410,6 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   .app-shell.mtab-city #cityBlock,
-  .app-shell.mtab-format #formatBlock,
   .app-shell.mtab-chain #chainBlock {
     display: flex;
     flex-direction: column;
