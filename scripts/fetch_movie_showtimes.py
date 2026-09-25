@@ -36,6 +36,7 @@ OUTPUT_DIR = PROJECT_DIR / "data" / "output" / "showtimes"
 TAIPEI = ZoneInfo("Asia/Taipei")
 SHOWTIMES_BOOTSTRAP_URL = "https://capi.showtimes.com.tw/4/app/bootstrap"
 VIESHOW_URL = "https://www.vscinemas.com.tw/ShowTimes/"
+VIESHOW_BOOKING_URL = "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx"
 SKCINEMAS_FILMS_URL = "https://www.skcinemas.com/films"
 SKCINEMAS_SESSION_API = "https://www.skcinemas.com/api/VistaDataV2/GetSessionByCinemasIDForApp"
 SKCINEMAS_ATMOVIES = {
@@ -82,6 +83,7 @@ _DATE_RENDER_CACHE: dict[tuple[str, str], str] = {}
 _SKCINEMAS_HEADERS_CACHE: dict[str, str] | None = None
 _MULTI_DATE_CRAWL = False
 _VIESHOW_HTML_CACHE: dict[int, str] = {}
+_VIESHOW_BOOKING_CACHE: dict[tuple[tuple[str, ...], int], list[dict[str, str]]] = {}
 
 
 @dataclass(frozen=True)
@@ -2557,6 +2559,275 @@ def fetch_ptcinema(conn: sqlite3.Connection, aliases: list[str], show_date: str)
     return records
 
 
+
+def _vieshow_alias_key(aliases: list[str]) -> tuple[str, ...]:
+    return tuple(sorted({normalize_text(alias) for alias in aliases if normalize_text(alias)}))
+
+
+def _vieshow_item_value(item: object) -> str:
+    if not isinstance(item, dict):
+        return ""
+    for key in ("strValue", "value", "Value"):
+        value = item.get(key)
+        if value not in {None, ""}:
+            return str(value).strip()
+    return ""
+
+
+def _vieshow_item_text(item: object) -> str:
+    if not isinstance(item, dict):
+        return ""
+    for key in ("strText", "text", "Text"):
+        value = item.get(key)
+        if value not in {None, ""}:
+            return str(value).strip()
+    return ""
+
+
+def _vieshow_option_matches(text: str, aliases: list[str]) -> bool:
+    if movie_matches(text, aliases):
+        return True
+    # The quick-booking API may truncate long display titles.  Compare the title
+    # again after removing the leading format marker, and allow a sufficiently
+    # long prefix relationship rather than requiring the full canonical alias.
+    stripped = re.sub(r"^\s*\([^)]*\)\s*", "", text or "").strip()
+    option_norm = normalize_text(stripped)
+    if len(option_norm) < 8:
+        return False
+    for alias in aliases:
+        alias_norm = normalize_text(alias)
+        if option_norm in alias_norm or alias_norm in option_norm:
+            return True
+    return False
+
+
+def vieshow_booking_url_from_session_value(value: str | None) -> str | None:
+    if not value:
+        return None
+    params = urllib.parse.parse_qs(value, keep_blank_values=True)
+    cinema = (params.get("cinemacode") or params.get("CinemaCode") or [""])[0].strip()
+    session_id = (
+        params.get("txtSessionId")
+        or params.get("txtSessionID")
+        or params.get("SessionId")
+        or params.get("SessionID")
+        or [""]
+    )[0].strip()
+    if not cinema or not session_id:
+        cinema_match = re.search(r"(?:^|&)cinemacode=([^&]+)", value, flags=re.I)
+        session_match = re.search(r"(?:^|&)txtsessionid=([^&]+)", value, flags=re.I)
+        cinema = urllib.parse.unquote_plus(cinema_match.group(1)) if cinema_match else ""
+        session_id = urllib.parse.unquote_plus(session_match.group(1)) if session_match else ""
+    if not cinema or not session_id:
+        return None
+    query = urllib.parse.urlencode(
+        {"cinemacode": cinema, "txtSessionId": session_id}
+    )
+    return f"{VIESHOW_BOOKING_URL}?{query}"
+
+
+def _vieshow_api_json(page, path: str) -> object:
+    return page.evaluate(
+        """
+        async (path) => {
+            const response = await fetch(path, {
+                headers: { "Accept": "application/json,text/plain,*/*" }
+            });
+            if (!response.ok) {
+                throw new Error("VIESHOW quick-booking API " + response.status + " for " + path);
+            }
+            return await response.json();
+        }
+        """,
+        path,
+    )
+
+
+def _vieshow_quick_booking_sessions(page, code: str, aliases: list[str]) -> list[dict[str, str]]:
+    cinemas = _vieshow_api_json(page, "/api/GetLstDicCinema")
+    cinema_value = ""
+    for item in cinemas if isinstance(cinemas, list) else []:
+        value = _vieshow_item_value(item)
+        parts = value.split("|", 1)
+        if len(parts) == 2 and parts[1].strip() == code:
+            cinema_value = value
+            break
+    if not cinema_value:
+        return []
+
+    movie_path = "/api/GetLstDicMovie?" + urllib.parse.urlencode(
+        {"cinema": cinema_value}, safe="|"
+    )
+    movies = _vieshow_api_json(page, movie_path)
+    sessions_out: list[dict[str, str]] = []
+
+    for movie_item in movies if isinstance(movies, list) else []:
+        movie_value = _vieshow_item_value(movie_item)
+        movie_text = _vieshow_item_text(movie_item)
+        if not movie_value or not _vieshow_option_matches(movie_text, aliases):
+            continue
+
+        date_path = "/api/GetLstDicDate?" + urllib.parse.urlencode(
+            {"cinema": cinema_value, "movie": movie_value}, safe="|/"
+        )
+        date_items = _vieshow_api_json(page, date_path)
+        for date_item in date_items if isinstance(date_items, list) else []:
+            raw_date = _vieshow_item_value(date_item) or _vieshow_item_text(date_item)
+            normalized_date = normalize_show_date(raw_date)
+            if not normalized_date:
+                continue
+
+            session_path = "/api/GetLstDicSession?" + urllib.parse.urlencode(
+                {
+                    "cinema": cinema_value,
+                    "movie": movie_value,
+                    "date": raw_date,
+                },
+                safe="|/",
+            )
+            session_items = _vieshow_api_json(page, session_path)
+            for session_item in session_items if isinstance(session_items, list) else []:
+                session_value = _vieshow_item_value(session_item)
+                session_text = _vieshow_item_text(session_item)
+                booking_url = vieshow_booking_url_from_session_value(session_value)
+                time_match = re.search(r"\b\d{1,2}:\d{2}\b", session_text)
+                if not booking_url or not time_match:
+                    continue
+                sessions_out.append(
+                    {
+                        "show_date": normalized_date,
+                        "start_time": time_match.group(0).zfill(5),
+                        "movie_text": movie_text,
+                        "movie_value": movie_value,
+                        "booking_url": booking_url,
+                    }
+                )
+
+    return sessions_out
+
+
+def _populate_vieshow_booking_cache(page, rows, aliases: list[str]) -> None:
+    alias_key = _vieshow_alias_key(aliases)
+    for row in rows:
+        location_id = int(row["id"])
+        cache_key = (alias_key, location_id)
+        if cache_key in _VIESHOW_BOOKING_CACHE:
+            continue
+        code = str(row["source_location_code"])
+        try:
+            sessions = _vieshow_quick_booking_sessions(page, code, aliases)
+            _VIESHOW_BOOKING_CACHE[cache_key] = sessions
+            print(
+                f"[VIESHOW BOOKING] {code} | {row['location_name']} | "
+                f"sessions={len(sessions)}"
+            )
+        except Exception as exc:
+            # Booking enrichment must never erase otherwise valid showtimes.
+            # Leave this key uncached so a later date/movie invocation can retry.
+            print(
+                f"[VIESHOW BOOKING] {code} | {row['location_name']} | "
+                f"lookup failed: {exc}"
+            )
+
+
+def _ensure_vieshow_booking_cache(rows, aliases: list[str]) -> None:
+    alias_key = _vieshow_alias_key(aliases)
+    missing = [
+        row for row in rows
+        if (alias_key, int(row["id"])) not in _VIESHOW_BOOKING_CACHE
+    ]
+    if not missing:
+        return
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=False, slow_mo=80)
+        context = browser.new_context(
+            locale="zh-TW",
+            timezone_id="Asia/Taipei",
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/126.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1366, "height": 900},
+        )
+        page = context.new_page()
+        page.goto(VIESHOW_URL, wait_until="domcontentloaded", timeout=60_000)
+        page.wait_for_timeout(3500)
+        initial_html = page.content()
+        unavailable_text = f"{page.url}\n{initial_html}".lower()
+        if "queue-it" in unavailable_text or "正在為您安排進入頁面" in initial_html:
+            print("[VIESHOW BOOKING] quick-booking unavailable: Queue-it waiting room; keeping generic links")
+            context.close()
+            browser.close()
+            return
+        if "Access Denied" in initial_html:
+            print("[VIESHOW BOOKING] quick-booking returned Access Denied; keeping generic links")
+            context.close()
+            browser.close()
+            return
+        _populate_vieshow_booking_cache(page, missing, aliases)
+        context.close()
+        browser.close()
+
+
+def _vieshow_record_with_booking(
+    record: ShowtimeRecord,
+    candidates: list[dict[str, str]],
+) -> ShowtimeRecord:
+    matching = [
+        item
+        for item in candidates
+        if item.get("show_date") == record.show_date
+        and item.get("start_time") == record.start_time
+    ]
+    if not matching:
+        return record
+
+    if len(matching) > 1:
+        record_norm = normalize_text(record.format or record.raw_text)
+        scored = []
+        for item in matching:
+            movie_norm = normalize_text(item.get("movie_text"))
+            score = 0
+            if movie_norm and movie_norm in record_norm:
+                score = 3
+            elif record_norm and record_norm in movie_norm:
+                score = 2
+            scored.append((score, item))
+        scored.sort(key=lambda pair: pair[0], reverse=True)
+        if scored[0][0] == 0:
+            # Ambiguous same-time formats: preserve the safe generic entry rather
+            # than attaching the wrong session URL.
+            return record
+        selected = scored[0][1]
+    else:
+        selected = matching[0]
+
+    return ShowtimeRecord(
+        location_id=record.location_id,
+        show_date=record.show_date,
+        start_time=record.start_time,
+        auditorium=record.auditorium,
+        format=record.format,
+        language=record.language,
+        booking_url=selected["booking_url"],
+        source_url=record.source_url,
+        raw_text=record.raw_text,
+    )
+
+
+def _enrich_vieshow_records(
+    location_id: int,
+    aliases: list[str],
+    records: list[ShowtimeRecord],
+) -> list[ShowtimeRecord]:
+    candidates = _VIESHOW_BOOKING_CACHE.get(
+        (_vieshow_alias_key(aliases), location_id),
+        [],
+    )
+    return [_vieshow_record_with_booking(record, candidates) for record in records]
+
 def select_vieshow_location(page, code: str) -> tuple[bool, str]:
     selectors = [
         "#CinemaNameTWInfoF",
@@ -2673,16 +2944,19 @@ def fetch_vieshow(conn: sqlite3.Connection, aliases: list[str], show_date: str) 
         return []
 
     if _MULTI_DATE_CRAWL and _VIESHOW_HTML_CACHE:
+        _ensure_vieshow_booking_cache(rows, aliases)
         records: list[ShowtimeRecord] = []
         for row in rows:
-            html_text = _VIESHOW_HTML_CACHE.get(int(row["id"]))
+            location_id = int(row["id"])
+            html_text = _VIESHOW_HTML_CACHE.get(location_id)
             if not html_text:
                 continue
             soup = BeautifulSoup(html_text, "html.parser")
+            location_records: list[ShowtimeRecord] = []
             for block in html_blocks_with_movie(soup, aliases):
-                records.extend(
+                location_records.extend(
                     records_from_text_block(
-                        location_id=int(row["id"]),
+                        location_id=location_id,
                         show_date=show_date,
                         text=block.get_text("\n", strip=True),
                         aliases=aliases,
@@ -2691,6 +2965,9 @@ def fetch_vieshow(conn: sqlite3.Connection, aliases: list[str], show_date: str) 
                         strict_date_sections=True,
                     )
                 )
+            records.extend(
+                _enrich_vieshow_records(location_id, aliases, location_records)
+            )
         return records
 
     records: list[ShowtimeRecord] = []
@@ -2728,6 +3005,8 @@ def fetch_vieshow(conn: sqlite3.Connection, aliases: list[str], show_date: str) 
             browser.close()
             raise RuntimeError("VIESHOW ShowTimes returned Access Denied in automated browser.")
 
+        _populate_vieshow_booking_cache(page, rows, aliases)
+
         for row in rows:
             code = str(row["source_location_code"])
             location_name = row["location_name"]
@@ -2749,10 +3028,12 @@ def fetch_vieshow(conn: sqlite3.Connection, aliases: list[str], show_date: str) 
 
             before_count = len(records)
 
+            location_id = int(row["id"])
+            location_records: list[ShowtimeRecord] = []
             for block in html_blocks_with_movie(soup, aliases):
-                records.extend(
+                location_records.extend(
                     records_from_text_block(
-                        location_id=int(row["id"]),
+                        location_id=location_id,
                         show_date=show_date,
                         text=block.get_text("\n", strip=True),
                         aliases=aliases,
@@ -2761,6 +3042,9 @@ def fetch_vieshow(conn: sqlite3.Connection, aliases: list[str], show_date: str) 
                         strict_date_sections=True,
                     )
                 )
+            records.extend(
+                _enrich_vieshow_records(location_id, aliases, location_records)
+            )
 
             added = len(records) - before_count
             print(f"[VIESHOW] {code} | {location_name} | records={added}")

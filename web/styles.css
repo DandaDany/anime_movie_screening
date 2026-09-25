@@ -526,6 +526,20 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
 }
 
+.st-chip-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.st-chip-link:hover,
+.st-chip-link:focus-visible {
+  box-shadow:
+    0 5px 12px -3px rgba(28, 25, 45, 0.2),
+    0 2px 4px rgba(28, 25, 45, 0.1);
+  transform: translateY(-1px);
+}
+
 .st-chip b {
   color: #374151;
   font-size: 15px;

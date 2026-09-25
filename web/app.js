@@ -438,9 +438,13 @@ function popupHtml(feature) {
           <div class="showtime-grid">${showtimes
             .map((showtime) => {
               const tag = showtimeTag(showtime);
-              return `<span class="st-chip"><b>${escapeHtml(showtime.time || "")}</b>${
+              const inner = `<b>${escapeHtml(showtime.time || "")}</b>${
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
-              }</span>`;
+              }`;
+              if (showtime.booking_url) {
+                return `<a class="st-chip st-chip-link" href="${escapeHtml(showtime.booking_url)}" target="_blank" rel="noreferrer" title="開啟此場次訂票頁" aria-label="${escapeHtml(`${showtime.time || ""} 場次訂票`)}">${inner}</a>`;
+              }
+              return `<span class="st-chip">${inner}</span>`;
             })
             .join("")}</div>
         </div>
