@@ -280,6 +280,32 @@ def inspect_windlion_markup():
     lines = text_blocks_from_html(html)
     return [line for line in lines if re.search(r"\d{1,2}:\d{2}\([^)]*\)", line)][:120]
 
+
+def inspect_venice_dom():
+    out = []
+    html = render_page_html(VENICE_URL.format(page=1), wait_ms=4000)
+    soup = BeautifulSoup(html, "html.parser")
+    for node in soup.find_all(string=re.compile(r"蜘蛛人：重生日")):
+        title = str(node).strip()
+        if not title or not re.search(r"(2D|3D|Atmos|水影)", title, re.I):
+            continue
+        parent = node.parent
+        ancestry = []
+        cursor = parent
+        for _ in range(5):
+            if cursor is None:
+                break
+            ancestry.append({
+                "tag": cursor.name,
+                "class": cursor.get("class"),
+                "id": cursor.get("id"),
+                "text": cursor.get_text(" ", strip=True)[:800],
+                "html": str(cursor)[:1800],
+            })
+            cursor = cursor.parent
+        out.append({"title": title, "ancestry": ancestry})
+    return out[:8]
+
 def main():
     audits=[]
     for fn in [audit_miramar,audit_lux,audit_venice,audit_windlion,audit_mld,audit_luna,audit_halar]:
@@ -291,6 +317,7 @@ def main():
         "audits": audits,
         "halar_markup": inspect_halar_markup(),
         "windlion_time_lines": inspect_windlion_markup(),
+        "venice_dom": inspect_venice_dom(),
     }, ensure_ascii=False, indent=2))
     return 0
 
