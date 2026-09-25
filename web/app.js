@@ -441,8 +441,12 @@ function popupHtml(feature) {
               const inner = `<b>${escapeHtml(showtime.time || "")}</b>${
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
-              if (showtime.booking_url) {
-                return `<a class="st-chip st-chip-link" href="${escapeHtml(showtime.booking_url)}" target="_blank" rel="noreferrer" title="開啟此場次訂票頁" aria-label="${escapeHtml(`${showtime.time || ""} 場次訂票`)}">${inner}</a>`;
+              const bookingUrl = showtime.booking_url || "";
+              const isDirectVieshowBooking =
+                bookingUrl.includes("vscinemas.com.tw/vsTicketing/ticketing/booking.aspx") &&
+                bookingUrl.includes("txtSessionId=");
+              if (isDirectVieshowBooking) {
+                return `<a class="st-chip st-chip-link" href="${escapeHtml(bookingUrl)}" target="_blank" rel="noreferrer" title="開啟此場次訂票頁" aria-label="${escapeHtml(`${showtime.time || ""} 場次訂票`)}">${inner}</a>`;
               }
               return `<span class="st-chip">${inner}</span>`;
             })
