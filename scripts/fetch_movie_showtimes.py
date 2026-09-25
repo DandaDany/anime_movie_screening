@@ -2152,35 +2152,48 @@ def parse_venice_detail_page(
     show_date: str,
     source_url: str,
 ) -> list[ShowtimeRecord]:
-    """Parse one version-specific Venice detail page without mixing sibling formats."""
+    """Parse one exact Venice version page by date section.
+
+    Venice's detail page is already scoped to one version (2D-Atmos, 3D-Atmos,
+    water-screen, etc.).  Its clock rows can sit far away from the movie title,
+    so the generic text-block parser's nearby-title guard incorrectly drops
+    valid sessions.  Here the date heading is the only boundary we need.
+    """
     soup = BeautifulSoup(html_text, "html.parser")
-    text = soup.get_text("\n", strip=True)
-    records = records_from_text_block(
-        location_id=location_id,
-        show_date=show_date,
-        text=text,
-        aliases=aliases,
-        source_url=source_url,
-        booking_url=source_url,
-        format_text=version_title,
-        strict_date_sections=True,
-    )
-    # One detail page is one exact version.  Force the option title onto every
-    # record even if the page search controls contain other aliases.
-    return [
-        ShowtimeRecord(
-            location_id=record.location_id,
-            show_date=record.show_date,
-            start_time=record.start_time,
-            auditorium=record.auditorium,
-            format=version_title,
-            language=infer_language(version_title),
-            booking_url=record.booking_url,
-            source_url=record.source_url,
-            raw_text=f"{version_title} | {record.raw_text}",
-        )
-        for record in records
-    ]
+    lines = [line.strip() for line in soup.get_text("\n", strip=True).splitlines() if line.strip()]
+    records: list[ShowtimeRecord] = []
+    seen: set[str] = set()
+    active_section_date: str | None = None
+
+    for line in lines:
+        parsed_date = normalize_show_date(line)
+        if parsed_date:
+            active_section_date = parsed_date
+            continue
+
+        if active_section_date != show_date:
+            continue
+
+        for start_time in re.findall(r"\b\d{1,2}:\d{2}\b", line):
+            normalized_time = start_time.zfill(5)
+            if normalized_time in seen:
+                continue
+            seen.add(normalized_time)
+            records.append(
+                ShowtimeRecord(
+                    location_id=location_id,
+                    show_date=show_date,
+                    start_time=normalized_time,
+                    auditorium=None,
+                    format=version_title,
+                    language=infer_language(version_title),
+                    booking_url=source_url,
+                    source_url=source_url,
+                    raw_text=f"{version_title} | {show_date} | {normalized_time}",
+                )
+            )
+
+    return records
 
 
 def fetch_venice(conn: sqlite3.Connection, aliases: list[str], show_date: str) -> list[ShowtimeRecord]:
