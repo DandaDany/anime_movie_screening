@@ -121,11 +121,16 @@ jobs:
           python scripts/madou_atmovies_fallback.py $DATE_ARG
           python scripts/finalize_supplemental_geojson.py $DATE_ARG
 
+      - name: Refresh VIESHOW seat preview snapshots
+        run: |
+          xvfb-run -a --server-args="-screen 0 1366x900x24" \
+            python scripts/fetch_vieshow_seat_previews.py --headed
+
       - name: Commit and push updated map data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add web/data/locations.geojson web/data/movie_discovery.json 電影清單.txt
+          git add web/data/locations.geojson web/data/movie_discovery.json web/data/vieshow_seat_previews.json 電影清單.txt
           if [ -f data/control/cinema_master.json ]; then
             git add data/control/cinema_master.json
           fi

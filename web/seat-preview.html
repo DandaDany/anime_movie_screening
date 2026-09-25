@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>座位表｜電影地圖</title>
+  <link rel="stylesheet" href="seat-preview.css">
+</head>
+<body>
+  <main class="seat-page">
+    <header class="seat-head">
+      <a class="back-link" href="./" aria-label="回到電影地圖">← 電影地圖</a>
+      <div>
+        <p class="eyebrow">VIESHOW 座位快照</p>
+        <h1 id="movieTitle">載入座位資訊中…</h1>
+        <p id="sessionMeta" class="session-meta"></p>
+      </div>
+    </header>
+
+    <section id="notice" class="notice" aria-live="polite"></section>
+
+    <section id="seatContent" hidden>
+      <div class="summary-grid">
+        <div class="summary-card"><strong id="availableCount">–</strong><span>可售</span></div>
+        <div class="summary-card"><strong id="soldCount">–</strong><span>已售</span></div>
+        <div class="summary-card"><strong id="ordinaryCount">–</strong><span>一般座位</span></div>
+      </div>
+
+      <div class="legend" aria-label="座位圖例">
+        <span><i class="legend-seat available"></i>可售</span>
+        <span><i class="legend-seat sold"></i>已售</span>
+        <span><i class="legend-seat wheelchair"></i>輪椅位</span>
+      </div>
+
+      <div class="screen">銀幕位置</div>
+      <div id="seatMap" class="seat-map" aria-label="座位表"></div>
+
+      <p id="updatedAt" class="updated-at"></p>
+    </section>
+  </main>
+
+  <script src="seat-preview.js"></script>
+</body>
+</html>

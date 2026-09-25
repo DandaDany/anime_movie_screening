@@ -416,6 +416,106 @@ function auditShowtimeSpecs() {
   }
 }
 
+function directVieshowBookingUrl(showtime) {
+  const bookingUrl = showtime?.booking_url || "";
+  const isDirectVieshowBooking =
+    bookingUrl.includes("vscinemas.com.tw/vsTicketing/ticketing/booking.aspx") &&
+    bookingUrl.includes("txtSessionId=");
+  return isDirectVieshowBooking ? bookingUrl : "";
+}
+
+function vieshowSeatPreviewUrl(showtime) {
+  const bookingUrl = directVieshowBookingUrl(showtime);
+  if (!bookingUrl) return "";
+  try {
+    const url = new URL(bookingUrl);
+    const cinemaCode = url.searchParams.get("cinemacode") || "";
+    const sessionId = url.searchParams.get("txtSessionId") || "";
+    if (!cinemaCode || !sessionId) return "";
+    const query = new URLSearchParams({
+      cinemacode: cinemaCode,
+      session: sessionId,
+    });
+    return `seat-preview.html?${query.toString()}`;
+  } catch {
+    return "";
+  }
+}
+
+function bindShowtimeBookingInteraction(root) {
+  if (!root) return;
+  const chips = [...root.querySelectorAll(".st-chip-select[data-booking-url]")];
+  const cta = root.querySelector("[data-booking-cta]");
+  if (!chips.length || !cta) return;
+
+  const ctaLabel = cta.querySelector("[data-booking-cta-label]");
+  const officialCta = root.querySelector("[data-official-cta]");
+  const officialLabel = officialCta?.querySelector("[data-official-cta-label]");
+  const officialHref = officialCta?.dataset.officialHref || officialCta?.getAttribute("href") || "";
+
+  const resetSelection = () => {
+    for (const chip of chips) {
+      chip.classList.remove("is-selected");
+      chip.setAttribute("aria-pressed", "false");
+    }
+    cta.removeAttribute("href");
+    cta.classList.add("is-disabled");
+    cta.setAttribute("aria-disabled", "true");
+    cta.removeAttribute("aria-label");
+    if (ctaLabel) ctaLabel.textContent = "場次入口";
+
+    if (officialCta) {
+      if (officialHref) officialCta.href = officialHref;
+      officialCta.removeAttribute("data-seat-preview-active");
+      if (officialLabel) officialLabel.textContent = "官方網站";
+    }
+  };
+
+  resetSelection();
+
+  cta.addEventListener("click", (event) => {
+    if (cta.getAttribute("aria-disabled") === "true") event.preventDefault();
+  });
+
+  for (const chip of chips) {
+    chip.addEventListener("click", () => {
+      const wasSelected = chip.getAttribute("aria-pressed") === "true";
+      if (wasSelected) {
+        resetSelection();
+        return;
+      }
+
+      for (const other of chips) {
+        const selected = other === chip;
+        other.classList.toggle("is-selected", selected);
+        other.setAttribute("aria-pressed", selected ? "true" : "false");
+      }
+
+      const bookingUrl = chip.dataset.bookingUrl || "";
+      if (!bookingUrl) {
+        resetSelection();
+        return;
+      }
+
+      cta.href = bookingUrl;
+      cta.classList.remove("is-disabled");
+      cta.setAttribute("aria-disabled", "false");
+      cta.setAttribute(
+        "aria-label",
+        `${chip.dataset.showtimeTime || ""} 場次前往訂票`.trim(),
+      );
+      if (ctaLabel) ctaLabel.textContent = "前往訂票";
+
+      const seatPreviewUrl = chip.dataset.seatPreviewUrl || "";
+      if (officialCta && seatPreviewUrl) {
+        officialCta.href = seatPreviewUrl;
+        officialCta.setAttribute("data-seat-preview-active", "true");
+        if (officialLabel) officialLabel.textContent = "座位表入口";
+      }
+    });
+  }
+}
+
 function popupHtml(feature) {
   const props = feature.properties;
   const gmap = mapsUrl(feature);
@@ -429,6 +529,8 @@ function popupHtml(feature) {
     ? escapeHtml(props.show_date).replaceAll("-", "/")
     : "當日場次";
   const showtimes = visibleShowtimes(feature);
+  const directBookingShowtimes = showtimes.filter((showtime) => directVieshowBookingUrl(showtime));
+  const hasDirectBooking = directBookingShowtimes.length > 0;
   const showtimeBlock = showtimes.length
     ? `
         <div class="popup-showtimes">
@@ -442,12 +544,10 @@ function popupHtml(feature) {
               const inner = `<b>${escapeHtml(showtime.time || "")}</b>${
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
-              const bookingUrl = showtime.booking_url || "";
-              const isDirectVieshowBooking =
-                bookingUrl.includes("vscinemas.com.tw/vsTicketing/ticketing/booking.aspx") &&
-                bookingUrl.includes("txtSessionId=");
-              if (isDirectVieshowBooking) {
-                return `<a class="st-chip st-chip-link" href="${escapeHtml(bookingUrl)}" target="_blank" rel="noreferrer" title="開啟此場次訂票頁" aria-label="${escapeHtml(`${showtime.time || ""} 場次訂票`)}">${inner}</a>`;
+              const bookingUrl = directVieshowBookingUrl(showtime);
+              const seatPreviewUrl = vieshowSeatPreviewUrl(showtime);
+              if (bookingUrl) {
+                return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-seat-preview-url="${escapeHtml(seatPreviewUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;
               }
               return `<span class="st-chip">${inner}</span>`;
             })
@@ -460,11 +560,13 @@ function popupHtml(feature) {
         props.showtime_unavailable_reason || "官方場次暫時無法取得，請前往場次入口查看。",
       )}</p>`
     : "";
-  const locationLink = props.location_url
-    ? `<a class="popup-link popup-link-primary" href="${escapeHtml(props.location_url)}" target="_blank" rel="noreferrer">${TICKET_SVG}場次入口</a>`
-    : "";
+  const locationLink = hasDirectBooking
+    ? `<a class="popup-link popup-link-primary popup-booking-cta is-disabled" aria-disabled="true" data-booking-cta>${TICKET_SVG}<span data-booking-cta-label>場次入口</span></a>`
+    : props.location_url
+      ? `<a class="popup-link popup-link-primary" href="${escapeHtml(props.location_url)}" target="_blank" rel="noreferrer">${TICKET_SVG}場次入口</a>`
+      : "";
   const officialLink = props.official_url
-    ? `<a class="popup-link popup-link-ghost" href="${escapeHtml(props.official_url)}" target="_blank" rel="noreferrer">${GLOBE_SVG}官方網站</a>`
+    ? `<a class="popup-link popup-link-ghost" href="${escapeHtml(props.official_url)}" data-official-href="${escapeHtml(props.official_url)}" data-official-cta target="_blank" rel="noreferrer">${GLOBE_SVG}<span data-official-cta-label>官方網站</span></a>`
     : "";
   // 方案一：品牌色帶頁首（標題＋地址反白）＋ 白底內容（場次膠囊＋連結）
   return `
@@ -944,6 +1046,7 @@ function renderMarkers(filtered) {
     marker.off("click", marker._openPopup, marker);
     marker.on("popupopen", () => {
       activeDesktopPopupId = props.location_id;
+      bindShowtimeBookingInteraction(marker.getPopup()?.getElement());
     });
     marker.on("popupclose", () => {
       if (activeDesktopPopupId === props.location_id) activeDesktopPopupId = null;
@@ -1181,6 +1284,7 @@ function openMobileSheet(feature) {
   zoomedInId = id;
   updateMobileMarkerSelection(id);
   mSheetBody.innerHTML = popupHtml(feature);
+  bindShowtimeBookingInteraction(mSheetBody);
   mSheetBody.scrollTop = 0;
   appShell.classList.add("sheet-open");
   mSheet.setAttribute("aria-hidden", "false");
