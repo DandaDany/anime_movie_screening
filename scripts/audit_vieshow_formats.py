@@ -324,3 +324,34 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+# One-off DOM diagnostic for production parser design.
+def _debug_venice_h2_cards():
+    html = render_page_html(VENICE_URL.format(page=1), wait_ms=4000)
+    soup = BeautifulSoup(html, "html.parser")
+    out = []
+    for h in soup.find_all(["h1","h2","h3","h4"]):
+        text = h.get_text(" ", strip=True)
+        if "蜘蛛人：重生日" not in text:
+            continue
+        cursor = h
+        ancestry = []
+        for _ in range(5):
+            cursor = cursor.parent
+            if cursor is None:
+                break
+            ancestry.append({
+                "tag": cursor.name,
+                "class": cursor.get("class"),
+                "id": cursor.get("id"),
+                "h2_count": len(cursor.find_all("h2")),
+                "time_count": len(re.findall(r"\\b\\d{1,2}:\\d{2}\\b", cursor.get_text(" ", strip=True))),
+                "text": cursor.get_text(" ", strip=True)[:1200],
+                "html": str(cursor)[:2200],
+            })
+        out.append({"heading": text, "ancestry": ancestry})
+    print(json.dumps({"venice_h2_cards": out[:12]}, ensure_ascii=False, indent=2))
+
+if __name__ == "__debug__":
+    _debug_venice_h2_cards()
