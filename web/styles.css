@@ -532,6 +532,20 @@ input[type="search"]::-webkit-search-cancel-button {
   text-decoration: none;
 }
 
+.st-chip-select {
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.st-chip-select.is-selected {
+  background: var(--peach-tint);
+  box-shadow:
+    0 0 0 2px var(--flame-deep),
+    0 4px 10px -2px rgba(28, 25, 45, 0.16);
+}
+
 .st-chip-link:hover,
 .st-chip-link:focus-visible {
   box-shadow:
@@ -985,6 +999,20 @@ input[type="search"]::-webkit-search-cancel-button {
 .popup-links .popup-link-ghost:active {
   transform: translateY(1px);
   box-shadow: 0 2px 5px -1px rgba(28, 25, 45, 0.16);
+}
+
+.popup-links .popup-booking-cta.is-disabled,
+.popup-links .popup-booking-cta[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.popup-links .popup-booking-cta.is-disabled:hover,
+.popup-links .popup-booking-cta[aria-disabled="true"]:hover {
+  background: #ffffff;
+  box-shadow: none;
+  transform: none;
 }
 
 /* ---- 時間面板：時間軸滑桿＋快速時段（基本層，手機分頁與桌機側欄共用） ---- */
