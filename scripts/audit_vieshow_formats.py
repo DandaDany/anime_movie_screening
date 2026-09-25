@@ -251,6 +251,35 @@ def summarize(item):
     }
 
 
+
+# Diagnostic: inspect special-hall markup that the current parsers may not preserve.
+def inspect_halar_markup():
+    raw = request_bytes(HALAR_URL, verify_ssl=False)
+    soup = BeautifulSoup(raw, "html.parser", from_encoding="utf-8")
+    out = []
+    seen = set()
+    for link in soup.select("a.session-time"):
+        for img in link.select("img"):
+            item = {
+                "src": img.get("src"),
+                "alt": img.get("alt"),
+                "class": img.get("class"),
+                "title": img.get("title"),
+                "parent_class": link.get("class"),
+                "text": link.get_text(" ", strip=True),
+            }
+            key = json.dumps(item, ensure_ascii=False, sort_keys=True)
+            if key not in seen:
+                seen.add(key)
+                out.append(item)
+    return out[:80]
+
+
+def inspect_windlion_markup():
+    html = render_page_html(f"{WINDLION_URL}#anchor", wait_ms=6000)
+    lines = text_blocks_from_html(html)
+    return [line for line in lines if re.search(r"\d{1,2}:\d{2}\([^)]*\)", line)][:120]
+
 def main():
     audits=[]
     for fn in [audit_miramar,audit_lux,audit_venice,audit_windlion,audit_mld,audit_luna,audit_halar]:
@@ -258,7 +287,11 @@ def main():
             audits.append(summarize(fn()))
         except Exception as exc:
             audits.append({"source":fn.__name__,"error":f"{type(exc).__name__}: {exc}"})
-    print(json.dumps(audits, ensure_ascii=False, indent=2))
+    print(json.dumps({
+        "audits": audits,
+        "halar_markup": inspect_halar_markup(),
+        "windlion_time_lines": inspect_windlion_markup(),
+    }, ensure_ascii=False, indent=2))
     return 0
 
 
