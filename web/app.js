@@ -130,7 +130,6 @@ const movieSelect = document.querySelector("#movieSelect");
 const searchInput = document.querySelector("#searchInput");
 const chainFilterList = document.querySelector("#chainFilterList");
 const cityFilterList = document.querySelector("#cityFilterList");
-const formatFilterList = document.querySelector("#formatFilterList");
 const clearSearchButton = document.querySelector("#clearSearchButton");
 const searchSuggestions = document.querySelector("#searchSuggestions");
 const dateChips = document.querySelector("#dateChips");
@@ -163,7 +162,6 @@ let markerById = new Map();
 let activeId = null;
 let selectedChain = "";
 let selectedCity = "";
-let selectedFormat = "";
 
 // 手機與桌機共用同一份時間狀態。AUTO 跟隨台灣現在時間；MANUAL 保存使用者
 // 選擇的 15 分鐘級距。現在時間另存，避免混淆 > now 與 >= manual 的邊界。
@@ -233,17 +231,51 @@ function showtimeMatchesTimeFilter(showtime) {
   );
 }
 
-function showtimeMatchesFormatFilter(showtime) {
-  return !selectedFormat || showtimeFormatTags(showtime).includes(selectedFormat);
-}
-
 function timeVisibleShowtimes(feature) {
   const list = Array.isArray(feature.properties.showtimes) ? feature.properties.showtimes : [];
   return list.filter(showtimeMatchesTimeFilter);
 }
 
+function activeSearchTerms() {
+  return normalizeSearchText(activeSearchInput().value)
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function locationSearchText(feature) {
+  const props = feature.properties || {};
+  return normalizeSearchText(
+    [props.chain_name, props.location_name, props.map_name, props.address, props.city].join(" "),
+  );
+}
+
+function showtimeSearchText(showtime) {
+  return normalizeSearchText(
+    [
+      showtime?.format,
+      showtime?.auditorium,
+      showtime?.language,
+      showtimeSubLabel(showtime),
+      ...showtimeFormatTags(showtime),
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+}
+
+function matchesSearchTerms(haystack, terms) {
+  return terms.every((term) => haystack.includes(term));
+}
+
 function visibleShowtimes(feature) {
-  return timeVisibleShowtimes(feature).filter(showtimeMatchesFormatFilter);
+  const list = timeVisibleShowtimes(feature);
+  const terms = activeSearchTerms();
+  if (!terms.length) return list;
+
+  const locationText = locationSearchText(feature);
+  return list.filter((showtime) =>
+    matchesSearchTerms(`${locationText} ${showtimeSearchText(showtime)}`, terms),
+  );
 }
 
 function visibleShowtimeCount(feature) {
@@ -314,8 +346,6 @@ function mapsUrl(feature) {
 }
 
 const {
-  FORMAT_ORDER,
-  FORMAT_RULES,
   displayTag: showtimeTag,
   formatTags: showtimeFormatTags,
   subLabel: showtimeSubLabel,
@@ -594,42 +624,6 @@ function sortedCities() {
     });
 }
 
-function formatCountContextMatch(feature) {
-  return keywordMatch(feature) && chainMatch(feature) && cityMatch(feature);
-}
-
-function sortedFormats() {
-  const counts = new Map();
-  for (const feature of features) {
-    if (!formatCountContextMatch(feature)) continue;
-    for (const showtime of timeVisibleShowtimes(feature)) {
-      for (const format of showtimeFormatTags(showtime)) {
-        counts.set(format, (counts.get(format) || 0) + 1);
-      }
-    }
-  }
-
-  return [...counts.entries()]
-    .filter(([format, count]) => count > 0 || format === selectedFormat)
-    .sort((a, b) => {
-      const ai = FORMAT_ORDER.indexOf(a[0]);
-      const bi = FORMAT_ORDER.indexOf(b[0]);
-      const safeA = ai === -1 ? 999 : ai;
-      const safeB = bi === -1 ? 999 : bi;
-      if (safeA !== safeB) return safeA - safeB;
-      if (b[1] !== a[1]) return b[1] - a[1];
-      return a[0].localeCompare(b[0], "zh-Hant");
-    });
-}
-
-function reconcileSelectedFormat() {
-  if (!selectedFormat) return;
-  const stillAvailable = features.some((feature) =>
-    timeVisibleShowtimes(feature).some((showtime) => showtimeFormatTags(showtime).includes(selectedFormat)),
-  );
-  if (!stillAvailable) selectedFormat = "";
-}
-
 // 以該縣市所有影城座標的中心點，把地圖飛到縣市層級
 function flyToCity(city) {
   const pts = features.filter((feature) => feature.properties.city === city);
@@ -662,11 +656,6 @@ function renderFilterButtons(container, items, selectedValue, onSelect) {
 }
 
 function renderFilters() {
-  reconcileSelectedFormat();
-  renderFilterButtons(formatFilterList, sortedFormats(), selectedFormat, (value) => {
-    selectedFormat = selectedFormat === value ? "" : value;
-    applyFilters();
-  });
   renderFilterButtons(chainFilterList, sortedChains(), selectedChain, (value) => {
     selectedChain = selectedChain === value ? "" : value;
     applyFilters();
@@ -833,7 +822,6 @@ function renderMovieOptions() {
     activeId = null;
     selectedChain = "";
     selectedCity = "";
-    selectedFormat = "";
   }
 
   const fragment = document.createDocumentFragment();
@@ -857,7 +845,6 @@ function selectMovie(movieTitle) {
   activeId = null;
   selectedChain = "";
   selectedCity = "";
-  selectedFormat = "";
   renderMovieOptions();
   renderFilters();
   applyFilters();
@@ -871,13 +858,12 @@ function passesTimeFilter(feature) {
 
 // 拆成各自獨立的判斷式，方便分面計數時「排除自己這一項」重新計算
 function keywordMatch(feature) {
-  const keyword = normalizeSearchText(activeSearchInput().value);
-  if (!keyword) return true;
-  const props = feature.properties;
-  const haystack = normalizeSearchText(
-    [props.chain_name, props.location_name, props.map_name, props.address, props.city].join(" "),
+  const terms = activeSearchTerms();
+  if (!terms.length) return true;
+  const locationText = locationSearchText(feature);
+  return timeVisibleShowtimes(feature).some((showtime) =>
+    matchesSearchTerms(`${locationText} ${showtimeSearchText(showtime)}`, terms),
   );
-  return haystack.includes(keyword);
 }
 
 function chainMatch(feature) {
@@ -1101,7 +1087,6 @@ function setQuickPeriod(period) {
 function clearFiltersAndResetView() {
   selectedChain = "";
   selectedCity = "";
-  selectedFormat = "";
   searchInput.value = "";
   clearSearchButton.hidden = true;
   mSearchInput.value = "";
@@ -1311,7 +1296,7 @@ function setMobileTab(tab) {
   for (const button of mSeg.children) {
     button.classList.toggle("is-active", button.dataset.tab === tab);
   }
-  appShell.classList.remove("mtab-movie", "mtab-city", "mtab-time", "mtab-format", "mtab-chain");
+  appShell.classList.remove("mtab-movie", "mtab-city", "mtab-time", "mtab-chain");
   appShell.classList.add(`mtab-${tab}`);
 }
 
