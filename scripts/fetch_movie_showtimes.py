@@ -2755,13 +2755,15 @@ def _ensure_vieshow_booking_cache(rows, aliases: list[str]) -> None:
         initial_html = page.content()
         unavailable_text = f"{page.url}\n{initial_html}".lower()
         if "queue-it" in unavailable_text or "正在為您安排進入頁面" in initial_html:
+            print("[VIESHOW BOOKING] quick-booking unavailable: Queue-it waiting room; keeping generic links")
             context.close()
             browser.close()
-            raise RuntimeError("VIESHOW quick-booking unavailable: Queue-it waiting room")
+            return
         if "Access Denied" in initial_html:
+            print("[VIESHOW BOOKING] quick-booking returned Access Denied; keeping generic links")
             context.close()
             browser.close()
-            raise RuntimeError("VIESHOW quick-booking returned Access Denied")
+            return
         _populate_vieshow_booking_cache(page, missing, aliases)
         context.close()
         browser.close()
