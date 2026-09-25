@@ -13,6 +13,9 @@
 
   if (!overlay || !nowGrid || !upcomingGrid || !movieSelect || !dateChips) return;
 
+  document.documentElement.classList.add("discovery-active");
+  window.setTimeout(() => window.dispatchEvent(new Event("resize")), 0);
+
   let catalog = [];
   let toastTimer = null;
   let renderTimer = null;
@@ -22,6 +25,7 @@
   const previewDate = /^\d{4}-\d{2}-\d{2}$/.test(params.get("discoveryPreviewDate") || "")
     ? params.get("discoveryPreviewDate")
     : "";
+  const previewLayout = params.get("discoveryPreviewLayout") === "1";
 
   function normalizeTitle(value) {
     return String(value || "")
@@ -128,6 +132,8 @@
       overlay.hidden = true;
       overlay.classList.remove("is-leaving");
       overlay.setAttribute("aria-hidden", "true");
+      document.documentElement.classList.remove("discovery-active");
+      window.dispatchEvent(new Event("resize"));
     }, EXIT_MS);
   }
 
@@ -224,13 +230,19 @@
 
     nowGrid.replaceChildren(...nowCards);
 
-    const upcomingItems = catalog.filter((item) => {
-      if (!isUpcomingWithinWindow(item)) return false;
-      // In production, a movie that is already selectable in the map belongs only to "正在上映".
-      // Screenshot preview dates intentionally show the historical shelf composition.
-      if (previewDate) return true;
-      return !aliasesFor(item).some((alias) => nowNormalized.has(alias));
-    });
+    let upcomingItems;
+    if (previewLayout) {
+      upcomingItems = catalog
+        .filter((item) => !aliasesFor(item).some((alias) => nowNormalized.has(alias)))
+        .slice(0, 4);
+    } else {
+      upcomingItems = catalog.filter((item) => {
+        if (!isUpcomingWithinWindow(item)) return false;
+        // In production, a movie that is already selectable in the map belongs only to "正在上映".
+        if (previewDate) return true;
+        return !aliasesFor(item).some((alias) => nowNormalized.has(alias));
+      });
+    }
 
     const upcomingCards = upcomingItems.map((item) => posterCard(item, item.title, "upcoming"));
     upcomingGrid.replaceChildren(...upcomingCards);

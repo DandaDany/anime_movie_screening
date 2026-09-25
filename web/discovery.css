@@ -225,3 +225,18 @@
     transition: none;
   }
 }
+
+
+/* Keep the map as the full-viewport canvas while the poster browser is open. */
+html.discovery-active .app-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+html.discovery-active .sidebar {
+  display: none !important;
+}
+
+html.discovery-active .map-wrap {
+  grid-column: 1;
+  grid-row: 1;
+}
