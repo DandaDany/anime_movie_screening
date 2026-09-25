@@ -70,12 +70,11 @@
 
         <nav class="date-chips" id="dateChips" aria-label="選擇場次日期"></nav>
 
-        <!-- 手機分段控制（電影／地區／時間／版本／影城）：只在手機顯示 -->
+        <!-- 手機分段控制（電影／地區／時間／影城）：只在手機顯示 -->
         <div class="m-seg" id="mSeg" role="tablist" aria-label="篩選分類">
           <button type="button" role="tab" data-tab="movie">電影</button>
           <button type="button" role="tab" data-tab="city">地區</button>
           <button type="button" role="tab" data-tab="time">時間</button>
-          <button type="button" role="tab" data-tab="format">版本</button>
           <button type="button" role="tab" data-tab="chain">影城</button>
         </div>
 
@@ -97,7 +96,7 @@
               <circle cx="11" cy="11" r="7" />
               <line x1="21" y1="21" x2="16.5" y2="16.5" />
             </svg>
-            <input id="searchInput" type="search" autocomplete="off" placeholder="影城、品牌、縣市" aria-controls="searchSuggestions" />
+            <input id="searchInput" type="search" autocomplete="off" placeholder="影城、品牌、縣市、版本" aria-controls="searchSuggestions" />
             <button class="search-clear" id="clearSearchButton" type="button" aria-label="清除搜尋" hidden>✕</button>
           </div>
         </label>
@@ -132,13 +131,6 @@
             <div class="filter-scroll" id="cityFilterList"></div>
           </section>
 
-          <section class="filter-block" id="formatBlock" aria-label="電影版本篩選">
-            <div class="filter-head">
-              <span>版本</span>
-            </div>
-            <div class="filter-scroll" id="formatFilterList"></div>
-          </section>
-
           <section class="filter-block" id="chainBlock" aria-label="品牌篩選">
             <div class="filter-head">
               <span>品牌</span>
@@ -162,7 +154,7 @@
             <circle cx="11" cy="11" r="7" />
             <line x1="21" y1="21" x2="16.5" y2="16.5" />
           </svg>
-          <input id="mSearchInput" type="search" autocomplete="off" placeholder="搜尋影城、品牌、縣市" aria-controls="mSearchSuggestions" />
+          <input id="mSearchInput" type="search" autocomplete="off" placeholder="搜尋影城、品牌、縣市、版本" aria-controls="mSearchSuggestions" />
           <button class="m-search-clear" id="mSearchClear" type="button" aria-label="清除搜尋" hidden>✕</button>
         </div>
         <div id="mSearchSuggestions" class="m-suggestions" hidden></div>
@@ -188,7 +180,7 @@
     <script src="time-filter.js?v=20260812a"></script>
     <script src="date-state.js?v=20260812a"></script>
     <script src="version-filter.js?v=20260925a"></script>
-    <script src="app.js?v=20260925c"></script>
+    <script src="app.js?v=20260926a"></script>
     <script src="empty-state.js?v=20260820a"></script>
     <script src="discovery.js?v=20260925c"></script>
   </body>
