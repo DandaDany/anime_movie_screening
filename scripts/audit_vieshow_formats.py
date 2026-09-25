@@ -13,18 +13,8 @@ from fetch_movie_showtimes import (
     select_vieshow_location,
 )
 
-SHOW_DATE = "2026-09-25"
+SHOW_DATE = "2026-09-26"
 CASES = [
-    {
-        "label": "4DX",
-        "code": "TP",
-        "aliases": ["復仇者聯盟：終局之戰 加碼重映", "復仇者聯盟 終局之戰 加碼重映"],
-    },
-    {
-        "label": "IMAX",
-        "code": "HU",
-        "aliases": ["惡靈古堡：爆發夜", "惡靈古堡 爆發夜"],
-    },
     {
         "label": "TITAN",
         "code": "MU",
