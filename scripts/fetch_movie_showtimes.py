@@ -35,7 +35,8 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = PROJECT_DIR / "data" / "output" / "showtimes"
 TAIPEI = ZoneInfo("Asia/Taipei")
 SHOWTIMES_BOOTSTRAP_URL = "https://capi.showtimes.com.tw/4/app/bootstrap"
-VIESHOW_URL = "https://www.vscinemas.com.tw/ShowTimes/"\nVIESHOW_BOOKING_URL = "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx"
+VIESHOW_URL = "https://www.vscinemas.com.tw/ShowTimes/"
+VIESHOW_BOOKING_URL = "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx"
 SKCINEMAS_FILMS_URL = "https://www.skcinemas.com/films"
 SKCINEMAS_SESSION_API = "https://www.skcinemas.com/api/VistaDataV2/GetSessionByCinemasIDForApp"
 SKCINEMAS_ATMOVIES = {
@@ -81,7 +82,8 @@ _RENDER_CACHE: dict[tuple[str, int], str] = {}
 _DATE_RENDER_CACHE: dict[tuple[str, str], str] = {}
 _SKCINEMAS_HEADERS_CACHE: dict[str, str] | None = None
 _MULTI_DATE_CRAWL = False
-_VIESHOW_HTML_CACHE: dict[int, str] = {}\n_VIESHOW_BOOKING_CACHE: dict[tuple[tuple[str, ...], int], list[dict[str, str]]] = {}
+_VIESHOW_HTML_CACHE: dict[int, str] = {}
+_VIESHOW_BOOKING_CACHE: dict[tuple[tuple[str, ...], int], list[dict[str, str]]] = {}
 
 
 @dataclass(frozen=True)
