@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="styles.css?v=20260813a" />
     <link rel="stylesheet" href="empty-state.css?v=20260820a" />
-    <link rel="stylesheet" href="discovery.css?v=20260925c" />
+    <link rel="stylesheet" href="discovery.css?v=20260925d" />
 
     <!-- Google Analytics 4（GA4）— 免費網站流量分析。
          啟用步驟：到 https://analytics.google.com 建立 GA4 資源，取得「評估 ID」
@@ -47,6 +47,17 @@
           </section>
         </div>
         <div class="movie-discovery__toast" id="movieDiscoveryToast" role="status" aria-live="polite" hidden>尚未有上映資訊</div>
+
+        <div class="movie-choice-dialog" id="movieNoTodayDialog" aria-hidden="true" hidden>
+          <div class="movie-choice-dialog__card" role="dialog" aria-modal="true" aria-labelledby="movieNoTodayTitle">
+            <p class="movie-choice-dialog__title" id="movieNoTodayTitle">今日已無上映場次</p>
+            <p class="movie-choice-dialog__question">是否看其他日期？</p>
+            <div class="movie-choice-dialog__actions">
+              <button class="movie-choice-dialog__button movie-choice-dialog__button--ghost" id="movieNoTodayNo" type="button">否，回到選片</button>
+              <button class="movie-choice-dialog__button movie-choice-dialog__button--primary" id="movieNoTodayYes" type="button">是，進入地圖</button>
+            </div>
+          </div>
+        </div>
       </section>
       <aside class="sidebar" aria-label="影城篩選">
         <div class="grabber" aria-hidden="true"></div>
@@ -170,6 +181,6 @@
     <script src="date-state.js?v=20260812a"></script>
     <script src="app.js?v=20260925b"></script>
     <script src="empty-state.js?v=20260820a"></script>
-    <script src="discovery.js?v=20260925b"></script>
+    <script src="discovery.js?v=20260925c"></script>
   </body>
 </html>

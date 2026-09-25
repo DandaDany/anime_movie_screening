@@ -7,15 +7,29 @@
   const upcomingGrid = document.querySelector("#comingSoonGrid");
   const upcomingEmpty = document.querySelector("#comingSoonEmpty");
   const toast = document.querySelector("#movieDiscoveryToast");
+  const noTodayDialog = document.querySelector("#movieNoTodayDialog");
+  const noTodayNo = document.querySelector("#movieNoTodayNo");
+  const noTodayYes = document.querySelector("#movieNoTodayYes");
   const movieSelect = document.querySelector("#movieSelect");
   const dateChips = document.querySelector("#dateChips");
 
-  if (!overlay || !nowGrid || !upcomingGrid || !movieSelect || !dateChips) return;
+  if (
+    !overlay ||
+    !nowGrid ||
+    !upcomingGrid ||
+    !movieSelect ||
+    !dateChips ||
+    !noTodayDialog ||
+    !noTodayNo ||
+    !noTodayYes
+  ) return;
 
   let catalog = [];
   let lookaheadDays = 7;
   let toastTimer = null;
   let renderTimer = null;
+  let dialogResolve = null;
+  let dialogPreviousFocus = null;
 
   function normalizeTitle(value) {
     return String(value || "")
@@ -62,12 +76,18 @@
     return window.MuseDateState?.taipeiToday?.() || new Date().toISOString().slice(0, 10);
   }
 
+  function isNowShowing(item) {
+    const target = parseUtcDate(item.target_date);
+    const today = parseUtcDate(todayIso());
+    return !target || !today || target <= today;
+  }
+
   function upcomingWithinWindow(item) {
     const target = parseUtcDate(item.target_date);
     const today = parseUtcDate(todayIso());
     if (!target || !today) return false;
     const diffDays = Math.round((target - today) / 86400000);
-    return diffDays >= 0 && diffDays <= lookaheadDays;
+    return diffDays >= 1 && diffDays <= lookaheadDays;
   }
 
   function posterCard(item, displayTitle, kind) {
@@ -109,7 +129,43 @@
     }, 2200);
   }
 
+  function resolveNoTodayDialog(value) {
+    if (noTodayDialog.hidden) return;
+    noTodayDialog.hidden = true;
+    noTodayDialog.setAttribute("aria-hidden", "true");
+    const resolve = dialogResolve;
+    dialogResolve = null;
+    const focusTarget = dialogPreviousFocus;
+    dialogPreviousFocus = null;
+    focusTarget?.focus?.({ preventScroll: true });
+    resolve?.(value);
+  }
+
+  function confirmOtherDate() {
+    if (dialogResolve) resolveNoTodayDialog(false);
+    dialogPreviousFocus = document.activeElement;
+    noTodayDialog.hidden = false;
+    noTodayDialog.setAttribute("aria-hidden", "false");
+    noTodayYes.focus({ preventScroll: true });
+    return new Promise((resolve) => {
+      dialogResolve = resolve;
+    });
+  }
+
+  noTodayNo.addEventListener("click", () => resolveNoTodayDialog(false));
+  noTodayYes.addEventListener("click", () => resolveNoTodayDialog(true));
+  noTodayDialog.addEventListener("click", (event) => {
+    if (event.target === noTodayDialog) resolveNoTodayDialog(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !noTodayDialog.hidden) {
+      event.preventDefault();
+      resolveNoTodayDialog(false);
+    }
+  });
+
   function closeDiscovery() {
+    resolveNoTodayDialog(false);
     overlay.classList.add("is-leaving");
     window.setTimeout(() => {
       overlay.hidden = true;
@@ -121,6 +177,7 @@
   }
 
   function openDiscovery() {
+    resolveNoTodayDialog(false);
     overlay.hidden = false;
     overlay.setAttribute("aria-hidden", "false");
     overlay.classList.remove("is-leaving");
@@ -175,66 +232,124 @@
     });
   }
 
-  async function selectUpcoming(item) {
-    const directOption = currentOptionForItem(item);
-    if (directOption) {
+  async function optionOnDate(item, showDate) {
+    const button = findDateButton(showDate);
+    if (!button) return null;
+    if (showDate !== selectedDate()) button.click();
+    return waitForOption(item);
+  }
+
+  async function restoreDate(showDate) {
+    if (!showDate || showDate === selectedDate()) return;
+    const button = findDateButton(showDate);
+    if (!button) return;
+    button.click();
+    await new Promise((resolve) => window.setTimeout(resolve, 0));
+  }
+
+  async function enterOtherDate(item, preferredDate = "") {
+    const today = todayIso();
+    const dates = availableDateValues().filter((value) => value !== today);
+    const candidates = [
+      ...(preferredDate && preferredDate !== today && dates.includes(preferredDate)
+        ? [preferredDate]
+        : []),
+      ...(item.target_date && item.target_date !== today && dates.includes(item.target_date)
+        ? [item.target_date]
+        : []),
+      ...dates,
+    ].filter((value, index, all) => all.indexOf(value) === index);
+
+    for (const showDate of candidates) {
+      const option = await optionOnDate(item, showDate);
+      if (!option) continue;
       window.trackEvent?.("movie_discovery_select", {
         movie_title: item.title,
-        source: "upcoming_current_date",
+        source: "other_date",
+        show_date: showDate,
       });
-      selectOption(directOption);
+      selectOption(option);
+      return true;
+    }
+    return false;
+  }
+
+  async function selectNowShowing(item) {
+    const originalDate = selectedDate();
+    const today = todayIso();
+    const todayButton = findDateButton(today);
+
+    let todayOption = null;
+    if (todayButton) {
+      todayOption = await optionOnDate(item, today);
+    }
+
+    if (todayOption) {
+      window.trackEvent?.("movie_discovery_select", {
+        movie_title: item.title,
+        source: "now_showing_today",
+        show_date: today,
+      });
+      selectOption(todayOption);
       return;
     }
 
+    await restoreDate(originalDate);
+    const shouldSeeOtherDate = await confirmOtherDate();
+    if (!shouldSeeOtherDate) {
+      window.trackEvent?.("movie_discovery_other_date_declined", {
+        movie_title: item.title,
+      });
+      return;
+    }
+
+    const entered = await enterOtherDate(item, originalDate);
+    if (!entered) {
+      await restoreDate(originalDate);
+      showToast("其他日期也尚無上映資訊");
+      window.trackEvent?.("movie_discovery_unavailable", {
+        movie_title: item.title,
+        source: "now_showing_other_date",
+      });
+    }
+  }
+
+  async function selectUpcoming(item) {
     const originalDate = selectedDate();
     const dates = availableDateValues();
     const candidates = [
       ...(item.target_date && dates.includes(item.target_date) ? [item.target_date] : []),
-      ...dates.filter((value) => value !== item.target_date),
-    ];
+      ...dates,
+    ].filter((value, index, all) => all.indexOf(value) === index);
 
     for (const showDate of candidates) {
-      const button = findDateButton(showDate);
-      if (!button) continue;
-      if (showDate !== selectedDate()) button.click();
-      const option = await waitForOption(item);
-      if (option) {
-        window.trackEvent?.("movie_discovery_select", {
-          movie_title: item.title,
-          source: "upcoming_future_date",
-          show_date: showDate,
-        });
-        selectOption(option);
-        return;
-      }
+      const option = await optionOnDate(item, showDate);
+      if (!option) continue;
+      window.trackEvent?.("movie_discovery_select", {
+        movie_title: item.title,
+        source: "upcoming_future_date",
+        show_date: showDate,
+      });
+      selectOption(option);
+      return;
     }
 
-    if (originalDate && originalDate !== selectedDate()) {
-      findDateButton(originalDate)?.click();
-    }
+    await restoreDate(originalDate);
     showToast("尚未有上映資訊");
-    window.trackEvent?.("movie_discovery_unavailable", { movie_title: item.title });
+    window.trackEvent?.("movie_discovery_unavailable", {
+      movie_title: item.title,
+      source: "upcoming",
+    });
   }
 
   function render() {
-    const optionRows = [...movieSelect.options]
-      .map((option) => ({ option, title: option.value || option.textContent || "" }))
-      .filter(({ title }) => optionHasMovieValue(title));
-
-    const nowCards = [];
-    const nowNormalized = new Set();
-
-    for (const { title } of optionRows) {
-      const item = findCatalogItem(title);
-      nowCards.push(posterCard(item, title, "now"));
-      if (item) aliasesFor(item).forEach((alias) => nowNormalized.add(alias));
-      else nowNormalized.add(normalizeTitle(title));
-    }
-    nowGrid.replaceChildren(...nowCards);
+    const nowItems = catalog.filter(isNowShowing);
+    nowGrid.replaceChildren(
+      ...nowItems.map((item) => posterCard(item, item.title, "now")),
+    );
 
     const upcomingItems = catalog
-      .filter((item) => upcomingWithinWindow(item))
-      .filter((item) => !aliasesFor(item).some((alias) => nowNormalized.has(alias)))
+      .filter(upcomingWithinWindow)
       .sort((a, b) =>
         String(a.target_date || "").localeCompare(String(b.target_date || "")) ||
         String(a.title || "").localeCompare(String(b.title || ""), "zh-Hant"),
@@ -245,7 +360,7 @@
     );
     upcomingEmpty.hidden = upcomingItems.length > 0;
 
-    if (!nowCards.length) {
+    if (!nowItems.length) {
       const empty = document.createElement("p");
       empty.className = "movie-grid-empty";
       empty.textContent = "目前沒有可顯示的上映電影";
@@ -257,19 +372,7 @@
     const card = event.target.closest(".movie-card");
     if (!card) return;
     const item = findCatalogItem(card.dataset.movieTitle);
-    const option = item
-      ? currentOptionForItem(item)
-      : [...movieSelect.options].find(
-          (candidate) =>
-            normalizeTitle(candidate.value || candidate.textContent) ===
-            normalizeTitle(card.dataset.movieTitle),
-        );
-    if (!option) return;
-    window.trackEvent?.("movie_discovery_select", {
-      movie_title: card.dataset.movieTitle,
-      source: "now_showing",
-    });
-    selectOption(option);
+    if (item) selectNowShowing(item);
   });
 
   upcomingGrid.addEventListener("click", (event) => {

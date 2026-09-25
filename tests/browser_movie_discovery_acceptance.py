@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 
 REPO = Path(__file__).resolve().parents[1]
 FIXTURE = REPO / "tests" / "fixtures" / "multiday_locations.geojson"
-FIXED_NOW_MS = 1786519200000  # 2026-08-12 15:20:00 Asia/Taipei
+FIXED_NOW_MS = 1786538700000  # 2026-08-12 20:45:00 Asia/Taipei
 
 
 def install_fixture(page):
@@ -90,6 +90,7 @@ def main() -> int:
 
             page.wait_for_function("() => Boolean(window.MuseDiscovery)")
             page.locator("#nowShowingGrid .movie-card").first.wait_for()
+            # "正在上映" follows the canonical tracked-movie feed, not today's remaining-showtime options.
             assert page.locator("#nowShowingGrid .movie-card").count() == 2
             assert page.locator("#comingSoonGrid .movie-card").count() == 1
             assert page.locator("#comingSoonGrid .movie-card__title").inner_text() == "電影 C"
@@ -99,10 +100,36 @@ def main() -> int:
             page.locator("#comingSoonGrid .movie-card").click()
             page.locator("#movieDiscoveryToast").filter(has_text="尚未有上映資訊").wait_for()
 
+            # 電影 B 今天最後一場 20:30，固定現在時間 20:45；卡片仍留在「正在上映」。
+            page.locator("#nowShowingGrid .movie-card", has_text="電影 B").click()
+            dialog = page.locator("#movieNoTodayDialog")
+            dialog.wait_for()
+            assert "今日已無上映場次" in dialog.inner_text()
+            assert "是否看其他日期？" in dialog.inner_text()
+
+            # 否：關閉 dialog，留在選片頁。
+            page.locator("#movieNoTodayNo").click()
+            assert dialog.is_hidden()
+            assert page.locator("#movieDiscovery").is_visible()
+
+            # 是：自動找到電影 B 的其他有場次日期（8/15）並進入地圖。
+            page.locator("#nowShowingGrid .movie-card", has_text="電影 B").click()
+            dialog.wait_for()
+            page.locator("#movieNoTodayYes").click()
+            page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
+            assert page.locator("#movieSelect").input_value() == "電影 B"
+            assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-15"
+            assert page.locator("#movieDiscovery").is_hidden()
+
+            # Home 回選片後，電影 A 今天 21:00 尚有場次，應直接回到今天地圖、不跳 dialog。
+            page.locator(".map-home-control-button").click()
+            page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
+            assert page.locator("#movieDiscovery").is_visible()
             page.locator("#nowShowingGrid .movie-card", has_text="電影 A").click()
             page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
             assert page.locator("#movieSelect").input_value() == "電影 A"
-            assert page.locator("#movieDiscovery").is_hidden()
+            assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-12"
+            assert dialog.is_hidden()
 
             page.locator(".map-home-control-button").click()
             page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
