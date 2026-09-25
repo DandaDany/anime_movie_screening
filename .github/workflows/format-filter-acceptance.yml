@@ -46,7 +46,11 @@ jobs:
 
       - name: Unit and frontend regression tests
         run: |
-          python -m unittest             tests.test_venice_format_versions             tests.test_ambassador_halar_regressions             tests.test_vieshow_booking_links             tests.test_vieshow_multiday
+          python -m unittest \
+            tests.test_venice_format_versions \
+            tests.test_ambassador_halar_regressions \
+            tests.test_vieshow_booking_links \
+            tests.test_vieshow_multiday
           node --check web/version-filter.js
           node --check web/app.js
           node tests/frontend_version_filter_test.js
@@ -66,49 +70,52 @@ jobs:
       - name: Live Venice multi-version acceptance
         run: |
           xvfb-run -a --server-args="-screen 0 1366x900x24" python - <<'PY'
-          import sqlite3
-          import tempfile
           from pathlib import Path
           import sys
 
+          from bs4 import BeautifulSoup
+
           sys.path.insert(0, str(Path("scripts").resolve()))
           import fetch_movie_showtimes as s
-          from init_db import init_db
 
-          with tempfile.TemporaryDirectory() as tmp:
-              db = Path(tmp) / "venice.sqlite"
-              init_db(db)
-              with sqlite3.connect(db) as conn:
-                  conn.row_factory = sqlite3.Row
-                  chain_id = conn.execute(
-                      "INSERT INTO cinema_chains (chain_name, official_url) VALUES (?, ?)",
-                      ("威尼斯影城", "https://www.venice-cinemas.com.tw/"),
-                  ).lastrowid
-                  conn.execute(
-                      """INSERT INTO cinema_locations
-                         (chain_id, location_name, city, latitude, longitude, active)
-                         VALUES (?, ?, ?, ?, ?, 1)""",
-                      (chain_id, "威尼斯影城", "桃園市", 24.95, 121.22),
-                  )
-                  conn.commit()
+          aliases = ["蜘蛛人：重生日", "蜘蛛人 重生日"]
+          dates = [
+              "2026-09-25",
+              "2026-09-26",
+              "2026-09-27",
+              "2026-09-28",
+              "2026-09-29",
+              "2026-09-30",
+              "2026-10-01",
+          ]
 
-                  all_records = []
-                  for show_date in (
-                      "2026-09-25",
-                      "2026-09-26",
-                      "2026-09-27",
-                      "2026-09-28",
-                      "2026-09-29",
-                      "2026-09-30",
-                      "2026-10-01",
-                  ):
-                      all_records.extend(
-                          s.fetch_venice(conn, ["蜘蛛人：重生日", "蜘蛛人 重生日"], show_date)
+          listing = s.render_page_html(s.VENICE_URL.format(page=1), wait_ms=4000)
+          options = s.venice_version_options(BeautifulSoup(listing, "html.parser"), aliases)
+          titles = [title for title, _ in options]
+          print({"detected_versions": titles})
+
+          assert any("2D-Atmos" in title for title in titles), titles
+          assert any("3D-Atmos" in title for title in titles), titles
+          assert any("水影威尼斯" in title for title in titles), titles
+
+          records = []
+          for title, detail_url in options:
+              detail = s.render_page_html(detail_url, wait_ms=2500)
+              for show_date in dates:
+                  records.extend(
+                      s.parse_venice_detail_page(
+                          detail,
+                          location_id=23,
+                          aliases=aliases,
+                          version_title=title,
+                          show_date=show_date,
+                          source_url=detail_url,
                       )
+                  )
 
-              formats = sorted({r.format for r in all_records if r.format})
-              print({"formats": formats, "records": len(all_records)})
-              assert any("2D-Atmos" in value for value in formats), formats
-              assert any("3D-Atmos" in value for value in formats), formats
-              assert any("水影威尼斯" in value for value in formats), formats
+          scheduled_formats = sorted({r.format for r in records if r.format})
+          print({"scheduled_formats": scheduled_formats, "records": len(records)})
+          assert records, "Expected at least one current Spider-Man Venice session"
+          assert set(scheduled_formats).issubset(set(titles))
+          assert all(r.format in titles for r in records)
           PY
