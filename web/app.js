@@ -130,6 +130,7 @@ const movieSelect = document.querySelector("#movieSelect");
 const searchInput = document.querySelector("#searchInput");
 const chainFilterList = document.querySelector("#chainFilterList");
 const cityFilterList = document.querySelector("#cityFilterList");
+const formatFilterList = document.querySelector("#formatFilterList");
 const clearSearchButton = document.querySelector("#clearSearchButton");
 const searchSuggestions = document.querySelector("#searchSuggestions");
 const dateChips = document.querySelector("#dateChips");
@@ -162,6 +163,7 @@ let markerById = new Map();
 let activeId = null;
 let selectedChain = "";
 let selectedCity = "";
+let selectedFormat = "";
 
 // 手機與桌機共用同一份時間狀態。AUTO 跟隨台灣現在時間；MANUAL 保存使用者
 // 選擇的 15 分鐘級距。現在時間另存，避免混淆 > now 與 >= manual 的邊界。
@@ -231,9 +233,17 @@ function showtimeMatchesTimeFilter(showtime) {
   );
 }
 
-function visibleShowtimes(feature) {
+function showtimeMatchesFormatFilter(showtime) {
+  return !selectedFormat || showtimeFormatTags(showtime).includes(selectedFormat);
+}
+
+function timeVisibleShowtimes(feature) {
   const list = Array.isArray(feature.properties.showtimes) ? feature.properties.showtimes : [];
   return list.filter(showtimeMatchesTimeFilter);
+}
+
+function visibleShowtimes(feature) {
+  return timeVisibleShowtimes(feature).filter(showtimeMatchesFormatFilter);
 }
 
 function visibleShowtimeCount(feature) {
@@ -303,85 +313,13 @@ function mapsUrl(feature) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`;
 }
 
-function showtimeSubLabel(showtime) {
-  const label = showtime.label || "";
-  const rest = showtime.time ? label.replace(showtime.time, "").trim() : label;
-  return rest || showtime.format || "";
-}
-
-// 各家影城的場次補充字格式南轅北轍（含廳號、座位數、樓層、片名、分級…），
-// 只用白名單擷取「版本（規格）＋語言」，其餘一律捨去。
-// 例：「(數位 英)玩具總動員5 (普遍級)」→「數位 英語」、「數位 國語 / 3廳」→「數位 國語」、
-//     「05廳(6樓)」→「」、「(GC 數位 英)…」→「GC 數位 英語」。
-const FORMAT_RULES = [
-  ["IMAX", /imax/i],
-  ["4DX", /4dx/i],
-  ["MX4D", /mx-?4d/i],
-  ["ScreenX", /screen\s*-?\s*x/i],
-  ["巨幕", /巨幕/],
-  ["TITAN", /titan/i],
-  ["ULTRA", /ultra/i],
-  ["LUXE", /luxe/i],
-  ["Dolby", /dolby|\bdva\b/i],
-  ["ATMOS", /atmos/i],
-  ["GC", /\bgc\b|gold\s*class/i],
-  ["MUCROWN", /mucrown/i],
-  ["A+", /a\+/i],
-  ["皇家廳", /皇家廳/],
-  ["COACH廳", /coach廳/i],
-  ["BOOM廳", /boom廳/i],
-  ["Pink Sofa", /pink\s*sofa/i],
-  ["VIP", /\bvip\b/i],
-  ["3D", /3d/i],
-  ["數位", /數位/],
-  ["2D", /2d/i],
-];
-
-const LANG_RULES = [
-  ["日語", /日語|日文|JPN|[（(]\s*日\s*[)）]/i],
-  ["英語", /英語|英文|ENG|[（(]\s*英\s*[)）]/i],
-  ["國語", /國語|中文|CHT|[（(]\s*中\s*[)）]/i],
-  ["台語", /台語|臺語/],
-  ["粵語", /粵語/],
-];
-
-function showtimeTag(showtime) {
-  const raw = showtimeSubLabel(showtime);
-  if (!raw) return "";
-
-  const formats = [];
-  for (const [name, re] of FORMAT_RULES) {
-    if (re.test(raw) && !formats.includes(name)) formats.push(name);
-  }
-  // 同義／重複去除：數位＝2D 只留數位；DolbyVisionAtmos 已含 Dolby，去掉 ATMOS
-  if (formats.includes("數位")) {
-    const i = formats.indexOf("2D");
-    if (i !== -1) formats.splice(i, 1);
-  }
-  if (formats.includes("Dolby")) {
-    const i = formats.indexOf("ATMOS");
-    if (i !== -1) formats.splice(i, 1);
-  }
-
-  let lang = "";
-  for (const [name, re] of LANG_RULES) {
-    if (re.test(raw)) {
-      lang = name;
-      break;
-    }
-  }
-  // 語言 fallback：只看第一個括號內的單字（避免掃到片名而誤判）
-  if (!lang) {
-    const paren = /[（(]([^（()）]*)[)）]/.exec(raw);
-    const inside = paren ? paren[1] : "";
-    if (/日/.test(inside)) lang = "日語";
-    else if (/英/.test(inside)) lang = "英語";
-    else if (/[國中]/.test(inside)) lang = "國語";
-    else if (/台/.test(inside)) lang = "台語";
-  }
-
-  return [...formats.slice(0, 2), lang].filter(Boolean).join(" ");
-}
+const {
+  FORMAT_ORDER,
+  FORMAT_RULES,
+  displayTag: showtimeTag,
+  formatTags: showtimeFormatTags,
+  subLabel: showtimeSubLabel,
+} = window.MuseVersionFilter;
 
 // 保險機制：白名單是「認得才留」，若日後資料出現沒收錄的新規格關鍵字會被靜默丟掉。
 // 這裡在載入後掃一遍，把「算不出任何版本／語言、但看起來可能藏著新規格」的補充字
@@ -656,6 +594,42 @@ function sortedCities() {
     });
 }
 
+function formatCountContextMatch(feature) {
+  return keywordMatch(feature) && chainMatch(feature) && cityMatch(feature);
+}
+
+function sortedFormats() {
+  const counts = new Map();
+  for (const feature of features) {
+    if (!formatCountContextMatch(feature)) continue;
+    for (const showtime of timeVisibleShowtimes(feature)) {
+      for (const format of showtimeFormatTags(showtime)) {
+        counts.set(format, (counts.get(format) || 0) + 1);
+      }
+    }
+  }
+
+  return [...counts.entries()]
+    .filter(([format, count]) => count > 0 || format === selectedFormat)
+    .sort((a, b) => {
+      const ai = FORMAT_ORDER.indexOf(a[0]);
+      const bi = FORMAT_ORDER.indexOf(b[0]);
+      const safeA = ai === -1 ? 999 : ai;
+      const safeB = bi === -1 ? 999 : bi;
+      if (safeA !== safeB) return safeA - safeB;
+      if (b[1] !== a[1]) return b[1] - a[1];
+      return a[0].localeCompare(b[0], "zh-Hant");
+    });
+}
+
+function reconcileSelectedFormat() {
+  if (!selectedFormat) return;
+  const stillAvailable = features.some((feature) =>
+    timeVisibleShowtimes(feature).some((showtime) => showtimeFormatTags(showtime).includes(selectedFormat)),
+  );
+  if (!stillAvailable) selectedFormat = "";
+}
+
 // 以該縣市所有影城座標的中心點，把地圖飛到縣市層級
 function flyToCity(city) {
   const pts = features.filter((feature) => feature.properties.city === city);
@@ -688,6 +662,11 @@ function renderFilterButtons(container, items, selectedValue, onSelect) {
 }
 
 function renderFilters() {
+  reconcileSelectedFormat();
+  renderFilterButtons(formatFilterList, sortedFormats(), selectedFormat, (value) => {
+    selectedFormat = selectedFormat === value ? "" : value;
+    applyFilters();
+  });
   renderFilterButtons(chainFilterList, sortedChains(), selectedChain, (value) => {
     selectedChain = selectedChain === value ? "" : value;
     applyFilters();
@@ -838,7 +817,7 @@ function movieOptionsForCurrentState() {
     .map((movie) => {
       const movieFeatures = movieFeaturesByTitle.get(movie.title) || [];
       const remainingShowtimes = movieFeatures.reduce(
-        (sum, feature) => sum + visibleShowtimeCount(feature),
+        (sum, feature) => sum + timeVisibleShowtimes(feature).length,
         0,
       );
       return { ...movie, remainingShowtimes };
@@ -854,6 +833,7 @@ function renderMovieOptions() {
     activeId = null;
     selectedChain = "";
     selectedCity = "";
+    selectedFormat = "";
   }
 
   const fragment = document.createDocumentFragment();
@@ -877,6 +857,7 @@ function selectMovie(movieTitle) {
   activeId = null;
   selectedChain = "";
   selectedCity = "";
+  selectedFormat = "";
   renderMovieOptions();
   renderFilters();
   applyFilters();
@@ -1120,6 +1101,7 @@ function setQuickPeriod(period) {
 function clearFiltersAndResetView() {
   selectedChain = "";
   selectedCity = "";
+  selectedFormat = "";
   searchInput.value = "";
   clearSearchButton.hidden = true;
   mSearchInput.value = "";
@@ -1329,7 +1311,7 @@ function setMobileTab(tab) {
   for (const button of mSeg.children) {
     button.classList.toggle("is-active", button.dataset.tab === tab);
   }
-  appShell.classList.remove("mtab-movie", "mtab-city", "mtab-time", "mtab-chain");
+  appShell.classList.remove("mtab-movie", "mtab-city", "mtab-time", "mtab-format", "mtab-chain");
   appShell.classList.add(`mtab-${tab}`);
 }
 
