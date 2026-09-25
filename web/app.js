@@ -98,6 +98,7 @@ const HomeControl = L.Control.extend({
       L.DomEvent.preventDefault(event);
       startupViewportCanceled = true;
       clearFiltersAndResetView();
+      window.MuseDiscovery?.open?.();
     });
     return container;
   },

@@ -22,6 +22,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_movie_discovery_data  # noqa: E402
 import control_data  # noqa: E402
 import muse_api  # noqa: E402
 from showtime_availability import MAX_SOURCE_LOOKAHEAD_DAYS  # noqa: E402
@@ -282,6 +283,13 @@ def main() -> None:
             f"[片單] 來源={movie_list_meta.get('source')} "
             f"版本={movie_list_meta.get('version')} 數量={movie_list_meta.get('count')}"
             + (f" 錯誤={movie_list_meta['api_error']}" if movie_list_meta.get("api_error") else "")
+        )
+
+    if git_control_enabled():
+        discovery_payload = build_movie_discovery_data.build_and_write()
+        print(
+            f"[電影首頁] 啟用={discovery_payload['count']} "
+            f"缺 Poster={discovery_payload['missing_poster_count']}"
         )
 
     titles = read_movie_titles(MOVIE_LIST)

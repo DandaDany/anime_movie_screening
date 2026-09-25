@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-25",
+  "movie_count": 22,
+  "movies": [
+    {
+      "title": "BanG Dream! Ave Mujica prima aurora",
+      "aliases": [],
+      "poster_url": "https://prcdn.freetls.fastly.net/release_image/14827/9657/14827-9657-a2d64661fb1c91f74ccf97b27644aa51-1920x1080.png?auto=webp&fit=bounds&format=jpeg&height=1260&width=2400",
+      "poster_source": "Bushiroad / PR TIMES",
+      "poster_source_url": "https://prtimes.jp/main/html/rd/p/000009657.000014827.html"
+    },
+    {
+      "title": "劇場版 來自深淵：覺醒的神秘",
+      "aliases": [],
+      "poster_url": "https://d28s5ztqvkii64.cloudfront.net/images/anime/4098/zXhuNBNcc8.webp",
+      "poster_source": "YourAnimes",
+      "poster_source_url": "https://youranimes.tw/animes/4098"
+    },
+    {
+      "title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
+      "aliases": [],
+      "poster_url": "https://www.sonymusic.co.jp/lineup/anime/hagaren-movie/img/keyv_l.jpg",
+      "poster_source": "Aniplex / Sony Music",
+      "poster_source_url": "https://www.sonymusic.co.jp/Animation/lineup/anime/hagaren-movie/index.html"
+    },
+    {
+      "title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
+      "aliases": [
+        "鋼之鍊金術師 香巴拉的征服者"
+      ],
+      "poster_url": "https://static.zerochan.net/Fullmetal.Alchemist.full.4400747.jpg",
+      "poster_source": "Zerochan"
+    },
+    {
+      "title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+      "aliases": [
+        "魔法少女小圓 瓦爾普吉斯的迴天"
+      ],
+      "poster_url": "https://i.ebayimg.com/00/s/MTYwMFgxMTM1/z/PtcAAeSwX-totgRr/%24_57.PNG?set_id=880000500F",
+      "poster_source": "eBay image CDN"
+    },
+    {
+      "title": "加速世界 劇場版 INFINITE BURST",
+      "aliases": [],
+      "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
+      "poster_source": "SUNRISE",
+      "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
+    },
+    {
+      "title": "攻殼機動隊(1995) 4K 數位修復版",
+      "aliases": [
+        "攻殼機動隊 2026",
+        "攻殼機動隊 (1995) 4K數位修復版",
+        "攻殼機動隊 1995 4K 數位修復版"
+      ],
+      "poster_url": "https://spice.eplus.jp/images/kYJZSRW9gV4HNbzX8Sf1xxJkemkZiEXMHgnqzpZy9BVmTAbfjpGQLxAESPhQDe9n",
+      "poster_source": "SPICE / eplus"
+    },
+    {
+      "title": "青春豬頭少年不會夢到親愛好朋友",
+      "aliases": [],
+      "poster_url": "https://d28s5ztqvkii64.cloudfront.net/images/anime/6069/mKkgrxgeoE.webp",
+      "poster_source": "YourAnimes",
+      "poster_source_url": "https://youranimes.tw/animes/6069"
+    },
+    {
+      "title": "魔法少女小圓劇場版［新篇］叛逆的物語",
+      "aliases": [
+        "魔法少女小圓劇場版［新篇］叛逆的物語+五分鐘開頭影像"
+      ],
+      "poster_url": "https://www.crank-in.net/img/db/261064090197014_1200.jpg",
+      "poster_source": "Crank-in! / 2026 revival visual",
+      "poster_source_url": "https://www.crank-in.net/gallery/news/186408/4"
+    },
+    {
+      "title": "劇場版 吉伊卡哇 人魚島的秘密",
+      "aliases": [
+        "吉伊卡哇 人魚島的秘密"
+      ],
+      "poster_url": "https://storage.movie6.com/movie/3389d_programPs_f886331e-1cd1-42bc-ae25-0ea61eb9ec89___1784716019.jpg",
+      "poster_source": "Movie6"
+    },
+    {
+      "title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+      "aliases": [
+        "蠟筆小新 奇奇怪怪！我的妖怪假期"
+      ],
+      "poster_url": "https://lp.p.pia.jp/shared/materials/8dde473e-3f0a-49e2-8841-22daaafba1cc/origin.jpg",
+      "poster_source": "Pia"
+    },
+    {
+      "title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+      "aliases": [
+        "電影哆啦A夢：新‧大雄的海底鬼岩城",
+        "電影哆啦A夢 新・大雄的海底鬼岩城"
+      ],
+      "poster_url": "https://cdn.nightkun.com/covers/690c7859bb893a30e36931cd/5dfb439af52844e6ab922408d4376cbc.jpg",
+      "poster_source": "NightKUN"
+    },
+    {
+      "title": "名偵探柯南 高速公路的墮天使",
+      "aliases": [],
+      "poster_url": "https://lp.p.pia.jp/shared/materials/1ce62d72-e651-4ece-b228-93f16c89e6ca/origin.jpg",
+      "poster_source": "Pia"
+    },
+    {
+      "title": "航海王劇場版：Z",
+      "aliases": [
+        "航海王劇場版:Z",
+        "航海王電影版 Z"
+      ],
+      "poster_url": "https://p2.bahamut.com.tw/B/2KU/33/0000748833.JPG",
+      "poster_source": "巴哈姆特"
+    },
+    {
+      "title": "航海王劇場版:祭典男爵與神祕島",
+      "aliases": [
+        "航海王劇場版：祭典男爵與神祕島"
+      ],
+      "poster_url": "https://img.myvideo.net.tw/images/TOE020/0000/0299/202507141031383983_420x600.jpg",
+      "poster_source": "MyVideo"
+    },
+    {
+      "title": "超時空甩尾 經典重映",
+      "aliases": [
+        "REDLINE",
+        "超時空甩尾"
+      ],
+      "poster_url": "https://riotheatre.ca/wp-content/uploads/2016/07/1BRwHeKN99CfoIjizfy1s83dhoa-0.jpg",
+      "poster_source": "Rio Theatre"
+    },
+    {
+      "title": "最終樂章 吹響吧！上低音號 前篇",
+      "aliases": [
+        "最終樂章 吹響吧! 上低音號 前篇"
+      ],
+      "poster_url": "https://spice.eplus.jp/images/horKvYwmgLvqfkXlmdQm0VSdll5mf4YwlxfI3whkFPT9DVgwJ0dNOSnzrHUkNOtV",
+      "poster_source": "SPICE / eplus"
+    },
+    {
+      "title": "電影 Idol光之美少女 你與我♪久等了！為你送上閃耀的現場演唱會！",
+      "aliases": [
+        "電影 Idol光之美少女"
+      ],
+      "poster_url": "https://toy.bandai.co.jp/temp/f19znvbgkgvc1qjsr0mn3jiv5o158jla2b1feb1n.jpg",
+      "poster_source": "Bandai"
+    },
+    {
+      "title": "偶像學園!X星光樂園 THE MOVIE -相遇的奇蹟-",
+      "aliases": [
+        "Aikatsu x PriPara THE MOVIE"
+      ],
+      "poster_url": "https://image.tmdb.org/t/p/original/9OaadGoG5dYzOc8gs8D1IZodfoU.jpg",
+      "poster_source": "TMDB image CDN"
+    },
+    {
+      "title": "你的名字。（十周年重映）",
+      "aliases": [
+        "你的名字。"
+      ],
+      "poster_url": "https://p2.bahamut.com.tw/B/2KU/31/e6e0c4942f66b37132c54b73811rbkr5.JPG?v=1725437482579",
+      "poster_source": "巴哈姆特 GNN"
+    },
+    {
+      "title": "航海王劇場版：死亡盡頭大冒險",
+      "aliases": [
+        "航海王劇場版:死亡盡頭大冒險"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZGM2YTYwNzgtYjAwMC00MGNlLTllZDktNDk3NDdmMjNkYjBiXkEyXkFqcGc%40._V1_.jpg",
+      "poster_source": "IMDb / Amazon image CDN"
+    },
+    {
+      "title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
+      "aliases": [
+        "LOVE LIVE! 蓮之空女學院學園偶像俱樂部BLOOM GARDEN PARTY"
+      ],
+      "poster_url": "https://cdn.shopify.com/s/files/1/0821/2489/8619/files/download_cd23d968-6216-4481-8d7f-3d7a6e1b1d6f.webp?v=1765278360",
+      "poster_source": "publisher/retail CDN"
+    }
+  ]
+}
