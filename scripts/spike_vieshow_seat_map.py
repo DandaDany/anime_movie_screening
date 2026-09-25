@@ -91,8 +91,7 @@ def main() -> int:
                     available_ratio_ordinary:
                         seatNodes.length ? availableNodes.length / seatNodes.length : null,
                     sold_seats: getIds(soldNodes),
-                    available_seats: getIds(availableNodes),
-                    system_time_text: systemMatch ? systemMatch[1].trim() : ''
+                    available_seats: getIds(availableNodes)
                 };
             }"""
         )
