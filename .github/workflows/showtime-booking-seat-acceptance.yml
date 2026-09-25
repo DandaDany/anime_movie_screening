@@ -1,0 +1,78 @@
+name: Showtime booking and seat preview acceptance
+
+on:
+  push:
+    branches:
+      - feat/showtime-select-booking-cta
+    paths:
+      - web/app.js
+      - web/seat-preview.html
+      - web/seat-preview.js
+      - web/seat-preview.css
+      - web/data/vieshow_seat_previews.json
+      - scripts/fetch_vieshow_seat_previews.py
+      - tests/frontend_showtime_booking_cta_test.js
+      - tests/test_vieshow_seat_previews.py
+      - .github/workflows/daily-crawl.yml
+      - .github/workflows/showtime-booking-seat-acceptance.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Unit and frontend regression tests
+        run: |
+          python -m unittest tests.test_vieshow_seat_previews tests.test_vieshow_booking_links tests.test_vieshow_multiday
+          node --check web/app.js
+          node --check web/seat-preview.js
+          node tests/frontend_showtime_booking_cta_test.js
+          node tests/frontend_date_state_test.js
+          node tests/frontend_time_filter_test.js
+          node tests/frontend_empty_state_test.js
+          git diff --check
+
+      - name: Live VIESHOW seat snapshot acceptance
+        run: |
+          xvfb-run -a --server-args="-screen 0 1366x900x24"             python scripts/fetch_vieshow_seat_previews.py               --headed               --input /tmp/does-not-exist.geojson               --output /tmp/vieshow-seat-previews.json               --booking-url "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1878613"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path("/tmp/vieshow-seat-previews.json").read_text(encoding="utf-8"))
+          preview = payload["previews"]["1:1878613"]
+          assert preview["ordinary_seats"] > 0
+          assert preview["available"] + preview["sold"] == preview["ordinary_seats"]
+          assert preview["rows"]
+          print({
+              "movie": preview["movie"],
+              "datetime": preview["datetime"],
+              "cinema": preview["cinema"],
+              "auditorium": preview["auditorium"],
+              "available": preview["available"],
+              "sold": preview["sold"],
+              "ordinary_seats": preview["ordinary_seats"],
+          })
+          PY
