@@ -1,0 +1,55 @@
+{
+  "type": "FeatureCollection",
+  "show_date": "2026-08-12",
+  "updated_at": "2026-08-12T07:05:23+08:00",
+  "available_dates": ["2026-08-12"],
+  "movies": [
+    {"title": "版本測試電影", "show_date": "2026-08-12", "available_dates": ["2026-08-12"], "feature_count": 2}
+  ],
+  "movie_features": {"版本測試電影": []},
+  "movie_features_by_date": {
+    "版本測試電影": {
+      "2026-08-12": [
+        {
+          "type":"Feature",
+          "geometry":{"type":"Point","coordinates":[121.5654,25.0330]},
+          "properties":{
+            "location_id":301,
+            "chain_name":"威秀影城 / VIESHOW",
+            "location_name":"版本測試館 A",
+            "map_name":"版本測試館 A",
+            "address":"臺北市信義區測試路1號",
+            "city":"臺北市",
+            "movie_title":"版本測試電影",
+            "show_date":"2026-08-12",
+            "showtime_count":2,
+            "showtimes":[
+              {"time":"16:00","format":"(IMAX)版本測試電影","booking_url":"https://example.test/a/1600"},
+              {"time":"19:00","format":"數位","booking_url":"https://example.test/a/1900"}
+            ]
+          }
+        },
+        {
+          "type":"Feature",
+          "geometry":{"type":"Point","coordinates":[121.5070,25.0460]},
+          "properties":{
+            "location_id":302,
+            "chain_name":"測試影城",
+            "location_name":"版本測試館 B",
+            "map_name":"版本測試館 B",
+            "address":"臺北市萬華區測試路2號",
+            "city":"臺北市",
+            "movie_title":"版本測試電影",
+            "show_date":"2026-08-12",
+            "showtime_count":2,
+            "showtimes":[
+              {"time":"18:00","format":"(IV 4DX 3D)版本測試電影","booking_url":"https://example.test/b/1800"},
+              {"time":"21:00","format":"Dolby Cinema INFINITY VISION","booking_url":"https://example.test/b/2100"}
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "features": []
+}
