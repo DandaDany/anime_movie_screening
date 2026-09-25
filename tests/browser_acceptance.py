@@ -53,6 +53,13 @@ def center_is_same(a: dict[str, float], b: dict[str, float]) -> bool:
     return abs(a["lat"] - b["lat"]) < 1e-7 and abs(a["lng"] - b["lng"]) < 1e-7 and a["zoom"] == b["zoom"]
 
 
+def enter_map(page: Page) -> None:
+    """Dismiss the poster-first home so legacy map behavior can be regression-tested."""
+    page.wait_for_function("() => Boolean(window.MuseDiscovery)")
+    page.evaluate("window.MuseDiscovery.close()")
+    page.wait_for_timeout(250)
+
+
 def click_filter(page: Page, container: str, label: str) -> None:
     page.locator(f"{container} .filter-option", has_text=label).click()
 
@@ -60,6 +67,7 @@ def click_filter(page: Page, container: str, label: str) -> None:
 def run_desktop(page: Page, report: dict) -> None:
     checks = report["desktop"]
     page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+    enter_map(page)
     page.locator("#summaryText").filter(has_text="更新於 8/12 07:05").wait_for()
 
     checks["summary_today"] = page.locator("#summaryText").inner_text() == "更新於 8/12 07:05"
@@ -172,6 +180,7 @@ def run_desktop(page: Page, report: dict) -> None:
 def run_mobile(page: Page, report: dict) -> None:
     checks = report["mobile"]
     page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+    enter_map(page)
     page.locator("#summaryText").filter(has_text="更新於 8/12 07:05").wait_for()
 
     overflow = page.locator("#dateChips").evaluate("el => getComputedStyle(el).overflowX")
