@@ -47,7 +47,7 @@ def inspect(page, label: str, url: str, *, wait_until="domcontentloaded"):
     script_hits = []
     own_scripts = [src for src in scripts if any(host in src for host in ("miranewcinemas.com", "skcinemas.com", "bonjays.com"))]\n    for src in own_scripts[:8]:
         try:
-            res = page.request.get(src, timeout=8000)
+            res = page.request.get(src, timeout=4000)
             text = res.text()
         except Exception as exc:
             script_hits.append({"src": src, "error": f"{type(exc).__name__}: {exc}"})
