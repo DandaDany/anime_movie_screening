@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 280" role="img" aria-labelledby="title desc">
+  <title id="title">日本動畫電影上映地圖</title>
+  <desc id="desc">地圖定位圖釘結合電影播放符號的品牌標誌</desc>
+  <g transform="translate(18 12)">
+    <path d="M18 190 78 164l62 24 62-27 60 28-16 66-59-20-53 27-62-24-59 20Z" fill="#0b2b63"/>
+    <path d="m77 166 1 72m62-49-6 73m68-99-15 72M78 238l62-49 47 46" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M140 22c-55 0-100 45-100 100 0 76 100 136 100 136s100-60 100-136C240 67 195 22 140 22Z" fill="#ff5a3a"/>
+    <circle cx="140" cy="120" r="53" fill="#fff"/>
+    <path d="m126 91 46 29-46 29Z" fill="#0b2b63" stroke="#0b2b63" stroke-linejoin="round" stroke-width="5"/>
+    <g fill="#fff">
+      <rect x="57" y="88" width="14" height="16" rx="4"/><rect x="57" y="112" width="14" height="16" rx="4"/><rect x="57" y="136" width="14" height="16" rx="4"/>
+      <rect x="209" y="88" width="14" height="16" rx="4"/><rect x="209" y="112" width="14" height="16" rx="4"/><rect x="209" y="136" width="14" height="16" rx="4"/>
+    </g>
+  </g>
+  <text x="310" y="174" font-family="Noto Sans TC, Microsoft JhengHei, system-ui, sans-serif" font-size="76" font-weight="800" fill="#0b2b63" letter-spacing="-2">
+    <tspan>日本動畫電影</tspan><tspan fill="#ff5a3a">上映</tspan><tspan>地圖</tspan>
+  </text>
+</svg>
