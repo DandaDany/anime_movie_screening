@@ -257,7 +257,7 @@ def main() -> int:
                             const el = document.querySelector(selector);
                             return !!el && [...el.options].some(o => o.value === value);
                         }""",
-                        [selector, value],
+                        arg=[selector, value],
                         timeout=10_000,
                     )
 
