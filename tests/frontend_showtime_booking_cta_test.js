@@ -53,6 +53,32 @@ assert(
   }) === "",
   "Generic VIESHOW showtime URL must not be treated as direct booking",
 );
+
+const miramarBooking =
+  "https://www.miramarcinemas.tw/Booking/TicketType?id=movie-id&session=433182";
+assert(
+  sandbox.directBookingUrl(
+    { booking_url: miramarBooking },
+    { properties: { chain_name: "美麗華影城" } },
+  ) === miramarBooking,
+  "Miramar session-scoped TicketType URL should be direct booking",
+);
+assert(
+  sandbox.directBookingUrl(
+    { booking_url: "https://www.miranewcinemas.com/Booking/Timetable" },
+    { properties: { chain_name: "美麗新影城" } },
+  ) === "",
+  "Generic Miranew timetable must not be treated as direct booking",
+);
+const centuryBooking =
+  "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000094&date=2026-07-24%2012:35";
+assert(
+  sandbox.directBookingUrl(
+    { booking_url: centuryBooking },
+    { properties: { chain_name: "喜樂時代影城" } },
+  ) === centuryBooking,
+  "Century Asia session booking URL should be direct booking",
+);
 const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
   { booking_url: booking1 },
   { properties: { location_id: 7 } },
