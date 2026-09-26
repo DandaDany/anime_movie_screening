@@ -1,0 +1,85 @@
+name: Final VIESHOW and filter acceptance
+
+on:
+  push:
+    branches:
+      - fix/vieshow-booking-publish-race
+    paths:
+      - .github/workflows/final-vieshow-filter-acceptance.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      TZ: Asia/Taipei
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/vieshow-booking-publish-race
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Regression tests
+        run: |
+          python -m unittest             tests.test_enrich_vieshow_geojson_booking             tests.test_verify_vieshow_direct_booking             tests.test_vieshow_booking_links             tests.test_vieshow_seat_previews
+          node --check web/app.js
+          node tests/frontend_showtime_booking_cta_test.js
+          node tests/frontend_version_filter_test.js
+
+      - name: Verify committed VIESHOW booking and seat data
+        run: |
+          python scripts/verify_vieshow_direct_booking.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path("scripts").resolve()))
+          import fetch_vieshow_seat_previews as seats
+
+          geo = Path("web/data/locations.geojson")
+          seat_file = Path("web/data/vieshow_seat_previews.json")
+          urls = seats.collect_booking_urls(geo)
+          payload = json.loads(seat_file.read_text(encoding="utf-8"))
+          preview_count = int(payload.get("preview_count") or 0)
+          failure_count = int(payload.get("failure_count") or 0)
+          previews = payload.get("previews") or {}
+
+          print({
+              "direct_booking_urls": len(urls),
+              "preview_count": preview_count,
+              "preview_objects": len(previews),
+              "failure_count": failure_count,
+          })
+
+          assert len(urls) > 0, "No committed VIESHOW direct booking URLs"
+          assert failure_count == 0, payload.get("failures")
+          assert preview_count == len(previews)
+          assert preview_count == len(urls), (
+              f"Seat snapshots incomplete: {preview_count}/{len(urls)}"
+          )
+          PY
+
+      - name: Browser single-result auto-open acceptance
+        run: |
+          python -m http.server 8765 --directory web >/tmp/final-browser.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          python tests/browser_format_filter_acceptance.py
