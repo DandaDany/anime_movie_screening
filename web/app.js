@@ -664,17 +664,20 @@ function renderFilterButtons(container, items, selectedValue, onSelect) {
 function renderFilters() {
   reconcileSelectedFormat();
   renderFilterButtons(formatFilterList, sortedFormats(), selectedFormat, (value) => {
-    selectedFormat = selectedFormat === value ? "" : value;
-    applyFilters();
+    const selecting = selectedFormat !== value;
+    selectedFormat = selecting ? value : "";
+    applyFilters({ focusSingleResult: selecting });
   });
   renderFilterButtons(chainFilterList, sortedChains(), selectedChain, (value) => {
-    selectedChain = selectedChain === value ? "" : value;
-    applyFilters();
+    const selecting = selectedChain !== value;
+    selectedChain = selecting ? value : "";
+    applyFilters({ focusSingleResult: selecting });
   });
   renderFilterButtons(cityFilterList, sortedCities(), selectedCity, (value) => {
-    selectedCity = selectedCity === value ? "" : value;
-    applyFilters();
-    if (selectedCity) flyToCity(selectedCity);
+    const selecting = selectedCity !== value;
+    selectedCity = selecting ? value : "";
+    const filtered = applyFilters({ focusSingleResult: selecting });
+    if (selectedCity && filtered.length !== 1) flyToCity(selectedCity);
   });
 }
 
@@ -1077,7 +1080,7 @@ function renderSummaryText(message = null) {
   summaryText.hidden = !text;
 }
 
-function applyFilters() {
+function applyFilters({ focusSingleResult = false } = {}) {
   // 電影、地區與影城數字共用即時時間狀態；分鐘推進時一起重繪。
   renderMovieOptions();
   renderFilters();
@@ -1085,6 +1088,13 @@ function applyFilters() {
   renderMarkers(filtered);
   renderSearchSuggestions(filtered);
   renderSummaryText();
+
+  // 使用者主動選擇地區／版本／影城篩選後，如果結果只剩一個場館，
+  // 直接聚焦並開啟該場館資訊。取消篩選、搜尋輸入、時間自動更新不觸發。
+  if (focusSingleResult && filtered.length === 1) {
+    requestAnimationFrame(() => focusFeature(filtered[0]));
+  }
+  return filtered;
 }
 
 function resetView() {
