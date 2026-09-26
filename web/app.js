@@ -362,6 +362,64 @@ function directVieshowBookingUrl(showtime) {
   return isDirectVieshowBooking ? bookingUrl : "";
 }
 
+function directBookingUrl(showtime, feature = null) {
+  const bookingUrl = showtime?.booking_url || "";
+  if (!bookingUrl) return "";
+
+  const vieshow = directVieshowBookingUrl(showtime);
+  if (vieshow) return vieshow;
+
+  const chainName = feature?.properties?.chain_name || "";
+  try {
+    const url = new URL(bookingUrl);
+    const host = url.hostname.toLowerCase();
+    const path = url.pathname.toLowerCase();
+
+    if (chainName === "美麗華影城") {
+      return host.endsWith("miramarcinemas.tw") &&
+        path.includes("/booking/tickettype") &&
+        url.searchParams.get("id") &&
+        url.searchParams.get("session")
+        ? bookingUrl
+        : "";
+    }
+
+    if (chainName === "喜樂時代影城") {
+      return host.endsWith("centuryasia.com.tw") &&
+        path.endsWith("/buyticket_process.aspx") &&
+        url.searchParams.get("ProgramID") &&
+        url.searchParams.get("date")
+        ? bookingUrl
+        : "";
+    }
+
+    if (chainName === "百老匯影城") {
+      const obj = url.searchParams.get("obj") || "";
+      const sessionScopedObj = obj.split(",").filter(Boolean).length >= 5;
+      return host.endsWith("broadway-cineplex.com.tw") &&
+        (sessionScopedObj || !path.endsWith("/book.html"))
+        ? bookingUrl
+        : "";
+    }
+
+    if (chainName === "新光影城") {
+      const genericFilmsPage = path === "/films";
+      return host.endsWith("skcinemas.com") && !genericFilmsPage ? bookingUrl : "";
+    }
+
+    if (chainName === "美麗新影城") {
+      const genericTimetable = path.toLowerCase() === "/booking/timetable";
+      return (host.endsWith("miranewcinemas.com") || host.endsWith("miranewcinemas.com.tw")) &&
+        !genericTimetable
+        ? bookingUrl
+        : "";
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}
+
 function seatPreviewMapState(locationId = "") {
   const state = new URLSearchParams();
   if (selectedMovieTitle) state.set("movie", selectedMovieTitle);
@@ -489,7 +547,7 @@ function popupHtml(feature) {
     ? escapeHtml(props.show_date).replaceAll("-", "/")
     : "當日場次";
   const showtimes = visibleShowtimes(feature);
-  const directBookingShowtimes = showtimes.filter((showtime) => directVieshowBookingUrl(showtime));
+  const directBookingShowtimes = showtimes.filter((showtime) => directBookingUrl(showtime, feature));
   const hasDirectBooking = directBookingShowtimes.length > 0;
   const showtimeBlock = showtimes.length
     ? `
@@ -504,7 +562,7 @@ function popupHtml(feature) {
               const inner = `<b>${escapeHtml(showtime.time || "")}</b>${
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
-              const bookingUrl = directVieshowBookingUrl(showtime);
+              const bookingUrl = directBookingUrl(showtime, feature);
               const seatPreviewUrl = vieshowSeatPreviewUrl(showtime, feature);
               if (bookingUrl) {
                 return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-seat-preview-url="${escapeHtml(seatPreviewUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;
