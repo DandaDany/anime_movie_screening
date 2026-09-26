@@ -1,5 +1,6 @@
 (() => {
   const DATA_URL = "data/movie_discovery.json";
+  const MAP_DATA_URL = "data/locations.geojson";
   const EXIT_MS = 190;
 
   const overlay = document.querySelector("#movieDiscovery");
@@ -8,6 +9,8 @@
   const upcomingEmpty = document.querySelector("#comingSoonEmpty");
   const toast = document.querySelector("#movieDiscoveryToast");
   const noTodayDialog = document.querySelector("#movieNoTodayDialog");
+  const noTodayTitle = document.querySelector("#movieNoTodayTitle");
+  const noTodayQuestion = document.querySelector("#movieNoTodayQuestion");
   const noTodayNo = document.querySelector("#movieNoTodayNo");
   const noTodayYes = document.querySelector("#movieNoTodayYes");
   const movieSelect = document.querySelector("#movieSelect");
@@ -26,6 +29,8 @@
 
   let catalog = [];
   let lookaheadDays = 7;
+  let availabilityByTitle = new Map();
+  let availabilityReady = false;
   let toastTimer = null;
   let renderTimer = null;
   let dialogResolve = null;
@@ -52,6 +57,40 @@
 
   function findCatalogItem(title) {
     return catalog.find((item) => matchesItem(title, item)) || null;
+  }
+
+  function featureHasRealShowtime(feature) {
+    const props = feature?.properties || {};
+    return Number(props.showtime_count) > 0
+      || (Array.isArray(props.showtimes) && props.showtimes.length > 0);
+  }
+
+  function indexAvailability(mapData) {
+    availabilityByTitle = new Map();
+    const byTitle = mapData?.movie_features_by_date || {};
+    for (const [title, byDate] of Object.entries(byTitle)) {
+      const dates = Object.entries(byDate || {})
+        .filter(
+          ([showDate, features]) =>
+            showDate
+            && Array.isArray(features)
+            && features.some(featureHasRealShowtime),
+        )
+        .map(([showDate]) => showDate)
+        .sort();
+      availabilityByTitle.set(normalizeTitle(title), dates);
+    }
+    availabilityReady = true;
+  }
+
+  function availabilityDatesForItem(item) {
+    const keys = new Set(aliasesFor(item));
+    const dates = new Set();
+    for (const [titleKey, titleDates] of availabilityByTitle) {
+      if (!keys.has(titleKey)) continue;
+      for (const showDate of titleDates) dates.add(showDate);
+    }
+    return [...dates].sort();
   }
 
   function optionHasMovieValue(value) {
@@ -141,9 +180,14 @@
     resolve?.(value);
   }
 
-  function confirmOtherDate() {
+  function confirmOtherDate({
+    title = "今天沒有剩餘場次",
+    question = "是否看其他日期？",
+  } = {}) {
     if (dialogResolve) resolveNoTodayDialog(false);
     dialogPreviousFocus = document.activeElement;
+    if (noTodayTitle) noTodayTitle.textContent = title;
+    if (noTodayQuestion) noTodayQuestion.textContent = question;
     noTodayDialog.hidden = false;
     noTodayDialog.setAttribute("aria-hidden", "false");
     noTodayYes.focus({ preventScroll: true });
@@ -249,7 +293,10 @@
 
   async function enterOtherDate(item, preferredDate = "") {
     const today = todayIso();
-    const dates = availableDateValues().filter((value) => value !== today);
+    const knownDates = availabilityReady
+      ? availabilityDatesForItem(item)
+      : availableDateValues();
+    const dates = knownDates.filter((value) => value !== today);
     const candidates = [
       ...(preferredDate && preferredDate !== today && dates.includes(preferredDate)
         ? [preferredDate]
@@ -277,10 +324,13 @@
   async function selectNowShowing(item) {
     const originalDate = selectedDate();
     const today = todayIso();
+    const knownDates = availabilityReady ? availabilityDatesForItem(item) : availableDateValues();
+    const hasTodaySchedule = knownDates.includes(today);
+    const futureDates = knownDates.filter((value) => value > today);
     const todayButton = findDateButton(today);
 
     let todayOption = null;
-    if (todayButton) {
+    if (todayButton && (!availabilityReady || hasTodaySchedule)) {
       todayOption = await optionOnDate(item, today);
     }
 
@@ -295,7 +345,20 @@
     }
 
     await restoreDate(originalDate);
-    const shouldSeeOtherDate = await confirmOtherDate();
+
+    if (availabilityReady && futureDates.length === 0) {
+      showToast(hasTodaySchedule ? "今日剩餘場次已結束" : "目前沒有可查詢場次");
+      window.trackEvent?.("movie_discovery_unavailable", {
+        movie_title: item.title,
+        source: hasTodaySchedule ? "today_finished" : "no_known_showtimes",
+      });
+      return;
+    }
+
+    const shouldSeeOtherDate = await confirmOtherDate({
+      title: hasTodaySchedule ? "今日剩餘場次已結束" : "今天沒有排映場次",
+      question: "是否看其他日期？",
+    });
     if (!shouldSeeOtherDate) {
       window.trackEvent?.("movie_discovery_other_date_declined", {
         movie_title: item.title,
@@ -316,7 +379,7 @@
 
   async function selectUpcoming(item) {
     const originalDate = selectedDate();
-    const dates = availableDateValues();
+    const dates = availabilityReady ? availabilityDatesForItem(item) : availableDateValues();
     const candidates = [
       ...(item.target_date && dates.includes(item.target_date) ? [item.target_date] : []),
       ...dates,
@@ -404,16 +467,27 @@
   }
   window.setTimeout(() => window.dispatchEvent(new Event("resize")), 0);
 
-  fetch(DATA_URL, { cache: "no-store" })
-    .then((response) => {
+  Promise.all([
+    fetch(DATA_URL, { cache: "no-store" }).then((response) => {
       if (!response.ok) throw new Error(`movie discovery ${response.status}`);
       return response.json();
-    })
-    .then((data) => {
+    }),
+    fetch(MAP_DATA_URL, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`map availability ${response.status}`);
+        return response.json();
+      })
+      .catch((error) => {
+        console.warn("Movie discovery availability feed failed", error);
+        return null;
+      }),
+  ])
+    .then(([data, mapData]) => {
       catalog = Array.isArray(data.movies) ? data.movies : [];
       lookaheadDays = Number.isFinite(Number(data.lookahead_days))
         ? Number(data.lookahead_days)
         : 7;
+      if (mapData) indexAvailability(mapData);
       render();
     })
     .catch((error) => {
