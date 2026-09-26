@@ -354,6 +354,20 @@ function auditShowtimeSpecs() {
   }
 }
 
+function directShowtimeBookingUrl(showtime) {
+  const bookingUrl = showtime?.booking_url || "";
+  if (!bookingUrl) return "";
+  const patterns = [
+    /vscinemas\.com\.tw\/vsTicketing\/ticketing\/booking\.aspx.*[?&]txtSessionId=/i,
+    /miramarcinemas\.tw\/Booking\/TicketType\?.*[?&]session=/i,
+    /centuryasia\.com\.tw\/.*buyticket_process\.aspx\?.*(?:[?&]eventsn=|[?&]computerid=)/i,
+    /broadway-cineplex\.com\.tw\/.*(?:book|ticket).*\.html\?.*[?&]obj=/i,
+    /skcinemas\.com\/.*(?:booking|ticket).*\?.*(?:[?&]SessionID=|[?&]session=)/i,
+    /miranewcinemas\.com\/.*(?:Booking|Order).*\?.*(?:[?&]SessionId=|[?&]session=)/i,
+  ];
+  return patterns.some((pattern) => pattern.test(bookingUrl)) ? bookingUrl : "";
+}
+
 function directVieshowBookingUrl(showtime) {
   const bookingUrl = showtime?.booking_url || "";
   const isDirectVieshowBooking =
@@ -383,7 +397,7 @@ function seatPreviewMapState(locationId = "") {
 }
 
 function vieshowSeatPreviewUrl(showtime, feature = null) {
-  const bookingUrl = directVieshowBookingUrl(showtime);
+  const bookingUrl = directShowtimeBookingUrl(showtime);
   if (!bookingUrl) return "";
   try {
     const url = new URL(bookingUrl);
@@ -400,6 +414,12 @@ function vieshowSeatPreviewUrl(showtime, feature = null) {
   } catch {
     return "";
   }
+}
+
+function seatPreviewUrlForShowtime(showtime, feature = null) {
+  const explicit = showtime?.seat_preview_url || "";
+  if (explicit) return explicit;
+  return vieshowSeatPreviewUrl(showtime, feature);
 }
 
 function bindShowtimeBookingInteraction(root) {
@@ -489,7 +509,7 @@ function popupHtml(feature) {
     ? escapeHtml(props.show_date).replaceAll("-", "/")
     : "當日場次";
   const showtimes = visibleShowtimes(feature);
-  const directBookingShowtimes = showtimes.filter((showtime) => directVieshowBookingUrl(showtime));
+  const directBookingShowtimes = showtimes.filter((showtime) => directShowtimeBookingUrl(showtime));
   const hasDirectBooking = directBookingShowtimes.length > 0;
   const showtimeBlock = showtimes.length
     ? `
@@ -504,8 +524,8 @@ function popupHtml(feature) {
               const inner = `<b>${escapeHtml(showtime.time || "")}</b>${
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
-              const bookingUrl = directVieshowBookingUrl(showtime);
-              const seatPreviewUrl = vieshowSeatPreviewUrl(showtime, feature);
+              const bookingUrl = directShowtimeBookingUrl(showtime);
+              const seatPreviewUrl = seatPreviewUrlForShowtime(showtime, feature);
               if (bookingUrl) {
                 return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-seat-preview-url="${escapeHtml(seatPreviewUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;
               }
