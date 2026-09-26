@@ -11,7 +11,43 @@ FIXED_NOW_MS = 1786538700000  # 2026-08-12 20:45:00 Asia/Taipei
 
 
 def install_fixture(page):
-    locations = FIXTURE.read_text(encoding="utf-8")
+    locations_payload = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    locations_payload["movies"].append(
+        {
+            "title": "電影 D",
+            "show_date": "2026-08-13",
+            "available_dates": ["2026-08-13"],
+            "feature_count": 1,
+        }
+    )
+    locations_payload["movie_features"]["電影 D"] = []
+    locations_payload["movie_features_by_date"]["電影 D"] = {
+        "2026-08-13": [
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [121.52, 25.04]},
+                "properties": {
+                    "location_id": 301,
+                    "chain_name": "測試影城",
+                    "location_name": "台北 D 館",
+                    "map_name": "測試影城 台北 D 館",
+                    "address": "臺北市測試路7號",
+                    "city": "臺北市",
+                    "movie_title": "電影 D",
+                    "show_date": "2026-08-13",
+                    "showtime_count": 1,
+                    "showtimes": [
+                        {
+                            "time": "19:00",
+                            "format": "數位",
+                            "booking_url": "https://example.test/d301/1900",
+                        }
+                    ],
+                },
+            }
+        ]
+    }
+    locations = json.dumps(locations_payload, ensure_ascii=False)
     discovery = json.dumps(
         {
             "schema_version": 1,
@@ -37,6 +73,13 @@ def install_fixture(page):
                     "aliases": [],
                     "target_date": "2026-08-13",
                     "poster_url": "https://example.com/c.jpg",
+                },
+                {
+                    "id": 4,
+                    "title": "電影 D 顯示",
+                    "aliases": ["電影 D"],
+                    "target_date": "2026-08-01",
+                    "poster_url": "https://example.com/d.jpg",
                 },
             ],
         },
@@ -91,7 +134,7 @@ def main() -> int:
             page.wait_for_function("() => Boolean(window.MuseDiscovery)")
             page.locator("#nowShowingGrid .movie-card").first.wait_for()
             # "正在上映" follows the canonical tracked-movie feed, not today's remaining-showtime options.
-            assert page.locator("#nowShowingGrid .movie-card").count() == 2
+            assert page.locator("#nowShowingGrid .movie-card").count() == 3
             assert page.locator("#comingSoonGrid .movie-card").count() == 1
             assert page.locator("#comingSoonGrid .movie-card__title").inner_text() == "電影 C"
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
@@ -104,7 +147,7 @@ def main() -> int:
             page.locator("#nowShowingGrid .movie-card", has_text="電影 B").click()
             dialog = page.locator("#movieNoTodayDialog")
             dialog.wait_for()
-            assert "今日已無上映場次" in dialog.inner_text()
+            assert "今日剩餘場次已結束" in dialog.inner_text()
             assert "是否看其他日期？" in dialog.inner_text()
 
             # 否：關閉 dialog，留在選片頁。
@@ -120,6 +163,18 @@ def main() -> int:
             assert page.locator("#movieSelect").input_value() == "電影 B"
             assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-15"
             assert page.locator("#movieDiscovery").is_hidden()
+
+            # 電影 D 今天沒有排映，但明天有場次；不能誤說成「沒有上映」。
+            page.locator(".map-home-control-button").click()
+            page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
+            page.locator("#nowShowingGrid .movie-card", has_text="電影 D 顯示").click()
+            dialog.wait_for()
+            assert "今天沒有排映場次" in dialog.inner_text()
+            assert "是否看其他日期？" in dialog.inner_text()
+            page.locator("#movieNoTodayYes").click()
+            page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
+            assert page.locator("#movieSelect").input_value() == "電影 D"
+            assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-13"
 
             # Home 回選片後，電影 A 今天 21:00 尚有場次，應直接回到今天地圖、不跳 dialog。
             page.locator(".map-home-control-button").click()
