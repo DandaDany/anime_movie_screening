@@ -7,18 +7,25 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
-
 TARGETS = [
-    "https://skcwww.bonjays.com/Sessions/Sessions",
-    "https://skcwww.bonjays.com/Sessions/Sessions?c=1001",
-    "https://skcwww.bonjays.com/Sessions/Sessions?cinema=1001",
-    "https://skcwww.bonjays.com/Sessions/Sessions?CinemasID=1001",
+    "https://skcwww.bonjays.com/films?c=1001",
+    "https://skcwww.bonjays.com/Films/Films?filmType=NowShowing",
     "https://skcwww.bonjays.com/Sessions/Sessions?cinemaId=1001",
 ]
 
+KEYWORDS = [
+    "VistaDataV2", "SessionID", "SessionId", "bookingUrl", "data-booking-url",
+    "GetSession", "booking", "Booking", "Seat", "seat",
+]
+
+
+def around(text: str, needle: str, radius: int = 2600):
+    idx = text.find(needle)
+    return None if idx < 0 else text[max(0, idx-radius):idx+radius]
+
 
 class ShinKongExactBookingProbe(unittest.TestCase):
-    def test_extract_session_booking_contract(self):
+    def test_extract_booking_generation_logic(self):
         with sync_playwright() as p:
             request = p.request.new_context(
                 extra_http_headers={
@@ -31,64 +38,38 @@ class ShinKongExactBookingProbe(unittest.TestCase):
                     response = request.get(url, timeout=10000)
                     html = response.text()
                     soup = BeautifulSoup(html, "html.parser")
+                    scripts = [urljoin(url, n.get("src")) for n in soup.select("script[src]") if n.get("src")]
+                    own_scripts = [s for s in scripts if "bonjays.com/" in s]
 
-                    forms = []
-                    for form in soup.select("form"):
-                        forms.append({
-                            "action": form.get("action"),
-                            "method": form.get("method"),
-                            "inputs": [
-                                {
-                                    "name": node.get("name"),
-                                    "value": node.get("value"),
-                                    "type": node.get("type"),
-                                }
-                                for node in form.select("input[name]")
-                            ][:50],
-                            "selects": [
-                                {
-                                    "name": sel.get("name"),
-                                    "id": sel.get("id"),
-                                    "options": [
-                                        {"value": opt.get("value"), "text": opt.get_text(" ", strip=True)}
-                                        for opt in sel.select("option")
-                                    ][:30],
-                                }
-                                for sel in form.select("select")
-                            ][:20],
-                        })
+                    script_hits = []
+                    for src in own_scripts[:20]:
+                        try:
+                            js = request.get(src, timeout=8000).text()
+                        except Exception as exc:
+                            script_hits.append({"src": src, "error": f"{type(exc).__name__}: {exc}"})
+                            continue
+                        hits = {kw: around(js, kw) for kw in KEYWORDS if kw in js}
+                        if hits:
+                            script_hits.append({"src": src, "hits": hits})
 
                     data_nodes = []
-                    for node in soup.select("[data-action-url], [data-booking-url], [data-session], [data-sessionid], [data-id], [auth]"):
-                        data_nodes.append({
-                            "tag": node.name,
-                            "text": node.get_text(" ", strip=True)[:160],
-                            "attrs": {
-                                k: v
-                                for k, v in node.attrs.items()
-                                if k.startswith("data-") or k in {"auth", "href", "id", "class"}
-                            },
-                        })
-                        if len(data_nodes) >= 120:
+                    for node in soup.select("[data-booking-url], [data-action-url], [data-session], [data-sessionid], [data-id]"):
+                        attrs = {k: v for k, v in node.attrs.items() if k.startswith("data-") or k in {"href", "auth"}}
+                        text = node.get_text(" ", strip=True)[:160]
+                        if "data-booking-url" in attrs or "session" in str(attrs).lower() or "booking" in str(attrs).lower() or text:
+                            data_nodes.append({"tag": node.name, "text": text, "attrs": attrs})
+                        if len(data_nodes) >= 100:
                             break
 
-                    session_bundle = ""
-                    session_bundle_url = ""
-                    for node in soup.select("script[src]"):
-                        src = urljoin(url, node.get("src"))
-                        if "/bundles/sessions" in src:
-                            session_bundle_url = src
-                            session_bundle = request.get(src, timeout=10000).text()
-                            break
-
-                    print("SK_EXACT_BOOKING_PROBE " + json.dumps({
+                    html_hits = {kw: around(html, kw) for kw in KEYWORDS if kw in html}
+                    print("SK_BOOKING_LOGIC_PROBE " + json.dumps({
                         "url": url,
                         "status": response.status,
                         "final_url": response.url,
-                        "forms": forms,
+                        "scripts": scripts,
+                        "script_hits": script_hits,
+                        "html_hits": html_hits,
                         "data_nodes": data_nodes,
-                        "session_bundle_url": session_bundle_url,
-                        "session_bundle": session_bundle[:60000],
                     }, ensure_ascii=False))
             finally:
                 request.dispose()
