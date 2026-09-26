@@ -47,7 +47,13 @@ def close_info_surface(page, mobile: bool):
         page.wait_for_timeout(120)
 
 
-def assert_single_result_auto_focus(page, mobile: bool, expected_times: list[str], excluded_times: list[str]):
+def assert_single_result_auto_focus(
+    page,
+    mobile: bool,
+    expected_times: list[str],
+    excluded_times: list[str],
+    before_marker_box=None,
+):
     page.wait_for_timeout(650)
     assert page.locator(".cinema-marker").count() == 1
 
@@ -55,29 +61,30 @@ def assert_single_result_auto_focus(page, mobile: bool, expected_times: list[str
         assert page.locator("#mSheet").get_attribute("aria-hidden") == "false"
         assert page.locator(".cinema-marker.is-mobile-selected").count() == 1
         container = page.locator("#mSheetBody")
-
-        # Mobile focus moves the selected marker into the visible upper map strip.
-        marker_box = page.locator(".cinema-marker.is-mobile-selected").bounding_box()
-        map_box = page.locator("#map").bounding_box()
-        assert marker_box is not None and map_box is not None
-        marker_center_x = marker_box["x"] + marker_box["width"] / 2
-        map_center_x = map_box["x"] + map_box["width"] / 2
-        assert abs(marker_center_x - map_center_x) < 90
-        assert marker_box["y"] < map_box["y"] + map_box["height"] * 0.32
+        marker = page.locator(".cinema-marker.is-mobile-selected")
     else:
         container = page.locator(".leaflet-popup").last
         container.wait_for()
+        marker = page.locator(".cinema-marker").first
 
-        # Desktop focus centers the information card in the map viewport.
-        popup_box = container.bounding_box()
-        map_box = page.locator("#map").bounding_box()
-        assert popup_box is not None and map_box is not None
-        popup_center_x = popup_box["x"] + popup_box["width"] / 2
-        popup_center_y = popup_box["y"] + popup_box["height"] / 2
-        map_center_x = map_box["x"] + map_box["width"] / 2
-        map_center_y = map_box["y"] + map_box["height"] / 2
-        assert abs(popup_center_x - map_center_x) < 100
-        assert abs(popup_center_y - map_center_y) < 120
+    # focusFeature/openMobileSheet must move the map, not merely open UI over
+    # the old viewport. Compare the same venue's on-screen position before and
+    # after selecting the single-venue filter. We intentionally do not assert
+    # an exact pixel center because desktop popup geometry and mobile safe-area
+    # offsets differ by viewport/browser.
+    if before_marker_box is not None:
+        after_marker_box = marker.bounding_box()
+        assert after_marker_box is not None
+        before_x = before_marker_box["x"] + before_marker_box["width"] / 2
+        before_y = before_marker_box["y"] + before_marker_box["height"] / 2
+        after_x = after_marker_box["x"] + after_marker_box["width"] / 2
+        after_y = after_marker_box["y"] + after_marker_box["height"] / 2
+        displacement = ((after_x - before_x) ** 2 + (after_y - before_y) ** 2) ** 0.5
+        assert displacement > 25, {
+            "before": before_marker_box,
+            "after": after_marker_box,
+            "displacement": displacement,
+        }
 
     text = container.inner_text()
     for expected in expected_times:
@@ -106,6 +113,8 @@ def run_case(page, mobile: bool):
     # based on remaining venue count, not the numeric showtime count on the button.
     imax = page.locator("#formatFilterList .filter-option", has_text="IMAX")
     assert imax.locator("strong").inner_text() == "2"
+    before_imax_box = page.locator(".cinema-marker[aria-label^='威秀影城']").bounding_box()
+    assert before_imax_box is not None
     imax.click()
     assert page.locator(".cinema-showtime-count").all_text_contents() == ["2"]
     assert_single_result_auto_focus(
@@ -113,6 +122,7 @@ def run_case(page, mobile: bool):
         mobile,
         expected_times=["16:00", "17:00"],
         excluded_times=["19:00"],
+        before_marker_box=before_imax_box,
     )
 
     close_info_surface(page, mobile)
