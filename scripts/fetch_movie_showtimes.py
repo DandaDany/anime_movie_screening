@@ -1203,6 +1203,17 @@ def fetch_broadway(conn: sqlite3.Connection, aliases: list[str], show_date: str)
                     start_time = str(item.get("時間", "")).strip()
                     if not re.fullmatch(r"\d{1,2}:\d{2}", start_time):
                         continue
+                    program_id = str(movie.get("programid") or "").strip()
+                    hall = str(item.get("hall") or "").strip()
+                    seat_preview_url = None
+                    if program_id and hall:
+                        session_obj = ",".join(
+                            [code, program_id, show_date, start_time.replace(":", "-"), hall]
+                        )
+                        seat_preview_url = (
+                            "https://www.broadway-cineplex.com.tw/quick-view.html?obj="
+                            + urllib.parse.quote(session_obj, safe=",")
+                        )
                     records.append(
                         ShowtimeRecord(
                             location_id=int(row["id"]),
@@ -1214,6 +1225,7 @@ def fetch_broadway(conn: sqlite3.Connection, aliases: list[str], show_date: str)
                             booking_url=f"https://www.broadway-cineplex.com.tw/book.html?obj={code}&v25080101",
                             source_url=source_url,
                             raw_text=f"{movie.get('cname', '')} {movie.get('ename', '')} {format_text or ''}",
+                            seat_preview_url=seat_preview_url,
                         )
                     )
     return records
