@@ -28,13 +28,13 @@ class MultiCinemaBookingExportTests(unittest.TestCase):
             )
         )
 
-    def test_broadway_exact_tuple_maps_to_quick_view(self):
-        booking = (
+    def test_broadway_session_tuple_fallback_maps_to_quick_view(self):
+        session_tuple_url = (
             "https://www.broadway-cineplex.com.tw/book.html"
             "?obj=Zhubei,0000946,2026-09-26,19-20,0010"
         )
         self.assertEqual(
-            export_geojson.showtime_seat_preview_url("百老匯影城", booking),
+            export_geojson.showtime_seat_preview_url("百老匯影城", session_tuple_url),
             "https://www.broadway-cineplex.com.tw/quick-view.html"
             "?obj=Zhubei,0000946,2026-09-26,19-20,0010",
         )
