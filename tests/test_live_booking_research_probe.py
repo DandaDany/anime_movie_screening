@@ -34,8 +34,7 @@ class CinemaBookingResearchProbe(unittest.TestCase):
                         break
                 session_src = next((x for x in scripts if "/bundles/sessions" in x), "")
                 js = request.get(session_src, timeout=10000).text() if session_src else ""
-                quoted_paths = sorted(set(re.findall(r'["\\\'](\\/[A-Za-z0-9_?=&.{}$()\\-/]{2,180})["\\\']', js)))
-                route_paths = [x for x in quoted_paths if re.search(r'session|film|ticket|book|order|seat|user|login|api', x, re.I)]
+                route_paths = []
                 snippets = {}
                 for kw in ["ajax", "url:", "data-action-url", "window.location", "location.href", "Sessions/", "Ticket", "Order"]:
                     i = js.find(kw)
