@@ -1,0 +1,45 @@
+name: Booking link probe
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    if: github.head_ref == 'feat/expand-direct-booking-and-seat-preview'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Read Broadway booking script
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          import re
+          with sync_playwright() as p:
+              browser=p.chromium.launch(headless=True)
+              page=browser.new_page()
+              page.goto("https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",wait_until="domcontentloaded",timeout=60000)
+              page.wait_for_timeout(3000)
+              scripts=page.locator("script[src]").evaluate_all("els=>els.map(e=>e.src)")
+              print("SCRIPTS",scripts)
+              for url in scripts:
+                  if "book" not in url.lower(): continue
+                  resp=page.request.get(url,timeout=30000)
+                  js=resp.body().decode("utf-8","replace")
+                  print("BOOKJS",resp.status,url,"LEN",len(js))
+                  for term in ("buyticket","bookseat","quick-view","Setobj","window.location","login.html","Common/"):
+                      for m in list(re.finditer(re.escape(term),js,re.I))[:8]:
+                          print("SNIP",term,js[max(0,m.start()-900):m.start()+2200].replace("\n"," ")[:3800])
+              browser.close()
+          PY

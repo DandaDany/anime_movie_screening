@@ -362,6 +362,62 @@ function directVieshowBookingUrl(showtime) {
   return isDirectVieshowBooking ? bookingUrl : "";
 }
 
+function directSessionBookingUrl(showtime) {
+  const bookingUrl = showtime?.booking_url || "";
+  if (!bookingUrl) return "";
+  if (directVieshowBookingUrl(showtime)) return bookingUrl;
+
+  try {
+    const url = new URL(bookingUrl);
+    const host = url.hostname.toLowerCase();
+    const path = url.pathname.toLowerCase();
+
+    if (
+      host.endsWith("miramarcinemas.tw") &&
+      path.includes("/booking/tickettype") &&
+      url.searchParams.get("id") &&
+      url.searchParams.get("session")
+    ) {
+      return bookingUrl;
+    }
+
+    if (
+      host.endsWith("centuryasia.com.tw") &&
+      path.includes("buyticket_process.aspx") &&
+      url.searchParams.get("ProgramID") &&
+      url.searchParams.get("date")
+    ) {
+      return bookingUrl;
+    }
+
+    if (
+      host.endsWith("broadway-cineplex.com.tw") &&
+      url.searchParams.get("obj") &&
+      (path.includes("ticket") || path.includes("book"))
+    ) {
+      const obj = url.searchParams.get("obj") || "";
+      if (obj.split(",").length >= 4) return bookingUrl;
+    }
+
+    if (
+      host.endsWith("skcinemas.com") &&
+      (url.searchParams.get("session") || url.searchParams.get("SessionID"))
+    ) {
+      return bookingUrl;
+    }
+
+    if (
+      host.endsWith("miranewcinemas.com") &&
+      (url.searchParams.get("session") || url.searchParams.get("SessionId"))
+    ) {
+      return bookingUrl;
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}
+
 function seatPreviewMapState(locationId = "") {
   const state = new URLSearchParams();
   if (selectedMovieTitle) state.set("movie", selectedMovieTitle);
@@ -489,7 +545,7 @@ function popupHtml(feature) {
     ? escapeHtml(props.show_date).replaceAll("-", "/")
     : "當日場次";
   const showtimes = visibleShowtimes(feature);
-  const directBookingShowtimes = showtimes.filter((showtime) => directVieshowBookingUrl(showtime));
+  const directBookingShowtimes = showtimes.filter((showtime) => directSessionBookingUrl(showtime));
   const hasDirectBooking = directBookingShowtimes.length > 0;
   const showtimeBlock = showtimes.length
     ? `
@@ -504,7 +560,7 @@ function popupHtml(feature) {
               const inner = `<b>${escapeHtml(showtime.time || "")}</b>${
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
-              const bookingUrl = directVieshowBookingUrl(showtime);
+              const bookingUrl = directSessionBookingUrl(showtime);
               const seatPreviewUrl = vieshowSeatPreviewUrl(showtime, feature);
               if (bookingUrl) {
                 return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-seat-preview-url="${escapeHtml(seatPreviewUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;

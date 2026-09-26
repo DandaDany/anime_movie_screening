@@ -53,6 +53,24 @@ assert(
   }) === "",
   "Generic VIESHOW showtime URL must not be treated as direct booking",
 );
+assert(
+  sandbox.directSessionBookingUrl({
+    booking_url: "https://www.miramarcinemas.tw/Booking/TicketType?id=movie-1&session=437605",
+  }).includes("session=437605"),
+  "Miramar exact TicketType URL should be accepted",
+);
+assert(
+  sandbox.directSessionBookingUrl({
+    booking_url: "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000094&date=2026-09-26+19%3A30",
+  }).includes("ProgramID=0000094"),
+  "Century Asia exact session URL should be accepted",
+);
+assert(
+  sandbox.directSessionBookingUrl({
+    booking_url: "https://www.miramarcinemas.tw/timetable",
+  }) === "",
+  "Generic Miramar timetable URL must not be treated as exact booking",
+);
 const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
   { booking_url: booking1 },
   { properties: { location_id: 7 } },
