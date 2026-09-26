@@ -12,6 +12,7 @@ on:
       - web/seat-preview.js
       - web/seat-preview.css
       - tests/browser_seat_preview_return_state.py
+      - tests/frontend_showtime_booking_cta_test.js
       - tests/fixtures/seat_return_locations.geojson
       - .github/workflows/seat-preview-return-state.yml
 
