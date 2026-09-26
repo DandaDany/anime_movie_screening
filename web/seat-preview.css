@@ -71,6 +71,23 @@ h1 {
   line-height: 1.55;
 }
 
+.official-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #7d4d34;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.official-entry-icon {
+  display: inline-block;
+  font-size: 1.05em;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
 .notice.error {
   border-color: #e4c3c3;
   background: #fff0f0;
