@@ -49,13 +49,8 @@ function formatUpdatedAt(value) {
   return parts.month + "/" + parts.day + " " + parts.hour + ":" + parts.minute;
 }
 
-function officialBookingUrl(cinema, session) {
-  if (!cinema || !session) return "";
-  const query = new URLSearchParams({
-    cinemacode: cinema,
-    txtSessionId: session,
-  });
-  return "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?" + query.toString();
+function officialWebsiteUrl() {
+  return "https://www.vscinemas.com.tw/";
 }
 
 function mapReturnUrl(state) {
@@ -96,7 +91,7 @@ function renderNotice(preview, state) {
     ),
   );
 
-  const officialUrl = officialBookingUrl(state.cinema, state.session);
+  const officialUrl = officialWebsiteUrl();
   if (officialUrl) {
     notice.appendChild(document.createTextNode(" "));
     const link = document.createElement("a");

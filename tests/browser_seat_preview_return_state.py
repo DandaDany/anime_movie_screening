@@ -126,7 +126,7 @@ def assert_seat_page(page, seat_url: str):
     assert official.locator(".official-entry-icon").text_content() == "↗"
     assert (
         official.get_attribute("href")
-        == "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=111"
+        == "https://www.vscinemas.com.tw/"
     )
 
     back = page.locator("#backToMap")
