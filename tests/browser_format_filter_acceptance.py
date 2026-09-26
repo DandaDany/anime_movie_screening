@@ -54,13 +54,18 @@ def run_case(page, mobile: bool):
     assert "數位" in labels
 
     page.locator("#formatFilterList .filter-option", has_text="IMAX").click()
-    page.wait_for_timeout(100)
+    page.wait_for_timeout(500)
     assert page.locator(".cinema-marker").count() == 1
     assert page.locator(".cinema-showtime-count").all_text_contents() == ["1"]
 
-    page.locator(".cinema-marker").first.dispatch_event("click")
-    container = page.locator("#mSheetBody") if mobile else page.locator(".leaflet-popup").last
-    container.wait_for()
+    # Selecting a filter that leaves exactly one cinema should auto-focus it
+    # and open the information surface without another marker click.
+    if mobile:
+        assert page.locator("#mSheet").get_attribute("aria-hidden") == "false"
+        container = page.locator("#mSheetBody")
+    else:
+        container = page.locator(".leaflet-popup").last
+        container.wait_for()
     text = container.inner_text()
     assert "16:00" in text
     assert "19:00" not in text

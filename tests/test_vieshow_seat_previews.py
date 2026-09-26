@@ -55,6 +55,36 @@ class VieshowSeatPreviewTests(unittest.TestCase):
         self.assertEqual(preview["rows"][0][0]["seat"], "A01")
         self.assertEqual(preview["rows"][0][2]["seat"], "A02")
 
+    def test_collect_booking_urls_from_multimovie_geojson(self) -> None:
+        payload = """{
+          "type": "FeatureCollection",
+          "movie_features_by_date": {
+            "電影A": {
+              "2026-09-26": [{
+                "type": "Feature",
+                "properties": {
+                  "showtimes": [{
+                    "time": "19:25",
+                    "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=222"
+                  }]
+                },
+                "geometry": {"type": "Point", "coordinates": [121.5, 25.0]}
+              }]
+            }
+          },
+          "features": []
+        }"""
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "locations.geojson"
+            path.write_text(payload, encoding="utf-8")
+            self.assertEqual(
+                seats.collect_booking_urls(path),
+                [
+                    "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx"
+                    "?cinemacode=1&txtSessionId=222"
+                ],
+            )
+
     def test_collect_booking_urls_from_geojson(self) -> None:
         payload = """{
           "type": "FeatureCollection",
