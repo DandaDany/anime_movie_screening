@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>座位表｜電影地圖</title>
-  <link rel="stylesheet" href="seat-preview.css">
+  <link rel="stylesheet" href="seat-preview.css?v=20260926b">
 </head>
 <body>
   <main class="seat-page">
     <header class="seat-head">
-      <a class="back-link" href="./" aria-label="回到電影地圖">← 電影地圖</a>
+      <a class="back-link" id="backToMap" href="./" aria-label="回到電影地圖">← 電影地圖</a>
       <div>
         <p class="eyebrow">VIESHOW 座位快照</p>
         <h1 id="movieTitle">載入座位資訊中…</h1>
@@ -35,10 +35,9 @@
       <div class="screen">銀幕位置</div>
       <div id="seatMap" class="seat-map" aria-label="座位表"></div>
 
-      <p id="updatedAt" class="updated-at"></p>
     </section>
   </main>
 
-  <script src="seat-preview.js"></script>
+  <script src="seat-preview.js?v=20260926b"></script>
 </body>
 </html>

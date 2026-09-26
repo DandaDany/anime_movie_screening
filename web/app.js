@@ -362,7 +362,27 @@ function directVieshowBookingUrl(showtime) {
   return isDirectVieshowBooking ? bookingUrl : "";
 }
 
-function vieshowSeatPreviewUrl(showtime) {
+function seatPreviewMapState(locationId = "") {
+  const state = new URLSearchParams();
+  if (selectedMovieTitle) state.set("movie", selectedMovieTitle);
+  if (selectedDate) state.set("date", selectedDate);
+  if (selectedFormat) state.set("format", selectedFormat);
+  if (selectedChain) state.set("chain", selectedChain);
+  if (selectedCity) state.set("city", selectedCity);
+  if (timePeriod && timePeriod !== "all") state.set("period", timePeriod);
+  if (timeMode === "manual") {
+    state.set("timeMode", "manual");
+    state.set("earliest", String(timeEarliest));
+  }
+  const searchValue = activeSearchInput()?.value?.trim() || "";
+  if (searchValue) state.set("q", searchValue);
+  if (locationId !== "" && locationId !== null && locationId !== undefined) {
+    state.set("location", String(locationId));
+  }
+  return state;
+}
+
+function vieshowSeatPreviewUrl(showtime, feature = null) {
   const bookingUrl = directVieshowBookingUrl(showtime);
   if (!bookingUrl) return "";
   try {
@@ -374,6 +394,8 @@ function vieshowSeatPreviewUrl(showtime) {
       cinemacode: cinemaCode,
       session: sessionId,
     });
+    const returnState = seatPreviewMapState(feature?.properties?.location_id ?? "");
+    for (const [key, value] of returnState) query.set(key, value);
     return `seat-preview.html?${query.toString()}`;
   } catch {
     return "";
@@ -483,7 +505,7 @@ function popupHtml(feature) {
                 tag ? `<small>${escapeHtml(tag)}</small>` : ""
               }`;
               const bookingUrl = directVieshowBookingUrl(showtime);
-              const seatPreviewUrl = vieshowSeatPreviewUrl(showtime);
+              const seatPreviewUrl = vieshowSeatPreviewUrl(showtime, feature);
               if (bookingUrl) {
                 return `<button type="button" class="st-chip st-chip-select" data-booking-url="${escapeHtml(bookingUrl)}" data-seat-preview-url="${escapeHtml(seatPreviewUrl)}" data-showtime-time="${escapeHtml(showtime.time || "")}" aria-pressed="false" title="選擇此場次" aria-label="${escapeHtml(`${showtime.time || ""} 場次`)}">${inner}</button>`;
               }
@@ -651,6 +673,7 @@ function renderFilterButtons(container, items, selectedValue, onSelect) {
     button.className = "filter-option";
     button.type = "button";
     button.classList.toggle("is-selected", value === selectedValue);
+    button.setAttribute("aria-pressed", value === selectedValue ? "true" : "false");
     button.innerHTML = `
       <span>${escapeHtml(value)}</span>
       <strong>${count}</strong>
@@ -771,6 +794,58 @@ function normalizeMovieData(data) {
   availableDates = availableDatesAcrossMovies(movieFeaturesByTitleAndDate);
   selectedDate = selectedDateForMovie(data.show_date, availableDates, today);
   refreshMovieDateData();
+}
+
+function restoreMapStateFromUrl() {
+  const query = new URLSearchParams(window.location.search);
+  if (query.get("restore") !== "1") {
+    return { restored: false, locationId: null };
+  }
+
+  startupViewportCanceled = true;
+
+  const requestedDate = query.get("date") || "";
+  if (requestedDate && availableDates.includes(requestedDate)) {
+    selectedDate = requestedDate;
+  }
+  refreshMovieDateData();
+
+  const requestedMovie = query.get("movie") || "";
+  if (requestedMovie && movieFeaturesByTitle.has(requestedMovie)) {
+    selectedMovieTitle = requestedMovie;
+    features = movieFeaturesByTitle.get(requestedMovie) || [];
+  }
+
+  selectedFormat = query.get("format") || "";
+  selectedChain = query.get("chain") || "";
+  selectedCity = query.get("city") || "";
+
+  const requestedPeriod = query.get("period") || "all";
+  setQuickPeriod(PERIOD_RANGES[requestedPeriod] ? requestedPeriod : "all");
+
+  const requestedEarliest = Number(query.get("earliest"));
+  if (
+    query.get("timeMode") === "manual" &&
+    Number.isFinite(requestedEarliest) &&
+    requestedEarliest >= 0 &&
+    requestedEarliest <= 1440
+  ) {
+    setManualEarliest(requestedEarliest, false);
+  } else {
+    setAutoTimeMode(false);
+  }
+
+  const keyword = query.get("q") || "";
+  searchInput.value = keyword;
+  clearSearchButton.hidden = !keyword;
+  mSearchInput.value = keyword;
+  mSearchClear.hidden = !keyword;
+
+  const parsedLocation = Number(query.get("location"));
+  return {
+    restored: true,
+    locationId: Number.isFinite(parsedLocation) && parsedLocation > 0 ? parsedLocation : null,
+  };
 }
 
 function refreshMovieDateData() {
@@ -1198,11 +1273,22 @@ async function loadData() {
   }
   const data = await response.json();
   normalizeMovieData(data);
+  const restoreState = restoreMapStateFromUrl();
   auditShowtimeSpecs();
   renderDateChips();
   renderMovieOptions();
   renderFilters();
-  applyFilters();
+  const filtered = applyFilters();
+
+  if (restoreState.restored) {
+    window.MuseDiscovery?.close?.();
+  }
+  if (restoreState.locationId) {
+    const feature = filtered.find(
+      (item) => Number(item.properties?.location_id) === restoreState.locationId,
+    );
+    if (feature) requestAnimationFrame(() => focusFeature(feature));
+  }
 }
 
 movieSelect.addEventListener("change", () => selectMovie(movieSelect.value));
