@@ -77,6 +77,14 @@ NANTOU_URL = "https://www.nantoutheater.com/movie_order?search_date={show_date}&
 SHANMING_URL = "https://www.shanmingcinema.com.tw/showtimes.php"
 TIMES_URL = "https://www.timescinema.com.tw/times.php"
 
+
+def showtimes_date_booking_url(corporation_id: object, program_id: object, show_date: str) -> str:
+    """Build ShowTimes' cinema + movie + date ticketing entry."""
+    return (
+        "https://www.showtimes.com.tw/ticketing/selectEvents/"
+        f"{corporation_id}/{program_id}?date={show_date}"
+    )
+
 _REQUEST_CACHE: dict[tuple[object, ...], bytes] = {}
 _RENDER_CACHE: dict[tuple[str, int], str] = {}
 _DATE_RENDER_CACHE: dict[tuple[str, str], str] = {}
@@ -494,7 +502,6 @@ def fetch_showtimes_showtimes_api(
         if not location:
             continue
         venue_by_id = {int(venue["id"]): venue.get("room") for venue in bundle.get("venues", [])}
-        booking_url = f"https://www.showtimes.com.tw/ticketing?cid={corporation_id}&date={show_date}&category=popular"
         for event in bundle.get("events", []):
             program_id = int(event.get("programId") or 0)
             if program_id not in target_ids:
@@ -506,6 +513,7 @@ def fetch_showtimes_showtimes_api(
             meta = event.get("meta") or {}
             format_text = meta.get("format")
             program = program_by_id.get(program_id, {})
+            booking_url = showtimes_date_booking_url(corporation_id, program_id, show_date)
             records.append(
                 ShowtimeRecord(
                     location_id=int(location["id"]),
