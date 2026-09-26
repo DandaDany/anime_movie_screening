@@ -361,7 +361,7 @@ function directShowtimeBookingUrl(showtime) {
     /vscinemas\.com\.tw\/vsTicketing\/ticketing\/booking\.aspx.*[?&]txtSessionId=/i,
     /miramarcinemas\.tw\/Booking\/TicketType\?.*[?&]session=/i,
     /centuryasia\.com\.tw\/.*buyticket_process\.aspx\?.*(?:[?&]eventsn=|[?&]computerid=)/i,
-    /broadway-cineplex\.com\.tw\/.*(?:book|ticket).*\.html\?.*[?&]obj=/i,
+    /broadway-cineplex\.com\.tw\/.*(?:book|ticket).*\.html\?.*[?&]obj=[^&#]*,[^&#]*,[^&#]*,[^&#]*,[^&#]*/i,
     /skcinemas\.com\/.*(?:booking|ticket).*\?.*(?:[?&]SessionID=|[?&]session=)/i,
     /miranewcinemas\.com\/.*(?:Booking|Order).*\?.*(?:[?&]SessionId=|[?&]session=)/i,
   ];
