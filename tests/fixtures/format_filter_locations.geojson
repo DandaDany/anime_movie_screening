@@ -22,9 +22,10 @@
             "city":"臺北市",
             "movie_title":"版本測試電影",
             "show_date":"2026-08-12",
-            "showtime_count":2,
+            "showtime_count":3,
             "showtimes":[
               {"time":"16:00","format":"(IMAX)版本測試電影","booking_url":"https://example.test/a/1600"},
+              {"time":"17:00","format":"(IMAX)版本測試電影","booking_url":"https://example.test/a/1700"},
               {"time":"19:00","format":"數位","booking_url":"https://example.test/a/1900"}
             ]
           }
