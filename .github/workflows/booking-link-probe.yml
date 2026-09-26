@@ -1,0 +1,78 @@
+name: Booking link probe
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    if: github.head_ref == 'feat/expand-direct-booking-and-seat-preview'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Probe public booking flows
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          import json, re
+
+          targets = [
+              ("broadway", "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101"),
+              ("century", "https://www.centuryasia.com.tw/book.html?sid=Nangang"),
+              ("sk", "https://www.skcinemas.com/films?c=1001"),
+              ("miranew", "https://www.miranewcinemas.com/Booking/Timetable"),
+              ("miramar", "https://www.miramarcinemas.tw/Timetable/Index"),
+          ]
+
+          def interesting(s):
+              low = (s or "").lower()
+              return any(x in low for x in ["book", "ticket", "seat", "session", "quick", "order", "vista", "showtime"])
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              for name, url in targets:
+                  print("\n===== TARGET", name, url, "=====")
+                  context = browser.new_context(locale="zh-TW", timezone_id="Asia/Taipei")
+                  page = context.new_page()
+                  reqs = []
+                  def on_request(req):
+                      if interesting(req.url):
+                          reqs.append((req.method, req.url, req.post_data or ""))
+                  page.on("request", on_request)
+                  try:
+                      resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
+                      page.wait_for_timeout(7000)
+                      print("HTTP", resp.status if resp else None, "FINAL", page.url, "TITLE", page.title())
+                      print("REQUESTS")
+                      for row in reqs[-80:]:
+                          print(json.dumps(row, ensure_ascii=False)[:2000])
+                      print("ELEMENTS")
+                      rows = page.locator("a,button,[onclick],[data-session],[data-sessionid],[data-id]").evaluate_all(r"""
+                      els => els.map((el, i) => ({
+                        i,
+                        tag: el.tagName,
+                        text: (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0,160),
+                        href: el.href || el.getAttribute("href") || "",
+                        onclick: el.getAttribute("onclick") || "",
+                        data: Object.fromEntries([...el.attributes].filter(a => a.name.startsWith("data-")).map(a => [a.name,a.value]))
+                      })).filter(x => /\d{1,2}:\d{2}|座位|訂票|ticket|seat|quick|buy/i.test(x.text+" "+x.href+" "+x.onclick+" "+JSON.stringify(x.data))).slice(0,250)
+                      """)
+                      for row in rows:
+                          print(json.dumps(row, ensure_ascii=False)[:2500])
+                  except Exception as exc:
+                      print("ERROR", type(exc).__name__, str(exc))
+                  finally:
+                      context.close()
+              browser.close()
+          PY
