@@ -121,9 +121,9 @@ def assert_seat_page(page, seat_url: str):
     notice = page.locator("#notice")
     notice_text = notice.inner_text()
     assert "座位資訊為09/26 14:05更新的資訊，實際可售狀態仍以威秀訂票頁為準。" in notice_text
-    assert "官網入口 ↗" in notice_text
-
     official = notice.locator(".official-entry")
+    assert "官網入口" in official.inner_text()
+    assert official.locator(".official-entry-icon").text_content() == "↗"
     assert (
         official.get_attribute("href")
         == "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=111"
