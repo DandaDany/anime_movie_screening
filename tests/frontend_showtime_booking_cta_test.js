@@ -208,19 +208,31 @@ assert(
   official._label.textContent === "座位表入口",
   "Official CTA should become 座位表入口 after selecting a showtime",
 );
-assert(
-  official.href === "seat-preview.html?cinemacode=1&session=111",
-  "Seat preview CTA should follow selected session",
-);
+{
+  const url = new URL(official.href, "https://example.test/");
+  assert(
+    url.searchParams.get("cinemacode") === "1" &&
+      url.searchParams.get("session") === "111" &&
+      url.searchParams.get("movie") === "測試電影" &&
+      url.searchParams.get("date") === "2026-09-27" &&
+      url.searchParams.get("format") === "IMAX" &&
+      url.searchParams.get("location") === "7",
+    "Seat preview CTA should follow selected session and preserve map state",
+  );
+}
 
 chip2.listeners.click();
 assert(!chip1.classList.contains("is-selected"), "Previous showtime should be unselected");
 assert(chip2.classList.contains("is-selected"), "Second showtime should become selected");
 assert(cta.href.includes("txtSessionId=222"), "Booking CTA should switch to newly selected showtime URL");
-assert(
-  official.href === "seat-preview.html?cinemacode=1&session=222",
-  "Seat preview CTA should switch to newly selected showtime",
-);
+{
+  const url = new URL(official.href, "https://example.test/");
+  assert(
+    url.searchParams.get("cinemacode") === "1" &&
+      url.searchParams.get("session") === "222",
+    "Seat preview CTA should switch to newly selected showtime",
+  );
+}
 assert(
   cta.attributes["aria-label"] === "21:40 場次前往訂票",
   "Booking CTA aria-label should follow selected time",
