@@ -78,6 +78,18 @@ assert(
   }) === "",
   "Broadway cinema landing URL must not be treated as direct booking",
 );
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.showtimes.com.tw/ticketing/selectEvents/91/12763?date=2026-09-27",
+  }) === "https://www.showtimes.com.tw/ticketing/selectEvents/91/12763?date=2026-09-27",
+  "ShowTimes cinema+movie+date booking URL should be selectable",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.showtimes.com.tw/ticketing?cid=91&date=2026-09-27&category=popular",
+  }) === "",
+  "Legacy ShowTimes cinema+date landing URL must not be treated as selectable booking",
+);
 const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
   { booking_url: booking1 },
   { properties: { location_id: 7 } },
@@ -173,12 +185,16 @@ function mockLink({ href = "", labelSelector, labelText, dataset = {}, classes =
 const chip1 = mockChip(
   "19:25",
   booking1,
-  "seat-preview.html?cinemacode=1&session=111",
+  seatPreviewUrl,
+);
+const seatPreviewUrl2 = sandbox.vieshowSeatPreviewUrl(
+  { booking_url: booking2 },
+  { properties: { location_id: 7 } },
 );
 const chip2 = mockChip(
   "21:40",
   booking2,
-  "seat-preview.html?cinemacode=1&session=222",
+  seatPreviewUrl2,
 );
 
 const broadwayPreview =

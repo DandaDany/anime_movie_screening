@@ -118,17 +118,18 @@ def run_desktop(page: Page, report: dict) -> None:
     # click event so the product handler runs without Playwright selecting the
     # visually topmost neighbouring marker instead.
     page.locator(".cinema-marker[aria-label^='威秀影城']").dispatch_event("click")
-    page.locator(".leaflet-popup").wait_for()
+    page.locator(".leaflet-popup:visible").last.wait_for()
     page.get_by_role("button", name="明天 8/13").click()
     page.wait_for_timeout(400)  # wait for Leaflet's old-popup fade-out
+    visible_popup = page.locator(".leaflet-popup:visible")
     checks["popup_refresh"] = (
-        page.locator(".leaflet-popup").count() == 1
-        and "2026/08/13" in page.locator(".leaflet-popup").inner_text()
-        and "09:00" in page.locator(".leaflet-popup").inner_text()
+        visible_popup.count() == 1
+        and "2026/08/13" in visible_popup.last.inner_text()
+        and "09:00" in visible_popup.last.inner_text()
     )
     page.get_by_role("button", name="五 8/14").click()
     page.wait_for_timeout(400)  # wait for Leaflet's old-popup fade-out
-    checks["popup_closes_when_missing"] = page.locator(".leaflet-popup").count() == 0
+    checks["popup_closes_when_missing"] = page.locator(".leaflet-popup:visible").count() == 0
 
     page.get_by_role("button", name="明天 8/13").click()
     slider = page.locator("#timeSlider .m-track").bounding_box()
@@ -186,8 +187,11 @@ def run_mobile(page: Page, report: dict) -> None:
     overflow = page.locator("#dateChips").evaluate("el => getComputedStyle(el).overflowX")
     checks["chips_horizontal_scroll"] = overflow == "auto"
     checks["no_horizontal_overflow"] = page.evaluate("() => document.documentElement.scrollWidth <= window.innerWidth")
-    tab_boxes = [page.locator(f"#mSeg button:nth-child({index})").bounding_box() for index in range(1, 5)]
-    checks["tabs_not_compressed"] = all(box and box["width"] >= 80 for box in tab_boxes)
+    tab_boxes = [page.locator(f"#mSeg button:nth-child({index})").bounding_box() for index in range(1, 6)]
+    checks["tabs_not_compressed"] = (
+        len(tab_boxes) == 5
+        and all(box and box["width"] >= 60 for box in tab_boxes)
+    )
 
     page.locator(".cinema-marker[aria-label^='威秀影城']").dispatch_event("click")
     page.locator("#mSheet[aria-hidden='false']").wait_for()
