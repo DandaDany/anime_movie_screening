@@ -292,6 +292,29 @@ assert(cta._label.textContent === "場次入口", "Booking CTA should return to 
 assert(official.href === officialUrl, "Secondary CTA should return to official URL");
 assert(official._label.textContent === "官方網站", "Secondary CTA should return to 官方網站");
 
+const previewOnlyChip = mockChip("19:20", "", broadwayPreview);
+const previewOnlyOfficial = mockLink({
+  href: "https://www.broadway-cineplex.com.tw/",
+  labelSelector: "[data-official-cta-label]",
+  labelText: "官方網站",
+  dataset: { officialHref: "https://www.broadway-cineplex.com.tw/" },
+  classes: ["popup-link-ghost"],
+});
+const previewOnlyRoot = {
+  querySelectorAll(selector) {
+    return selector === ".st-chip-select" ? [previewOnlyChip] : [];
+  },
+  querySelector(selector) {
+    if (selector === "[data-booking-cta]") return null;
+    if (selector === "[data-official-cta]") return previewOnlyOfficial;
+    return null;
+  },
+};
+sandbox.bindShowtimeBookingInteraction(previewOnlyRoot);
+previewOnlyChip.listeners.click();
+assert(previewOnlyChip.classList.contains("is-selected"), "Preview-only showtime should work without a dynamic booking CTA");
+assert(previewOnlyOfficial.href === broadwayPreview, "Preview-only cinema should expose the exact seat preview while keeping its static booking entry");
+assert(previewOnlyOfficial._label.textContent === "座位表入口", "Preview-only cinema should relabel the secondary CTA");
 assert(
   source.includes('data-booking-cta-label>場次入口</span>'),
   "Initial booking CTA should still render 場次入口",
@@ -303,6 +326,10 @@ assert(
 assert(
   source.includes('class="st-chip st-chip-select"'),
   "Booking or seat-preview showtimes should render as selectable chips, not outbound links",
+);
+assert(
+  source.includes("const locationLink = hasDirectBooking"),
+  "Preview-only cinemas should keep their normal booking entry instead of rendering a disabled primary CTA",
 );
 
 console.log("frontend_showtime_booking_cta_test: ok");
