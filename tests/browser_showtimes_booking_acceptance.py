@@ -113,7 +113,7 @@ def main() -> int:
             assert showtime.count() == 1
             assert showtime.get_attribute("aria-pressed") == "false"
 
-            showtime.click()
+            showtime.dispatch_event("click")
             assert showtime.get_attribute("aria-pressed") == "true"
 
             cta = popup.locator("[data-booking-cta]")
