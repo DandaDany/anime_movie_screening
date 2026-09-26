@@ -97,6 +97,7 @@ class ShowtimeRecord:
     booking_url: str | None
     source_url: str
     raw_text: str
+    seat_preview_url: str | None = None
 
 
 def normalize_text(value: str | None) -> str:
@@ -430,14 +431,16 @@ def save_showtimes(conn: sqlite3.Connection, movie_id: int, run_id: int, records
                 format,
                 language,
                 booking_url,
+                seat_preview_url,
                 source_url,
                 raw_text
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(movie_id, location_id, show_date, start_time, ifnull(format, ''), ifnull(language, ''), ifnull(subtitle, ''), ifnull(booking_url, ''))
             DO UPDATE SET
                 crawl_run_id = excluded.crawl_run_id,
                 auditorium = excluded.auditorium,
+                seat_preview_url = excluded.seat_preview_url,
                 source_url = excluded.source_url,
                 raw_text = excluded.raw_text
             """,
@@ -451,6 +454,7 @@ def save_showtimes(conn: sqlite3.Connection, movie_id: int, run_id: int, records
                 record.format,
                 record.language,
                 record.booking_url,
+                record.seat_preview_url,
                 record.source_url,
                 record.raw_text,
             ),
