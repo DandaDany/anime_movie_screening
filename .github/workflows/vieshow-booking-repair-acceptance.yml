@@ -8,6 +8,8 @@ on:
       - .github/workflows/vieshow-booking-repair-acceptance.yml
       - scripts/enrich_vieshow_geojson_booking.py
       - scripts/verify_vieshow_direct_booking.py
+      - web/app.js
+      - tests/browser_format_filter_acceptance.py
       - tests/test_enrich_vieshow_geojson_booking.py
       - tests/test_verify_vieshow_direct_booking.py
 
