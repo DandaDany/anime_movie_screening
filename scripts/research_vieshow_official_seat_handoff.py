@@ -248,42 +248,29 @@ def main() -> int:
 
         out["api_sample"]["chosen"] = chosen
 
-        # Drive the official quick-booking UI using the real name attributes.
+        # Verify the official handoff using VIESHOW's own showseats() function.
         if chosen:
             try:
-                def wait_option(selector: str, value: str):
-                    page.wait_for_function(
-                        """([selector, value]) => {
-                            const el = document.querySelector(selector);
-                            return !!el && [...el.options].some(o => o.value === value);
-                        }""",
-                        arg=[selector, value],
-                        timeout=10_000,
-                    )
-
-                wait_option("[name=cinema]", chosen["cinema_value"])
-                page.select_option("[name=cinema]", value=chosen["cinema_value"])
-                page.locator("[name=cinema]").dispatch_event("change")
-
-                wait_option("[name=movie]", chosen["movie_value"])
-                page.select_option("[name=movie]", value=chosen["movie_value"])
-                page.locator("[name=movie]").dispatch_event("change")
-
-                wait_option("[name=date]", chosen["date_value"])
-                page.select_option("[name=date]", value=chosen["date_value"])
-                page.locator("[name=date]").dispatch_event("change")
-
-                wait_option("[name=session]", chosen["session_value"])
-                page.select_option("[name=session]", value=chosen["session_value"])
-                page.locator("[name=session]").dispatch_event("change")
-                page.wait_for_timeout(500)
+                page.evaluate(
+                    """sessionValue => {
+                        const select = document.querySelector('[name=session]');
+                        if (!select) throw new Error('session select not found');
+                        select.innerHTML = '';
+                        const option = document.createElement('option');
+                        option.value = sessionValue;
+                        option.textContent = 'research-session';
+                        select.appendChild(option);
+                        select.value = sessionValue;
+                        if (typeof showseats !== 'function') throw new Error('showseats() missing');
+                        showseats();
+                    }""",
+                    chosen["session_value"],
+                )
+                page.wait_for_timeout(300)
 
                 out["dom"]["after_selection"] = {
                     "url": page.url,
-                    "quick_booking_values": {
-                        name: page.locator(f"[name={name}]").input_value()
-                        for name in ("cinema", "movie", "date", "session")
-                    },
+                    "session_value": page.locator("[name=session]").input_value(),
                     "seat_href": page.locator("#SessionSeats").get_attribute("href"),
                     "seat_target": page.locator("#SessionSeats").get_attribute("target"),
                     "seat_outer_html": page.locator("#SessionSeats").evaluate("el => el.outerHTML"),
@@ -310,7 +297,8 @@ def main() -> int:
                     "seat_grid_count": result_page.locator("#GridViewSessionSeats").count(),
                 }
 
-                # Test whether VIESHOW supports external URL prefill for the four quick-booking values.
+                # Test whether URL query parameters can prefill the four official
+                # quick-booking controls on a fresh VIESHOW page.
                 prefill_query = urllib.parse.urlencode(
                     {
                         "cinema": chosen["cinema_value"],
@@ -335,9 +323,9 @@ def main() -> int:
                     else None,
                 }
 
-                # Inspect the separate official search_seat GET form. This is not the
-                # quick-booking form, but verify whether it can serve as a supported
-                # prefill handoff.
+                # The homepage has a second GET form posting to search_seat.aspx.
+                # Record its actual fields so we can tell whether it is a usable
+                # four-field quick-booking handoff or a different search feature.
                 out["dom"]["search_seat_form_controls"] = page.locator(
                     "form[action*='search_seat.aspx'] input, form[action*='search_seat.aspx'] select"
                 ).evaluate_all(
@@ -347,7 +335,7 @@ def main() -> int:
                         type: el.getAttribute('type'),
                         value: el.value,
                         options: el.tagName === 'SELECT'
-                          ? [...el.options].slice(0,5).map(o => ({text:o.textContent.trim(), value:o.value}))
+                          ? [...el.options].slice(0,8).map(o => ({text:o.textContent.trim(), value:o.value}))
                           : null
                     }))"""
                 )
@@ -369,6 +357,7 @@ def main() -> int:
                         for name in ("cinema", "movie", "date", "session")
                         if search_page.locator(f"[name={name}]").count()
                     },
+                    "body_excerpt": search_page.locator("body").inner_text()[:1000],
                 }
             except Exception as exc:
                 out["errors"].append(f"drive_quick_booking: {type(exc).__name__}: {exc}")
