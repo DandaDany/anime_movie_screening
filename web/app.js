@@ -923,10 +923,10 @@ function focusSingleFilteredFeature(feature) {
   zoomedInId = props.location_id;
   const zoom = Math.max(map.getZoom(), FOCUS_ZOOM);
 
-  // Filter selection is an explicit navigation action. Center the remaining
-  // venue deterministically instead of relying on popup geometry measured
-  // before/while Leaflet is animating.
-  map.flyTo(marker.getLatLng(), zoom, { duration: 0.45 });
+  // Filter selection is an explicit navigation action. Move first, then open
+  // the information card. Opening a popup while flyTo is still animating can
+  // leave the viewport at its previous position even though the card opens.
+  map.setView(marker.getLatLng(), zoom, { animate: false });
   marker.openPopup();
 }
 
