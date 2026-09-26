@@ -62,7 +62,9 @@ class CinemaBookingResearchProbe(unittest.TestCase):
             )
             try:
                 fetch_site(request, "SK_PRODUCTION", "https://www.skcinemas.com/films?c=1001")
-                fetch_site(request, "SK_MIRROR", "https://skcwww.bonjays.com/")
+                fetch_site(request, "SK_MIRROR_HOME", "https://skcwww.bonjays.com/")
+                fetch_site(request, "SK_MIRROR_SESSIONS", "https://skcwww.bonjays.com/Sessions/Sessions")
+                fetch_site(request, "SK_MIRROR_FILMS", "https://skcwww.bonjays.com/Films/Films?filmType=NowShowing")
             finally:
                 request.dispose()
         self.assertTrue(True)
