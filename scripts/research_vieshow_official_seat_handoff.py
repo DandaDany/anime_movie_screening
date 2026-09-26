@@ -248,103 +248,128 @@ def main() -> int:
 
         out["api_sample"]["chosen"] = chosen
 
-        # If the homepage has the known quick-booking selects, drive them exactly as a user would.
+        # Drive the official quick-booking UI using the real name attributes.
         if chosen:
-            selectors = {
-                "cinema": "#CinemaNameTWInfoS",
-                "movie": "#MovieNameTWInfoS",
-                "date": "#DateNameTWInfoS",
-                "session": "#SessionNameTWInfoS",
-            }
             try:
-                if page.locator(selectors["cinema"]).count():
-                    page.select_option(selectors["cinema"], value=chosen["cinema_value"])
-                    page.locator(selectors["cinema"]).dispatch_event("change")
-                    page.wait_for_timeout(1000)
+                def wait_option(selector: str, value: str):
+                    page.wait_for_function(
+                        """([selector, value]) => {
+                            const el = document.querySelector(selector);
+                            return !!el && [...el.options].some(o => o.value === value);
+                        }""",
+                        [selector, value],
+                        timeout=10_000,
+                    )
 
-                    movie_select = page.locator(selectors["movie"])
-                    if movie_select.count():
-                        values = movie_select.locator("option").evaluate_all(
-                            "opts => opts.map(o => ({text:o.textContent.trim(), value:o.value}))"
-                        )
-                        target = next(
-                            (x for x in values if x["value"] == chosen["movie_value"]),
-                            None,
-                        )
-                        if target:
-                            page.select_option(selectors["movie"], value=target["value"])
-                            page.locator(selectors["movie"]).dispatch_event("change")
-                            page.wait_for_timeout(1000)
+                wait_option("[name=cinema]", chosen["cinema_value"])
+                page.select_option("[name=cinema]", value=chosen["cinema_value"])
+                page.locator("[name=cinema]").dispatch_event("change")
 
-                    date_select = page.locator(selectors["date"])
-                    if date_select.count():
-                        values = date_select.locator("option").evaluate_all(
-                            "opts => opts.map(o => ({text:o.textContent.trim(), value:o.value}))"
-                        )
-                        target = next(
-                            (x for x in values if x["value"] == chosen["date_value"] or x["text"] == chosen["date_value"]),
-                            None,
-                        )
-                        if target:
-                            page.select_option(selectors["date"], value=target["value"])
-                            page.locator(selectors["date"]).dispatch_event("change")
-                            page.wait_for_timeout(1000)
+                wait_option("[name=movie]", chosen["movie_value"])
+                page.select_option("[name=movie]", value=chosen["movie_value"])
+                page.locator("[name=movie]").dispatch_event("change")
 
-                    session_select = page.locator(selectors["session"])
-                    if session_select.count():
-                        values = session_select.locator("option").evaluate_all(
-                            "opts => opts.map(o => ({text:o.textContent.trim(), value:o.value}))"
-                        )
-                        target = next(
-                            (x for x in values if x["value"] == chosen["session_value"]),
-                            None,
-                        )
-                        if target:
-                            page.select_option(selectors["session"], value=target["value"])
-                            page.locator(selectors["session"]).dispatch_event("change")
-                            page.wait_for_timeout(500)
+                wait_option("[name=date]", chosen["date_value"])
+                page.select_option("[name=date]", value=chosen["date_value"])
+                page.locator("[name=date]").dispatch_event("change")
+
+                wait_option("[name=session]", chosen["session_value"])
+                page.select_option("[name=session]", value=chosen["session_value"])
+                page.locator("[name=session]").dispatch_event("change")
+                page.wait_for_timeout(500)
 
                 out["dom"]["after_selection"] = {
                     "url": page.url,
-                    "selects": page.locator("select").evaluate_all(
-                        """els => els.map(el => ({id:el.id, value:el.value}))"""
-                    ),
-                    "seat_controls": page.locator("a,button,input").evaluate_all(
-                        """els => els.map(el => ({
-                            tag:el.tagName,
-                            id:el.id,
-                            text:(el.textContent || el.value || '').trim(),
-                            href:el.getAttribute('href'),
-                            onclick:el.getAttribute('onclick')
-                        })).filter(x => /座位/.test(x.text) || /SessionSeats/i.test(x.href || '') || /SessionSeats/i.test(x.onclick || ''))"""
-                    ),
+                    "quick_booking_values": {
+                        name: page.locator(f"[name={name}]").input_value()
+                        for name in ("cinema", "movie", "date", "session")
+                    },
+                    "seat_href": page.locator("#SessionSeats").get_attribute("href"),
+                    "seat_target": page.locator("#SessionSeats").get_attribute("target"),
+                    "seat_outer_html": page.locator("#SessionSeats").evaluate("el => el.outerHTML"),
                 }
 
-                # Click a visible "查看座位" control naturally and inspect resulting navigation.
-                seat_candidates = page.locator("a,button,input").filter(has_text="查看座位")
-                if not seat_candidates.count():
-                    seat_candidates = page.locator("input[value*='查看座位']")
-                if seat_candidates.count():
-                    popup_pages = []
-                    context.on("page", lambda pg: popup_pages.append(pg))
-                    before = page.url
-                    seat_candidates.first.click(timeout=10_000)
-                    page.wait_for_timeout(2500)
-                    result_page = popup_pages[-1] if popup_pages else page
-                    try:
-                        result_page.wait_for_load_state("domcontentloaded", timeout=10_000)
-                    except Exception:
-                        pass
-                    out["dom"]["after_seat_click"] = {
-                        "before_url": before,
-                        "current_page_url": page.url,
-                        "popup_count": len(popup_pages),
-                        "result_url": result_page.url,
-                        "result_title": result_page.title(),
-                        "result_referrer": result_page.evaluate("document.referrer"),
-                    }
-                else:
-                    out["errors"].append("No visible 查看座位 control found after selection")
+                popup_pages = []
+                context.on("page", lambda pg: popup_pages.append(pg))
+                seat_link = page.locator("#SessionSeats")
+                before = page.url
+                seat_link.click(timeout=10_000)
+                page.wait_for_timeout(2500)
+                result_page = popup_pages[-1] if popup_pages else page
+                try:
+                    result_page.wait_for_load_state("domcontentloaded", timeout=10_000)
+                except Exception:
+                    pass
+                out["dom"]["after_seat_click"] = {
+                    "before_url": before,
+                    "current_page_url": page.url,
+                    "popup_count": len(popup_pages),
+                    "result_url": result_page.url,
+                    "result_title": result_page.title(),
+                    "result_referrer": result_page.evaluate("document.referrer"),
+                    "seat_grid_count": result_page.locator("#GridViewSessionSeats").count(),
+                }
+
+                # Test whether VIESHOW supports external URL prefill for the four quick-booking values.
+                prefill_query = urllib.parse.urlencode(
+                    {
+                        "cinema": chosen["cinema_value"],
+                        "movie": chosen["movie_value"],
+                        "date": chosen["date_value"],
+                        "session": chosen["session_value"],
+                    },
+                    safe="|/",
+                )
+                prefill = context.new_page()
+                prefill.goto(HOME + "?" + prefill_query, wait_until="domcontentloaded", timeout=60_000)
+                prefill.wait_for_timeout(2500)
+                out["dom"]["homepage_query_prefill"] = {
+                    "url": prefill.url,
+                    "values": {
+                        name: prefill.locator(f"[name={name}]").input_value()
+                        for name in ("cinema", "movie", "date", "session")
+                        if prefill.locator(f"[name={name}]").count()
+                    },
+                    "seat_href": prefill.locator("#SessionSeats").get_attribute("href")
+                    if prefill.locator("#SessionSeats").count()
+                    else None,
+                }
+
+                # Inspect the separate official search_seat GET form. This is not the
+                # quick-booking form, but verify whether it can serve as a supported
+                # prefill handoff.
+                out["dom"]["search_seat_form_controls"] = page.locator(
+                    "form[action*='search_seat.aspx'] input, form[action*='search_seat.aspx'] select"
+                ).evaluate_all(
+                    """els => els.map(el => ({
+                        tag: el.tagName,
+                        name: el.getAttribute('name'),
+                        type: el.getAttribute('type'),
+                        value: el.value,
+                        options: el.tagName === 'SELECT'
+                          ? [...el.options].slice(0,5).map(o => ({text:o.textContent.trim(), value:o.value}))
+                          : null
+                    }))"""
+                )
+
+                search_page = context.new_page()
+                search_url = (
+                    "https://www.vscinemas.com.tw/vsTicketing/ticketing/search_seat.aspx?"
+                    + prefill_query
+                )
+                resp = search_page.goto(search_url, wait_until="domcontentloaded", timeout=60_000)
+                search_page.wait_for_timeout(1500)
+                out["dom"]["search_seat_prefill_test"] = {
+                    "requested_url": search_url,
+                    "status": resp.status if resp else None,
+                    "final_url": search_page.url,
+                    "title": search_page.title(),
+                    "quick_booking_values": {
+                        name: search_page.locator(f"[name={name}]").input_value()
+                        for name in ("cinema", "movie", "date", "session")
+                        if search_page.locator(f"[name={name}]").count()
+                    },
+                }
             except Exception as exc:
                 out["errors"].append(f"drive_quick_booking: {type(exc).__name__}: {exc}")
 
