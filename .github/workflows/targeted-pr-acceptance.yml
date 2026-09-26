@@ -72,6 +72,11 @@ jobs:
         continue-on-error: true
         run: python tests/browser_acceptance.py --report artifacts/browser-report.json
 
+      - name: Movie discovery availability acceptance
+        id: browser_discovery
+        continue-on-error: true
+        run: python tests/browser_movie_discovery_acceptance.py
+
       - name: Targeted desktop and mobile acceptance
         id: browser_targeted
         continue-on-error: true
@@ -100,8 +105,10 @@ jobs:
         if: always()
         run: |
           echo "browser_existing=${{ steps.browser_existing.outcome }}"
+          echo "browser_discovery=${{ steps.browser_discovery.outcome }}"
           echo "browser_targeted=${{ steps.browser_targeted.outcome }}"
           echo "ambassador_live=${{ steps.ambassador_live.outcome }}"
           test "${{ steps.browser_existing.outcome }}" = "success"
+          test "${{ steps.browser_discovery.outcome }}" = "success"
           test "${{ steps.browser_targeted.outcome }}" = "success"
           test "${{ steps.ambassador_live.outcome }}" = "success"
