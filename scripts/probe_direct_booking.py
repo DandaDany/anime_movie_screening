@@ -248,8 +248,6 @@ def probe_browser_flows():
 
 def main():
     probe_broadway()
-    probe_miranew()
-    probe_skcinemas()
     probe_browser_flows()
 
 
