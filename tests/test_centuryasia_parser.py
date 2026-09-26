@@ -43,6 +43,7 @@ class CenturyasiaLegacyTemplateTests(unittest.TestCase):
         self.assertEqual(by_time["12:35"].language, "國語")
         self.assertEqual(by_time["14:40"].language, "英語")
         self.assertTrue(by_time["12:35"].booking_url.startswith("https://ticket.centuryasia.com.tw/"))
+        self.assertEqual(by_time["12:35"].seat_preview_url, by_time["12:35"].booking_url)
 
     def test_past_session_without_onclick_still_counts(self):
         # 奧德賽 5廳 11:30 沒有 onclick（已過場次），仍應列入當日場次。
