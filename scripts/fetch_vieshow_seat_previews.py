@@ -70,12 +70,34 @@ def seat_preview_url(cinema: str, session: str) -> str:
     )
 
 
+def _published_features(payload: dict):
+    by_date = payload.get("movie_features_by_date")
+    if isinstance(by_date, dict) and by_date:
+        for date_map in by_date.values():
+            if not isinstance(date_map, dict):
+                continue
+            for features in date_map.values():
+                for feature in features if isinstance(features, list) else []:
+                    yield feature
+        return
+
+    movie_features = payload.get("movie_features")
+    if isinstance(movie_features, dict) and movie_features:
+        for features in movie_features.values():
+            for feature in features if isinstance(features, list) else []:
+                yield feature
+        return
+
+    for feature in payload.get("features") or []:
+        yield feature
+
+
 def collect_booking_urls(path: Path) -> list[str]:
     if not path.exists():
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))
     found: set[str] = set()
-    for feature in payload.get("features") or []:
+    for feature in _published_features(payload):
         props = feature.get("properties") or {}
         for showtime in props.get("showtimes") or []:
             url = str(showtime.get("booking_url") or "").strip()
