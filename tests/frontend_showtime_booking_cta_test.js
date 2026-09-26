@@ -22,7 +22,19 @@ const helperSource = section(
   "function directVieshowBookingUrl",
   "function popupHtml",
 );
-const sandbox = { URL, URLSearchParams };
+const sandbox = {
+  URL,
+  URLSearchParams,
+  selectedMovieTitle: "測試電影",
+  selectedDate: "2026-09-27",
+  selectedFormat: "IMAX",
+  selectedChain: "威秀影城 / VIESHOW",
+  selectedCity: "臺北市",
+  timePeriod: "all",
+  timeMode: "auto",
+  timeEarliest: 0,
+  activeSearchInput: () => ({ value: "" }),
+};
 vm.createContext(sandbox);
 vm.runInContext(helperSource, sandbox);
 
@@ -41,10 +53,25 @@ assert(
   }) === "",
   "Generic VIESHOW showtime URL must not be treated as direct booking",
 );
+const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
+  { booking_url: booking1 },
+  { properties: { location_id: 7 } },
+);
+const seatPreviewQuery = new URL(
+  seatPreviewUrl,
+  "https://example.test/",
+).searchParams;
 assert(
-  sandbox.vieshowSeatPreviewUrl({ booking_url: booking1 }) ===
-    "seat-preview.html?cinemacode=1&session=111",
-  "Seat preview URL should be derived from the selected VIESHOW session",
+  seatPreviewQuery.get("cinemacode") === "1" &&
+    seatPreviewQuery.get("session") === "111",
+  "Seat preview URL should preserve the selected VIESHOW session",
+);
+assert(
+  seatPreviewQuery.get("movie") === "測試電影" &&
+    seatPreviewQuery.get("date") === "2026-09-27" &&
+    seatPreviewQuery.get("format") === "IMAX" &&
+    seatPreviewQuery.get("location") === "7",
+  "Seat preview URL should carry map return state",
 );
 
 class MockClassList {
