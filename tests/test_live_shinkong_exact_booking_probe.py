@@ -13,6 +13,7 @@ TARGETS = [
     "https://skcwww.bonjays.com/Sessions/Sessions?c=1001",
     "https://skcwww.bonjays.com/Sessions/Sessions?cinema=1001",
     "https://skcwww.bonjays.com/Sessions/Sessions?CinemasID=1001",
+    "https://skcwww.bonjays.com/Sessions/Sessions?cinemaId=1001",
 ]
 
 
