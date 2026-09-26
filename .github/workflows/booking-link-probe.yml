@@ -11,7 +11,7 @@ jobs:
   probe:
     if: github.head_ref == 'feat/expand-direct-booking-and-seat-preview'
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,66 +21,25 @@ jobs:
         run: |
           python -m pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Probe exact public booking routes
+      - name: Read Broadway booking script
         run: |
           python - <<'PY'
           from playwright.sync_api import sync_playwright
-          import json, re
-
+          import re
           with sync_playwright() as p:
               browser=p.chromium.launch(headless=True)
-
-              print("===== BROADWAY =====")
-              ctx=browser.new_context(locale="zh-TW",timezone_id="Asia/Taipei")
-              page=ctx.new_page()
-              reqs=[]
-              ctx.on("request",lambda r: reqs.append((r.method,r.url,r.post_data or "")) if re.search(r"ticket|seat|quick|booking",r.url,re.I) else None)
+              page=browser.new_page()
               page.goto("https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",wait_until="domcontentloaded",timeout=60000)
-              page.wait_for_timeout(4500)
-              for action in ("quick-view","buy-ticket"):
-                  b=page.locator("button."+action).first
-                  if b.count():
-                      try:
-                          b.click(timeout=10000)
-                          page.wait_for_timeout(1500)
-                      except Exception as exc:
-                          print("CLICK_ERROR",action,type(exc).__name__,str(exc).splitlines()[0])
-                      print("AFTER_CLICK",action,"URL",page.url)
-                      frames=page.locator("iframe").evaluate_all("els=>els.map(e=>({src:e.src,outer:e.outerHTML}))")
-                      dialogs=page.locator(".modal,.popup,[role=dialog]").evaluate_all("els=>els.map(e=>e.outerHTML.slice(0,8000))")
-                      print("FRAMES",action,json.dumps(frames,ensure_ascii=False)[:12000])
-                      print("DIALOGS",action,json.dumps(dialogs,ensure_ascii=False)[:16000])
-                      print("REQUESTS",action,json.dumps(reqs[-30:],ensure_ascii=False)[:12000])
-                      try:
-                          page.keyboard.press("Escape")
-                      except Exception:
-                          pass
-              obj="Zhubei,0000946,2026-09-26,19-20,0010"
-              for path in ("quick-view.html","buy-ticket.html","ticket.html","booking.html"):
-                  url="https://www.broadway-cineplex.com.tw/"+path+"?obj="+obj
-                  try:
-                      resp=page.request.get(url,timeout=30000)
-                      body=resp.body()
-                      print("ROUTE",path,"STATUS",resp.status,"FINAL",resp.url,"BYTES",len(body),
-                            "HEAD",body[:300].decode("latin-1","replace").replace("\n"," ")[:300])
-                  except Exception as exc:
-                      print("ROUTE_ERROR",path,type(exc).__name__,str(exc))
-              ctx.close()
-
-              print("===== CENTURY =====")
-              ctx=browser.new_context(locale="zh-TW",timezone_id="Asia/Taipei")
-              page=ctx.new_page()
-              page.goto("https://www.centuryasia.com.tw/book.html?sid=Nangang",wait_until="domcontentloaded",timeout=60000)
-              page.wait_for_timeout(7000)
+              page.wait_for_timeout(3000)
               scripts=page.locator("script[src]").evaluate_all("els=>els.map(e=>e.src)")
+              print("SCRIPTS",scripts)
               for url in scripts:
-                  if "book.js" not in url: continue
+                  if "book" not in url.lower(): continue
                   resp=page.request.get(url,timeout=30000)
                   js=resp.body().decode("utf-8","replace")
                   print("BOOKJS",resp.status,url,"LEN",len(js))
-                  for term in ("buyticket","seat","preview","ProgramID","computerid","eventsn","window.open","location.href","ticket.centuryasia"):
-                      for m in list(re.finditer(re.escape(term),js,re.I))[:6]:
-                          print("JS",term,js[max(0,m.start()-700):m.start()+1800].replace("\n"," ")[:3000])
-              ctx.close()
+                  for term in ("buyticket","bookseat","quick-view","Setobj","window.location","login.html","Common/"):
+                      for m in list(re.finditer(re.escape(term),js,re.I))[:8]:
+                          print("SNIP",term,js[max(0,m.start()-900):m.start()+2200].replace("\n"," ")[:3800])
               browser.close()
           PY
