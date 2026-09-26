@@ -89,8 +89,34 @@ def probe_skcinemas():
         dump("SKCINEMAS ERROR", {"type": type(exc).__name__, "error": str(exc)})
 
 
+def locator_ancestors(locator, depth=6):
+    return locator.evaluate(
+        """(el, depth) => {
+          const rows = [];
+          let node = el;
+          for (let i = 0; node && i < depth; i++, node = node.parentElement) {
+            rows.push({
+              tag: node.tagName,
+              cls: node.className || "",
+              href: node.getAttribute && node.getAttribute("href"),
+              onclick: node.getAttribute && node.getAttribute("onclick"),
+              outer: (node.outerHTML || "").slice(0, 12000)
+            });
+          }
+          return rows;
+        }""",
+        depth,
+    )
+
+
 def inspect_booking_page(page, label, url, row_selector, time_selector, action_text):
     try:
+        requests = []
+        def on_request(req):
+            low = req.url.lower()
+            if req.is_navigation_request() or any(x in low for x in ("book", "ticket", "login", "order", "seat")):
+                requests.append({"method": req.method, "url": req.url, "post_data": req.post_data})
+        page.on("request", on_request)
         page.goto(url, wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(5000)
         rows = page.locator(row_selector)
@@ -103,35 +129,80 @@ def inspect_booking_page(page, label, url, row_selector, time_selector, action_t
             "url": page.url,
             "text": row.inner_text()[:5000],
             "time_count": times.count(),
-            "time_outer": times.first.evaluate("(el) => el.outerHTML") if times.count() else "",
+            "first_time_ancestors": locator_ancestors(times.first) if times.count() else [],
         })
-        if times.count():
-            times.first.click()
-            page.wait_for_timeout(800)
-        action = row.get_by_text(action_text, exact=False)
-        if action.count():
-            node = action.first
-            dump(label + " action after time select", {
-                "outer": node.evaluate("(el) => el.outerHTML"),
-                "href": node.get_attribute("href"),
-                "onclick": node.get_attribute("onclick"),
-            })
-            before = page.url
-            requests = []
-            def on_request(req):
-                if req.is_navigation_request() or any(x in req.url.lower() for x in ("book", "ticket", "login", "order")):
-                    requests.append({"method": req.method, "url": req.url, "post_data": req.post_data})
-            page.on("request", on_request)
-            try:
-                node.click(timeout=5000)
-                page.wait_for_timeout(2500)
-            except Exception as click_exc:
-                requests.append({"click_error": str(click_exc)})
-            dump(label + " after action", {"before": before, "after": page.url, "requests": requests[-20:]})
-        else:
+        if not times.count():
+            return
+        session = times.first
+        session.click()
+        page.wait_for_timeout(1000)
+        dump(label + " selected time", {
+            "text": session.inner_text(),
+            "ancestors": locator_ancestors(session),
+            "row_after": row.evaluate("(el) => el.outerHTML.slice(0, 30000)"),
+        })
+
+        action_text_node = row.get_by_text(action_text, exact=False)
+        if not action_text_node.count():
             dump(label + " action missing", {"text": action_text})
+            return
+        text_node = action_text_node.first
+        ancestors = locator_ancestors(text_node)
+        dump(label + " action ancestors", ancestors)
+        clickable = text_node.locator("xpath=ancestor-or-self::*[self::a or self::button or @role='button' or @onclick][1]")
+        if not clickable.count():
+            clickable = text_node.locator("xpath=parent::*")
+        target = clickable.first
+        before = page.url
+        before_requests = len(requests)
+        try:
+            target.click(timeout=5000)
+            page.wait_for_timeout(3000)
+        except Exception as click_exc:
+            dump(label + " click error", {"error": str(click_exc)})
+        dump(label + " after action", {
+            "before": before,
+            "after": page.url,
+            "new_requests": requests[before_requests:][-30:],
+        })
     except Exception as exc:
         dump(label + " ERROR", {"type": type(exc).__name__, "error": str(exc), "url": getattr(page, "url", "")})
+
+
+def probe_script_sources(page, label, url):
+    try:
+        page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(4000)
+        scripts = page.locator("script[src]").evaluate_all(
+            "(els) => els.map(el => new URL(el.src, document.baseURI).href)"
+        )
+        dump(label + " scripts", scripts)
+        for script_url in scripts:
+            if page.url.split("/")[2] not in script_url:
+                continue
+            try:
+                body = page.request.get(script_url, timeout=20000).text()
+            except Exception:
+                continue
+            needles = ["SessionId", "SessionID", "session", "StartOrder", "Booking/", "quick-view", "BUY TICKET", "buyticket", "ProgramID"]
+            if any(n.lower() in body.lower() for n in needles):
+                matches = []
+                low = body.lower()
+                for needle in needles:
+                    start = 0
+                    while True:
+                        pos = low.find(needle.lower(), start)
+                        if pos < 0:
+                            break
+                        matches.append(body[max(0, pos-600):pos+1200])
+                        start = pos + len(needle)
+                        if len(matches) >= 12:
+                            break
+                    if len(matches) >= 12:
+                        break
+                dump(label + " script matches " + script_url, matches)
+    except Exception as exc:
+        dump(label + " SCRIPT ERROR", {"type": type(exc).__name__, "error": str(exc), "url": getattr(page, "url", "")})
 
 
 def probe_browser_flows():
@@ -144,7 +215,7 @@ def probe_browser_flows():
             "CENTURY NANGANG",
             "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
             ".content-row",
-            ".time:not(.disable)",
+            ".timetable .time:not(.disable)",
             "立即前往訂票",
         )
         page = ctx.new_page()
@@ -152,9 +223,24 @@ def probe_browser_flows():
             page,
             "BROADWAY TAIPEI",
             "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
-            ".content-row, .movie-row, .movie-item",
-            ".time, [class*=time]",
+            ".content-row",
+            ".timetable .time:not(.disable)",
             "BUY TICKET",
+        )
+        probe_script_sources(
+            ctx.new_page(),
+            "BROADWAY",
+            "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+        )
+        probe_script_sources(
+            ctx.new_page(),
+            "CENTURY",
+            "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+        )
+        probe_script_sources(
+            ctx.new_page(),
+            "MIRANEW",
+            "https://www.miranewcinemas.com/Booking/Timetable",
         )
         ctx.close()
         browser.close()
