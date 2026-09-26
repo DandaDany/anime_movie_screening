@@ -393,7 +393,15 @@
     close: closeDiscovery,
   });
 
-  document.documentElement.classList.add("discovery-active");
+  const restoringMapState =
+    new URLSearchParams(window.location.search).get("restore") === "1";
+  if (restoringMapState) {
+    overlay.hidden = true;
+    overlay.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("discovery-active");
+  } else {
+    document.documentElement.classList.add("discovery-active");
+  }
   window.setTimeout(() => window.dispatchEvent(new Event("resize")), 0);
 
   fetch(DATA_URL, { cache: "no-store" })
