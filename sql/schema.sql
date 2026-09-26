@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS showtimes (
     language TEXT,
     subtitle TEXT,
     booking_url TEXT,
+    seat_preview_url TEXT,
     source_url TEXT,
     raw_text TEXT,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -177,6 +178,7 @@ SELECT
     s.language,
     s.subtitle,
     s.booking_url,
+    s.seat_preview_url,
     s.source_url
 FROM showtimes s
 JOIN movies m ON m.id = s.movie_id
