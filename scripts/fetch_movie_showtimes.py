@@ -1364,6 +1364,13 @@ def parse_centuryasia_legacy(
                         booking_url=booking_url,
                         source_url=source_url,
                         raw_text=f"{title_node.get_text(strip=True)} | {hall_text or ''} | {start_time}",
+                        seat_preview_url=(
+                            booking_url
+                            if booking_url != source_url
+                            and "buyticket_process.aspx" in booking_url
+                            and ("eventsn=" in booking_url or "computerid=" in booking_url)
+                            else None
+                        ),
                     )
                 )
     return records
