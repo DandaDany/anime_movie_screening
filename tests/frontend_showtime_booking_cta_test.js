@@ -19,7 +19,7 @@ function assert(condition, message) {
 }
 
 const helperSource = section(
-  "function directVieshowBookingUrl",
+  "function directShowtimeBookingUrl",
   "function popupHtml",
 );
 const sandbox = {
@@ -52,6 +52,31 @@ assert(
     booking_url: "https://www.vscinemas.com.tw/ShowTimes/",
   }) === "",
   "Generic VIESHOW showtime URL must not be treated as direct booking",
+);
+
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.miramarcinemas.tw/Booking/TicketType?id=movie-id&session=437885",
+  }).includes("session=437885"),
+  "Miramar session-specific booking URL should be accepted",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.miramarcinemas.tw/timetable",
+  }) === "",
+  "Generic Miramar timetable must not be treated as direct booking",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000215&eventsn=90&computerid=16358",
+  }).includes("computerid=16358"),
+  "Century Asia session-specific booking URL should be accepted",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei",
+  }) === "",
+  "Broadway cinema landing URL must not be treated as direct booking",
 );
 const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
   { booking_url: booking1 },
