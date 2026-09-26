@@ -16,7 +16,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: supplemental-web-research-map-update
+  # Serialize every workflow that writes the published map dataset.
+  group: map-data-writer
   cancel-in-progress: false
 
 jobs:
@@ -91,7 +92,9 @@ jobs:
             echo "補充來源沒有新增或更新場次，無須另建地圖 commit。"
           else
             git commit -m "Update map data (07:00 web supplement)"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
 
   deploy-pages:
