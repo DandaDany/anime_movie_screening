@@ -129,6 +129,7 @@ def fetch_showtime_features(conn: sqlite3.Connection, movie_title: str, show_dat
             s.format,
             s.language,
             s.booking_url,
+            s.seat_preview_url,
             s.source_url
         FROM showtimes s
         JOIN movies m ON m.id = s.movie_id
@@ -176,7 +177,7 @@ def fetch_showtime_features(conn: sqlite3.Connection, movie_title: str, show_dat
                 "booking_url": row["booking_url"],
                 "label": f"{row['start_time']} {label}".strip(),
             }
-            seat_preview_url = showtime_seat_preview_url(
+            seat_preview_url = row["seat_preview_url"] or showtime_seat_preview_url(
                 str(row["chain_name"]), row["booking_url"]
             )
             if seat_preview_url:
