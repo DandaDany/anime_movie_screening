@@ -25,10 +25,10 @@ def inspect(page, label: str, url: str, *, wait_until="domcontentloaded"):
     page.on("request", lambda req: reqs.append(req.url))
     err = None
     try:
-        page.goto(url, wait_until=wait_until, timeout=12000)
+        page.goto(url, wait_until=wait_until, timeout=8000)
     except Exception as exc:
         err = f"{type(exc).__name__}: {exc}"
-    page.wait_for_timeout(3500)
+    page.wait_for_timeout(2000)
 
     html = page.content()
     scripts = page.eval_on_selector_all(
@@ -45,7 +45,7 @@ def inspect(page, label: str, url: str, *, wait_until="domcontentloaded"):
             inline_hits.append({"index": i, "hits": hits})
 
     script_hits = []
-    for src in scripts[:20]:
+    own_scripts = [src for src in scripts if any(host in src for host in ("miranewcinemas.com", "skcinemas.com", "bonjays.com"))]\n    for src in own_scripts[:8]:
         try:
             res = page.request.get(src, timeout=8000)
             text = res.text()
