@@ -909,6 +909,27 @@ let activeDesktopPopupId = null;
 
 // 放大聚焦某據點並開啟資訊卡片（搜尋清單與第一次點 logo 都走這條）
 // 手機一律改開底部 sheet（含搜尋推薦），桌機維持 popup。
+function focusSingleFilteredFeature(feature) {
+  if (isMobile()) {
+    openMobileSheet(feature);
+    return;
+  }
+
+  const props = feature.properties;
+  const marker = markerById.get(props.location_id);
+  if (!marker) return;
+
+  setActive(props.location_id);
+  zoomedInId = props.location_id;
+  const zoom = Math.max(map.getZoom(), FOCUS_ZOOM);
+
+  // Filter selection is an explicit navigation action. Center the remaining
+  // venue deterministically instead of relying on popup geometry measured
+  // before/while Leaflet is animating.
+  map.flyTo(marker.getLatLng(), zoom, { duration: 0.45 });
+  marker.openPopup();
+}
+
 function focusFeature(feature) {
   if (isMobile()) {
     openMobileSheet(feature);
@@ -1092,7 +1113,7 @@ function applyFilters({ focusSingleResult = false } = {}) {
   // 使用者主動選擇地區／版本／影城篩選後，如果結果只剩一個場館，
   // 直接聚焦並開啟該場館資訊。取消篩選、搜尋輸入、時間自動更新不觸發。
   if (focusSingleResult && filtered.length === 1) {
-    requestAnimationFrame(() => focusFeature(filtered[0]));
+    requestAnimationFrame(() => focusSingleFilteredFeature(filtered[0]));
   }
   return filtered;
 }
