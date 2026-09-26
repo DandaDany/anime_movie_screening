@@ -43,6 +43,16 @@ class CenturyasiaLegacyTemplateTests(unittest.TestCase):
         self.assertEqual(by_time["12:35"].language, "國語")
         self.assertEqual(by_time["14:40"].language, "英語")
         self.assertTrue(by_time["12:35"].booking_url.startswith("https://ticket.centuryasia.com.tw/"))
+        # This fixture only has ProgramID + date for Toy Story; without the
+        # event/computer identifiers it is not safe to claim an exact seat view.
+        self.assertIsNone(by_time["12:35"].seat_preview_url)
+
+    def test_exact_session_exposes_seat_preview_url(self):
+        records = parse_fixture("centuryasia_legacy_ximen.html", ODYSSEY_ALIASES)
+        by_time = {r.start_time: r for r in records}
+        self.assertIn("eventsn=98", by_time["13:45"].booking_url)
+        self.assertIn("computerid=12168", by_time["13:45"].booking_url)
+        self.assertEqual(by_time["13:45"].seat_preview_url, by_time["13:45"].booking_url)
 
     def test_past_session_without_onclick_still_counts(self):
         # 奧德賽 5廳 11:30 沒有 onclick（已過場次），仍應列入當日場次。

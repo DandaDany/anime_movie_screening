@@ -18,6 +18,9 @@ MIGRATIONS = {
     "crawl_runs": {
         "show_date": "ALTER TABLE crawl_runs ADD COLUMN show_date TEXT",
     },
+    "showtimes": {
+        "seat_preview_url": "ALTER TABLE showtimes ADD COLUMN seat_preview_url TEXT",
+    },
 }
 
 
@@ -27,6 +30,11 @@ def ensure_migrations(conn: sqlite3.Connection) -> None:
             row[1]
             for row in conn.execute(f"PRAGMA table_info({table_name})").fetchall()
         }
+        # Some migration tests intentionally exercise a partial legacy schema.
+        # Only migrate tables that actually exist; init_db() creates the full
+        # schema before calling this function in production.
+        if not existing_columns:
+            continue
         for column_name, sql in columns.items():
             if column_name not in existing_columns:
                 conn.execute(sql)

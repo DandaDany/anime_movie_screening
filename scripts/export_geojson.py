@@ -32,6 +32,34 @@ def display_showtime_url(row: sqlite3.Row) -> str | None:
     return row["booking_url"] or row["location_url"] or row["official_url"] or source_url
 
 
+def showtime_seat_preview_url(chain_name: str, booking_url: str | None) -> str | None:
+    """Return a read-only/provider seat-view URL when the session URL is exact."""
+    if not booking_url:
+        return None
+    if (
+        chain_name == "喜樂時代影城"
+        and "centuryasia.com.tw/" in booking_url
+        and "buyticket_process.aspx" in booking_url
+        and ("eventsn=" in booking_url or "computerid=" in booking_url)
+    ):
+        # Century Asia's session page exposes the current seat map before checkout.
+        return booking_url
+    if (
+        chain_name == "百老匯影城"
+        and "broadway-cineplex.com.tw/" in booking_url
+        and "book.html?" in booking_url
+        and "obj=" in booking_url
+    ):
+        # Broadway uses the same comma-delimited session tuple for QUICK VIEW.
+        try:
+            obj = booking_url.split("obj=", 1)[1].split("&", 1)[0]
+        except IndexError:
+            return None
+        if obj.count(",") >= 4:
+            return "https://www.broadway-cineplex.com.tw/quick-view.html?obj=" + obj
+    return None
+
+
 def fetch_location_features(conn: sqlite3.Connection) -> list[dict[str, object]]:
     rows = conn.execute(
         """
@@ -101,6 +129,7 @@ def fetch_showtime_features(conn: sqlite3.Connection, movie_title: str, show_dat
             s.format,
             s.language,
             s.booking_url,
+            s.seat_preview_url,
             s.source_url
         FROM showtimes s
         JOIN movies m ON m.id = s.movie_id
@@ -140,16 +169,20 @@ def fetch_showtime_features(conn: sqlite3.Connection, movie_title: str, show_dat
         for row in group_rows:
             labels = [row["format"], row["auditorium"]]
             label = " / ".join(str(value) for value in labels if value)
-            showtimes.append(
-                {
-                    "time": row["start_time"],
-                    "format": row["format"],
-                    "language": row["language"],
-                    "auditorium": row["auditorium"],
-                    "booking_url": row["booking_url"],
-                    "label": f"{row['start_time']} {label}".strip(),
-                }
+            showtime = {
+                "time": row["start_time"],
+                "format": row["format"],
+                "language": row["language"],
+                "auditorium": row["auditorium"],
+                "booking_url": row["booking_url"],
+                "label": f"{row['start_time']} {label}".strip(),
+            }
+            seat_preview_url = row["seat_preview_url"] or showtime_seat_preview_url(
+                str(row["chain_name"]), row["booking_url"]
             )
+            if seat_preview_url:
+                showtime["seat_preview_url"] = seat_preview_url
+            showtimes.append(showtime)
         features.append(
             {
                 "type": "Feature",

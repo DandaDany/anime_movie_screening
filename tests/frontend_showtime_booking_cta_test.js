@@ -19,7 +19,7 @@ function assert(condition, message) {
 }
 
 const helperSource = section(
-  "function directVieshowBookingUrl",
+  "function directShowtimeBookingUrl",
   "function popupHtml",
 );
 const sandbox = {
@@ -52,6 +52,31 @@ assert(
     booking_url: "https://www.vscinemas.com.tw/ShowTimes/",
   }) === "",
   "Generic VIESHOW showtime URL must not be treated as direct booking",
+);
+
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.miramarcinemas.tw/Booking/TicketType?id=movie-id&session=437885",
+  }).includes("session=437885"),
+  "Miramar session-specific booking URL should be accepted",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.miramarcinemas.tw/timetable",
+  }) === "",
+  "Generic Miramar timetable must not be treated as direct booking",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000215&eventsn=90&computerid=16358",
+  }).includes("computerid=16358"),
+  "Century Asia session-specific booking URL should be accepted",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei",
+  }) === "",
+  "Broadway cinema landing URL must not be treated as direct booking",
 );
 const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
   { booking_url: booking1 },
@@ -156,6 +181,10 @@ const chip2 = mockChip(
   "seat-preview.html?cinemacode=1&session=222",
 );
 
+const broadwayPreview =
+  "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Zhubei,0000946,2026-09-27,19-20,0010";
+const chip3 = mockChip("19:20", "", broadwayPreview);
+
 const cta = mockLink({
   labelSelector: "[data-booking-cta-label]",
   labelText: "場次入口",
@@ -174,7 +203,7 @@ const official = mockLink({
 
 const root = {
   querySelectorAll(selector) {
-    return selector === ".st-chip-select[data-booking-url]" ? [chip1, chip2] : [];
+    return selector === ".st-chip-select" ? [chip1, chip2, chip3] : [];
   },
   querySelector(selector) {
     if (selector === "[data-booking-cta]") return cta;
@@ -238,6 +267,21 @@ assert(
   "Booking CTA aria-label should follow selected time",
 );
 
+chip3.listeners.click();
+assert(!chip1.classList.contains("is-selected"), "Booking showtime should clear when preview-only showtime is selected");
+assert(!chip2.classList.contains("is-selected"), "Previous booking showtime should clear when preview-only showtime is selected");
+assert(chip3.classList.contains("is-selected"), "Preview-only showtime should be selectable");
+assert(cta.href === "", "Preview-only showtime must not invent an official booking URL");
+assert(cta.attributes["aria-disabled"] === "true", "Primary booking CTA should stay disabled for preview-only showtime");
+assert(cta._label.textContent === "場次入口", "Primary CTA should remain generic for preview-only showtime");
+assert(official.href === broadwayPreview, "Secondary CTA should point to the exact provider seat preview");
+assert(official._label.textContent === "座位表入口", "Preview-only selection should expose 座位表入口");
+
+chip3.listeners.click();
+assert(!chip3.classList.contains("is-selected"), "Preview-only showtime should toggle off");
+assert(official.href === officialUrl, "Toggling preview-only showtime off should restore official URL");
+
+chip2.listeners.click();
 chip2.listeners.click();
 assert(!chip1.classList.contains("is-selected"), "No showtime should remain selected after toggling off");
 assert(!chip2.classList.contains("is-selected"), "Selected showtime should toggle off on second click");
@@ -248,6 +292,29 @@ assert(cta._label.textContent === "場次入口", "Booking CTA should return to 
 assert(official.href === officialUrl, "Secondary CTA should return to official URL");
 assert(official._label.textContent === "官方網站", "Secondary CTA should return to 官方網站");
 
+const previewOnlyChip = mockChip("19:20", "", broadwayPreview);
+const previewOnlyOfficial = mockLink({
+  href: "https://www.broadway-cineplex.com.tw/",
+  labelSelector: "[data-official-cta-label]",
+  labelText: "官方網站",
+  dataset: { officialHref: "https://www.broadway-cineplex.com.tw/" },
+  classes: ["popup-link-ghost"],
+});
+const previewOnlyRoot = {
+  querySelectorAll(selector) {
+    return selector === ".st-chip-select" ? [previewOnlyChip] : [];
+  },
+  querySelector(selector) {
+    if (selector === "[data-booking-cta]") return null;
+    if (selector === "[data-official-cta]") return previewOnlyOfficial;
+    return null;
+  },
+};
+sandbox.bindShowtimeBookingInteraction(previewOnlyRoot);
+previewOnlyChip.listeners.click();
+assert(previewOnlyChip.classList.contains("is-selected"), "Preview-only showtime should work without a dynamic booking CTA");
+assert(previewOnlyOfficial.href === broadwayPreview, "Preview-only cinema should expose the exact seat preview while keeping its static booking entry");
+assert(previewOnlyOfficial._label.textContent === "座位表入口", "Preview-only cinema should relabel the secondary CTA");
 assert(
   source.includes('data-booking-cta-label>場次入口</span>'),
   "Initial booking CTA should still render 場次入口",
@@ -258,7 +325,11 @@ assert(
 );
 assert(
   source.includes('class="st-chip st-chip-select"'),
-  "Direct showtimes should render as selectable chips, not outbound links",
+  "Booking or seat-preview showtimes should render as selectable chips, not outbound links",
+);
+assert(
+  source.includes("const locationLink = hasDirectBooking"),
+  "Preview-only cinemas should keep their normal booking entry instead of rendering a disabled primary CTA",
 );
 
 console.log("frontend_showtime_booking_cta_test: ok");

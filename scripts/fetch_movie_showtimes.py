@@ -97,6 +97,7 @@ class ShowtimeRecord:
     booking_url: str | None
     source_url: str
     raw_text: str
+    seat_preview_url: str | None = None
 
 
 def normalize_text(value: str | None) -> str:
@@ -430,14 +431,16 @@ def save_showtimes(conn: sqlite3.Connection, movie_id: int, run_id: int, records
                 format,
                 language,
                 booking_url,
+                seat_preview_url,
                 source_url,
                 raw_text
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(movie_id, location_id, show_date, start_time, ifnull(format, ''), ifnull(language, ''), ifnull(subtitle, ''), ifnull(booking_url, ''))
             DO UPDATE SET
                 crawl_run_id = excluded.crawl_run_id,
                 auditorium = excluded.auditorium,
+                seat_preview_url = excluded.seat_preview_url,
                 source_url = excluded.source_url,
                 raw_text = excluded.raw_text
             """,
@@ -451,6 +454,7 @@ def save_showtimes(conn: sqlite3.Connection, movie_id: int, run_id: int, records
                 record.format,
                 record.language,
                 record.booking_url,
+                record.seat_preview_url,
                 record.source_url,
                 record.raw_text,
             ),
@@ -1199,6 +1203,17 @@ def fetch_broadway(conn: sqlite3.Connection, aliases: list[str], show_date: str)
                     start_time = str(item.get("時間", "")).strip()
                     if not re.fullmatch(r"\d{1,2}:\d{2}", start_time):
                         continue
+                    program_id = str(movie.get("programid") or "").strip()
+                    hall = str(item.get("hall") or "").strip()
+                    seat_preview_url = None
+                    if program_id and hall:
+                        session_obj = ",".join(
+                            [code, program_id, show_date, start_time.replace(":", "-"), hall]
+                        )
+                        seat_preview_url = (
+                            "https://www.broadway-cineplex.com.tw/quick-view.html?obj="
+                            + urllib.parse.quote(session_obj, safe=",")
+                        )
                     records.append(
                         ShowtimeRecord(
                             location_id=int(row["id"]),
@@ -1210,6 +1225,7 @@ def fetch_broadway(conn: sqlite3.Connection, aliases: list[str], show_date: str)
                             booking_url=f"https://www.broadway-cineplex.com.tw/book.html?obj={code}&v25080101",
                             source_url=source_url,
                             raw_text=f"{movie.get('cname', '')} {movie.get('ename', '')} {format_text or ''}",
+                            seat_preview_url=seat_preview_url,
                         )
                     )
     return records
@@ -1348,6 +1364,13 @@ def parse_centuryasia_legacy(
                         booking_url=booking_url,
                         source_url=source_url,
                         raw_text=f"{title_node.get_text(strip=True)} | {hall_text or ''} | {start_time}",
+                        seat_preview_url=(
+                            booking_url
+                            if booking_url != source_url
+                            and "buyticket_process.aspx" in booking_url
+                            and ("eventsn=" in booking_url or "computerid=" in booking_url)
+                            else None
+                        ),
                     )
                 )
     return records
