@@ -1,0 +1,94 @@
+{
+  "type": "FeatureCollection",
+  "show_date": "2026-09-26",
+  "updated_at": "2026-09-26T13:30:00+08:00",
+  "available_dates": ["2026-09-26", "2026-09-27"],
+  "movies": [
+    {"title": "另一部電影", "show_date": "2026-09-26", "available_dates": ["2026-09-26"], "feature_count": 1},
+    {"title": "回程測試電影", "show_date": "2026-09-27", "available_dates": ["2026-09-27"], "feature_count": 2}
+  ],
+  "movie_features": {
+    "另一部電影": [],
+    "回程測試電影": []
+  },
+  "movie_features_by_date": {
+    "另一部電影": {
+      "2026-09-26": [
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [121.5654, 25.0330]},
+          "properties": {
+            "location_id": 101,
+            "chain_name": "其他影城",
+            "location_name": "預設電影影城",
+            "map_name": "預設電影影城",
+            "address": "臺北市測試路1號",
+            "city": "臺北市",
+            "movie_title": "另一部電影",
+            "show_date": "2026-09-26",
+            "showtime_count": 1,
+            "official_url": "https://example.test/",
+            "location_url": "https://example.test/showtimes",
+            "showtimes": [
+              {"time": "18:00", "format": "數位", "booking_url": "https://example.test/1800"}
+            ]
+          }
+        }
+      ]
+    },
+    "回程測試電影": {
+      "2026-09-27": [
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [121.5654, 25.0330]},
+          "properties": {
+            "location_id": 301,
+            "chain_name": "威秀影城 / VIESHOW",
+            "location_name": "回程測試威秀",
+            "map_name": "回程測試威秀",
+            "address": "臺北市信義區測試路2號",
+            "city": "臺北市",
+            "movie_title": "回程測試電影",
+            "show_date": "2026-09-27",
+            "showtime_count": 2,
+            "official_url": "https://www.vscinemas.com.tw/",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
+            "showtimes": [
+              {
+                "time": "19:25",
+                "format": "(IMAX)回程測試電影",
+                "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=111"
+              },
+              {
+                "time": "21:40",
+                "format": "數位",
+                "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=222"
+              }
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [121.5070, 25.0460]},
+          "properties": {
+            "location_id": 302,
+            "chain_name": "測試影城",
+            "location_name": "其他版本影城",
+            "map_name": "其他版本影城",
+            "address": "臺北市萬華區測試路3號",
+            "city": "臺北市",
+            "movie_title": "回程測試電影",
+            "show_date": "2026-09-27",
+            "showtime_count": 1,
+            "official_url": "https://example.test/",
+            "location_url": "https://example.test/showtimes",
+            "showtimes": [
+              {"time": "20:00", "format": "數位", "booking_url": "https://example.test/2000"}
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "features": []
+}
