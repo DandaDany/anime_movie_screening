@@ -11,7 +11,7 @@ jobs:
   probe:
     if: github.head_ref == 'feat/expand-direct-booking-and-seat-preview'
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,100 +21,102 @@ jobs:
         run: |
           python -m pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Probe public booking flows
+      - name: Probe public booking controls
         run: |
           python - <<'PY'
           from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
           import json, re
 
-          def compact(obj):
-              print(json.dumps(obj, ensure_ascii=False)[:12000])
+          def compact(label, value):
+              print(label, json.dumps(value, ensure_ascii=False)[:20000])
 
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
 
-              # Broadway: inspect the public JSON already consumed by our crawler.
+              print("===== BROADWAY =====")
+              for action in ("quick-view", "buy-ticket"):
+                  ctx = browser.new_context(locale="zh-TW", timezone_id="Asia/Taipei")
+                  page = ctx.new_page()
+                  opened = []
+                  ctx.on("page", lambda p: opened.append(p))
+                  page.goto("https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101", wait_until="domcontentloaded", timeout=60000)
+                  page.wait_for_timeout(5000)
+                  buttons = page.locator("button."+action)
+                  meta = []
+                  chosen = None
+                  for i in range(min(buttons.count(), 30)):
+                      b = buttons.nth(i)
+                      row = {
+                          "i": i,
+                          "visible": b.is_visible(),
+                          "enabled": b.is_enabled(),
+                          "class": b.get_attribute("class"),
+                          "outer": b.evaluate("(e)=>e.parentElement?.outerHTML || e.outerHTML")[:4000],
+                      }
+                      meta.append(row)
+                      if chosen is None and row["visible"] and row["enabled"] and "disabled" not in (row["class"] or "").lower():
+                          chosen = b
+                  compact("BROADWAY_"+action+"_BUTTONS", meta[:8])
+                  if chosen:
+                      before = page.url
+                      try:
+                          chosen.click(timeout=10000)
+                          page.wait_for_timeout(2500)
+                      except Exception as exc:
+                          print("BROADWAY_CLICK_ERROR", action, type(exc).__name__, str(exc).splitlines()[0])
+                      print("BROADWAY_CLICK", action, "BEFORE", before, "AFTER", page.url)
+                      for popup in opened:
+                          try:
+                              popup.wait_for_load_state("domcontentloaded", timeout=10000)
+                          except Exception:
+                              pass
+                          print("BROADWAY_POPUP", action, popup.url)
+                  ctx.close()
+
+              # Validate the public quick-view URL shape inferred from API data.
               ctx = browser.new_context(locale="zh-TW", timezone_id="Asia/Taipei")
               page = ctx.new_page()
-              print("\n===== BROADWAY =====")
-              page.goto("https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101", wait_until="domcontentloaded", timeout=60000)
-              page.wait_for_timeout(3500)
-              for label in ["QUICK VIEW", "BUY TICKET"]:
-                  loc = page.get_by_text(re.compile(label, re.I)).first
-                  if loc.count():
-                      compact({"label": label, "outer": loc.evaluate("(e)=>e.closest('li,div')?.outerHTML || e.outerHTML")})
-              api = page.request.get("https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei", timeout=60000)
-              print("BROADWAY_API", api.status)
-              payload = api.json()
-              samples = []
-              for movie in payload.get("Data", [])[:3]:
-                  for group in movie.get("timedata", [])[:2]:
-                      for item in group.get("subtimedata", [])[:2]:
-                          samples.append({"movie_keys": list(movie.keys()), "group_keys": list(group.keys()), "item": item})
-              compact(samples)
+              api = page.request.get("https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei", timeout=60000).json()
+              candidate = None
+              for movie in api.get("Data", []):
+                  for group in movie.get("timedata", []):
+                      for item in group.get("subtimedata", []):
+                          if not item.get("disable"):
+                              candidate=(movie,item); break
+                      if candidate: break
+                  if candidate: break
+              if candidate:
+                  movie,item=candidate
+                  obj=",".join(["Zhubei",str(movie.get("programid","")),str(item.get("showdate","")),str(item.get("時間","")).replace(":","-"),str(item.get("hall",""))])
+                  print("BROADWAY_OBJ",obj)
+                  for path in ("quick-view.html","buy-ticket.html","ticket.html"):
+                      url="https://www.broadway-cineplex.com.tw/"+path+"?obj="+obj
+                      resp=page.request.get(url,timeout=30000)
+                      print("BROADWAY_ROUTE",path,resp.status,resp.url,"HAS_SEAT",("seat" in resp.text().lower() or "座位" in resp.text()))
               ctx.close()
 
-              # Century Asia: Angular/Vue attributes on live controls disclose the exact route builder.
-              ctx = browser.new_context(locale="zh-TW", timezone_id="Asia/Taipei")
-              page = ctx.new_page()
-              print("\n===== CENTURY =====")
-              page.goto("https://www.centuryasia.com.tw/book.html?sid=Nangang", wait_until="domcontentloaded", timeout=60000)
-              page.wait_for_timeout(3500)
-              nodes = page.locator("a,button,span").evaluate_all(r"""
-                els => els.filter(e => /立即前往訂票|場次座位預覽/.test((e.innerText||e.textContent||"")))
-                  .slice(0,8).map(e => ({
-                    text:(e.innerText||e.textContent||"").trim(),
-                    outer:e.closest(".time,.alltime,.hallandtime,.timetable,.content-row")?.outerHTML || e.outerHTML
-                  }))
+              print("===== CENTURY =====")
+              ctx=browser.new_context(locale="zh-TW",timezone_id="Asia/Taipei")
+              page=ctx.new_page()
+              page.goto("https://www.centuryasia.com.tw/book.html?sid=Nangang",wait_until="domcontentloaded",timeout=60000)
+              page.wait_for_timeout(8000)
+              script_urls=page.locator("script[src]").evaluate_all("els=>els.map(e=>e.src)")
+              compact("CENTURY_SCRIPTS",script_urls)
+              for url in script_urls:
+                  if "book.js" not in url: continue
+                  resp=page.request.get(url,timeout=30000)
+                  js=resp.text()
+                  print("CENTURY_BOOKJS_STATUS",resp.status,url)
+                  for term in ("buyticket","seat","preview","ProgramID","computerid","eventsn","window.open","location.href"):
+                      positions=[m.start() for m in re.finditer(re.escape(term),js,re.I)]
+                      for pos in positions[:4]:
+                          snippet=js[max(0,pos-800):pos+1800].replace("\n"," ")
+                          print("CENTURY_JS_SNIP",term,snippet[:3500])
+              controls=page.locator("button,a").evaluate_all(r"""
+                els=>els.map((e,i)=>({i,text:(e.innerText||e.textContent||"").trim(),outer:e.outerHTML}))
+                  .filter(x=>/立即前往訂票|場次座位預覽/.test(x.text)).slice(0,12)
               """)
-              compact(nodes)
-              scripts = page.locator("script").evaluate_all("els => els.map(e => e.src || e.textContent || '').filter(Boolean)")
-              for script in scripts:
-                  if re.search(r"ticket|seat|book|preview|eventsn|ProgramID|computerid", script, re.I):
-                      print("CENTURY_SCRIPT", script[:12000])
-              ctx.close()
-
-              # Shin Kong: capture signed public API traffic even when document load never completes.
-              ctx = browser.new_context(locale="zh-TW", timezone_id="Asia/Taipei")
-              page = ctx.new_page()
-              print("\n===== SHIN_KONG =====")
-              api_rows = []
-              def sk_req(req):
-                  if "/api/VistaDataV2/" in req.url:
-                      api_rows.append({"method": req.method, "url": req.url, "post_data": req.post_data or ""})
-              ctx.on("request", sk_req)
-              try:
-                  page.goto("https://www.skcinemas.com/films?c=1001", wait_until="commit", timeout=90000)
-              except PlaywrightTimeoutError as exc:
-                  print("SK_NAV_TIMEOUT", str(exc).splitlines()[0])
-              page.wait_for_timeout(15000)
-              compact(api_rows)
-              try:
-                  scripts = page.locator("script").evaluate_all("els => els.map(e => e.src || e.textContent || '').filter(Boolean)")
-                  compact([s for s in scripts if re.search(r"ticket|seat|session|booking|VistaData", s, re.I)][:30])
-                  nodes = page.locator("a,button,[onclick]").evaluate_all(r"""
-                    els => els.map(e => ({text:(e.innerText||e.textContent||"").trim(), outer:e.outerHTML}))
-                      .filter(x => /訂票|購票|\d{1,2}:\d{2}/.test(x.text)).slice(0,30)
-                  """)
-                  compact(nodes)
-              except Exception as exc:
-                  print("SK_INSPECT_ERROR", type(exc).__name__, str(exc))
-              ctx.close()
-
-              # Miranew: page can be CF-blocked on Actions; capture final response and any embedded routing strings.
-              ctx = browser.new_context(locale="zh-TW", timezone_id="Asia/Taipei")
-              page = ctx.new_page()
-              print("\n===== MIRANEW =====")
-              resp = page.goto("https://www.miranewcinemas.com/Booking/Timetable", wait_until="domcontentloaded", timeout=60000)
-              page.wait_for_timeout(1500)
-              print("MIRANEW_HTTP", resp.status if resp else None, "FINAL", page.url)
-              html = page.content()
-              for pattern in [r".{0,500}SessionId.{0,1200}", r".{0,500}Booking.{0,1200}", r".{0,500}CinemaList.{0,1200}"]:
-                  m = re.search(pattern, html, re.I|re.S)
-                  if m:
-                      print("MIRANEW_SNIP", m.group(0)[:6000])
-              print("MIRANEW_SCRIPTS")
-              compact(page.locator("script").evaluate_all("els => els.map(e => e.src || '').filter(Boolean)"))
+              compact("CENTURY_CONTROLS",controls)
               ctx.close()
 
               browser.close()
