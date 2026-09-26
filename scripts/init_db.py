@@ -18,6 +18,9 @@ MIGRATIONS = {
     "crawl_runs": {
         "show_date": "ALTER TABLE crawl_runs ADD COLUMN show_date TEXT",
     },
+    "showtimes": {
+        "seat_preview_url": "ALTER TABLE showtimes ADD COLUMN seat_preview_url TEXT",
+    },
 }
 
 
