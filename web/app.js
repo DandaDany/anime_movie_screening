@@ -361,6 +361,7 @@ function directShowtimeBookingUrl(showtime) {
     /vscinemas\.com\.tw\/vsTicketing\/ticketing\/booking\.aspx.*[?&]txtSessionId=/i,
     /miramarcinemas\.tw\/Booking\/TicketType\?.*[?&]session=/i,
     /centuryasia\.com\.tw\/.*buyticket_process\.aspx\?.*(?:[?&]eventsn=|[?&]computerid=)/i,
+    /showtimes\.com\.tw\/ticketing\/selectEvents\/\d+\/\d+\?[^#]*[?&]?date=\d{4}-\d{2}-\d{2}/i,
   ];
   return patterns.some((pattern) => pattern.test(bookingUrl)) ? bookingUrl : "";
 }
