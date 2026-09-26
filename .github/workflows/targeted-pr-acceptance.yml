@@ -51,9 +51,12 @@ jobs:
             python -m unittest tests.test_multiday_export tests.test_daily_update_multiday -v
             node tests/frontend_date_state_test.js
             node tests/frontend_time_filter_test.js
+            node tests/frontend_showtime_booking_cta_test.js
             python -m compileall -q scripts tests
             node --check web/app.js
             node --check web/date-state.js
+            node --check web/discovery.js
+            node --check web/seat-preview.js
             git diff --check
           } 2>&1 | tee artifacts/automated-tests.log
 
@@ -76,6 +79,15 @@ jobs:
         id: browser_targeted
         continue-on-error: true
         run: python tests/browser_targeted_acceptance.py --report artifacts/targeted-browser-report.json
+
+      - name: PR63-67 full release audit
+        id: release_audit
+        continue-on-error: true
+        run: |
+          python -m unittest tests.test_pr63_67_release_audit -v
+          python tests/browser_movie_discovery_acceptance.py
+          python tests/browser_showtimes_booking_acceptance.py
+          python tests/browser_seat_preview_return_state.py
 
       - name: Ambassador live multi-language comparison
         id: ambassador_live
@@ -101,7 +113,9 @@ jobs:
         run: |
           echo "browser_existing=${{ steps.browser_existing.outcome }}"
           echo "browser_targeted=${{ steps.browser_targeted.outcome }}"
+          echo "release_audit=${{ steps.release_audit.outcome }}"
           echo "ambassador_live=${{ steps.ambassador_live.outcome }}"
           test "${{ steps.browser_existing.outcome }}" = "success"
           test "${{ steps.browser_targeted.outcome }}" = "success"
+          test "${{ steps.release_audit.outcome }}" = "success"
           test "${{ steps.ambassador_live.outcome }}" = "success"
