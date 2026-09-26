@@ -11,6 +11,7 @@ TARGETS = [
     "https://skcwww.bonjays.com/films?c=1001",
     "https://skcwww.bonjays.com/Films/Films?filmType=NowShowing",
     "https://skcwww.bonjays.com/Sessions/Sessions?cinemaId=1001",
+    "https://www.skcinemas.com/Sessions/Sessions?cinemaId=1001",
 ]
 
 KEYWORDS = [
