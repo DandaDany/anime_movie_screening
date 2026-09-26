@@ -361,9 +361,6 @@ function directShowtimeBookingUrl(showtime) {
     /vscinemas\.com\.tw\/vsTicketing\/ticketing\/booking\.aspx.*[?&]txtSessionId=/i,
     /miramarcinemas\.tw\/Booking\/TicketType\?.*[?&]session=/i,
     /centuryasia\.com\.tw\/.*buyticket_process\.aspx\?.*(?:[?&]eventsn=|[?&]computerid=)/i,
-    /broadway-cineplex\.com\.tw\/.*(?:book|ticket).*\.html\?.*[?&]obj=[^&#]*,[^&#]*,[^&#]*,[^&#]*,[^&#]*/i,
-    /skcinemas\.com\/.*(?:booking|ticket).*\?.*(?:[?&]SessionID=|[?&]session=)/i,
-    /miranewcinemas\.com\/.*(?:Booking|Order).*\?.*(?:[?&]SessionId=|[?&]session=)/i,
   ];
   return patterns.some((pattern) => pattern.test(bookingUrl)) ? bookingUrl : "";
 }
@@ -426,9 +423,9 @@ function bindShowtimeBookingInteraction(root) {
   if (!root) return;
   const chips = [...root.querySelectorAll(".st-chip-select")];
   const cta = root.querySelector("[data-booking-cta]");
-  if (!chips.length || !cta) return;
+  if (!chips.length) return;
 
-  const ctaLabel = cta.querySelector("[data-booking-cta-label]");
+  const ctaLabel = cta?.querySelector("[data-booking-cta-label]");
   const officialCta = root.querySelector("[data-official-cta]");
   const officialLabel = officialCta?.querySelector("[data-official-cta-label]");
   const officialHref = officialCta?.dataset.officialHref || officialCta?.getAttribute("href") || "";
@@ -438,11 +435,13 @@ function bindShowtimeBookingInteraction(root) {
       chip.classList.remove("is-selected");
       chip.setAttribute("aria-pressed", "false");
     }
-    cta.removeAttribute("href");
-    cta.classList.add("is-disabled");
-    cta.setAttribute("aria-disabled", "true");
-    cta.removeAttribute("aria-label");
-    if (ctaLabel) ctaLabel.textContent = "場次入口";
+    if (cta) {
+      cta.removeAttribute("href");
+      cta.classList.add("is-disabled");
+      cta.setAttribute("aria-disabled", "true");
+      cta.removeAttribute("aria-label");
+      if (ctaLabel) ctaLabel.textContent = "場次入口";
+    }
 
     if (officialCta) {
       if (officialHref) officialCta.href = officialHref;
@@ -453,7 +452,7 @@ function bindShowtimeBookingInteraction(root) {
 
   resetSelection();
 
-  cta.addEventListener("click", (event) => {
+  cta?.addEventListener("click", (event) => {
     if (cta.getAttribute("aria-disabled") === "true") event.preventDefault();
   });
 
@@ -472,21 +471,23 @@ function bindShowtimeBookingInteraction(root) {
       }
 
       const bookingUrl = chip.dataset.bookingUrl || "";
-      if (bookingUrl) {
-        cta.href = bookingUrl;
-        cta.classList.remove("is-disabled");
-        cta.setAttribute("aria-disabled", "false");
-        cta.setAttribute(
-          "aria-label",
-          `${chip.dataset.showtimeTime || ""} 場次前往訂票`.trim(),
-        );
-        if (ctaLabel) ctaLabel.textContent = "前往訂票";
-      } else {
-        cta.removeAttribute("href");
-        cta.classList.add("is-disabled");
-        cta.setAttribute("aria-disabled", "true");
-        cta.removeAttribute("aria-label");
-        if (ctaLabel) ctaLabel.textContent = "場次入口";
+      if (cta) {
+        if (bookingUrl) {
+          cta.href = bookingUrl;
+          cta.classList.remove("is-disabled");
+          cta.setAttribute("aria-disabled", "false");
+          cta.setAttribute(
+            "aria-label",
+            `${chip.dataset.showtimeTime || ""} 場次前往訂票`.trim(),
+          );
+          if (ctaLabel) ctaLabel.textContent = "前往訂票";
+        } else {
+          cta.removeAttribute("href");
+          cta.classList.add("is-disabled");
+          cta.setAttribute("aria-disabled", "true");
+          cta.removeAttribute("aria-label");
+          if (ctaLabel) ctaLabel.textContent = "場次入口";
+        }
       }
 
       const seatPreviewUrl = chip.dataset.seatPreviewUrl || "";
@@ -512,11 +513,10 @@ function popupHtml(feature) {
     ? escapeHtml(props.show_date).replaceAll("-", "/")
     : "當日場次";
   const showtimes = visibleShowtimes(feature);
-  const interactiveShowtimes = showtimes.filter(
-    (showtime) =>
-      directShowtimeBookingUrl(showtime) || seatPreviewUrlForShowtime(showtime, feature),
+  const directBookingShowtimes = showtimes.filter((showtime) =>
+    directShowtimeBookingUrl(showtime),
   );
-  const hasInteractiveShowtime = interactiveShowtimes.length > 0;
+  const hasDirectBooking = directBookingShowtimes.length > 0;
   const showtimeBlock = showtimes.length
     ? `
         <div class="popup-showtimes">
@@ -546,7 +546,7 @@ function popupHtml(feature) {
         props.showtime_unavailable_reason || "官方場次暫時無法取得，請前往場次入口查看。",
       )}</p>`
     : "";
-  const locationLink = hasInteractiveShowtime
+  const locationLink = hasDirectBooking
     ? `<a class="popup-link popup-link-primary popup-booking-cta is-disabled" aria-disabled="true" data-booking-cta>${TICKET_SVG}<span data-booking-cta-label>場次入口</span></a>`
     : props.location_url
       ? `<a class="popup-link popup-link-primary" href="${escapeHtml(props.location_url)}" target="_blank" rel="noreferrer">${TICKET_SVG}場次入口</a>`
