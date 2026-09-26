@@ -67,5 +67,7 @@ jobs:
             echo "No repaired VIESHOW data changes"
           else
             git commit -m "Repair current VIESHOW booking and seat data"
+            git fetch origin fix/vieshow-booking-publish-race
+            git rebase origin/fix/vieshow-booking-publish-race
             git push origin HEAD:fix/vieshow-booking-publish-race
           fi
