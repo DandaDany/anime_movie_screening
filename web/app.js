@@ -673,6 +673,7 @@ function renderFilterButtons(container, items, selectedValue, onSelect) {
     button.className = "filter-option";
     button.type = "button";
     button.classList.toggle("is-selected", value === selectedValue);
+    button.setAttribute("aria-pressed", value === selectedValue ? "true" : "false");
     button.innerHTML = `
       <span>${escapeHtml(value)}</span>
       <strong>${count}</strong>
