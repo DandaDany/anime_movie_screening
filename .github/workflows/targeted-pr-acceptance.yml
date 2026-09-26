@@ -77,6 +77,11 @@ jobs:
         continue-on-error: true
         run: python tests/browser_targeted_acceptance.py --report artifacts/targeted-browser-report.json
 
+      - name: VIESHOW seat preview return-state acceptance
+        id: browser_seat_preview
+        continue-on-error: true
+        run: python tests/browser_seat_preview_return_state.py
+
       - name: Ambassador live multi-language comparison
         id: ambassador_live
         continue-on-error: true
@@ -101,7 +106,9 @@ jobs:
         run: |
           echo "browser_existing=${{ steps.browser_existing.outcome }}"
           echo "browser_targeted=${{ steps.browser_targeted.outcome }}"
+          echo "browser_seat_preview=${{ steps.browser_seat_preview.outcome }}"
           echo "ambassador_live=${{ steps.ambassador_live.outcome }}"
           test "${{ steps.browser_existing.outcome }}" = "success"
           test "${{ steps.browser_targeted.outcome }}" = "success"
+          test "${{ steps.browser_seat_preview.outcome }}" = "success"
           test "${{ steps.ambassador_live.outcome }}" = "success"
