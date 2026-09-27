@@ -67,7 +67,7 @@
   }
 
   function parseShowtimeMinute(showtime) {
-    const match = /^(\\d{1,2}):(\\d{2})$/.exec(String(showtime?.time || "").trim());
+    const match = /^(\d{1,2}):(\d{2})$/.exec(String(showtime?.time || "").trim());
     if (!match) return null;
     const hour = Number(match[1]);
     const minute = Number(match[2]);
