@@ -29,6 +29,26 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                 self.assertTrue(str(poster.get("poster_url") or "").startswith("https://"))
                 self.assertTrue(str(poster.get("poster_source") or "").strip())
 
+    def test_upcoming_posters_use_taiwan_facing_sources(self):
+        future_cutoff = "2026-09-27"
+        poster_by_title = {item["title"]: item for item in self.posters["movies"]}
+        forbidden_sources = (
+            "prtimes.jp",
+            "sonymusic.co.jp",
+            "youranimes.tw",
+        )
+        for movie in self.tracked["movies"]:
+            if not movie.get("is_active") or str(movie.get("target_date") or "") <= future_cutoff:
+                continue
+            poster = poster_by_title[movie["title"]]
+            source_url = str(poster.get("poster_source_url") or "")
+            with self.subTest(movie=movie["title"]):
+                self.assertTrue(source_url.startswith("https://"))
+                self.assertFalse(
+                    any(host in source_url for host in forbidden_sources),
+                    f"upcoming poster must be backed by a Taiwan-facing release source: {source_url}",
+                )
+
     def test_generated_feed_uses_canonical_active_movies_and_dates(self):
         payload = discovery.build_payload(self.tracked, self.posters)
         expected = [movie for movie in self.tracked["movies"] if movie["is_active"]]

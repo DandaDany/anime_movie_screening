@@ -407,31 +407,17 @@
     }
   }
 
-  async function selectUpcoming(item) {
-    const originalDate = selectedDate();
-    const dates = availabilityReady ? availabilityDatesForItem(item) : availableDateValues();
-    const candidates = [
-      ...(item.target_date && dates.includes(item.target_date) ? [item.target_date] : []),
-      ...dates,
-    ].filter((value, index, all) => all.indexOf(value) === index);
+  function upcomingReleaseLabel(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ""));
+    return match ? `${match[2]}/${match[3]}` : "";
+  }
 
-    for (const showDate of candidates) {
-      const option = await optionOnDate(item, showDate);
-      if (!option) continue;
-      window.trackEvent?.("movie_discovery_select", {
-        movie_title: item.title,
-        source: "upcoming_future_date",
-        show_date: showDate,
-      });
-      selectOption(option);
-      return;
-    }
-
-    await restoreDate(originalDate);
-    showToast("尚未有上映資訊");
-    window.trackEvent?.("movie_discovery_unavailable", {
+  function selectUpcoming(item) {
+    const releaseLabel = upcomingReleaseLabel(item.target_date);
+    showToast(releaseLabel ? `預計${releaseLabel}上映，敬請期待！` : "敬請期待！");
+    window.trackEvent?.("movie_discovery_upcoming_notice", {
       movie_title: item.title,
-      source: "upcoming",
+      target_date: item.target_date || "",
     });
   }
 
