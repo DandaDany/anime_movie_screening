@@ -1,6 +1,8 @@
 import json
 import unittest
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from scripts import build_movie_discovery_data as discovery
 
@@ -29,24 +31,63 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                 self.assertTrue(str(poster.get("poster_url") or "").startswith("https://"))
                 self.assertTrue(str(poster.get("poster_source") or "").strip())
 
-    def test_upcoming_posters_use_taiwan_facing_sources(self):
-        future_cutoff = "2026-09-27"
+    def test_upcoming_posters_follow_formal_poster_policy(self):
+        today = datetime.now(ZoneInfo("Asia/Taipei")).date().isoformat()
         poster_by_title = {item["title"]: item for item in self.posters["movies"]}
-        forbidden_sources = (
-            "prtimes.jp",
-            "sonymusic.co.jp",
-            "youranimes.tw",
+        forbidden_url_tokens = (
+            "i.ytimg.com",
+            "youtube.com",
+            "youtu.be",
         )
+        forbidden_source_terms = (
+            "youtube",
+            "thumbnail",
+            "預告主視覺",
+            "pv 截圖",
+            "橫式 kv",
+            "新聞首圖",
+            "bd 封面",
+            "cd 封面",
+            "商品圖",
+            "jacket",
+            "jaket",
+        )
+
         for movie in self.tracked["movies"]:
-            if not movie.get("is_active") or str(movie.get("target_date") or "") <= future_cutoff:
+            if not movie.get("is_active") or str(movie.get("target_date") or "") <= today:
                 continue
             poster = poster_by_title[movie["title"]]
+            poster_url = str(poster.get("poster_url") or "")
+            source = str(poster.get("poster_source") or "")
             source_url = str(poster.get("poster_source_url") or "")
             with self.subTest(movie=movie["title"]):
+                self.assertTrue(poster_url.startswith("https://"))
                 self.assertTrue(source_url.startswith("https://"))
                 self.assertFalse(
-                    any(host in source_url for host in forbidden_sources),
-                    f"upcoming poster must be backed by a Taiwan-facing release source: {source_url}",
+                    any(token in poster_url.lower() for token in forbidden_url_tokens),
+                    f"upcoming poster must not use a video thumbnail: {poster_url}",
+                )
+                self.assertFalse(
+                    any(term.lower() in source.lower() for term in forbidden_source_terms),
+                    f"upcoming artwork is not a formal movie poster: {source}",
+                )
+                if "UPCOMING FALLBACK" in source:
+                    self.assertEqual(source, "日本官方 Poster（UPCOMING FALLBACK）")
+
+    def test_japan_poster_fallback_is_upcoming_only(self):
+        today = datetime.now(ZoneInfo("Asia/Taipei")).date().isoformat()
+        tracked_by_title = {item["title"]: item for item in self.tracked["movies"]}
+        for poster in self.posters["movies"]:
+            source = str(poster.get("poster_source") or "")
+            if "UPCOMING FALLBACK" not in source:
+                continue
+            movie = tracked_by_title[poster["title"]]
+            with self.subTest(movie=movie["title"]):
+                self.assertTrue(movie.get("is_active"))
+                self.assertGreater(
+                    str(movie.get("target_date") or ""),
+                    today,
+                    "Japanese poster fallback is only allowed before the Taiwan release date",
                 )
 
     def test_generated_feed_uses_canonical_active_movies_and_dates(self):
