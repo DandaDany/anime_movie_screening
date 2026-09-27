@@ -317,7 +317,9 @@ const {
   FORMAT_ORDER,
   FORMAT_RULES,
   displayTag: showtimeTag,
+  explicitFormatTags: showtimeExplicitFormatTags,
   formatTags: showtimeFormatTags,
+  languageTag: showtimeLanguageTag,
   subLabel: showtimeSubLabel,
 } = window.MuseVersionFilter;
 
@@ -340,7 +342,11 @@ function auditShowtimeSpecs() {
       for (const showtime of feature.properties.showtimes || []) {
         const raw = showtimeSubLabel(showtime);
         if (!raw || flagged.has(raw)) continue;
-        const tokens = suspiciousSpecTokens(raw, showtimeTag(showtime));
+        const knownTag = [
+          ...showtimeExplicitFormatTags(showtime),
+          showtimeLanguageTag(showtime),
+        ].filter(Boolean).join(" ");
+        const tokens = suspiciousSpecTokens(raw, knownTag);
         if (tokens.length) flagged.set(raw, tokens);
       }
     }
