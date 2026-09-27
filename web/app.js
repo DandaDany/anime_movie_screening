@@ -361,7 +361,11 @@ function directShowtimeBookingUrl(showtime) {
     /vscinemas\.com\.tw\/vsTicketing\/ticketing\/booking\.aspx.*[?&]txtSessionId=/i,
     /miramarcinemas\.tw\/Booking\/TicketType\?.*[?&]session=/i,
     /centuryasia\.com\.tw\/.*buyticket_process\.aspx\?.*(?:[?&]eventsn=|[?&]computerid=)/i,
+    /centuryasia\.com\.tw\/book\.html\?(?=[^#]*\bsid=)(?=[^#]*\bver=)[^#]+/i,
     /showtimes\.com\.tw\/ticketing\/selectEvents\/\d+\/\d+\?[^#]*[?&]?date=\d{4}-\d{2}-\d{2}/i,
+    /mldcinema\.com\.tw\/OnlinePurchase\.php\?[^#]*[?&]?computerid=\d+/i,
+    /broadway-cineplex\.com\.tw\/book\.html\?(?=[^#]*\bobj=)(?=[^#]*[?&]v(?:=)?[\w-]+)[^#]+/i,
+    /ezding\.com\.tw\/cinemabooking\?(?=[^#]*\bcinemaid=)[^#]+/i,
   ];
   return patterns.some((pattern) => pattern.test(bookingUrl)) ? bookingUrl : "";
 }
@@ -441,7 +445,7 @@ function bindShowtimeBookingInteraction(root) {
       cta.classList.add("is-disabled");
       cta.setAttribute("aria-disabled", "true");
       cta.removeAttribute("aria-label");
-      if (ctaLabel) ctaLabel.textContent = "場次入口";
+      if (ctaLabel) ctaLabel.textContent = "前往訂票";
     }
 
     if (officialCta) {
@@ -487,7 +491,7 @@ function bindShowtimeBookingInteraction(root) {
           cta.classList.add("is-disabled");
           cta.setAttribute("aria-disabled", "true");
           cta.removeAttribute("aria-label");
-          if (ctaLabel) ctaLabel.textContent = "場次入口";
+          if (ctaLabel) ctaLabel.textContent = "前往訂票";
         }
       }
 
@@ -548,7 +552,7 @@ function popupHtml(feature) {
       )}</p>`
     : "";
   const locationLink = hasDirectBooking
-    ? `<a class="popup-link popup-link-primary popup-booking-cta is-disabled" aria-disabled="true" data-booking-cta>${TICKET_SVG}<span data-booking-cta-label>場次入口</span></a>`
+    ? `<a class="popup-link popup-link-primary popup-booking-cta is-disabled" aria-disabled="true" data-booking-cta>${TICKET_SVG}<span data-booking-cta-label>前往訂票</span></a>`
     : props.location_url
       ? `<a class="popup-link popup-link-primary" href="${escapeHtml(props.location_url)}" target="_blank" rel="noreferrer">${TICKET_SVG}場次入口</a>`
       : "";

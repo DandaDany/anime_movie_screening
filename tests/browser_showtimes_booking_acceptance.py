@@ -1,127 +1,176 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-REPO = Path(__file__).resolve().parents[1]
 FIXED_NOW_MS = 1790439300000  # 2026-09-27 00:15 Asia/Taipei
-BOOKING_URL = "https://www.showtimes.com.tw/ticketing/selectEvents/91/12763?date=2026-09-27"
+MOVIE_TITLE = "劇場版 吉伊卡哇 人魚島的秘密"
 
-LOCATIONS = {
-    "type": "FeatureCollection",
-    "name": "ShowTimes booking acceptance",
-    "show_date": "2026-09-27",
-    "updated_at": "2026-09-27T00:10:00+08:00",
-    "available_dates": ["2026-09-27"],
-    "movies": [
-        {
-            "title": "劇場版 吉伊卡哇 人魚島的秘密",
+PROVIDERS = [
+    {
+        "chain": "威秀影城 / VIESHOW",
+        "location": "台北信義威秀影城",
+        "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=211704",
+    },
+    {
+        "chain": "MUVIE CINEMAS",
+        "location": "MUVIE CINEMAS 台北松仁",
+        "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=21&txtSessionId=165981",
+    },
+    {
+        "chain": "秀泰影城",
+        "location": "大巨蛋秀泰影城",
+        "booking_url": "https://www.showtimes.com.tw/ticketing/selectEvents/91/12763?date=2026-09-27",
+    },
+    {
+        "chain": "美麗華影城",
+        "location": "美麗華影城",
+        "booking_url": "https://www.miramarcinemas.tw/Booking/TicketType?id=movie-id&session=437780",
+    },
+    {
+        "chain": "台鋁影城",
+        "location": "MLD台鋁影城",
+        "booking_url": "https://mldcinema.com.tw/OnlinePurchase.php?computerid=264704",
+    },
+    {
+        "chain": "百老匯影城",
+        "location": "公館百老匯影城",
+        "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+    },
+    {
+        "chain": "喜樂時代影城",
+        "location": "喜樂時代影城南港店",
+        "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+    },
+    {
+        "chain": "中影屏東影城",
+        "location": "中影屏東影城",
+        "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+    },
+]
+
+
+def locations_payload(provider: dict[str, str], location_id: int) -> dict:
+    feature = {
+        "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [121.561, 25.041]},
+        "properties": {
+            "location_id": location_id,
+            "chain_name": provider["chain"],
+            "location_name": provider["location"],
+            "map_name": provider["location"],
+            "address": "臺北市測試地址",
+            "city": "臺北市",
+            "location_url": "https://example.test/showtimes",
+            "official_url": "https://example.test/official",
+            "movie_title": MOVIE_TITLE,
             "show_date": "2026-09-27",
-            "available_dates": ["2026-09-27"],
-            "feature_count": 1,
-        }
-    ],
-    "movie_features": {
-        "劇場版 吉伊卡哇 人魚島的秘密": []
-    },
-    "movie_features_by_date": {
-        "劇場版 吉伊卡哇 人魚島的秘密": {
-            "2026-09-27": [
+            "showtime_count": 1,
+            "showtimes": [
                 {
-                    "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [121.561, 25.041]},
-                    "properties": {
-                        "location_id": 991,
-                        "chain_name": "秀泰影城",
-                        "location_name": "大巨蛋秀泰影城",
-                        "map_name": "秀泰 大巨蛋",
-                        "address": "臺北市測試地址",
-                        "city": "臺北市",
-                        "location_url": "https://www.showtimes.com.tw/ticketing?cid=91&date=2026-09-27&category=popular",
-                        "official_url": "https://www.showtimes.com.tw/",
-                        "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-                        "show_date": "2026-09-27",
-                        "showtime_count": 1,
-                        "showtimes": [
-                            {
-                                "time": "10:10",
-                                "format": "數位",
-                                "language": "日語",
-                                "auditorium": "1廳",
-                                "booking_url": BOOKING_URL,
-                                "label": "10:10 數位 / 1廳",
-                            }
-                        ],
-                        "start_times": "10:10",
-                    },
+                    "time": "10:10",
+                    "format": "數位",
+                    "language": "日語",
+                    "auditorium": "1廳",
+                    "booking_url": provider["booking_url"],
+                    "label": "10:10 數位 / 1廳",
                 }
-            ]
-        }
-    },
-    "features": [],
-}
+            ],
+            "start_times": "10:10",
+        },
+    }
+    return {
+        "type": "FeatureCollection",
+        "name": f'{provider["chain"]} booking acceptance',
+        "show_date": "2026-09-27",
+        "updated_at": "2026-09-27T00:10:00+08:00",
+        "available_dates": ["2026-09-27"],
+        "movies": [
+            {
+                "title": MOVIE_TITLE,
+                "show_date": "2026-09-27",
+                "available_dates": ["2026-09-27"],
+                "feature_count": 1,
+            }
+        ],
+        "movie_features": {MOVIE_TITLE: [feature]},
+        "movie_features_by_date": {MOVIE_TITLE: {"2026-09-27": [feature]}},
+        "features": [feature],
+    }
+
+
+def install_fixed_clock(page) -> None:
+    page.add_init_script(
+        f"""
+        (() => {{
+          const fixedNow = {FIXED_NOW_MS};
+          const NativeDate = Date;
+          class FixedDate extends NativeDate {{
+            constructor(...args) {{ super(...(args.length ? args : [fixedNow])); }}
+            static now() {{ return fixedNow; }}
+          }}
+          FixedDate.parse = NativeDate.parse;
+          FixedDate.UTC = NativeDate.UTC;
+          window.Date = FixedDate;
+        }})()
+        """
+    )
+
+
+def assert_provider(browser, provider: dict[str, str], index: int) -> None:
+    context = browser.new_context(
+        viewport={"width": 1440, "height": 1000},
+        timezone_id="Asia/Taipei",
+    )
+    try:
+        page = context.new_page()
+        payload = locations_payload(provider, 990 + index)
+        page.route(
+            "**/data/locations.geojson",
+            lambda route: route.fulfill(
+                status=200,
+                content_type="application/geo+json",
+                body=json.dumps(payload, ensure_ascii=False),
+            ),
+        )
+        install_fixed_clock(page)
+        page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+        page.wait_for_function("() => Boolean(window.MuseDiscovery)")
+        page.evaluate("window.MuseDiscovery.close()")
+        page.wait_for_timeout(250)
+
+        marker = page.locator(".cinema-marker")
+        assert marker.count() == 1, provider["chain"]
+        marker.dispatch_event("click")
+
+        popup = page.locator(".leaflet-popup").last
+        popup.wait_for()
+        cta = popup.locator("[data-booking-cta]")
+        assert cta.count() == 1, f'{provider["chain"]}: missing dynamic booking CTA'
+        assert cta.inner_text() == "前往訂票", provider["chain"]
+        assert cta.get_attribute("aria-disabled") == "true", provider["chain"]
+        assert not cta.get_attribute("href"), provider["chain"]
+
+        showtime = popup.locator(".st-chip-select", has_text="10:10")
+        assert showtime.count() == 1, f'{provider["chain"]}: showtime must be selectable'
+        assert showtime.get_attribute("aria-pressed") == "false", provider["chain"]
+        showtime.dispatch_event("click")
+
+        assert showtime.get_attribute("aria-pressed") == "true", provider["chain"]
+        assert cta.inner_text() == "前往訂票", provider["chain"]
+        assert cta.get_attribute("href") == provider["booking_url"], provider["chain"]
+        assert cta.get_attribute("aria-disabled") == "false", provider["chain"]
+    finally:
+        context.close()
 
 
 def main() -> int:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         try:
-            context = browser.new_context(
-                viewport={"width": 1440, "height": 1000},
-                timezone_id="Asia/Taipei",
-            )
-            page = context.new_page()
-            page.route(
-                "**/data/locations.geojson",
-                lambda route: route.fulfill(
-                    status=200,
-                    content_type="application/geo+json",
-                    body=json.dumps(LOCATIONS, ensure_ascii=False),
-                ),
-            )
-            page.add_init_script(
-                f"""
-                (() => {{
-                  const fixedNow = {FIXED_NOW_MS};
-                  const NativeDate = Date;
-                  class FixedDate extends NativeDate {{
-                    constructor(...args) {{ super(...(args.length ? args : [fixedNow])); }}
-                    static now() {{ return fixedNow; }}
-                  }}
-                  FixedDate.parse = NativeDate.parse;
-                  FixedDate.UTC = NativeDate.UTC;
-                  window.Date = FixedDate;
-                }})()
-                """
-            )
-
-            page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
-            page.wait_for_function("() => Boolean(window.MuseDiscovery)")
-            page.evaluate("window.MuseDiscovery.close()")
-            page.wait_for_timeout(250)
-
-            assert page.locator("#movieSelect").input_value() == "劇場版 吉伊卡哇 人魚島的秘密"
-            marker = page.locator(".cinema-marker")
-            assert marker.count() == 1
-            marker.dispatch_event("click")
-
-            popup = page.locator(".leaflet-popup").last
-            popup.wait_for()
-            showtime = popup.locator(".st-chip-select", has_text="10:10")
-            assert showtime.count() == 1
-            assert showtime.get_attribute("aria-pressed") == "false"
-
-            showtime.dispatch_event("click")
-            assert showtime.get_attribute("aria-pressed") == "true"
-
-            cta = popup.locator("[data-booking-cta]")
-            assert cta.inner_text() == "前往訂票"
-            assert cta.get_attribute("href") == BOOKING_URL
-            assert cta.get_attribute("aria-disabled") == "false"
-
-            context.close()
+            for index, provider in enumerate(PROVIDERS, start=1):
+                assert_provider(browser, provider, index)
         finally:
             browser.close()
     return 0

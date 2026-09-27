@@ -72,11 +72,24 @@ assert(
   }).includes("computerid=16358"),
   "Century Asia session-specific booking URL should be accepted",
 );
+
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+  }).includes("book.html"),
+  "Century Asia movie booking page should be selectable after choosing a showtime",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+  }).includes("v25080101"),
+  "Broadway movie booking page should be selectable after choosing a showtime",
+);
 assert(
   sandbox.directShowtimeBookingUrl({
     booking_url: "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei",
   }) === "",
-  "Broadway cinema landing URL must not be treated as direct booking",
+  "Broadway cinema-only booking landing must not be treated as a movie booking URL",
 );
 assert(
   sandbox.directShowtimeBookingUrl({
@@ -89,6 +102,19 @@ assert(
     booking_url: "https://www.showtimes.com.tw/ticketing?cid=91&date=2026-09-27&category=popular",
   }) === "",
   "Legacy ShowTimes cinema+date landing URL must not be treated as selectable booking",
+);
+
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://mldcinema.com.tw/OnlinePurchase.php?computerid=264704",
+  }).includes("computerid=264704"),
+  "MLD OnlinePurchase session URL should be accepted",
+);
+assert(
+  sandbox.directShowtimeBookingUrl({
+    booking_url: "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+  }).includes("cinemaid="),
+  "ezDing cinema booking URL should be selectable after choosing a showtime",
 );
 const seatPreviewUrl = sandbox.vieshowSeatPreviewUrl(
   { booking_url: booking1 },
@@ -203,7 +229,7 @@ const chip3 = mockChip("19:20", "", broadwayPreview);
 
 const cta = mockLink({
   labelSelector: "[data-booking-cta-label]",
-  labelText: "場次入口",
+  labelText: "前往訂票",
   classes: ["popup-booking-cta", "is-disabled"],
 });
 cta.attributes["aria-disabled"] = "true";
@@ -237,7 +263,7 @@ cta.listeners.click({
   },
 });
 assert(prevented, "CTA must be inert before a showtime is selected");
-assert(cta._label.textContent === "場次入口", "Initial booking CTA should say 場次入口");
+assert(cta._label.textContent === "前往訂票", "Initial booking CTA should say 前往訂票");
 assert(official._label.textContent === "官方網站", "Initial secondary CTA should say 官方網站");
 assert(official.href === officialUrl, "Initial secondary CTA should keep official URL");
 
@@ -289,7 +315,7 @@ assert(!chip2.classList.contains("is-selected"), "Previous booking showtime shou
 assert(chip3.classList.contains("is-selected"), "Preview-only showtime should be selectable");
 assert(cta.href === "", "Preview-only showtime must not invent an official booking URL");
 assert(cta.attributes["aria-disabled"] === "true", "Primary booking CTA should stay disabled for preview-only showtime");
-assert(cta._label.textContent === "場次入口", "Primary CTA should remain generic for preview-only showtime");
+assert(cta._label.textContent === "前往訂票", "Disabled booking CTA label should remain 前往訂票 for preview-only showtime");
 assert(official.href === broadwayPreview, "Secondary CTA should point to the exact provider seat preview");
 assert(official._label.textContent === "座位表入口", "Preview-only selection should expose 座位表入口");
 
@@ -304,7 +330,7 @@ assert(!chip2.classList.contains("is-selected"), "Selected showtime should toggl
 assert(chip2.attributes["aria-pressed"] === "false", "Toggled-off showtime aria-pressed should be false");
 assert(cta.href === "", "Booking CTA href should be removed after toggling off");
 assert(cta.attributes["aria-disabled"] === "true", "Booking CTA should disable after toggling off");
-assert(cta._label.textContent === "場次入口", "Booking CTA should return to 場次入口");
+assert(cta._label.textContent === "前往訂票", "Booking CTA should remain 前往訂票 after toggling off");
 assert(official.href === officialUrl, "Secondary CTA should return to official URL");
 assert(official._label.textContent === "官方網站", "Secondary CTA should return to 官方網站");
 
@@ -332,8 +358,8 @@ assert(previewOnlyChip.classList.contains("is-selected"), "Preview-only showtime
 assert(previewOnlyOfficial.href === broadwayPreview, "Preview-only cinema should expose the exact seat preview while keeping its static booking entry");
 assert(previewOnlyOfficial._label.textContent === "座位表入口", "Preview-only cinema should relabel the secondary CTA");
 assert(
-  source.includes('data-booking-cta-label>場次入口</span>'),
-  "Initial booking CTA should still render 場次入口",
+  source.includes('data-booking-cta-label>前往訂票</span>'),
+  "Initial booking CTA should render 前往訂票 while disabled",
 );
 assert(
   source.includes('data-official-cta-label>官方網站</span>'),
