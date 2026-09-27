@@ -130,6 +130,13 @@ def install_fixture(page):
                     "target_date": "2026-08-01",
                     "poster_url": "https://example.com/f.jpg",
                 },
+                {
+                    "id": 7,
+                    "title": "電影 G",
+                    "aliases": [],
+                    "target_date": "2026-10-01",
+                    "poster_url": "https://example.com/g.jpg",
+                },
             ],
         },
         ensure_ascii=False,
@@ -187,12 +194,13 @@ def main() -> int:
             assert page.locator("#nowShowingGrid .movie-card").count() == 3
             assert page.locator("#nowShowingGrid .movie-card", has_text="電影 E").count() == 0
             assert page.locator("#nowShowingGrid .movie-card", has_text="電影 F").count() == 0
-            assert page.locator("#comingSoonGrid .movie-card").count() == 1
-            assert page.locator("#comingSoonGrid .movie-card__title").inner_text() == "電影 C"
+            # 即將上映不再受 lookahead_days=7 限制；10/01 的 G 距今天遠超過 7 天仍必須顯示。
+            assert page.locator("#comingSoonGrid .movie-card").count() == 2
+            assert page.locator("#comingSoonGrid .movie-card__title").all_text_contents() == ["電影 C", "電影 G"]
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
             assert page.locator(".sidebar").evaluate("el => getComputedStyle(el).display") == "none"
 
-            page.locator("#comingSoonGrid .movie-card").click()
+            page.locator("#comingSoonGrid .movie-card", has_text="電影 C").click()
             page.locator("#movieDiscoveryToast").filter(has_text="尚未有上映資訊").wait_for()
 
             # 電影 B 今天最後一場 20:30，固定現在時間 20:45；卡片仍留在「正在上映」。
