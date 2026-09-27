@@ -195,10 +195,7 @@ def main() -> int:
             page.locator("#movieDiscoveryToast").filter(has_text="其他日期也尚無上映資訊").wait_for()
             assert page.locator("#movieDiscovery").is_visible()
 
-            # Home 回選片後，電影 A 今天 21:00 尚有場次，應直接回到今天地圖、不跳 dialog。
-            page.locator(".map-home-control-button").click()
-            page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
-            assert page.locator("#movieDiscovery").is_visible()
+            # 同一選片頁再選電影 A；今天 21:00 尚有場次，應直接進今天地圖、不跳 dialog。
             page.locator("#nowShowingGrid .movie-card", has_text="電影 A").click()
             page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
             assert page.locator("#movieSelect").input_value() == "電影 A"
