@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25",
+  "generated_at": "2026-09-27",
   "movie_count": 22,
   "movies": [
     {
@@ -29,23 +29,25 @@
       "aliases": [
         "鋼之鍊金術師 香巴拉的征服者"
       ],
-      "poster_url": "https://static.zerochan.net/Fullmetal.Alchemist.full.4400747.jpg",
-      "poster_source": "Zerochan"
+      "poster_url": "https://images.kktv.com.tw/resized_covers/0600075401/portrait_o.jpg",
+      "poster_source": "LINE TV / KKTV 台灣繁中版視覺",
+      "poster_source_url": "https://www.linetv.tw/drama/22224/eps/1"
     },
     {
       "title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
       "aliases": [
         "魔法少女小圓 瓦爾普吉斯的迴天"
       ],
-      "poster_url": "https://i.ebayimg.com/00/s/MTYwMFgxMTM1/z/PtcAAeSwX-totgRr/%24_57.PNG?set_id=880000500F",
-      "poster_source": "eBay image CDN"
+      "poster_url": "https://img.4gamers.com.tw/puku-clone-version/190c396c4009304908bcf83c291d49167cdd492c.jpg",
+      "poster_source": "4Gamers / 木棉花台灣宣傳視覺",
+      "poster_source_url": "https://www.4gamers.com.tw/news/detail/74403/10th-madoka-magica-project-animation-film-release-in-taiwan"
     },
     {
       "title": "加速世界 劇場版 INFINITE BURST",
       "aliases": [],
-      "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
-      "poster_source": "SUNRISE",
-      "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
+      "poster_url": "https://p2.bahamut.com.tw/B/2KU/75/0001412275.JPG",
+      "poster_source": "巴哈姆特動畫瘋",
+      "poster_source_url": "https://ani.gamer.com.tw/animeVideo.php?sn=6126"
     },
     {
       "title": "攻殼機動隊(1995) 4K 數位修復版",
@@ -78,16 +80,18 @@
       "aliases": [
         "吉伊卡哇 人魚島的秘密"
       ],
-      "poster_url": "https://storage.movie6.com/movie/3389d_programPs_f886331e-1cd1-42bc-ae25-0ea61eb9ec89___1784716019.jpg",
-      "poster_source": "Movie6"
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260604010.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8786"
     },
     {
       "title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
       "aliases": [
         "蠟筆小新 奇奇怪怪！我的妖怪假期"
       ],
-      "poster_url": "https://lp.p.pia.jp/shared/materials/8dde473e-3f0a-49e2-8841-22daaafba1cc/origin.jpg",
-      "poster_source": "Pia"
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260630004.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8829"
     },
     {
       "title": "電影哆啦A夢：新．大雄的海底鬼岩城",
@@ -95,14 +99,16 @@
         "電影哆啦A夢：新‧大雄的海底鬼岩城",
         "電影哆啦A夢 新・大雄的海底鬼岩城"
       ],
-      "poster_url": "https://cdn.nightkun.com/covers/690c7859bb893a30e36931cd/5dfb439af52844e6ab922408d4376cbc.jpg",
-      "poster_source": "NightKUN"
+      "poster_url": "https://movie-chill.tw/movie-img/x1784091034rmufpn.jpg.pagespeed.ic.3un4bMQPH_.jpg",
+      "poster_source": "台灣院線宣傳海報（movie-chill 彙整）",
+      "poster_source_url": "https://movie-chill.tw/theater_i-151.html"
     },
     {
       "title": "名偵探柯南 高速公路的墮天使",
       "aliases": [],
-      "poster_url": "https://lp.p.pia.jp/shared/materials/1ce62d72-e651-4ece-b228-93f16c89e6ca/origin.jpg",
-      "poster_source": "Pia"
+      "poster_url": "https://movie-chill.tw/movie-img/x1784091040afpssz.jpg.pagespeed.ic.0w5VyXbL9b.jpg",
+      "poster_source": "台灣院線宣傳海報（movie-chill 彙整）",
+      "poster_source_url": "https://movie-chill.tw/theater_i-151.html"
     },
     {
       "title": "航海王劇場版：Z",
@@ -151,8 +157,9 @@
       "aliases": [
         "Aikatsu x PriPara THE MOVIE"
       ],
-      "poster_url": "https://image.tmdb.org/t/p/original/9OaadGoG5dYzOc8gs8D1IZodfoU.jpg",
-      "poster_source": "TMDB image CDN"
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260616006.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8806"
     },
     {
       "title": "你的名字。（十周年重映）",
@@ -167,8 +174,9 @@
       "aliases": [
         "航海王劇場版:死亡盡頭大冒險"
       ],
-      "poster_url": "https://m.media-amazon.com/images/M/MV5BZGM2YTYwNzgtYjAwMC00MGNlLTllZDktNDk3NDdmMjNkYjBiXkEyXkFqcGc%40._V1_.jpg",
-      "poster_source": "IMDb / Amazon image CDN"
+      "poster_url": "https://img.myvideo.net.tw/images/TOE020/0000/0297/202507141027435199_420x600.jpg",
+      "poster_source": "MyVideo 台灣",
+      "poster_source_url": "https://www.myvideo.net.tw/details/0/420763"
     },
     {
       "title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
