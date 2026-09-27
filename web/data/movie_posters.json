@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27",
+  "generated_at": "2026-09-28",
   "movie_count": 26,
   "movies": [
     {
       "title": "BanG Dream! Ave Mujica prima aurora",
       "aliases": [],
-      "poster_url": "https://prcdn.freetls.fastly.net/release_image/14827/9657/14827-9657-a2d64661fb1c91f74ccf97b27644aa51-1920x1080.png?auto=webp&fit=bounds&format=jpeg&height=1260&width=2400",
-      "poster_source": "4Gamers 台灣上映報導引用官方主視覺（台日同日、日期一致）",
-      "poster_source_url": "https://www.4gamers.com.tw/news/detail/82069/bang-dream-ave-mujica-prima-aurora-new-trailer"
+      "poster_url": "https://www.major-j.com/upload/ticket/M09321725042/main.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://www.major-j.com/cinema_information.php?id=M09321725042"
     },
     {
       "title": "劇場版 來自深淵：覺醒的神秘",
       "aliases": [],
-      "poster_url": "https://i.ytimg.com/vi/bFDy1OxGqQk/hqdefault.jpg",
-      "poster_source": "Muse木棉花-TW 台灣上映官方預告主視覺",
-      "poster_source_url": "https://www.youtube.com/watch?v=bFDy1OxGqQk"
+      "poster_url": "https://www.major-j.com/upload/ticket/M20311755910/main.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://www.major-j.com/cinema_information.php?id=M20311755910"
     },
     {
       "title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
       "aliases": [],
-      "poster_url": "https://i.ytimg.com/vi/OyBBjNx7gQQ/hqdefault.jpg",
-      "poster_source": "Muse木棉花-TW 台灣上映官方預告主視覺",
-      "poster_source_url": "https://www.youtube.com/watch?v=OyBBjNx7gQQ"
+      "poster_url": "https://www.sonymusic.co.jp/lineup/anime/hagaren-movie/img/keyv_l.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://www.sonymusic.co.jp/Animation/lineup/anime/hagaren-movie/index.html"
     },
     {
       "title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
@@ -45,9 +45,9 @@
     {
       "title": "加速世界 劇場版 INFINITE BURST",
       "aliases": [],
-      "poster_url": "https://i.ytimg.com/vi/knwDn72HwOA/hqdefault.jpg",
-      "poster_source": "Muse木棉花-TW 台灣上映官方預告主視覺",
-      "poster_source_url": "https://www.youtube.com/watch?v=knwDn72HwOA"
+      "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
     },
     {
       "title": "攻殼機動隊(1995) 4K 數位修復版",
@@ -63,9 +63,9 @@
     {
       "title": "青春豬頭少年不會夢到親愛好朋友",
       "aliases": [],
-      "poster_url": "https://i.ytimg.com/vi/cxOnCrmdgSs/hqdefault.jpg",
-      "poster_source": "Muse木棉花-TW 台灣上映官方預告主視覺",
-      "poster_source_url": "https://www.youtube.com/watch?v=cxOnCrmdgSs"
+      "poster_url": "https://www.major-j.com/upload/ticket/M07318877037/main.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://www.major-j.com/cinema_information.php?id=M07318877037"
     },
     {
       "title": "魔法少女小圓劇場版［新篇］叛逆的物語",
@@ -206,9 +206,9 @@
         "麵包超人 電影版：潘坦與約定之星",
         "麵包超人電影版 潘坦與約定之星"
       ],
-      "poster_url": "https://i.ytimg.com/vi/x7J2e6hzxJ0/hqdefault.jpg",
-      "poster_source": "麵包超人台灣官方預告主視覺（date-neutral FALLBACK）",
-      "poster_source_url": "https://www.youtube.com/watch?v=x7J2e6hzxJ0"
+      "poster_url": "https://news.anpan-movie.com/wp-content/uploads/2026/02/%E3%80%90RGB%E3%80%91%E6%9C%AC%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://news.anpan-movie.com/2026/463/"
     },
     {
       "title": "人狼 4K數位修復版",
@@ -217,9 +217,9 @@
         "人狼 JIN-ROH 4K數位修復版",
         "人狼 JIN-ROH"
       ],
-      "poster_url": "https://fr.futabasha.co.jp/special/kerberos-saga/images/jinroh_jaket.jpg",
-      "poster_source": "普威爾台灣上映公告／巴哈 GNN 引用 4K 官方視覺（date-neutral FALLBACK）",
-      "poster_source_url": "https://gnn.gamer.com.tw/detail.php?sn=311969"
+      "poster_url": "https://portal.cinemasunshine.smart-spoke.com/uploads/JIN_ROH_4_K_dd01facd15.jpg",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://www.cinemasunshine.co.jp/theater/gdcs/movies/2103/"
     },
     {
       "title": "名偵探柯南 第30號殺人事件",
@@ -227,8 +227,8 @@
         "名偵探柯南 30號殺人事件",
         "名偵探柯南 第 30 號殺人事件"
       ],
-      "poster_url": "https://i.ytimg.com/vi/WWNZGCffhj4/hqdefault.jpg",
-      "poster_source": "曼迪公告引用《第30號殺人事件》官方 PV 主視覺（date-neutral FALLBACK）",
+      "poster_url": "https://i.mopix.cc/GdRWN6.jpg",
+      "poster_source": "曼迪台灣正式 Poster（新聞稿圖像鏡像）",
       "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=774"
     }
   ]
