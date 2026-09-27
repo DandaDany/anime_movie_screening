@@ -108,6 +108,20 @@ def run_case(page, mobile: bool):
     assert "Dolby" in labels
     assert "INFINITY VISION" in labels
     assert "數位" in labels
+    assert "MUCROWN" in labels
+
+    # 未標版本的 20:00 必須歸到數位；MUCROWN 場次不能被誤歸數位。
+    digital = page.locator("#formatFilterList .filter-option", has_text="數位")
+    assert digital.locator("strong").inner_text() == "2"
+    digital.click()
+    page.wait_for_timeout(180)
+    digital_text = page.locator(".leaflet-popup").last.inner_text() if page.locator(".leaflet-popup").count() else ""
+    if not mobile:
+        assert "19:00" in digital_text
+        assert "20:00" in digital_text
+        assert "20:30" not in digital_text
+    digital.click()
+    page.wait_for_timeout(180)
 
     # Important: IMAX has TWO sessions but only ONE venue. Auto-focus must be
     # based on remaining venue count, not the numeric showtime count on the button.
