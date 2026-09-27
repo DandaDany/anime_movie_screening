@@ -69,15 +69,14 @@ assert(
 assert(
   sandbox.directShowtimeBookingUrl({
     booking_url: "https://ticket.centuryasia.com.tw/Ximen/buyticket_process.aspx?ProgramID=0000215&eventsn=90&computerid=16358",
-  }).includes("computerid=16358"),
-  "Century Asia session-specific booking URL should be accepted",
+  }) === "",
+  "Century Asia should use the normal showtime-entry treatment",
 );
-
 assert(
   sandbox.directShowtimeBookingUrl({
     booking_url: "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
-  }).includes("book.html"),
-  "Century Asia movie booking page should be selectable after choosing a showtime",
+  }) === "",
+  "Century Asia booking page should not use the dynamic 前往訂票 CTA",
 );
 assert(
   sandbox.directShowtimeBookingUrl({
