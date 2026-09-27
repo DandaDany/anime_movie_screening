@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026092701,
-  "generated_at": "2026-09-27T13:43:00+08:00",
+  "source_version": 2026092702,
+  "generated_at": "2026-09-27T15:00:00+08:00",
   "lookahead_days": 7,
-  "count": 21,
+  "count": 25,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -212,6 +212,55 @@
       "poster_url": "https://static.animecorner.me/2025/12/1765189047-2263ef697013f6abed7394bfa05b7a65.jpg",
       "poster_source": "官方主視覺（無海外上映日期，台灣版未取得時 fallback）",
       "poster_source_url": "https://gnn.gamer.com.tw/detail.php?sn=311154"
+    },
+    {
+      "id": 24,
+      "title": "角落小夥伴電影版：從天而降的雲之冒險",
+      "aliases": [
+        "角落小夥伴電影版 ：從天而降的雲之冒險",
+        "角落小夥伴電影版 從天而降的雲之冒險"
+      ],
+      "target_date": "2026-10-08",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260714001.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8849"
+    },
+    {
+      "id": 25,
+      "title": "麵包超人電影版：潘坦與約定之星",
+      "aliases": [
+        "麵包超人 電影版：潘坦與約定之星",
+        "麵包超人電影版 潘坦與約定之星"
+      ],
+      "target_date": "2026-10-16",
+      "poster_url": "https://i.ytimg.com/vi/x7J2e6hzxJ0/hqdefault.jpg",
+      "poster_source": "麵包超人台灣官方預告主視覺（date-neutral FALLBACK）",
+      "poster_source_url": "https://www.youtube.com/watch?v=x7J2e6hzxJ0"
+    },
+    {
+      "id": 26,
+      "title": "人狼 4K數位修復版",
+      "aliases": [
+        "人狼(4K數位修復版)",
+        "人狼 JIN-ROH 4K數位修復版",
+        "人狼 JIN-ROH"
+      ],
+      "target_date": "2026-10-16",
+      "poster_url": "https://fr.futabasha.co.jp/special/kerberos-saga/images/jinroh_jaket.jpg",
+      "poster_source": "雙葉社 Kerberos Saga 4K 官方視覺（date-neutral FALLBACK）",
+      "poster_source_url": "https://fr.futabasha.co.jp/special/kerberos-saga/"
+    },
+    {
+      "id": 27,
+      "title": "名偵探柯南 第30號殺人事件",
+      "aliases": [
+        "名偵探柯南 30號殺人事件",
+        "名偵探柯南 第 30 號殺人事件"
+      ],
+      "target_date": "2026-11-06",
+      "poster_url": "https://i.ytimg.com/vi/WWNZGCffhj4/hqdefault.jpg",
+      "poster_source": "曼迪公告引用《第30號殺人事件》官方 PV 主視覺（date-neutral FALLBACK）",
+      "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=774"
     }
   ]
 }
