@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-13T03:30:00+00:00",
-  "version": 2026091301,
+  "generated_at": "2026-09-27T13:43:00+08:00",
+  "version": 2026092701,
   "lookahead_days": 7,
   "movies": [
     {
@@ -19,12 +19,12 @@
       "id": 7,
       "title": "劇場版 來自深淵：覺醒的神秘",
       "aliases": [],
-      "target_date": "2026-11-27",
+      "target_date": "2026-11-20",
       "is_active": true,
       "sort_order": 0,
-      "notes": "",
+      "notes": "木棉花台灣官方電影資訊確認 2026-11-20 在台上映",
       "created_at": "2026-08-17T05:52:07.028025+00:00",
-      "updated_at": "2026-08-17T05:52:07.028034+00:00"
+      "updated_at": "2026-09-27T13:43:00+08:00"
     },
     {
       "id": 3,

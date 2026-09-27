@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026091301,
-  "generated_at": "2026-09-13T03:30:00+00:00",
+  "source_version": 2026092701,
+  "generated_at": "2026-09-27T13:43:00+08:00",
   "lookahead_days": 7,
   "count": 21,
   "missing_poster_count": 0,
@@ -21,7 +21,7 @@
       "id": 7,
       "title": "劇場版 來自深淵：覺醒的神秘",
       "aliases": [],
-      "target_date": "2026-11-27",
+      "target_date": "2026-11-20",
       "poster_url": "https://d28s5ztqvkii64.cloudfront.net/images/anime/4098/zXhuNBNcc8.webp",
       "poster_source": "YourAnimes",
       "poster_source_url": "https://youranimes.tw/animes/4098"
@@ -40,27 +40,27 @@
       "title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
       "aliases": [],
       "target_date": "2026-09-24",
-      "poster_url": "https://static.zerochan.net/Fullmetal.Alchemist.full.4400747.jpg",
-      "poster_source": "Zerochan",
-      "poster_source_url": null
+      "poster_url": "https://images.kktv.com.tw/resized_covers/0600075401/portrait_o.jpg",
+      "poster_source": "LINE TV / KKTV 台灣繁中版視覺",
+      "poster_source_url": "https://www.linetv.tw/drama/22224/eps/1"
     },
     {
       "id": 9,
       "title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
       "aliases": [],
       "target_date": "2026-09-04",
-      "poster_url": "https://i.ebayimg.com/00/s/MTYwMFgxMTM1/z/PtcAAeSwX-totgRr/%24_57.PNG?set_id=880000500F",
-      "poster_source": "eBay image CDN",
-      "poster_source_url": null
+      "poster_url": "https://img.4gamers.com.tw/puku-clone-version/190c396c4009304908bcf83c291d49167cdd492c.jpg",
+      "poster_source": "4Gamers / 木棉花台灣宣傳視覺",
+      "poster_source_url": "https://www.4gamers.com.tw/news/detail/74403/10th-madoka-magica-project-animation-film-release-in-taiwan"
     },
     {
       "id": 5,
       "title": "加速世界 劇場版 INFINITE BURST",
       "aliases": [],
       "target_date": "2026-10-23",
-      "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
-      "poster_source": "SUNRISE",
-      "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
+      "poster_url": "https://p2.bahamut.com.tw/B/2KU/75/0001412275.JPG",
+      "poster_source": "巴哈姆特動畫瘋",
+      "poster_source_url": "https://ani.gamer.com.tw/animeVideo.php?sn=6126"
     },
     {
       "id": 10,
@@ -70,9 +70,9 @@
         "攻殼機動隊 (1995) 4K數位修復版"
       ],
       "target_date": "2026-08-28",
-      "poster_url": "https://spice.eplus.jp/images/kYJZSRW9gV4HNbzX8Sf1xxJkemkZiEXMHgnqzpZy9BVmTAbfjpGQLxAESPhQDe9n",
-      "poster_source": "SPICE / eplus",
-      "poster_source_url": null
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260807004.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8893"
     },
     {
       "id": 6,
@@ -88,18 +88,18 @@
       "title": "劇場版 吉伊卡哇 人魚島的秘密",
       "aliases": [],
       "target_date": "2026-07-31",
-      "poster_url": "https://storage.movie6.com/movie/3389d_programPs_f886331e-1cd1-42bc-ae25-0ea61eb9ec89___1784716019.jpg",
-      "poster_source": "Movie6",
-      "poster_source_url": null
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260604010.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8786"
     },
     {
       "id": 12,
       "title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
       "aliases": [],
       "target_date": "2026-08-07",
-      "poster_url": "https://lp.p.pia.jp/shared/materials/8dde473e-3f0a-49e2-8841-22daaafba1cc/origin.jpg",
-      "poster_source": "Pia",
-      "poster_source_url": null
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260630004.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8829"
     },
     {
       "id": 13,
@@ -108,18 +108,18 @@
         "電影哆啦A夢：新‧大雄的海底鬼岩城"
       ],
       "target_date": "2026-07-08",
-      "poster_url": "https://cdn.nightkun.com/covers/690c7859bb893a30e36931cd/5dfb439af52844e6ab922408d4376cbc.jpg",
-      "poster_source": "NightKUN",
-      "poster_source_url": null
+      "poster_url": "https://movie-chill.tw/movie-img/x1784091034rmufpn.jpg.pagespeed.ic.3un4bMQPH_.jpg",
+      "poster_source": "台灣院線宣傳海報（movie-chill 彙整）",
+      "poster_source_url": "https://movie-chill.tw/theater_i-151.html"
     },
     {
       "id": 14,
       "title": "名偵探柯南 高速公路的墮天使",
       "aliases": [],
       "target_date": "2026-06-24",
-      "poster_url": "https://lp.p.pia.jp/shared/materials/1ce62d72-e651-4ece-b228-93f16c89e6ca/origin.jpg",
-      "poster_source": "Pia",
-      "poster_source_url": null
+      "poster_url": "https://movie-chill.tw/movie-img/x1784091040afpssz.jpg.pagespeed.ic.0w5VyXbL9b.jpg",
+      "poster_source": "台灣院線宣傳海報（movie-chill 彙整）",
+      "poster_source_url": "https://movie-chill.tw/theater_i-151.html"
     },
     {
       "id": 15,
@@ -160,27 +160,27 @@
       "title": "最終樂章 吹響吧！上低音號 前篇",
       "aliases": [],
       "target_date": "2026-08-28",
-      "poster_url": "https://spice.eplus.jp/images/horKvYwmgLvqfkXlmdQm0VSdll5mf4YwlxfI3whkFPT9DVgwJ0dNOSnzrHUkNOtV",
-      "poster_source": "SPICE / eplus",
-      "poster_source_url": null
+      "poster_url": "https://www.shop-bell.net/cdn/202604/natalie_669983_large.jpg",
+      "poster_source": "電影官方宣傳劇照（無日本上映日期，台灣版未取得時 fallback）",
+      "poster_source_url": "https://www.ambassador.com.tw/home/MovieContent?DT=2026%2F09%2F03&MID=1f5dfea4-8e4e-47c9-99c2-dec31b681d70"
     },
     {
       "id": 19,
       "title": "電影 Idol光之美少女 你與我♪久等了！為你送上閃耀的現場演唱會！",
       "aliases": [],
       "target_date": "2026-08-21",
-      "poster_url": "https://toy.bandai.co.jp/temp/f19znvbgkgvc1qjsr0mn3jiv5o158jla2b1feb1n.jpg",
-      "poster_source": "Bandai",
-      "poster_source_url": null
+      "poster_url": "https://us.oricon-group.com/upimg/detail/5000/5145/img660/You-and-Idol-Precure-Movie-1.jpg",
+      "poster_source": "電影官方宣傳劇照（無日本上映日期，台灣版未取得時 fallback）",
+      "poster_source_url": "https://gnn.gamer.com.tw/detail.php?sn=309412"
     },
     {
       "id": 20,
       "title": "偶像學園!X星光樂園 THE MOVIE -相遇的奇蹟-",
       "aliases": [],
       "target_date": "2026-08-07",
-      "poster_url": "https://image.tmdb.org/t/p/original/9OaadGoG5dYzOc8gs8D1IZodfoU.jpg",
-      "poster_source": "TMDB image CDN",
-      "poster_source_url": null
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260616006.jpg",
+      "poster_source": "威秀影城台灣院線海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8806"
     },
     {
       "id": 21,
@@ -198,9 +198,9 @@
       "title": "航海王劇場版：死亡盡頭大冒險",
       "aliases": [],
       "target_date": "2026-09-18",
-      "poster_url": "https://m.media-amazon.com/images/M/MV5BZGM2YTYwNzgtYjAwMC00MGNlLTllZDktNDk3NDdmMjNkYjBiXkEyXkFqcGc%40._V1_.jpg",
-      "poster_source": "IMDb / Amazon image CDN",
-      "poster_source_url": null
+      "poster_url": "https://img.myvideo.net.tw/images/TOE020/0000/0297/202507141027435199_420x600.jpg",
+      "poster_source": "MyVideo 台灣",
+      "poster_source_url": "https://www.myvideo.net.tw/details/0/420763"
     },
     {
       "id": 23,
@@ -209,9 +209,9 @@
         "LOVE LIVE! 蓮之空女學院學園偶像俱樂部BLOOM GARDEN PARTY"
       ],
       "target_date": "2026-09-18",
-      "poster_url": "https://cdn.shopify.com/s/files/1/0821/2489/8619/files/download_cd23d968-6216-4481-8d7f-3d7a6e1b1d6f.webp?v=1765278360",
-      "poster_source": "publisher/retail CDN",
-      "poster_source_url": null
+      "poster_url": "https://static.animecorner.me/2025/12/1765189047-2263ef697013f6abed7394bfa05b7a65.jpg",
+      "poster_source": "官方主視覺（無海外上映日期，台灣版未取得時 fallback）",
+      "poster_source_url": "https://gnn.gamer.com.tw/detail.php?sn=311154"
     }
   ]
 }
