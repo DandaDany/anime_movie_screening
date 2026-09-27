@@ -200,8 +200,14 @@ def main() -> int:
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
             assert page.locator(".sidebar").evaluate("el => getComputedStyle(el).display") == "none"
 
+            # 即將上映卡片只顯示上映日期提示，不進地圖。
             page.locator("#comingSoonGrid .movie-card", has_text="電影 C").click()
-            page.locator("#movieDiscoveryToast").filter(has_text="尚未有上映資訊").wait_for()
+            page.locator("#movieDiscoveryToast").filter(has_text="預計08/13上映，敬請期待！").wait_for()
+            assert page.locator("#movieDiscovery").is_visible()
+
+            page.locator("#comingSoonGrid .movie-card", has_text="電影 G").click()
+            page.locator("#movieDiscoveryToast").filter(has_text="預計10/01上映，敬請期待！").wait_for()
+            assert page.locator("#movieDiscovery").is_visible()
 
             # 電影 B 今天最後一場 20:30，固定現在時間 20:45；卡片仍留在「正在上映」。
             page.locator("#nowShowingGrid .movie-card", has_text="電影 B").click()
