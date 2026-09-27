@@ -326,7 +326,6 @@
     const today = todayIso();
     const knownDates = availabilityReady ? availabilityDatesForItem(item) : availableDateValues();
     const hasTodaySchedule = knownDates.includes(today);
-    const futureDates = knownDates.filter((value) => value > today);
     const todayButton = findDateButton(today);
 
     let todayOption = null;
@@ -345,15 +344,6 @@
     }
 
     await restoreDate(originalDate);
-
-    if (availabilityReady && futureDates.length === 0) {
-      showToast(hasTodaySchedule ? "今日剩餘場次已結束" : "目前沒有可查詢場次");
-      window.trackEvent?.("movie_discovery_unavailable", {
-        movie_title: item.title,
-        source: hasTodaySchedule ? "today_finished" : "no_known_showtimes",
-      });
-      return;
-    }
 
     const shouldSeeOtherDate = await confirmOtherDate({
       title: hasTodaySchedule ? "今日剩餘場次已結束" : "今天沒有排映場次",

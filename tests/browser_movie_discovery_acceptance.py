@@ -81,6 +81,13 @@ def install_fixture(page):
                     "target_date": "2026-08-01",
                     "poster_url": "https://example.com/d.jpg",
                 },
+                {
+                    "id": 5,
+                    "title": "電影 E",
+                    "aliases": [],
+                    "target_date": "2026-08-01",
+                    "poster_url": "https://example.com/e.jpg",
+                },
             ],
         },
         ensure_ascii=False,
@@ -134,7 +141,7 @@ def main() -> int:
             page.wait_for_function("() => Boolean(window.MuseDiscovery)")
             page.locator("#nowShowingGrid .movie-card").first.wait_for()
             # "正在上映" follows the canonical tracked-movie feed, not today's remaining-showtime options.
-            assert page.locator("#nowShowingGrid .movie-card").count() == 3
+            assert page.locator("#nowShowingGrid .movie-card").count() == 4
             assert page.locator("#comingSoonGrid .movie-card").count() == 1
             assert page.locator("#comingSoonGrid .movie-card__title").inner_text() == "電影 C"
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
@@ -176,10 +183,19 @@ def main() -> int:
             assert page.locator("#movieSelect").input_value() == "電影 D"
             assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-13"
 
-            # Home 回選片後，電影 A 今天 21:00 尚有場次，應直接回到今天地圖、不跳 dialog。
+            # 電影 E 今天沒有可看場次、其他日期也尚無已知場次；仍必須先詢問是否看其他日期。
             page.locator(".map-home-control-button").click()
             page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
+            page.locator("#nowShowingGrid .movie-card", has_text="電影 E").click()
+            dialog.wait_for()
+            assert "今天沒有排映場次" in dialog.inner_text()
+            assert "是否看其他日期？" in dialog.inner_text()
+            page.locator("#movieNoTodayYes").click()
+            assert dialog.is_hidden()
+            page.locator("#movieDiscoveryToast").filter(has_text="其他日期也尚無上映資訊").wait_for()
             assert page.locator("#movieDiscovery").is_visible()
+
+            # 同一選片頁再選電影 A；今天 21:00 尚有場次，應直接進今天地圖、不跳 dialog。
             page.locator("#nowShowingGrid .movie-card", has_text="電影 A").click()
             page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
             assert page.locator("#movieSelect").input_value() == "電影 A"
