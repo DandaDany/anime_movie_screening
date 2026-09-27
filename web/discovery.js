@@ -28,7 +28,6 @@
   ) return;
 
   let catalog = [];
-  let lookaheadDays = 7;
   let availabilityByTitle = new Map();
   let showtimeMinutesByTitleAndDate = new Map();
   let availabilityReady = false;
@@ -157,12 +156,10 @@
     return !target || !today || target <= today;
   }
 
-  function upcomingWithinWindow(item) {
+  function isUpcoming(item) {
     const target = parseUtcDate(item.target_date);
     const today = parseUtcDate(todayIso());
-    if (!target || !today) return false;
-    const diffDays = Math.round((target - today) / 86400000);
-    return diffDays >= 1 && diffDays <= lookaheadDays;
+    return Boolean(target && today && target > today);
   }
 
   function posterCard(item, displayTitle, kind) {
@@ -445,7 +442,7 @@
     );
 
     const upcomingItems = catalog
-      .filter(upcomingWithinWindow)
+      .filter(isUpcoming)
       .sort((a, b) =>
         String(a.target_date || "").localeCompare(String(b.target_date || "")) ||
         String(a.title || "").localeCompare(String(b.title || ""), "zh-Hant"),
@@ -517,9 +514,6 @@
   ])
     .then(([data, mapData]) => {
       catalog = Array.isArray(data.movies) ? data.movies : [];
-      lookaheadDays = Number.isFinite(Number(data.lookahead_days))
-        ? Number(data.lookahead_days)
-        : 7;
       if (mapData) indexAvailability(mapData);
       render();
     })
