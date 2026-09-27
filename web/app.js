@@ -360,8 +360,6 @@ function directShowtimeBookingUrl(showtime) {
   const patterns = [
     /vscinemas\.com\.tw\/vsTicketing\/ticketing\/booking\.aspx.*[?&]txtSessionId=/i,
     /miramarcinemas\.tw\/Booking\/TicketType\?.*[?&]session=/i,
-    /centuryasia\.com\.tw\/.*buyticket_process\.aspx\?.*(?:[?&]eventsn=|[?&]computerid=)/i,
-    /centuryasia\.com\.tw\/book\.html\?(?=[^#]*\bsid=)(?=[^#]*\bver=)[^#]+/i,
     /showtimes\.com\.tw\/ticketing\/selectEvents\/\d+\/\d+\?[^#]*[?&]?date=\d{4}-\d{2}-\d{2}/i,
     /mldcinema\.com\.tw\/OnlinePurchase\.php\?[^#]*[?&]?computerid=\d+/i,
     /broadway-cineplex\.com\.tw\/book\.html\?(?=[^#]*\bobj=)(?=[^#]*[?&]v(?:=)?[\w-]+)[^#]+/i,
