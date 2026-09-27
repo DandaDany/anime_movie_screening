@@ -110,19 +110,6 @@ def run_case(page, mobile: bool):
     assert "數位" in labels
     assert "MUCROWN" in labels
 
-    # 未標版本的 20:00 必須歸到數位；MUCROWN 場次不能被誤歸數位。
-    digital = page.locator("#formatFilterList .filter-option", has_text="數位")
-    assert digital.locator("strong").inner_text() == "2"
-    digital.click()
-    page.wait_for_timeout(180)
-    digital_text = page.locator(".leaflet-popup").last.inner_text() if page.locator(".leaflet-popup").count() else ""
-    if not mobile:
-        assert "19:00" in digital_text
-        assert "20:00" in digital_text
-        assert "20:30" not in digital_text
-    digital.click()
-    page.wait_for_timeout(180)
-
     # Important: IMAX has TWO sessions but only ONE venue. Auto-focus must be
     # based on remaining venue count, not the numeric showtime count on the button.
     imax = page.locator("#formatFilterList .filter-option", has_text="IMAX")
@@ -157,6 +144,30 @@ def run_case(page, mobile: bool):
         expected_times=["18:00"],
         excluded_times=["21:00"],
     )
+
+    # 最後再驗證數位 fallback，避免先改變地圖中心影響既有 auto-focus 驗收。
+    close_info_surface(page, mobile)
+    if mobile:
+        page.locator("#mSeg button[data-tab='format']").click()
+    page.locator("#formatFilterList .filter-option", has_text="4DX").click()
+    page.wait_for_timeout(180)
+
+    digital = page.locator("#formatFilterList .filter-option", has_text="數位")
+    assert digital.locator("strong").inner_text() == "2"
+    digital.click()
+    page.wait_for_timeout(300)
+
+    if mobile:
+        container = page.locator("#mSheetBody")
+        assert page.locator("#mSheet").get_attribute("aria-hidden") == "false"
+    else:
+        container = page.locator(".leaflet-popup").last
+        container.wait_for()
+
+    digital_text = container.inner_text()
+    assert "19:00" in digital_text
+    assert "20:00" in digital_text
+    assert "20:30" not in digital_text
 
 
 def main() -> int:
