@@ -30,6 +30,7 @@
   let catalog = [];
   let lookaheadDays = 7;
   let availabilityByTitle = new Map();
+  let showtimeMinutesByTitleAndDate = new Map();
   let availabilityReady = false;
   let toastTimer = null;
   let renderTimer = null;
@@ -65,20 +66,34 @@
       || (Array.isArray(props.showtimes) && props.showtimes.length > 0);
   }
 
+  function parseShowtimeMinute(showtime) {
+    const match = /^(\\d{1,2}):(\\d{2})$/.exec(String(showtime?.time || "").trim());
+    if (!match) return null;
+    const hour = Number(match[1]);
+    const minute = Number(match[2]);
+    if (hour < 0 || hour > 23 || minute < 0 || minute > 59) return null;
+    return hour * 60 + minute;
+  }
+
   function indexAvailability(mapData) {
     availabilityByTitle = new Map();
+    showtimeMinutesByTitleAndDate = new Map();
     const byTitle = mapData?.movie_features_by_date || {};
     for (const [title, byDate] of Object.entries(byTitle)) {
-      const dates = Object.entries(byDate || {})
-        .filter(
-          ([showDate, features]) =>
-            showDate
-            && Array.isArray(features)
-            && features.some(featureHasRealShowtime),
-        )
-        .map(([showDate]) => showDate)
-        .sort();
-      availabilityByTitle.set(normalizeTitle(title), dates);
+      const normalizedTitle = normalizeTitle(title);
+      const dates = [];
+      const minutesByDate = new Map();
+      for (const [showDate, features] of Object.entries(byDate || {})) {
+        if (!showDate || !Array.isArray(features) || !features.some(featureHasRealShowtime)) continue;
+        dates.push(showDate);
+        const minutes = features
+          .flatMap((feature) => Array.isArray(feature?.properties?.showtimes) ? feature.properties.showtimes : [])
+          .map(parseShowtimeMinute)
+          .filter(Number.isFinite);
+        minutesByDate.set(showDate, minutes);
+      }
+      availabilityByTitle.set(normalizedTitle, dates.sort());
+      showtimeMinutesByTitleAndDate.set(normalizedTitle, minutesByDate);
     }
     availabilityReady = true;
   }
@@ -91,6 +106,27 @@
       for (const showDate of titleDates) dates.add(showDate);
     }
     return [...dates].sort();
+  }
+
+  function showtimeMinutesForItemDate(item, showDate) {
+    const keys = new Set(aliasesFor(item));
+    const minutes = new Set();
+    for (const [titleKey, minutesByDate] of showtimeMinutesByTitleAndDate) {
+      if (!keys.has(titleKey)) continue;
+      for (const minute of minutesByDate.get(showDate) || []) minutes.add(minute);
+    }
+    return [...minutes];
+  }
+
+  function canEnterMapForItem(item) {
+    if (!availabilityReady) return true;
+    const today = todayIso();
+    const dates = availabilityDatesForItem(item);
+    if (dates.some((showDate) => showDate > today)) return true;
+    if (!dates.includes(today)) return false;
+    const nowMinutes = window.MuseTimeFilter?.taipeiNowMinutes?.();
+    if (!Number.isFinite(nowMinutes)) return true;
+    return showtimeMinutesForItemDate(item, today).some((minute) => minute > nowMinutes);
   }
 
   function optionHasMovieValue(value) {
@@ -326,6 +362,7 @@
     const today = todayIso();
     const knownDates = availabilityReady ? availabilityDatesForItem(item) : availableDateValues();
     const hasTodaySchedule = knownDates.includes(today);
+    const futureDates = knownDates.filter((showDate) => showDate > today);
     const todayButton = findDateButton(today);
 
     let todayOption = null;
@@ -344,6 +381,12 @@
     }
 
     await restoreDate(originalDate);
+
+    if (availabilityReady && futureDates.length === 0) {
+      render();
+      showToast("目前沒有可查詢場次");
+      return;
+    }
 
     const shouldSeeOtherDate = await confirmOtherDate({
       title: hasTodaySchedule ? "今日剩餘場次已結束" : "今天沒有排映場次",
@@ -396,7 +439,7 @@
   }
 
   function render() {
-    const nowItems = catalog.filter(isNowShowing);
+    const nowItems = catalog.filter((item) => isNowShowing(item) && canEnterMapForItem(item));
     nowGrid.replaceChildren(
       ...nowItems.map((item) => posterCard(item, item.title, "now")),
     );
