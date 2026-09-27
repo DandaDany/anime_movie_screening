@@ -200,7 +200,7 @@ def main() -> int:
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
             assert page.locator(".sidebar").evaluate("el => getComputedStyle(el).display") == "none"
 
-            page.locator("#comingSoonGrid .movie-card").click()
+            page.locator("#comingSoonGrid .movie-card", has_text="電影 C").click()
             page.locator("#movieDiscoveryToast").filter(has_text="尚未有上映資訊").wait_for()
 
             # 電影 B 今天最後一場 20:30，固定現在時間 20:45；卡片仍留在「正在上映」。
