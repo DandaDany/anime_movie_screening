@@ -39,16 +39,17 @@ PROVIDERS = [
         "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
     },
     {
-        "chain": "喜樂時代影城",
-        "location": "喜樂時代影城南港店",
-        "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
-    },
-    {
         "chain": "中影屏東影城",
         "location": "中影屏東影城",
         "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
     },
 ]
+
+GENERAL_PROVIDER = {
+    "chain": "喜樂時代影城",
+    "location": "喜樂時代影城南港店",
+    "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+}
 
 
 def locations_payload(provider: dict[str, str], location_id: int) -> dict:
@@ -165,12 +166,51 @@ def assert_provider(browser, provider: dict[str, str], index: int) -> None:
         context.close()
 
 
+def assert_general_provider(browser) -> None:
+    context = browser.new_context(
+        viewport={"width": 1440, "height": 1000},
+        timezone_id="Asia/Taipei",
+    )
+    try:
+        page = context.new_page()
+        payload = locations_payload(GENERAL_PROVIDER, 999)
+        page.route(
+            "**/data/locations.geojson",
+            lambda route: route.fulfill(
+                status=200,
+                content_type="application/geo+json",
+                body=json.dumps(payload, ensure_ascii=False),
+            ),
+        )
+        install_fixed_clock(page)
+        page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+        page.wait_for_function("() => Boolean(window.MuseDiscovery)")
+        page.evaluate("window.MuseDiscovery.close()")
+        page.wait_for_timeout(250)
+
+        marker = page.locator(".cinema-marker")
+        assert marker.count() == 1
+        marker.dispatch_event("click")
+
+        popup = page.locator(".leaflet-popup").last
+        popup.wait_for()
+        assert popup.locator("[data-booking-cta]").count() == 0
+        primary = popup.locator(".popup-link-primary")
+        assert primary.count() == 1
+        assert primary.inner_text() == "場次入口"
+        assert primary.get_attribute("href") == "https://example.test/showtimes"
+        assert popup.locator(".st-chip-select").count() == 0
+    finally:
+        context.close()
+
+
 def main() -> int:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         try:
             for index, provider in enumerate(PROVIDERS, start=1):
                 assert_provider(browser, provider, index)
+            assert_general_provider(browser)
         finally:
             browser.close()
     return 0
