@@ -1,0 +1,28 @@
+name: Kusuriya poster fetch
+
+on:
+  push:
+    branches:
+      - fix/anpanman-add-kusuriya-20260928
+    paths:
+      - "scripts/probe_user_kusuriya_asset.py"
+      - ".github/workflows/kusuriya-poster-fetch.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install requests pillow
+      - run: python scripts/probe_user_kusuriya_asset.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kusuriya-user-poster
+          path: artifacts/kusuriya/kusuriya-user-source.jpg
+          if-no-files-found: error
