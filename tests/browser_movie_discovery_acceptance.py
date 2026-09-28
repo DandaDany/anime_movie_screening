@@ -151,6 +151,10 @@ def install_fixture(page):
         lambda route: route.fulfill(status=200, content_type="application/json", body=discovery),
     )
     page.route(
+        "https://example.com/c-primary.jpg",
+        lambda route: route.fulfill(status=404, body="missing"),
+    )
+    page.route(
         "https://example.com/*.jpg",
         lambda route: route.fulfill(
             status=200,
