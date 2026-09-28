@@ -173,6 +173,7 @@
     const poster = document.createElement("span");
     poster.className = "movie-card__poster";
     poster.dataset.fallback = displayTitle;
+    if (item?.poster_fit === "contain") poster.classList.add("is-contain");
 
     const img = document.createElement("img");
     img.src = item?.poster_url || "";
