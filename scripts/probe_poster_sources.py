@@ -2,6 +2,21 @@ from __future__ import annotations
 
 from playwright.sync_api import sync_playwright
 
+
+DIRECT_IMAGES = [
+    ("bangdream_current", "https://www.major-j.com/upload/ticket/M09321725042/main.jpg"),
+    ("madeinabyss_current", "https://www.major-j.com/upload/ticket/M20311755910/main.jpg"),
+    ("fma_current", "https://www.sonymusic.co.jp/lineup/anime/hagaren-movie/img/keyv_l.jpg"),
+    ("accelworld_current", "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg"),
+    ("aobuta_current", "https://www.major-j.com/upload/ticket/M07318877037/main.jpg"),
+    ("sumikko_current", "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260714001.jpg"),
+    ("anpanman_current", "https://news.anpan-movie.com/wp-content/uploads/2026/02/%E3%80%90RGB%E3%80%91%E6%9C%AC%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg"),
+    ("jinroh_current", "https://portal.cinemasunshine.smart-spoke.com/uploads/JIN_ROH_4_K_dd01facd15.jpg"),
+    ("conan_current", "https://i.mopix.cc/GdRWN6.jpg"),
+    ("fma_tw_candidate", "https://cdn12.nantoutheater.com/storages/movies/6ab0035c31090.jpg"),
+    ("jinroh_tw_candidate", "https://media.nownews.com/nn_media/thumbnail/2026/09/1789974109673-410bc92058af4bfc926e40c6797b3dd5-800x1204.webp?unShow=false&waterMark=false"),
+]
+
 SOURCES = [
     ("fma_tw_vieshow", "https://www.vscinemas.com.tw/film/detail.aspx?id=8976"),
     ("fma_tw_nantou", "https://nantoutheater.com/movie/688"),
@@ -25,6 +40,35 @@ def main() -> int:
             ),
         )
         page = context.new_page()
+        page.goto("about:blank")
+        for label, image_url in DIRECT_IMAGES:
+            result = page.evaluate(
+                """async ({label, url}) => {
+                    const img = new Image();
+                    img.referrerPolicy = 'no-referrer';
+                    const outcome = await new Promise((resolve) => {
+                        const timer = setTimeout(() => resolve({ok:false, reason:'timeout'}), 20000);
+                        img.onload = () => { clearTimeout(timer); resolve({ok:true}); };
+                        img.onerror = () => { clearTimeout(timer); resolve({ok:false, reason:'error'}); };
+                        img.src = url;
+                    });
+                    return {
+                        label,
+                        url,
+                        ok: outcome.ok,
+                        reason: outcome.reason || '',
+                        width: img.naturalWidth || 0,
+                        height: img.naturalHeight || 0
+                    };
+                }""",
+                {"label": label, "url": image_url},
+            )
+            ratio = (result["width"] / result["height"]) if result["height"] else 0
+            print(
+                f"DIRECT {label} ok={result['ok']} reason={result['reason']} "
+                f"{result['width']}x{result['height']} ratio={ratio:.3f} url={result['url']}"
+            )
+
         for label, page_url in SOURCES:
             try:
                 response = page.goto(page_url, wait_until="domcontentloaded", timeout=60000)
