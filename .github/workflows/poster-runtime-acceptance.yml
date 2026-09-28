@@ -55,4 +55,7 @@ jobs:
           python tests/browser_movie_discovery_acceptance.py
       - name: Real poster runtime acceptance
         run: |
+          python -m http.server 8765 --directory web >/tmp/poster-runtime-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
           python tests/browser_movie_poster_runtime_acceptance.py
