@@ -14,6 +14,10 @@ HEADERS = {
 
 DIRECT = [
     (
+        "eupho_keihan_movie_poster",
+        "https://www.keihan.co.jp/euphonium/assets/img/img_tv.jpg",
+    ),
+    (
         "anpan_official",
         "https://news.anpan-movie.com/wp-content/uploads/2026/02/%E3%80%90RGB%E3%80%91%E6%9C%AC%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg",
     ),
@@ -59,10 +63,15 @@ def main() -> int:
         print("DIRECT_IMAGE", label, img.width, img.height, round(img.width / img.height, 4), url)
 
     for label, page_url in PAGES:
-        r = s.get(page_url, headers=HEADERS, timeout=45)
-        print("PAGE", label, "status", r.status_code, "url", r.url, "bytes", len(r.content))
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text, "html.parser")
+        try:
+            r = s.get(page_url, headers=HEADERS, timeout=45)
+            print("PAGE", label, "status", r.status_code, "url", r.url, "bytes", len(r.content))
+            if r.status_code != 200:
+                continue
+            soup = BeautifulSoup(r.text, "html.parser")
+        except Exception as exc:
+            print("PAGE_ERROR", label, type(exc).__name__, exc)
+            continue
         seen = set()
         candidates = []
         for tag in soup.find_all("img"):
