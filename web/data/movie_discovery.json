@@ -190,11 +190,11 @@
       "title": "最終樂章 吹響吧！上低音號 前篇",
       "aliases": [],
       "target_date": "2026-08-28",
-      "poster_url": "https://www.shop-bell.net/cdn/202604/natalie_669983_large.jpg",
+      "poster_url": "assets/posters/eupho-final-part1-tw.webp",
       "poster_fallback_url": null,
-      "poster_fit": null,
-      "poster_source": "電影官方宣傳劇照（無日本上映日期，台灣版未取得時 fallback）",
-      "poster_source_url": "https://www.ambassador.com.tw/home/MovieContent?DT=2026%2F09%2F03&MID=1f5dfea4-8e4e-47c9-99c2-dec31b681d70"
+      "poster_fit": "contain",
+      "poster_source": "車庫娛樂台灣正式電影海報",
+      "poster_source_url": "https://garageplay.tw/news/content/5893/"
     },
     {
       "id": 19,
@@ -277,9 +277,9 @@
         "麵包超人電影版 潘坦與約定之星"
       ],
       "target_date": "2026-10-16",
-      "poster_url": "assets/posters/anpanman-pantan-2026-v2.webp",
+      "poster_url": "assets/posters/anpanman-pantan-2026-hq.webp",
       "poster_fallback_url": null,
-      "poster_fit": null,
+      "poster_fit": "contain",
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
       "poster_source_url": "https://news.anpan-movie.com/2026/463/"
     },
@@ -320,10 +320,10 @@
         "劇場版 薬屋のひとりごと 亡妃の秘宝"
       ],
       "target_date": "2027-01-29",
-      "poster_url": "assets/posters/kusuriya-movie-tw-20270129.webp",
+      "poster_url": "assets/posters/kusuriya-movie-tw-20270129-hq.webp",
       "poster_fallback_url": null,
       "poster_fit": "contain",
-      "poster_source": "台灣宣傳海報（使用者提供 Instagram 圖；已本地保存）",
+      "poster_source": "台灣宣傳海報（使用者提供 2894×4096 原圖；已高解析本地保存）",
       "poster_source_url": "https://kusuriyanohitorigoto.jp/movie/"
     }
   ]
