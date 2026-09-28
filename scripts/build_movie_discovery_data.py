@@ -86,6 +86,7 @@ def build_payload(
                 "aliases": list(movie.get("aliases") or []),
                 "target_date": movie.get("target_date"),
                 "poster_url": poster.get("poster_url") if poster else None,
+                "poster_fallback_url": poster.get("poster_fallback_url") if poster else None,
                 "poster_source": poster.get("poster_source") if poster else None,
                 "poster_source_url": poster.get("poster_source_url") if poster else None,
             }
