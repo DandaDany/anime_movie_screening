@@ -20,9 +20,13 @@
     {
       "title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
       "aliases": [],
-      "poster_url": "https://www.sonymusic.co.jp/lineup/anime/hagaren-movie/img/keyv_l.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.sonymusic.co.jp/Animation/lineup/anime/hagaren-movie/index.html"
+      "poster_url": "assets/posters/3.jpg",
+      "poster_source": "威秀影城／木棉花台灣院線正式主視覺（部署時快取）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8976",
+      "poster_cache": {
+        "source_page_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8976",
+        "image_alt_contains": "劇場版 鋼之鍊金術師 嘆息之丘的聖星"
+      }
     },
     {
       "title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
@@ -217,9 +221,13 @@
         "人狼 JIN-ROH 4K數位修復版",
         "人狼 JIN-ROH"
       ],
-      "poster_url": "https://portal.cinemasunshine.smart-spoke.com/uploads/JIN_ROH_4_K_dd01facd15.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.cinemasunshine.co.jp/theater/gdcs/movies/2103/"
+      "poster_url": "assets/posters/26.jpg",
+      "poster_source": "普威爾台灣正式 Poster（NOWnews 刊載；部署時快取）",
+      "poster_source_url": "https://www.nownews.com/news/6876853",
+      "poster_cache": {
+        "source_page_url": "https://www.nownews.com/news/6876853",
+        "image_alt_contains": "台灣正式海報"
+      }
     },
     {
       "title": "名偵探柯南 第30號殺人事件",
