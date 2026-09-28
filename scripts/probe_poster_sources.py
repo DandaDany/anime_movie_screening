@@ -25,6 +25,7 @@ SOURCES = [
     ("jinroh_tw_gnn", "https://gnn.gamer.com.tw/detail.php?sn=311969"),
     ("bangdream_jp_official", "https://avemujica-movie.bang-dream.com/"),
     ("madeinabyss_jp_official", "https://miabyss.com/"),
+    ("madeinabyss_jp_keyvisual", "https://miabyss.com/news_movie/article009.html"),
     ("aobuta_jp_official", "https://ao-buta.com/"),
 ]
 
