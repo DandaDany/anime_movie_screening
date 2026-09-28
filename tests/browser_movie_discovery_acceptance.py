@@ -202,6 +202,14 @@ def main() -> int:
             # 即將上映不再受 lookahead_days=7 限制；10/01 的 G 距今天遠超過 7 天仍必須顯示。
             assert page.locator("#comingSoonGrid .movie-card").count() == 2
             assert page.locator("#comingSoonGrid .movie-card__title").all_text_contents() == ["電影 C", "電影 G"]
+            movie_c_poster = page.locator("#comingSoonGrid .movie-card", has_text="電影 C").locator("img")
+            page.wait_for_function(
+                "(img) => img.complete && img.naturalWidth > 0 && img.dataset.posterFallbackTried === '1'",
+                arg=movie_c_poster.element_handle(),
+            )
+            assert not page.locator("#comingSoonGrid .movie-card", has_text="電影 C").locator(".movie-card__poster").evaluate(
+                "el => el.classList.contains('is-missing')"
+            )
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
             assert page.locator(".sidebar").evaluate("el => getComputedStyle(el).display") == "none"
 
