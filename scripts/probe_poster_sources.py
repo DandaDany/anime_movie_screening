@@ -27,6 +27,7 @@ SOURCES = [
     ("madeinabyss_jp_official", "https://miabyss.com/"),
     ("madeinabyss_jp_keyvisual", "https://miabyss.com/news_movie/article009.html"),
     ("aobuta_jp_official", "https://ao-buta.com/"),
+    ("conan_tw_ccpa", "https://www.ccpa.org.tw/ccpa/data.php?id=774"),
 ]
 
 
