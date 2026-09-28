@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at": "2026-09-28",
-  "movie_count": 26,
+  "movie_count": 27,
   "movies": [
     {
       "title": "BanG Dream! Ave Mujica prima aurora",
@@ -213,7 +213,7 @@
         "麵包超人 電影版：潘坦與約定之星",
         "麵包超人電影版 潘坦與約定之星"
       ],
-      "poster_url": "assets/posters/anpanman-pantan-2026.webp",
+      "poster_url": "assets/posters/anpanman-pantan-2026-v2.webp",
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
       "poster_source_url": "https://news.anpan-movie.com/2026/463/",
       "poster_fallback_url": null
@@ -240,6 +240,18 @@
       "poster_source": "曼迪台灣正式主視覺海報",
       "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=774",
       "poster_fallback_url": null
+    },
+    {
+      "title": "劇場版 藥師少女的獨語 亡妃的秘寶",
+      "aliases": [
+        "劇場版 藥師少女的獨語 亡妃的祕寶",
+        "劇場版 薬屋のひとりごと 亡妃の秘宝"
+      ],
+      "poster_url": "assets/posters/kusuriya-movie-tw-20270129.webp",
+      "poster_source": "台灣宣傳海報（使用者提供 Instagram 圖；已本地保存）",
+      "poster_source_url": "https://kusuriyanohitorigoto.jp/movie/",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
     }
   ]
 }

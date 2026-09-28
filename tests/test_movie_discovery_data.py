@@ -38,6 +38,34 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                 self.assertNotEqual(fallback_url, str(poster.get("poster_url") or ""))
                 self.assertTrue(str(poster.get("poster_source") or "").strip())
 
+    def test_local_poster_assets_are_structurally_valid(self):
+        for poster in self.posters["movies"]:
+            url = str(poster.get("poster_url") or "")
+            if not url.startswith("assets/posters/"):
+                continue
+            path = ROOT / "web" / url
+            with self.subTest(movie=poster["title"], path=str(path)):
+                self.assertTrue(path.is_file(), f"missing local poster asset: {path}")
+                payload = path.read_bytes()
+                self.assertGreater(len(payload), 512, f"poster asset too small: {path}")
+                suffix = path.suffix.lower()
+                if suffix == ".webp":
+                    self.assertEqual(payload[:4], b"RIFF")
+                    self.assertEqual(payload[8:12], b"WEBP")
+                    declared_size = int.from_bytes(payload[4:8], "little") + 8
+                    self.assertEqual(
+                        declared_size,
+                        len(payload),
+                        f"corrupt/truncated WebP asset: {path}",
+                    )
+                elif suffix in {".jpg", ".jpeg"}:
+                    self.assertTrue(payload.startswith(b"\xff\xd8\xff"))
+                    self.assertTrue(payload.endswith(b"\xff\xd9"))
+                elif suffix == ".png":
+                    self.assertTrue(payload.startswith(b"\x89PNG\r\n\x1a\n"))
+                else:
+                    self.fail(f"unsupported local poster format: {path}")
+
     def test_upcoming_posters_have_traceable_sources(self):
         today = datetime.now(ZoneInfo("Asia/Taipei")).date().isoformat()
         poster_by_title = {item["title"]: item for item in self.posters["movies"]}
