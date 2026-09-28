@@ -419,7 +419,12 @@
 
   function upcomingReleaseLabel(value) {
     const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ""));
-    return match ? `${match[2]}/${match[3]}` : "";
+    if (!match) return "";
+    const todayMatch = /^(\d{4})-/.exec(todayIso());
+    const currentYear = todayMatch ? todayMatch[1] : "";
+    return match[1] === currentYear
+      ? `${match[2]}/${match[3]}`
+      : `${match[1]}/${match[2]}/${match[3]}`;
   }
 
   function selectUpcoming(item) {

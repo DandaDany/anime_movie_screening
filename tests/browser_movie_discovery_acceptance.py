@@ -138,6 +138,13 @@ def install_fixture(page):
                     "target_date": "2026-10-01",
                     "poster_url": "https://example.com/g.jpg",
                 },
+                {
+                    "id": 8,
+                    "title": "電影 H",
+                    "aliases": [],
+                    "target_date": "2027-01-29",
+                    "poster_url": "https://example.com/h.jpg",
+                },
             ],
         },
         ensure_ascii=False,
@@ -199,8 +206,8 @@ def main() -> int:
             assert page.locator("#nowShowingGrid .movie-card", has_text="電影 E").count() == 0
             assert page.locator("#nowShowingGrid .movie-card", has_text="電影 F").count() == 0
             # 即將上映不再受 lookahead_days=7 限制；10/01 的 G 距今天遠超過 7 天仍必須顯示。
-            assert page.locator("#comingSoonGrid .movie-card").count() == 2
-            assert page.locator("#comingSoonGrid .movie-card__title").all_text_contents() == ["電影 C", "電影 G"]
+            assert page.locator("#comingSoonGrid .movie-card").count() == 3
+            assert page.locator("#comingSoonGrid .movie-card__title").all_text_contents() == ["電影 C", "電影 G", "電影 H"]
             movie_c_poster = page.locator("#comingSoonGrid .movie-card", has_text="電影 C").locator("img")
             page.wait_for_function(
                 "(img) => img.complete && img.naturalWidth > 0 && img.dataset.posterFallbackTried === '1'",
@@ -219,6 +226,11 @@ def main() -> int:
 
             page.locator("#comingSoonGrid .movie-card", has_text="電影 G").click()
             page.locator("#movieDiscoveryToast").filter(has_text="預計10/01上映，敬請期待！").wait_for()
+            assert page.locator("#movieDiscovery").is_visible()
+
+            # 跨年份的即將上映要顯示完整 YYYY/MM/DD。
+            page.locator("#comingSoonGrid .movie-card", has_text="電影 H").click()
+            page.locator("#movieDiscoveryToast").filter(has_text="預計2027/01/29上映，敬請期待！").wait_for()
             assert page.locator("#movieDiscovery").is_visible()
 
             # 電影 B 今天最後一場 20:30，固定現在時間 20:45；卡片仍留在「正在上映」。
