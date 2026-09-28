@@ -23,6 +23,9 @@ SOURCES = [
     ("fma_tw_gamme", "https://movie.gamme.com.tw/84998"),
     ("jinroh_tw_nownews", "https://www.nownews.com/news/6876853"),
     ("jinroh_tw_gnn", "https://gnn.gamer.com.tw/detail.php?sn=311969"),
+    ("bangdream_jp_official", "https://avemujica-movie.bang-dream.com/"),
+    ("madeinabyss_jp_official", "https://miabyss.com/"),
+    ("aobuta_jp_official", "https://ao-buta.com/"),
 ]
 
 
