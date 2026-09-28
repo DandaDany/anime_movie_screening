@@ -1,65 +1,66 @@
 from __future__ import annotations
 
-import io
-import sys
-from urllib.parse import urljoin
+from playwright.sync_api import sync_playwright
 
-import requests
-from bs4 import BeautifulSoup
-from PIL import Image
-
-# Trigger CI after PR creation.
 SOURCES = [
     ("fma_tw_vieshow", "https://www.vscinemas.com.tw/film/detail.aspx?id=8976"),
     ("jinroh_tw_nownews", "https://www.nownews.com/news/6876853"),
     ("jinroh_tw_gnn", "https://gnn.gamer.com.tw/detail.php?sn=311969"),
 ]
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
-}
-
-def probe_image(session: requests.Session, url: str) -> tuple[int, str, int, int] | None:
-    try:
-        response = session.get(url, headers=HEADERS, timeout=20)
-        ctype = response.headers.get("content-type", "")
-        if response.status_code != 200 or "image" not in ctype:
-            return None
-        image = Image.open(io.BytesIO(response.content))
-        return response.status_code, ctype, image.width, image.height
-    except Exception:
-        return None
 
 def main() -> int:
-    session = requests.Session()
-    for label, page_url in SOURCES:
-        response = session.get(page_url, headers=HEADERS, timeout=30)
-        print(f"PAGE {label} status={response.status_code} url={response.url} ctype={response.headers.get('content-type')}")
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        seen = set()
-        candidates = []
-        for tag in soup.find_all("img"):
-            raw = tag.get("src") or tag.get("data-src") or tag.get("data-original") or ""
-            if not raw:
-                continue
-            url = urljoin(response.url, raw)
-            if url in seen:
-                continue
-            seen.add(url)
-            meta = probe_image(session, url)
-            if not meta:
-                continue
-            _, ctype, width, height = meta
-            ratio = width / height if height else 999
-            alt = " ".join(str(tag.get("alt") or "").split())
-            candidates.append((abs(ratio - (2/3)), -(width*height), url, ctype, width, height, ratio, alt))
-        candidates.sort()
-        for _, _, url, ctype, width, height, ratio, alt in candidates[:20]:
-            print(
-                f"IMG {label} {width}x{height} ratio={ratio:.3f} ctype={ctype} alt={alt!r} url={url}"
-            )
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        context = browser.new_context(
+            viewport={"width": 1440, "height": 1600},
+            locale="zh-TW",
+            timezone_id="Asia/Taipei",
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/153.0.0.0 Safari/537.36"
+            ),
+        )
+        page = context.new_page()
+        for label, page_url in SOURCES:
+            try:
+                response = page.goto(page_url, wait_until="domcontentloaded", timeout=60000)
+                print(
+                    f"PAGE {label} status={response.status if response else 'none'} "
+                    f"url={page.url} title={page.title()!r}"
+                )
+                page.wait_for_timeout(3000)
+                images = page.locator("img").evaluate_all(
+                    """els => els.map((img) => ({
+                        src: img.currentSrc || img.src || '',
+                        alt: img.alt || '',
+                        width: img.naturalWidth || 0,
+                        height: img.naturalHeight || 0,
+                        renderedWidth: img.getBoundingClientRect().width || 0,
+                        renderedHeight: img.getBoundingClientRect().height || 0
+                    })).filter(x => x.src && x.width > 0 && x.height > 0)"""
+                )
+                ranked = sorted(
+                    images,
+                    key=lambda x: (
+                        abs((x["width"] / x["height"]) - (2 / 3)),
+                        -(x["width"] * x["height"]),
+                    ),
+                )
+                for item in ranked[:30]:
+                    ratio = item["width"] / item["height"]
+                    print(
+                        f"IMG {label} {item['width']}x{item['height']} ratio={ratio:.3f} "
+                        f"rendered={item['renderedWidth']:.0f}x{item['renderedHeight']:.0f} "
+                        f"alt={item['alt']!r} url={item['src']}"
+                    )
+            except Exception as exc:
+                print(f"ERROR {label}: {type(exc).__name__}: {exc}")
+        context.close()
+        browser.close()
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
