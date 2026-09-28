@@ -6,10 +6,10 @@
     {
       "title": "BanG Dream! Ave Mujica prima aurora",
       "aliases": [],
-      "poster_url": "https://avemujica-movie.bang-dream.com/wordpress/wp-content/themes/avemujica-movie/assets/webp/common/index/img_kv_01.webp",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://avemujica-movie.bang-dream.com/",
-      "poster_fallback_url": "https://avemujica-movie.bang-dream.com/wordpress/wp-content/themes/avemujica-movie/assets/webp/common/index/img_kv_02.webp"
+      "poster_url": "https://prcdn.freetls.fastly.net/release_image/14827/9657/14827-9657-a2d64661fb1c91f74ccf97b27644aa51-1920x1080.png?auto=webp&fit=bounds&format=jpeg&height=1260&width=2400",
+      "poster_source": "4Gamers 台灣上映報導引用官方主視覺（last-known-good）",
+      "poster_source_url": "https://www.4gamers.com.tw/news/detail/82069/bang-dream-ave-mujica-prima-aurora-new-trailer",
+      "poster_fallback_url": null
     },
     {
       "title": "劇場版 來自深淵：覺醒的神秘",
@@ -212,9 +212,9 @@
         "麵包超人 電影版：潘坦與約定之星",
         "麵包超人電影版 潘坦與約定之星"
       ],
-      "poster_url": "https://news.anpan-movie.com/wp-content/uploads/2026/02/%E3%80%90RGB%E3%80%91%E6%9C%AC%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://news.anpan-movie.com/2026/463/",
+      "poster_url": "https://i.ytimg.com/vi/x7J2e6hzxJ0/hqdefault.jpg",
+      "poster_source": "麵包超人台灣官方主視覺（last-known-good）",
+      "poster_source_url": "https://www.youtube.com/watch?v=x7J2e6hzxJ0",
       "poster_fallback_url": null
     },
     {
