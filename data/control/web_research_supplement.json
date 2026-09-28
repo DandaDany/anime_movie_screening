@@ -1,131 +1,17 @@
 {
   "schema_version": 1,
-  "for_date": "2026-09-28",
-  "generated_at": "2026-09-28T07:12:30+08:00",
+  "for_date": "2026-09-29",
+  "generated_at": "2026-09-29T07:09:45+08:00",
   "records": [
     {
-      "location_id": 69,
-      "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "桃園台茂美麗新影城官方場次頁明確顯示 2026-09-28《劇場版 鋼之鍊金術師 香巴拉的征服者》標準廳 11:20、14:50。",
-      "showtimes": [
-        {
-          "time": "11:20",
-          "format": "標準廳",
-          "language": null,
-          "auditorium": null
-        },
-        {
-          "time": "14:50",
-          "format": "標準廳",
-          "language": null,
-          "auditorium": null
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-09-28《劇場版 鋼之鍊金術師 香巴拉的征服者》10:20、18:00，皆為12廳。",
-      "showtimes": [
-        {
-          "time": "10:20",
-          "format": null,
-          "language": null,
-          "auditorium": "12廳"
-        },
-        {
-          "time": "18:00",
-          "format": null,
-          "language": null,
-          "auditorium": "12廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-09-28《劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉》10:20、20:15，皆為11廳。",
-      "showtimes": [
-        {
-          "time": "10:20",
-          "format": null,
-          "language": null,
-          "auditorium": "11廳"
-        },
-        {
-          "time": "20:15",
-          "format": null,
-          "language": null,
-          "auditorium": "11廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-09-28 國語版《電影蠟筆小新：奇奇怪怪！我的妖怪假期》14:10、18:10，皆為11廳。",
-      "showtimes": [
-        {
-          "time": "14:10",
-          "format": null,
-          "language": "國語版",
-          "auditorium": "11廳"
-        },
-        {
-          "time": "18:10",
-          "format": null,
-          "language": "國語版",
-          "auditorium": "11廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-09-28 日語版《劇場版 吉伊卡哇 人魚島的秘密》12:35，15廳。",
-      "showtimes": [
-        {
-          "time": "12:35",
-          "format": null,
-          "language": "日語版",
-          "auditorium": "15廳"
-        }
-      ]
-    },
-    {
-      "location_id": 104,
-      "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.instagram.com/madoucinema/p/DdqkEKyoEYU/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文與完整時刻表圖片明確標示適用 2026-09-25 至 2026-09-28；其中 2026-09-28《電影蠟筆小新：奇奇怪怪！我的妖怪假期》為10:45數位中文版。",
-      "showtimes": [
-        {
-          "time": "10:45",
-          "format": "數位",
-          "language": "中文版",
-          "auditorium": null
-        }
-      ]
-    },
-    {
       "location_id": 104,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-09-28",
-      "source_url": "https://www.instagram.com/madoucinema/p/DdqkEKyoEYU/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文與完整時刻表圖片明確標示適用 2026-09-25 至 2026-09-28；其中 2026-09-28《劇場版 吉伊卡哇 人魚島的秘密》為17:30數位中文版。",
+      "show_date": "2026-09-29",
+      "source_url": "https://www.instagram.com/madoucinema/p/Dd1CZf_GH3C/",
+      "evidence": "麻豆戲院官方 Instagram 置頂貼文與完整時刻表圖片明確標示適用 2026-09-29 至 2026-10-01；其中 2026-09-29《劇場版 吉伊卡哇 人魚島的秘密》為 17:20 數位中文版。",
       "showtimes": [
         {
-          "time": "17:30",
+          "time": "17:20",
           "format": "數位",
           "language": "中文版",
           "auditorium": null
