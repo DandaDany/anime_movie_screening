@@ -56,6 +56,18 @@ def main() -> int:
                 ):
                     failures.append({"title": title, **state})
 
+            bangdream = page.locator(
+                '#comingSoonGrid .movie-card[data-movie-title="BanG Dream! Ave Mujica prima aurora"]'
+            )
+            bang_img = bangdream.locator("img")
+            assert bang_img.evaluate("img => getComputedStyle(img).objectFit") == "contain"
+
+            anpanman = page.locator(
+                '#comingSoonGrid .movie-card[data-movie-title="麵包超人電影版：潘坦與約定之星"]'
+            )
+            anpan_src = anpanman.locator("img").evaluate("img => img.currentSrc || img.src")
+            assert anpan_src.endswith("/assets/posters/anpanman-pantan-2026.webp"), anpan_src
+
             assert not failures, f"poster runtime failures: {failures}"
             context.close()
         finally:
