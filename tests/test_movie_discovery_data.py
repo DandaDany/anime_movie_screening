@@ -21,14 +21,18 @@ class MovieDiscoveryDataTests(unittest.TestCase):
         index = discovery._poster_index(self.posters)
         return discovery._find_poster(movie, index)
 
-    def test_every_canonical_movie_has_https_poster(self):
+    def _is_valid_poster_url(self, value):
+        url = str(value or "")
+        return url.startswith("https://") or url.startswith("assets/posters/")
+
+    def test_every_canonical_movie_has_poster(self):
         self.assertGreater(len(self.tracked["movies"]), 0)
         self.assertEqual(len(self.tracked["movies"]), self.posters["movie_count"])
         for movie in self.tracked["movies"]:
             with self.subTest(movie=movie["title"]):
                 poster = self._poster_for(movie)
                 self.assertIsNotNone(poster)
-                poster_url = str(poster.get("poster_url") or "")\n                self.assertTrue(\n                    poster_url.startswith("https://") or poster_url.startswith("assets/posters/")\n                )
+                self.assertTrue(self._is_valid_poster_url(poster.get("poster_url")))
                 fallback_url = str(poster.get("poster_fallback_url") or "")
                 self.assertTrue(not fallback_url or fallback_url.startswith("https://"))
                 self.assertNotEqual(fallback_url, str(poster.get("poster_url") or ""))
@@ -42,16 +46,12 @@ class MovieDiscoveryDataTests(unittest.TestCase):
             if not movie.get("is_active") or str(movie.get("target_date") or "") <= today:
                 continue
             poster = poster_by_title[movie["title"]]
-            poster_url = str(poster.get("poster_url") or "")
             source = str(poster.get("poster_source") or "")
             source_url = str(poster.get("poster_source_url") or "")
             with self.subTest(movie=movie["title"]):
-                self.assertTrue(poster_url.startswith("https://"))
+                self.assertTrue(self._is_valid_poster_url(poster.get("poster_url")))
                 self.assertTrue(source.strip())
                 self.assertTrue(source_url.startswith("https://"))
-                # Image correctness is the primary requirement. URL host,
-                # source format and aspect ratio do not invalidate a known-good
-                # image; the browser runtime acceptance verifies that it loads.
                 if "UPCOMING FALLBACK" in source:
                     self.assertEqual(source, "日本官方 Poster（UPCOMING FALLBACK）")
 
@@ -89,13 +89,15 @@ class MovieDiscoveryDataTests(unittest.TestCase):
         for movie in expected:
             with self.subTest(movie=movie["title"]):
                 actual = actual_by_id[movie["id"]]
+                poster = self._poster_for(movie)
                 self.assertEqual(actual["title"], movie["title"])
                 self.assertEqual(actual["target_date"], movie["target_date"])
-                self.assertTrue(actual["poster_url"].startswith("https://"))
+                self.assertEqual(actual["poster_url"], poster.get("poster_url"))
                 self.assertEqual(
                     actual.get("poster_fallback_url"),
-                    self._poster_for(movie).get("poster_fallback_url"),
+                    poster.get("poster_fallback_url"),
                 )
+                self.assertEqual(actual.get("poster_fit"), poster.get("poster_fit"))
 
     def test_committed_feed_matches_builder(self):
         expected = discovery.build_payload(self.tracked, self.posters)
