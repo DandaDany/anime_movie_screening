@@ -150,18 +150,17 @@ def install_fixture(page):
         "**/data/movie_discovery.json",
         lambda route: route.fulfill(status=200, content_type="application/json", body=discovery),
     )
-    page.route(
-        "https://example.com/c-primary.jpg",
-        lambda route: route.fulfill(status=404, body="missing"),
-    )
-    page.route(
-        "https://example.com/*.jpg",
-        lambda route: route.fulfill(
+    def fulfill_poster(route):
+        if route.request.url.endswith("/c-primary.jpg"):
+            route.fulfill(status=404, body="missing")
+            return
+        route.fulfill(
             status=200,
             content_type="image/svg+xml",
             body="<svg xmlns='http://www.w3.org/2000/svg' width='400' height='600'><rect width='400' height='600' fill='#333'/></svg>",
-        ),
-    )
+        )
+
+    page.route("https://example.com/*.jpg", fulfill_poster)
     page.add_init_script(
         f"""
         (() => {{
