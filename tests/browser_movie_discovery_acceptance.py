@@ -107,7 +107,8 @@ def install_fixture(page):
                     "title": "電影 C",
                     "aliases": [],
                     "target_date": "2026-08-13",
-                    "poster_url": "https://example.com/c.jpg",
+                    "poster_url": "https://example.com/c-primary.jpg",
+                    "poster_fallback_url": "https://example.com/c-fallback.jpg",
                 },
                 {
                     "id": 4,
@@ -149,14 +150,17 @@ def install_fixture(page):
         "**/data/movie_discovery.json",
         lambda route: route.fulfill(status=200, content_type="application/json", body=discovery),
     )
-    page.route(
-        "https://example.com/*.jpg",
-        lambda route: route.fulfill(
+    def fulfill_poster(route):
+        if route.request.url.endswith("/c-primary.jpg"):
+            route.fulfill(status=404, body="missing")
+            return
+        route.fulfill(
             status=200,
             content_type="image/svg+xml",
             body="<svg xmlns='http://www.w3.org/2000/svg' width='400' height='600'><rect width='400' height='600' fill='#333'/></svg>",
-        ),
-    )
+        )
+
+    page.route("https://example.com/*.jpg", fulfill_poster)
     page.add_init_script(
         f"""
         (() => {{
@@ -197,6 +201,14 @@ def main() -> int:
             # 即將上映不再受 lookahead_days=7 限制；10/01 的 G 距今天遠超過 7 天仍必須顯示。
             assert page.locator("#comingSoonGrid .movie-card").count() == 2
             assert page.locator("#comingSoonGrid .movie-card__title").all_text_contents() == ["電影 C", "電影 G"]
+            movie_c_poster = page.locator("#comingSoonGrid .movie-card", has_text="電影 C").locator("img")
+            page.wait_for_function(
+                "(img) => img.complete && img.naturalWidth > 0 && img.dataset.posterFallbackTried === '1'",
+                arg=movie_c_poster.element_handle(),
+            )
+            assert not page.locator("#comingSoonGrid .movie-card", has_text="電影 C").locator(".movie-card__poster").evaluate(
+                "el => el.classList.contains('is-missing')"
+            )
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
             assert page.locator(".sidebar").evaluate("el => getComputedStyle(el).display") == "none"
 

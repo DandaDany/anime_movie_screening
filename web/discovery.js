@@ -181,7 +181,16 @@
     img.loading = kind === "now" ? "eager" : "lazy";
     img.referrerPolicy = "no-referrer";
     if (!item?.poster_url) poster.classList.add("is-missing");
-    img.addEventListener("error", () => poster.classList.add("is-missing"));
+    img.addEventListener("load", () => poster.classList.remove("is-missing"));
+    img.addEventListener("error", () => {
+      const fallbackUrl = String(item?.poster_fallback_url || "").trim();
+      if (fallbackUrl && img.dataset.posterFallbackTried !== "1") {
+        img.dataset.posterFallbackTried = "1";
+        img.src = fallbackUrl;
+        return;
+      }
+      poster.classList.add("is-missing");
+    });
     poster.appendChild(img);
 
     const title = document.createElement("span");

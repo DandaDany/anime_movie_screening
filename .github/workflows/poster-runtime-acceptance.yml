@@ -1,0 +1,62 @@
+name: Poster runtime acceptance
+
+on:
+  push:
+    branches:
+      - fix/poster-runtime-integrity-20260928
+    paths:
+      - "web/data/movie_posters.json"
+      - "web/data/movie_discovery.json"
+      - "web/discovery.js"
+      - "web/index.html"
+      - "scripts/build_movie_discovery_data.py"
+      - "tests/test_movie_discovery_data.py"
+      - "tests/browser_movie_discovery_acceptance.py"
+      - "tests/browser_movie_poster_runtime_acceptance.py"
+      - ".github/workflows/poster-runtime-acceptance.yml"
+  pull_request:
+    paths:
+      - "web/data/movie_posters.json"
+      - "web/data/movie_discovery.json"
+      - "web/discovery.js"
+      - "web/index.html"
+      - "scripts/build_movie_discovery_data.py"
+      - "tests/test_movie_discovery_data.py"
+      - "tests/browser_movie_discovery_acceptance.py"
+      - "tests/browser_movie_poster_runtime_acceptance.py"
+      - ".github/workflows/poster-runtime-acceptance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Data and syntax checks
+        run: |
+          python scripts/build_movie_discovery_data.py --require-posters
+          python -m unittest tests.test_movie_discovery_data
+          node --check web/discovery.js
+          git diff --exit-code web/data/movie_discovery.json
+      - name: Browser fixture acceptance
+        run: |
+          python -m http.server 8765 --directory web >/tmp/poster-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          python tests/browser_movie_discovery_acceptance.py
+      - name: Real poster runtime acceptance
+        run: |
+          python -m http.server 8765 --directory web >/tmp/poster-runtime-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          python tests/browser_movie_poster_runtime_acceptance.py
