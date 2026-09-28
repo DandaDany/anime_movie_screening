@@ -107,7 +107,8 @@ def install_fixture(page):
                     "title": "電影 C",
                     "aliases": [],
                     "target_date": "2026-08-13",
-                    "poster_url": "https://example.com/c.jpg",
+                    "poster_url": "https://example.com/c-primary.jpg",
+                    "poster_fallback_url": "https://example.com/c-fallback.jpg",
                 },
                 {
                     "id": 4,
