@@ -66,7 +66,7 @@ def main() -> int:
                 '#comingSoonGrid .movie-card[data-movie-title="麵包超人電影版：潘坦與約定之星"]'
             )
             anpan_src = anpanman.locator("img").evaluate("img => img.currentSrc || img.src")
-            assert anpan_src.endswith("/assets/posters/anpanman-pantan-2026-v2.webp"), anpan_src
+            assert anpan_src.endswith("/assets/posters/anpanman-pantan-2026-hq.webp"), anpan_src
 
             kusuriya = page.locator(
                 '#comingSoonGrid .movie-card[data-movie-title="劇場版 藥師少女的獨語 亡妃的秘寶"]'
@@ -74,8 +74,43 @@ def main() -> int:
             assert kusuriya.count() == 1
             kusuriya_img = kusuriya.locator("img")
             kusuriya_src = kusuriya_img.evaluate("img => img.currentSrc || img.src")
-            assert kusuriya_src.endswith("/assets/posters/kusuriya-movie-tw-20270129.webp"), kusuriya_src
+            assert kusuriya_src.endswith("/assets/posters/kusuriya-movie-tw-20270129-hq.webp"), kusuriya_src
             assert kusuriya_img.evaluate("img => getComputedStyle(img).objectFit") == "contain"
+
+            required_local_assets = [
+                ("assets/posters/anpanman-pantan-2026-hq.webp", 1400, 2000),
+                ("assets/posters/kusuriya-movie-tw-20270129-hq.webp", 1400, 1950),
+                ("assets/posters/eupho-final-part1-tw.webp", 890, 1270),
+            ]
+            for asset_path, min_width, min_height in required_local_assets:
+                state = page.evaluate(
+                    """async ([src, minWidth, minHeight]) => {
+                        const img = new Image();
+                        const done = new Promise((resolve) => {
+                            img.onload = () => resolve({
+                                complete: img.complete,
+                                width: img.naturalWidth,
+                                height: img.naturalHeight,
+                                src: img.currentSrc || img.src
+                            });
+                            img.onerror = () => resolve({
+                                complete: img.complete,
+                                width: img.naturalWidth,
+                                height: img.naturalHeight,
+                                src: img.currentSrc || img.src
+                            });
+                        });
+                        img.src = src;
+                        document.body.appendChild(img);
+                        const result = await done;
+                        img.remove();
+                        return {...result, minWidth, minHeight};
+                    }""",
+                    [asset_path, min_width, min_height],
+                )
+                assert state["complete"], state
+                assert state["width"] >= min_width, state
+                assert state["height"] >= min_height, state
 
             assert not failures, f"poster runtime failures: {failures}"
             context.close()
