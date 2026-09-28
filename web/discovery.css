@@ -106,6 +106,10 @@
   background: #202128;
 }
 
+.movie-card__poster.is-contain img {
+  object-fit: contain;
+}
+
 .movie-card__poster.is-missing img {
   display: none;
 }
