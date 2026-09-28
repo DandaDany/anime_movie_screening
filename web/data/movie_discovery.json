@@ -13,27 +13,30 @@
       "title": "BanG Dream! Ave Mujica prima aurora",
       "aliases": [],
       "target_date": "2026-10-16",
-      "poster_url": "https://www.major-j.com/upload/ticket/M09321725042/main.jpg",
+      "poster_url": "https://avemujica-movie.bang-dream.com/wordpress/wp-content/themes/avemujica-movie/assets/webp/common/index/img_kv_01.webp",
+      "poster_fallback_url": "https://avemujica-movie.bang-dream.com/wordpress/wp-content/themes/avemujica-movie/assets/webp/common/index/img_kv_02.webp",
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.major-j.com/cinema_information.php?id=M09321725042"
+      "poster_source_url": "https://avemujica-movie.bang-dream.com/"
     },
     {
       "id": 7,
       "title": "劇場版 來自深淵：覺醒的神秘",
       "aliases": [],
       "target_date": "2026-11-20",
-      "poster_url": "https://www.major-j.com/upload/ticket/M20311755910/main.jpg",
+      "poster_url": "https://miabyss.com/part1_images/news/p_015.jpg",
+      "poster_fallback_url": "https://miabyss.com/part1_images/top/revival/p_004.jpg",
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.major-j.com/cinema_information.php?id=M20311755910"
+      "poster_source_url": "https://miabyss.com/news_movie/article009.html"
     },
     {
       "id": 3,
       "title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
       "aliases": [],
       "target_date": "2026-10-08",
-      "poster_url": "https://www.sonymusic.co.jp/lineup/anime/hagaren-movie/img/keyv_l.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.sonymusic.co.jp/Animation/lineup/anime/hagaren-movie/index.html"
+      "poster_url": "https://cdn12.nantoutheater.com/storages/movies/6ab0035c31090.jpg",
+      "poster_fallback_url": "https://images.gamme.com.tw/movie/2026/38/1/nZuapqWYlaWgq6CW-220x315.jpg",
+      "poster_source": "南投戲院台灣院線正式 Poster",
+      "poster_source_url": "https://nantoutheater.com/movie/688"
     },
     {
       "id": 4,
@@ -41,6 +44,7 @@
       "aliases": [],
       "target_date": "2026-09-24",
       "poster_url": "https://images.kktv.com.tw/resized_covers/0600075401/portrait_o.jpg",
+      "poster_fallback_url": null,
       "poster_source": "LINE TV / KKTV 台灣繁中版視覺",
       "poster_source_url": "https://www.linetv.tw/drama/22224/eps/1"
     },
@@ -50,6 +54,7 @@
       "aliases": [],
       "target_date": "2026-09-04",
       "poster_url": "https://img.4gamers.com.tw/puku-clone-version/190c396c4009304908bcf83c291d49167cdd492c.jpg",
+      "poster_fallback_url": null,
       "poster_source": "4Gamers / 木棉花台灣宣傳視覺",
       "poster_source_url": "https://www.4gamers.com.tw/news/detail/74403/10th-madoka-magica-project-animation-film-release-in-taiwan"
     },
@@ -59,6 +64,7 @@
       "aliases": [],
       "target_date": "2026-10-23",
       "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
+      "poster_fallback_url": null,
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
       "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
     },
@@ -71,6 +77,7 @@
       ],
       "target_date": "2026-08-28",
       "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260807004.jpg",
+      "poster_fallback_url": null,
       "poster_source": "威秀影城台灣院線海報",
       "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8893"
     },
@@ -79,9 +86,10 @@
       "title": "青春豬頭少年不會夢到親愛好朋友",
       "aliases": [],
       "target_date": "2026-11-06",
-      "poster_url": "https://www.major-j.com/upload/ticket/M07318877037/main.jpg",
+      "poster_url": "https://ao-buta.com/assets/img/kv_dearfriend.jpg",
+      "poster_fallback_url": null,
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.major-j.com/cinema_information.php?id=M07318877037"
+      "poster_source_url": "https://ao-buta.com/"
     },
     {
       "id": 11,
@@ -89,6 +97,7 @@
       "aliases": [],
       "target_date": "2026-07-31",
       "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260604010.jpg",
+      "poster_fallback_url": null,
       "poster_source": "威秀影城台灣院線海報",
       "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8786"
     },
@@ -98,6 +107,7 @@
       "aliases": [],
       "target_date": "2026-08-07",
       "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260630004.jpg",
+      "poster_fallback_url": null,
       "poster_source": "威秀影城台灣院線海報",
       "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8829"
     },
@@ -109,6 +119,7 @@
       ],
       "target_date": "2026-07-08",
       "poster_url": "https://movie-chill.tw/movie-img/x1784091034rmufpn.jpg.pagespeed.ic.3un4bMQPH_.jpg",
+      "poster_fallback_url": null,
       "poster_source": "台灣院線宣傳海報（movie-chill 彙整）",
       "poster_source_url": "https://movie-chill.tw/theater_i-151.html"
     },
@@ -118,6 +129,7 @@
       "aliases": [],
       "target_date": "2026-06-24",
       "poster_url": "https://movie-chill.tw/movie-img/x1784091040afpssz.jpg.pagespeed.ic.0w5VyXbL9b.jpg",
+      "poster_fallback_url": null,
       "poster_source": "台灣院線宣傳海報（movie-chill 彙整）",
       "poster_source_url": "https://movie-chill.tw/theater_i-151.html"
     },
@@ -130,6 +142,7 @@
       ],
       "target_date": "2026-09-11",
       "poster_url": "https://p2.bahamut.com.tw/B/2KU/33/0000748833.JPG",
+      "poster_fallback_url": null,
       "poster_source": "巴哈姆特",
       "poster_source_url": null
     },
@@ -141,6 +154,7 @@
       ],
       "target_date": "2026-09-04",
       "poster_url": "https://img.myvideo.net.tw/images/TOE020/0000/0299/202507141031383983_420x600.jpg",
+      "poster_fallback_url": null,
       "poster_source": "MyVideo",
       "poster_source_url": null
     },
@@ -152,6 +166,7 @@
       ],
       "target_date": "2026-09-04",
       "poster_url": "https://riotheatre.ca/wp-content/uploads/2016/07/1BRwHeKN99CfoIjizfy1s83dhoa-0.jpg",
+      "poster_fallback_url": null,
       "poster_source": "Rio Theatre",
       "poster_source_url": null
     },
@@ -161,6 +176,7 @@
       "aliases": [],
       "target_date": "2026-08-28",
       "poster_url": "https://www.shop-bell.net/cdn/202604/natalie_669983_large.jpg",
+      "poster_fallback_url": null,
       "poster_source": "電影官方宣傳劇照（無日本上映日期，台灣版未取得時 fallback）",
       "poster_source_url": "https://www.ambassador.com.tw/home/MovieContent?DT=2026%2F09%2F03&MID=1f5dfea4-8e4e-47c9-99c2-dec31b681d70"
     },
@@ -170,6 +186,7 @@
       "aliases": [],
       "target_date": "2026-08-21",
       "poster_url": "https://us.oricon-group.com/upimg/detail/5000/5145/img660/You-and-Idol-Precure-Movie-1.jpg",
+      "poster_fallback_url": null,
       "poster_source": "電影官方宣傳劇照（無日本上映日期，台灣版未取得時 fallback）",
       "poster_source_url": "https://gnn.gamer.com.tw/detail.php?sn=309412"
     },
@@ -179,6 +196,7 @@
       "aliases": [],
       "target_date": "2026-08-07",
       "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260616006.jpg",
+      "poster_fallback_url": null,
       "poster_source": "威秀影城台灣院線海報",
       "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8806"
     },
@@ -190,6 +208,7 @@
       ],
       "target_date": "2026-07-24",
       "poster_url": "https://p2.bahamut.com.tw/B/2KU/31/e6e0c4942f66b37132c54b73811rbkr5.JPG?v=1725437482579",
+      "poster_fallback_url": null,
       "poster_source": "巴哈姆特 GNN",
       "poster_source_url": null
     },
@@ -199,6 +218,7 @@
       "aliases": [],
       "target_date": "2026-09-18",
       "poster_url": "https://img.myvideo.net.tw/images/TOE020/0000/0297/202507141027435199_420x600.jpg",
+      "poster_fallback_url": null,
       "poster_source": "MyVideo 台灣",
       "poster_source_url": "https://www.myvideo.net.tw/details/0/420763"
     },
@@ -210,6 +230,7 @@
       ],
       "target_date": "2026-09-18",
       "poster_url": "https://static.animecorner.me/2025/12/1765189047-2263ef697013f6abed7394bfa05b7a65.jpg",
+      "poster_fallback_url": null,
       "poster_source": "官方主視覺（無海外上映日期，台灣版未取得時 fallback）",
       "poster_source_url": "https://gnn.gamer.com.tw/detail.php?sn=311154"
     },
@@ -222,6 +243,7 @@
       ],
       "target_date": "2026-10-08",
       "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260714001.jpg",
+      "poster_fallback_url": null,
       "poster_source": "威秀影城台灣院線海報",
       "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8849"
     },
@@ -234,6 +256,7 @@
       ],
       "target_date": "2026-10-16",
       "poster_url": "https://news.anpan-movie.com/wp-content/uploads/2026/02/%E3%80%90RGB%E3%80%91%E6%9C%AC%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg",
+      "poster_fallback_url": null,
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
       "poster_source_url": "https://news.anpan-movie.com/2026/463/"
     },
@@ -246,9 +269,10 @@
         "人狼 JIN-ROH"
       ],
       "target_date": "2026-10-16",
-      "poster_url": "https://portal.cinemasunshine.smart-spoke.com/uploads/JIN_ROH_4_K_dd01facd15.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.cinemasunshine.co.jp/theater/gdcs/movies/2103/"
+      "poster_url": "https://media.nownews.com/nn_media/thumbnail/2026/09/1789974109673-410bc92058af4bfc926e40c6797b3dd5-800x1204.webp?unShow=false&waterMark=false",
+      "poster_fallback_url": "https://p2.bahamut.com.tw/B/2KU/41/fbddc7f60a45523a0eff944cd820eqt5.JPG?w=500",
+      "poster_source": "普威爾台灣正式 Poster（NOWnews 圖片標示普威爾提供）",
+      "poster_source_url": "https://www.nownews.com/news/6876853"
     },
     {
       "id": 27,
@@ -258,8 +282,9 @@
         "名偵探柯南 第 30 號殺人事件"
       ],
       "target_date": "2026-11-06",
-      "poster_url": "https://i.mopix.cc/GdRWN6.jpg",
-      "poster_source": "曼迪台灣正式 Poster（新聞稿圖像鏡像）",
+      "poster_url": "https://www.ccpa.org.tw/ccpa/images/ckfinder/2/images/01_%20%E4%B8%BB%E8%A6%96%E8%A6%BA%E6%B5%B7%E5%A0%B1.jpg",
+      "poster_fallback_url": null,
+      "poster_source": "曼迪台灣正式主視覺海報",
       "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=774"
     }
   ]
