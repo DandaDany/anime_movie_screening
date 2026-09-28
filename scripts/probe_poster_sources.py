@@ -8,6 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 
+# Trigger CI after PR creation.
 SOURCES = [
     ("fma_tw_vieshow", "https://www.vscinemas.com.tw/film/detail.aspx?id=8976"),
     ("jinroh_tw_nownews", "https://www.nownews.com/news/6876853"),
