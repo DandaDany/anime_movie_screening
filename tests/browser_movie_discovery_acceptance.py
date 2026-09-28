@@ -199,6 +199,7 @@ def main() -> int:
             page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
 
             page.wait_for_function("() => Boolean(window.MuseDiscovery)")
+            assert page.locator("#nowShowingTitle").inner_text() == "現正熱映"
             page.locator("#nowShowingGrid .movie-card").first.wait_for()
             # 「正在上映」只保留目前能直接進今天地圖，或至少有其他可進日期的電影。
             # E 完全沒有場次；F 今天最後一場 20:30 已過且沒有未來日期，兩者都不可顯示。
