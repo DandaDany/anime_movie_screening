@@ -1,6 +1,12 @@
 name: Poster source probe
 
 on:
+  push:
+    branches:
+      - fix/poster-runtime-integrity-20260928
+    paths:
+      - "scripts/probe_poster_sources.py"
+      - ".github/workflows/poster-source-probe.yml"
   pull_request:
     paths:
       - "scripts/probe_poster_sources.py"
