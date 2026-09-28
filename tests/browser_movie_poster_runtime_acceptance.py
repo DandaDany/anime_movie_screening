@@ -66,7 +66,7 @@ def main() -> int:
                 '#comingSoonGrid .movie-card[data-movie-title="麵包超人電影版：潘坦與約定之星"]'
             )
             anpan_src = anpanman.locator("img").evaluate("img => img.currentSrc || img.src")
-            assert anpan_src.endswith("/assets/posters/anpanman-pantan-2026.webp"), anpan_src
+            assert anpan_src.endswith("/assets/posters/anpanman-pantan-2026-v2.webp"), anpan_src
 
             kusuriya = page.locator(
                 '#comingSoonGrid .movie-card[data-movie-title="劇場版 藥師少女的獨語 亡妃的秘寶"]'
