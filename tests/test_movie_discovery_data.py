@@ -29,6 +29,9 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                 poster = self._poster_for(movie)
                 self.assertIsNotNone(poster)
                 self.assertTrue(str(poster.get("poster_url") or "").startswith("https://"))
+                fallback_url = str(poster.get("poster_fallback_url") or "")
+                self.assertTrue(not fallback_url or fallback_url.startswith("https://"))
+                self.assertNotEqual(fallback_url, str(poster.get("poster_url") or ""))
                 self.assertTrue(str(poster.get("poster_source") or "").strip())
 
     def test_upcoming_posters_follow_formal_poster_policy(self):
@@ -105,6 +108,10 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                 self.assertEqual(actual["title"], movie["title"])
                 self.assertEqual(actual["target_date"], movie["target_date"])
                 self.assertTrue(actual["poster_url"].startswith("https://"))
+                self.assertEqual(
+                    actual.get("poster_fallback_url"),
+                    self._poster_for(movie).get("poster_fallback_url"),
+                )
 
     def test_committed_feed_matches_builder(self):
         expected = discovery.build_payload(self.tracked, self.posters)
