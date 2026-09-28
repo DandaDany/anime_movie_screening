@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026092702,
-  "generated_at": "2026-09-27T15:00:00+08:00",
+  "source_version": 2026092801,
+  "generated_at": "2026-09-28T14:34:00+08:00",
   "lookahead_days": 7,
-  "count": 25,
+  "count": 26,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -311,6 +311,20 @@
       "poster_fit": null,
       "poster_source": "曼迪台灣正式主視覺海報",
       "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=774"
+    },
+    {
+      "id": 28,
+      "title": "劇場版 藥師少女的獨語 亡妃的秘寶",
+      "aliases": [
+        "劇場版 藥師少女的獨語 亡妃的祕寶",
+        "劇場版 薬屋のひとりごと 亡妃の秘宝"
+      ],
+      "target_date": "2027-01-29",
+      "poster_url": "assets/posters/kusuriya-movie-tw-20270129.webp",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "台灣宣傳海報（使用者提供 Instagram 圖；已本地保存）",
+      "poster_source_url": "https://kusuriyanohitorigoto.jp/movie/"
     }
   ]
 }
