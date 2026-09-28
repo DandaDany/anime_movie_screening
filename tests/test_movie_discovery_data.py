@@ -28,7 +28,7 @@ class MovieDiscoveryDataTests(unittest.TestCase):
             with self.subTest(movie=movie["title"]):
                 poster = self._poster_for(movie)
                 self.assertIsNotNone(poster)
-                self.assertTrue(str(poster.get("poster_url") or "").startswith("https://"))
+                poster_url = str(poster.get("poster_url") or "")\n                self.assertTrue(\n                    poster_url.startswith("https://") or poster_url.startswith("assets/posters/")\n                )
                 fallback_url = str(poster.get("poster_fallback_url") or "")
                 self.assertTrue(not fallback_url or fallback_url.startswith("https://"))
                 self.assertNotEqual(fallback_url, str(poster.get("poster_url") or ""))
@@ -54,6 +54,12 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                 # image; the browser runtime acceptance verifies that it loads.
                 if "UPCOMING FALLBACK" in source:
                     self.assertEqual(source, "日本官方 Poster（UPCOMING FALLBACK）")
+
+    def test_poster_fit_modes_are_valid(self):
+        allowed = {None, "cover", "contain"}
+        for poster in self.posters["movies"]:
+            with self.subTest(movie=poster["title"]):
+                self.assertIn(poster.get("poster_fit"), allowed)
 
     def test_japan_poster_fallback_is_upcoming_only(self):
         today = datetime.now(ZoneInfo("Asia/Taipei")).date().isoformat()
