@@ -3,7 +3,7 @@ from __future__ import annotations
 from playwright.sync_api import sync_playwright
 
 SOURCES = [
-    ("fma_tw_vieshow", "https://www.vscinemas.com.tw/film/detail.aspx?id=8976"),
+    ("fma_tw_vieshow", "https://www.vscinemas.com.tw/film/detail.aspx?id=8976"),\n    ("fma_tw_nantou", "https://nantoutheater.com/movie/688"),\n    ("fma_tw_gamme", "https://movie.gamme.com.tw/84998"),
     ("jinroh_tw_nownews", "https://www.nownews.com/news/6876853"),
     ("jinroh_tw_gnn", "https://gnn.gamer.com.tw/detail.php?sn=311969"),
 ]
