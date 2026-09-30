@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026092801,
-  "generated_at": "2026-09-28T14:34:00+08:00",
+  "source_version": 2026093001,
+  "generated_at": "2026-09-30T22:25:00+08:00",
   "lookahead_days": 7,
-  "count": 26,
+  "count": 31,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -325,6 +325,79 @@
       "poster_fit": "contain",
       "poster_source": "台灣宣傳海報（使用者提供 2894×4096 原圖；已高解析本地保存）",
       "poster_source_url": "https://kusuriyanohitorigoto.jp/movie/"
+    },
+    {
+      "id": 29,
+      "title": "機動戰士鋼彈 閃光的哈薩威 喀耳刻的魔女",
+      "aliases": [
+        "機動戰士鋼彈 閃光的哈薩威：喀耳刻的魔女",
+        "MOBILE SUIT GUNDAM HATHAWAY The Sorcery of Nymph Circe",
+        "閃光的哈薩威 喀耳刻的魔女"
+      ],
+      "target_date": "2026-03-13",
+      "poster_url": "https://www.microworksacg.com/cdn/shop/articles/635137494_1303741145142129_3791241935903998330_n_14b7ad66-a355-432b-8e9c-176f9c3899da.jpg?v=1778483916",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "羚邦發行版主視覺（MicroWorks ACG 收錄）",
+      "poster_source_url": "https://tw.gundam-official.com/hathaway/"
+    },
+    {
+      "id": 30,
+      "title": "遊戲人生（電視動畫 前篇）",
+      "aliases": [
+        "遊戲人生 電視動畫 前篇",
+        "NO GAME NO LIFE (Part 1)"
+      ],
+      "target_date": "2026-10-16",
+      "poster_url": "https://bdi.dlpdomain.com/serie/visuel/BDA_15154/1-M480x680.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "TV動畫官方主視覺（Kana 收錄；台灣活動版海報未取得穩定直連時 fallback）",
+      "poster_source_url": "https://ngnl.jp/tv/"
+    },
+    {
+      "id": 31,
+      "title": "遊戲人生（電視動畫 後篇）",
+      "aliases": [
+        "遊戲人生 電視動畫 後篇",
+        "NO GAME NO LIFE (Part 2)"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://bdi.dlpdomain.com/serie/visuel/BDA_15154/1-M480x680.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "TV動畫官方主視覺（Kana 收錄；台灣活動版海報未取得穩定直連時 fallback）",
+      "poster_source_url": "https://ngnl.jp/tv/"
+    },
+    {
+      "id": 32,
+      "title": "遊戲人生 ZERO",
+      "aliases": [
+        "NO GAME NO LIFE ZERO",
+        "遊戲人生 零",
+        "遊戲人生ZERO"
+      ],
+      "target_date": "2026-10-30",
+      "poster_url": "https://storage.moegirl.org.cn/moegirl/commons/1/18/No_Game_No_Life_Zero_KV.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "官方 key visual（鏡像）",
+      "poster_source_url": "https://ngnl.jp/"
+    },
+    {
+      "id": 33,
+      "title": "致遙不可及彼方的你",
+      "aliases": [
+        "どこよりも遠い場所にいる君へ",
+        "To You in the Beyond",
+        "致在比任何地方都遙遠的你"
+      ],
+      "target_date": "2026-10-30",
+      "poster_url": "https://img2.animatetimes.com/2026/02/197ebc1f7869a9153adbb63715a3f6a56a60290da9b615_48951276_86b089998437a9cf97e067468d0e1ad1c2a6e2d0.png",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "日本官方主視覺（Animate Times 收錄）",
+      "poster_source_url": "https://www.animatetimes.com/tag/details.php?id=27649"
     }
   ]
 }
