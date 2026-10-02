@@ -47,8 +47,9 @@ PROVIDERS = [
 
 GENERAL_PROVIDER = {
     "chain": "喜樂時代影城",
-    "location": "喜樂時代影城南港店",
-    "booking_url": "https://www.centuryasia.com.tw/book.html?sid=Nangang&ver=0fKKApRlrx8=",
+    "location": "喜樂時代影城永和店",
+    "booking_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&eventsn=91&computerid=518213",
+    "seat_preview_url": "https://ticket.centuryasia.com.tw/beyond/buyticket_process.aspx?ProgramID=0000154&eventsn=91&computerid=518213",
 }
 
 
@@ -75,6 +76,7 @@ def locations_payload(provider: dict[str, str], location_id: int) -> dict:
                     "language": "日語",
                     "auditorium": "1廳",
                     "booking_url": provider["booking_url"],
+                    "seat_preview_url": provider.get("seat_preview_url", ""),
                     "label": "10:10 數位 / 1廳",
                 }
             ],
@@ -199,7 +201,18 @@ def assert_general_provider(browser) -> None:
         assert primary.count() == 1
         assert primary.inner_text() == "場次入口"
         assert primary.get_attribute("href") == "https://example.test/showtimes"
-        assert popup.locator(".st-chip-select").count() == 0
+        assert popup.locator("[data-booking-cta]").count() == 0
+
+        showtime = popup.locator(".st-chip-select", has_text="10:10")
+        assert showtime.count() == 1
+        assert showtime.get_attribute("aria-pressed") == "false"
+
+        official = popup.locator("[data-official-cta]")
+        assert official.inner_text() == "官方網站"
+        showtime.dispatch_event("click")
+        assert showtime.get_attribute("aria-pressed") == "true"
+        assert official.inner_text() == "座位表入口"
+        assert official.get_attribute("href") == GENERAL_PROVIDER["seat_preview_url"]
     finally:
         context.close()
 

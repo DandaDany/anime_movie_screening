@@ -14,6 +14,7 @@ vm.runInContext(source, sandbox);
 const {
   FORMAT_ORDER,
   displayTag,
+  explicitFormatTags,
   formatTags,
   languageTag,
 } = sandbox.window.MuseVersionFilter;
@@ -49,6 +50,24 @@ assert(tags("測試電影", "跨電癮").includes("跨電癮"), "跨電癮 shoul
 assert(tags("測試電影(2D - 水影威尼斯)").includes("水影威尼斯"), "水影威尼斯 should normalize");
 assert(tags("測試電影(4D+)").includes("4D+"), "4D+ should normalize");
 assert(tags("REMMI 英語").includes("REMMI"), "REMMI should normalize");
+assert(tags("").includes("數位"), "Missing format should default to 數位");
+assert(tags("日語").includes("數位"), "Language-only showtime should default to 數位");
+assert(
+  formatTags({ time: "19:30", format: "", auditorium: "1廳", label: "19:30" }).includes("數位"),
+  "Hall-only showtime should default to 數位",
+);
+assert(
+  formatTags({ time: "19:30", format: "", auditorium: "MUCROWN", label: "19:30" }).includes("MUCROWN"),
+  "Explicit auditorium format must not be downgraded to 數位",
+);
+assert(
+  !formatTags({ format: "IMAX" }).includes("數位"),
+  "Explicit premium format must not also be inferred as 數位",
+);
+assert(
+  explicitFormatTags({ format: "未知格式 XLAND" }).length === 0,
+  "Unknown format should remain auditable even when filter fallback is 數位",
+);
 assert(languageTag({ format: "數位 日文版" }) === "日語", "Japanese should normalize");
 assert(
   displayTag({ format: "Dolby Cinema INFINITY VISION" }).includes("Dolby"),
