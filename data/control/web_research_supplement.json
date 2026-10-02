@@ -1,14 +1,29 @@
 {
   "schema_version": 1,
-  "for_date": "2026-10-02",
-  "generated_at": "2026-10-02T07:11:21+08:00",
+  "for_date": "2026-10-03",
+  "generated_at": "2026-10-03T07:13:29+08:00",
   "records": [
     {
       "location_id": 104,
-      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-02",
+      "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+      "show_date": "2026-10-03",
       "source_url": "https://www.instagram.com/madoucinema/p/Dd8bsrooOXg/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文與完整時刻表圖片明確標示適用 2026-10-02 至 2026-10-04；《劇場版 吉伊卡哇 人魚島的秘密》為 17:10 數位中文版且未標示週末限定。圖片中的蠟筆小新 10:20 明確標為六日早場，因此不列入週五 10/02。",
+      "evidence": "麻豆戲院官方 Instagram 置頂貼文與完整時刻表圖片明確標示適用 2026-10-02 至 2026-10-04；《電影蠟筆小新：奇奇怪怪！我的妖怪假期》10:20 明確標為六日早場，因此適用週六 10/03。",
+      "showtimes": [
+        {
+          "time": "10:20",
+          "format": "數位",
+          "language": "中文版",
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 104,
+      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+      "show_date": "2026-10-03",
+      "source_url": "https://www.instagram.com/madoucinema/p/Dd8bsrooOXg/",
+      "evidence": "麻豆戲院官方 Instagram 置頂貼文與完整時刻表圖片明確標示適用 2026-10-02 至 2026-10-04；《劇場版 吉伊卡哇 人魚島的秘密》為 17:10 數位中文版。",
       "showtimes": [
         {
           "time": "17:10",
