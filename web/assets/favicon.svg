@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">日本動畫電影上映地圖</title>
+  <path d="M26 180 78 160l50 18 52-20 50 20-14 58-47-18-42 22-50-20-49 17Z" fill="#0b2b63"/>
+  <path d="m77 162 1 58m50-42-1 62m53-81-11 59M78 220l50-42 41 40" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 14c-48 0-87 39-87 87 0 66 87 120 87 120s87-54 87-120c0-48-39-87-87-87Z" fill="#ff5a3a"/>
+  <circle cx="128" cy="99" r="47" fill="#fff"/>
+  <path d="m115 74 40 25-40 25Z" fill="#0b2b63" stroke="#0b2b63" stroke-width="5" stroke-linejoin="round"/>
+  <g fill="#fff">
+    <rect x="54" y="70" width="12" height="14" rx="3"/><rect x="54" y="92" width="12" height="14" rx="3"/><rect x="54" y="114" width="12" height="14" rx="3"/>
+    <rect x="190" y="70" width="12" height="14" rx="3"/><rect x="190" y="92" width="12" height="14" rx="3"/><rect x="190" y="114" width="12" height="14" rx="3"/>
+  </g>
+</svg>
