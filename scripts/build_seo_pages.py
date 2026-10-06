@@ -198,6 +198,7 @@ def showtime_sub_label(showtime: dict) -> str:
 
 
 def showtime_format_tags(showtime: dict) -> list[str]:
+    """Mirror web/version-filter.js: only recognized map whitelist tags survive."""
     raw = showtime_sub_label(showtime)
     values: list[str] = []
     for name, pattern in FORMAT_RULES:
@@ -205,10 +206,6 @@ def showtime_format_tags(showtime: dict) -> list[str]:
             values.append(name)
     if "數位" in values and "2D" in values:
         values.remove("2D")
-    if not values:
-        fallback = str(showtime.get("format") or "").strip()
-        if fallback:
-            values.append(fallback)
     return values
 
 
@@ -258,21 +255,54 @@ def preferred_map_date(by_date: dict[str, list[dict]], today: date) -> str:
     return values[-1] if values else ""
 
 
+def map_title_for_item(item: dict, map_data: dict) -> str:
+    """Return the actual GeoJSON movie key so map restore selects the same movie."""
+    title = str(item.get("title") or "").strip()
+    by_title = map_data.get("movie_features_by_date") or {}
+    if title in by_title:
+        return title
+    keys = movie_keys(item)
+    for map_title in by_title:
+        if normalize_title(map_title) in keys:
+            return str(map_title)
+    return title
+
+
 def map_href(title: str, by_date: dict[str, list[dict]], today: date) -> str:
     params = {"restore": "1", "movie": title}
     show_date = preferred_map_date(by_date, today)
     if show_date:
         params["date"] = show_date
-    return "?" + urlencode(params)
+    # Explicitly navigate back to the map document. "?..." alone would keep
+    # the user on movie-N.html and only change its query string.
+    return "index.html?" + urlencode(params)
+
+
+def parse_update_datetime(value: object) -> datetime | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=TAIPEI)
+    return parsed.astimezone(TAIPEI)
 
 
 def display_update_label(map_data: dict, today: date) -> str:
-    source_date = parse_iso_date(map_data.get("updated_at") or map_data.get("generated_at"))
-    if source_date == today:
-        return "今日 8:00"
+    updated = parse_update_datetime(map_data.get("updated_at"))
+    if updated:
+        clock = updated.strftime("%H:%M")
+        if updated.date() == today:
+            return f"今日 {clock}"
+        return f"{updated.strftime('%Y/%m/%d')} {clock}"
+
+    source_date = parse_iso_date(map_data.get("generated_at"))
     if source_date:
-        return f"{source_date.strftime('%Y/%m/%d')} 8:00"
-    return "每日 8:00"
+        return "今日" if source_date == today else source_date.strftime("%Y/%m/%d")
+    return "更新時間未提供"
 
 
 def cinema_html(feature: dict, show_date: str) -> str:
@@ -442,7 +472,8 @@ def movie_page_html(
         if poster else ""
     )
     release_html = f"<p>預定／上映日期：<strong>{html.escape(target_date)}</strong></p>" if target_date else ""
-    map_link = html.escape(map_href(title, by_date, today), quote=True)
+    map_title = map_title_for_item(item, map_data)
+    map_link = html.escape(map_href(map_title, by_date, today), quote=True)
 
     structured = {"@context": "https://schema.org", "@type": "Movie", "name": title, "url": canonical}
     if poster:
@@ -485,7 +516,6 @@ def movie_page_html(
     <section class="movie-hero">
       {poster_html}
       <div>
-        <p class="eyebrow">全台動畫電影場次</p>
         <h1>{escaped_title}</h1>
         {release_html}
         <p>場次資料更新：<strong>{html.escape(update_label)}</strong></p>
