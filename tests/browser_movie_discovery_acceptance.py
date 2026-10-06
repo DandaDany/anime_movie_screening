@@ -220,73 +220,19 @@ def main() -> int:
             assert page.evaluate("document.documentElement.classList.contains('discovery-active')")
             assert page.locator(".sidebar").evaluate("el => getComputedStyle(el).display") == "none"
 
-            # 即將上映卡片只顯示上映日期提示，不進地圖。
-            page.locator("#comingSoonGrid .movie-card", has_text="電影 C").click()
-            page.locator("#movieDiscoveryToast").filter(has_text="預計08/13上映，敬請期待！").wait_for()
-            assert page.locator("#movieDiscovery").is_visible()
-
-            page.locator("#comingSoonGrid .movie-card", has_text="電影 G").click()
-            page.locator("#movieDiscoveryToast").filter(has_text="預計10/01上映，敬請期待！").wait_for()
-            assert page.locator("#movieDiscovery").is_visible()
-
-            # 跨年份的即將上映要顯示完整 YYYY/MM/DD。
-            page.locator("#comingSoonGrid .movie-card", has_text="電影 H").click()
-            page.locator("#movieDiscoveryToast").filter(has_text="預計2027/01/29上映，敬請期待！").wait_for()
-            assert page.locator("#movieDiscovery").is_visible()
-
-            # 電影 B 今天最後一場 20:30，固定現在時間 20:45；卡片仍留在「正在上映」。
-            page.locator("#nowShowingGrid .movie-card", has_text="電影 B").click()
-            dialog = page.locator("#movieNoTodayDialog")
-            dialog.wait_for()
-            assert "今日剩餘場次已結束" in dialog.inner_text()
-            assert "是否看其他日期？" in dialog.inner_text()
-
-            # 否：關閉 dialog，留在選片頁。
-            page.locator("#movieNoTodayNo").click()
-            assert dialog.is_hidden()
-            assert page.locator("#movieDiscovery").is_visible()
-
-            # 是：自動找到電影 B 的其他有場次日期（8/15）並進入地圖。
-            page.locator("#nowShowingGrid .movie-card", has_text="電影 B").click()
-            dialog.wait_for()
-            page.locator("#movieNoTodayYes").click()
-            page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
-            assert page.locator("#movieSelect").input_value() == "電影 B"
-            assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-15"
-            assert page.locator("#movieDiscovery").is_hidden()
-
-            # 電影 D 今天沒有排映，但明天有場次；不能誤說成「沒有上映」。
-            page.locator(".map-home-control-button").click()
-            page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
-            page.locator("#nowShowingGrid .movie-card", has_text="電影 D 顯示").click()
-            dialog.wait_for()
-            assert "今天沒有排映場次" in dialog.inner_text()
-            assert "是否看其他日期？" in dialog.inner_text()
-            page.locator("#movieNoTodayYes").click()
-            page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
-            assert page.locator("#movieSelect").input_value() == "電影 D"
-            assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-13"
-
-            # 回到選片頁後，不會再看到無任何可進場次的 E/F 卡片。
-            page.locator(".map-home-control-button").click()
-            page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
-            assert page.locator("#nowShowingGrid .movie-card", has_text="電影 E").count() == 0
-            assert page.locator("#nowShowingGrid .movie-card", has_text="電影 F").count() == 0
-
-            # 同一選片頁再選電影 A；今天 21:00 尚有場次，應直接進今天地圖、不跳 dialog。
-            page.locator("#nowShowingGrid .movie-card", has_text="電影 A").click()
-            page.wait_for_function("() => !document.documentElement.classList.contains('discovery-active')")
-            assert page.locator("#movieSelect").input_value() == "電影 A"
-            assert page.locator("#dateChips .date-chip.is-selected").get_attribute("data-date") == "2026-08-12"
-            assert dialog.is_hidden()
-
-            page.locator(".map-home-control-button").click()
-            page.wait_for_function("() => document.documentElement.classList.contains('discovery-active')")
+            # 首頁電影卡現在是獨立頁入口，不再直接切換地圖狀態。
+            movie_c = page.locator("#comingSoonGrid .movie-card", has_text="電影 C")
+            movie_a = page.locator("#nowShowingGrid .movie-card", has_text="電影 A")
+            assert movie_c.get_attribute("href") == "movies/3/"
+            assert movie_a.get_attribute("href") == "movies/1/"
             assert page.locator("#movieDiscovery").is_visible()
 
             artifact_dir = REPO / "artifacts"
             artifact_dir.mkdir(exist_ok=True)
             page.screenshot(path=str(artifact_dir / "movie-discovery-desktop.png"), full_page=True)
+            movie_a.click()
+            page.wait_for_url("**/movies/1/")
+            assert page.url.endswith("/movies/1/")
             context.close()
         finally:
             browser.close()

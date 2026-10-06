@@ -5,10 +5,13 @@ on:
     paths:
       - "scripts/build_seo_pages.py"
       - "tests/test_build_seo_pages.py"
+      - "tests/browser_seo_movie_page_acceptance.py"
+      - "tests/browser_movie_discovery_acceptance.py"
       - "web/index.html"
       - "web/discovery.js"
       - "web/discovery.css"
       - "web/seo.css"
+      - "web/seo-movie.js"
       - ".github/workflows/pages.yml"
       - ".github/workflows/daily-crawl.yml"
       - ".github/workflows/supplemental-0600.yml"
@@ -20,15 +23,24 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run SEO unit tests
-        run: python -m unittest tests.test_build_seo_pages -v
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Run SEO unit and syntax tests
+        run: |
+          python -m unittest tests.test_build_seo_pages -v
+          python -m py_compile scripts/build_seo_pages.py tests/browser_seo_movie_page_acceptance.py
+          node --check web/seo-movie.js
+          node --check web/discovery.js
       - name: Build SEO artifact from repository data
-        run: python scripts/build_seo_pages.py --today 2026-10-06
+        run: python scripts/build_seo_pages.py
       - name: Validate generated outputs
         run: |
           test -f web/sitemap.xml
@@ -36,3 +48,11 @@ jobs:
           test -d web/movies
           grep -q 'rel="canonical"' web/movies/*/index.html
           grep -q 'movies/' web/sitemap.xml
+          grep -q 'movieFilterCity' web/movies/*/index.html
+          grep -q 'restore=1' web/movies/*/index.html
+      - name: Browser acceptance for generated movie pages
+        run: |
+          python -m http.server 8765 --directory web >/tmp/seo-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          python tests/browser_seo_movie_page_acceptance.py

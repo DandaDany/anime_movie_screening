@@ -7,6 +7,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: #0b0d12; color: #f4f5f7; }
 a { color: inherit; }
+button, select { font: inherit; }
 .site-head {
   width: min(1040px, calc(100% - 32px));
   margin: 0 auto;
@@ -34,13 +35,68 @@ a { color: inherit; }
 }
 .eyebrow { margin: 4px 0 10px; color: #aeb6c6; font-size: 14px; }
 h1 { margin: 0 0 18px; font-size: clamp(30px, 5vw, 52px); line-height: 1.15; }
-.map-cta, .cinema-link {
+.map-cta {
   display: inline-block;
   margin-top: 10px;
-  border: 1px solid #3d4658;
   border-radius: 999px;
-  padding: 10px 16px;
+  background: #f5641e;
+  color: #fff;
+  padding: 11px 17px;
   text-decoration: none;
+  font-weight: 750;
+}
+.showtime-tools {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  margin: 0 0 26px;
+  border: 1px solid #252c38;
+  border-radius: 14px;
+  background: rgba(11, 13, 18, 0.95);
+  padding: 14px;
+  backdrop-filter: blur(12px);
+}
+.showtime-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.showtime-filter-grid label {
+  display: grid;
+  gap: 7px;
+  color: #aeb6c6;
+  font-size: 13px;
+  font-weight: 700;
+}
+.showtime-filter-grid select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #343d4e;
+  border-radius: 10px;
+  background: #151a23;
+  color: #f4f5f7;
+  padding: 8px 11px;
+}
+.distance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 12px;
+}
+.distance-row p {
+  margin: 0;
+  color: #8f99aa;
+  font-size: 13px;
+}
+.distance-row button {
+  flex: 0 0 auto;
+  border: 1px solid #343d4e;
+  border-radius: 999px;
+  background: transparent;
+  color: #dce1ea;
+  cursor: pointer;
+  padding: 7px 11px;
 }
 .schedule-day { margin-top: 34px; }
 .schedule-day h2 { margin-bottom: 14px; font-size: 24px; }
@@ -51,23 +107,82 @@ h1 { margin: 0 0 18px; font-size: clamp(30px, 5vw, 52px); line-height: 1.15; }
   background: #11151d;
   padding: 18px;
 }
+.cinema-card[hidden], .schedule-day[hidden], .showtime-chip[hidden] { display: none !important; }
+.cinema-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
 .cinema-card h3 { margin: 0 0 8px; font-size: 18px; }
 .cinema-address, .cinema-format { margin: 6px 0; color: #aeb6c6; }
-.showtime-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
-.showtime-list span {
+.distance-label {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #1d2430;
+  color: #c7ceda;
+  font-size: 12px;
+  padding: 5px 8px;
+}
+.showtime-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
+.showtime-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
   border-radius: 8px;
   background: #1e2531;
-  padding: 7px 9px;
+  color: #fff;
+  padding: 8px 10px;
   font-variant-numeric: tabular-nums;
 }
-.schedule-empty {
+button.showtime-chip { cursor: pointer; }
+.showtime-chip small { color: #aeb6c6; font-size: 11px; }
+.showtime-chip.is-selected {
+  outline: 2px solid #f5641e;
+  background: #292f3a;
+}
+.cinema-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.cinema-action {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 9px 14px;
+  text-decoration: none;
+  font-weight: 750;
+}
+.cinema-action-primary {
+  background: #f5641e;
+  color: #fff;
+}
+.cinema-action-secondary {
+  border: 1px solid #394355;
+  color: #dce2ec;
+}
+.cinema-action.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.schedule-empty, .filter-empty {
   border: 1px solid #232936;
   border-radius: 12px;
   background: #11151d;
   padding: 22px;
 }
+.filter-empty { color: #aeb6c6; }
 .disclaimer { margin-top: 42px; color: #8d96a8; font-size: 13px; }
 @media (max-width: 680px) {
   .movie-hero { grid-template-columns: 112px 1fr; gap: 18px; }
   h1 { font-size: 27px; }
+  .showtime-filter-grid { grid-template-columns: 1fr; }
+  .distance-row { align-items: flex-start; }
+  .cinema-card-head { display: block; }
+  .distance-label { display: inline-block; margin-bottom: 6px; }
 }
