@@ -1248,11 +1248,11 @@ input[type="search"]::-webkit-search-cancel-button {
     right: 10px;
     bottom: 10px;
     left: 10px;
-    /* 固定 4:6：底盤永遠 40% 高、不可調整；各分頁內容自行捲動 */
+    /* 保留原本 40dvh 底盤；縮小固定 chrome，把高度還給分頁內可滑內容。 */
     height: 40vh;
     height: 40dvh;
     min-height: 0;
-    gap: 10px;
+    gap: 6px;
     margin: 0;
     border: 1px solid #e6e2da;
     border-radius: 24px;
@@ -1260,7 +1260,7 @@ input[type="search"]::-webkit-search-cancel-button {
     box-shadow:
       0 -2px 26px -8px rgba(30, 25, 20, 0.16),
       0 16px 34px -12px rgba(30, 25, 20, 0.26);
-    padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
     justify-content: flex-start;
     overflow: hidden;
     overscroll-behavior: contain;
@@ -1271,46 +1271,23 @@ input[type="search"]::-webkit-search-cancel-button {
     display: none;
   }
 
-  /* 標題列：手機只留摘要一行（固定，不可拖曳） */
+  /* 手機把摘要列整個收掉；電影與更新資訊已由當頁內容與日期列提供，
+     不再讓固定 header 侵蝕中間可滑視窗。 */
   .panel-head {
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 8px;
-    padding: 0;
-  }
-
-  .panel-head h1 {
-    display: none;
-  }
-
-  .panel-head > div {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .panel-head p {
-    margin: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: #8a857c;
-  }
-
-  .panel-head .icon-button {
     display: none;
   }
 
   .date-chips {
-    margin: 0 -2px;
-    padding-bottom: 3px;
+    margin: 0 -1px;
+    padding: 0 0 2px;
   }
 
   .date-chip {
-    min-height: 34px;
+    min-height: 28px;
     border-color: #ded9d1;
     background: #fff;
-    font-size: 12.5px;
-    padding: 6px 11px;
+    font-size: 11.5px;
+    padding: 4px 9px;
   }
 
   /* ---- 分段控制（底線分頁，樣式 C） ---- */
@@ -1328,8 +1305,8 @@ input[type="search"]::-webkit-search-cancel-button {
     background: transparent;
     color: #8a857c;
     font-weight: 700;
-    font-size: 15px;
-    padding: 7px 0 11px;
+    font-size: 13.5px;
+    padding: 4px 0 7px;
     cursor: pointer;
   }
 
@@ -1368,7 +1345,7 @@ input[type="search"]::-webkit-search-cancel-button {
   .m-panel {
     display: none;
     flex-direction: column;
-    gap: 9px;
+    gap: 6px;
     min-height: 0;
   }
 
@@ -1385,7 +1362,7 @@ input[type="search"]::-webkit-search-cancel-button {
     background: transparent;
     box-shadow: none;
     padding: 0;
-    gap: 9px;
+    gap: 6px;
   }
 
   .filter-head {
@@ -1425,7 +1402,7 @@ input[type="search"]::-webkit-search-cancel-button {
     flex: 1 1 auto;
     min-height: 0;
     flex-direction: column;
-    gap: 7px;
+    gap: 5px;
     overflow-y: auto;
     padding-right: 2px;
   }
@@ -1438,7 +1415,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border: 1.5px solid transparent;
     border-radius: 12px;
     background: #f2efeb;
-    padding: 11px 12px;
+    padding: 8px 10px;
     text-align: left;
     cursor: pointer;
   }
@@ -1502,7 +1479,22 @@ input[type="search"]::-webkit-search-cancel-button {
 
   /* 時間面板在手機的間距（元件樣式已移到基本層，桌機側欄也共用） */
   #timeFilterPanel {
-    gap: 8px;
+    gap: 6px;
+  }
+
+  /* 手機底部說明不再固定佔高度；詳細說明保留於頁面與影城資訊中。 */
+  .sidebar-note {
+    display: none;
+  }
+
+  .m-slider {
+    padding-top: 10px;
+    padding-bottom: 4px;
+  }
+
+  .m-period button {
+    padding: 5px 0;
+    font-size: 12.5px;
   }
 
   /* ---- 影城資訊底部 sheet（點 logo 開啟；sheet 70% / 地圖 30%） ---- */
