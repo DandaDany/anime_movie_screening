@@ -45,11 +45,11 @@ jobs:
         run: |
           test -f web/sitemap.xml
           test -f web/robots.txt
-          test -d web/movies
-          grep -q 'rel="canonical"' web/movies/*/index.html
+          ls web/movie-*.html >/dev/null
+          grep -q 'rel="canonical"' web/movie-*.html
           grep -q 'movies/' web/sitemap.xml
-          grep -q 'movieFilterCity' web/movies/*/index.html
-          grep -q 'restore=1' web/movies/*/index.html
+          grep -q 'movieFilterCity' web/movie-*.html
+          grep -q 'restore=1' web/movie-*.html
       - name: Browser acceptance for generated movie pages
         run: |
           python -m http.server 8765 --directory web >/tmp/seo-http.log 2>&1 &
