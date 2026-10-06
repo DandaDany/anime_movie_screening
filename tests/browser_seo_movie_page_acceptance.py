@@ -65,7 +65,7 @@ def verify_desktop(page, movie_file: str) -> None:
     markers = page.locator(".cinema-marker")
     assert markers.count() > 0
     page.locator(".leaflet-marker-icon").first.click(force=True)
-    page.locator(".leaflet-popup").wait_for(timeout=5000)
+    page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
     assert page.locator(".cinema-list-card.is-active").count() == 1
 
     # Clicking the inserted list delegates to the original map focus behavior.
