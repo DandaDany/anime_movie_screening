@@ -71,7 +71,7 @@ def verify_desktop(page, movie_file: str) -> None:
     # Clicking the inserted list delegates to the original map focus behavior.
     first_card = page.locator("#cinemaList .cinema-list-card").first
     first_card.click(position={"x": 8, "y": 8})
-    page.locator(".leaflet-popup").wait_for(timeout=5000)
+    page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
 
     # Original popup actions are reused inside the list.
     assert page.locator("#cinemaList .popup-links").count() > 0
