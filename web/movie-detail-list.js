@@ -109,7 +109,9 @@
     for (const card of list.querySelectorAll(".cinema-list-card")) {
       const selected = Number(card.dataset.locationId) === activeLocationId;
       card.classList.toggle("is-active", selected);
-      if (selected) card.scrollIntoView({ block: "center", behavior: "smooth" });
+      if (selected) {
+        card.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+      }
     }
   }
 

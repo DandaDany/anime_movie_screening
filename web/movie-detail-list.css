@@ -134,14 +134,74 @@
   }
 }
 
-/* Mobile remains the original map + fixed 40dvh filter tray UX.
-   The inserted desktop cinema list stays hidden. */
+/* Mobile: keep the original map/filter tray, but surface the same filtered
+   cinema list as a Google-Maps-style horizontal carousel directly above it. */
 @media (max-width: 760px) {
   .movie-detail-shell {
     display: block;
   }
 
   .cinema-list-panel {
+    position: fixed;
+    z-index: 910;
+    right: 10px;
+    bottom: calc(40dvh + 20px);
+    left: 10px;
+    display: block;
+    min-height: 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .cinema-list-head {
     display: none;
+  }
+
+  .cinema-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 2px 8px;
+    scroll-padding-inline: 2px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    pointer-events: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cinema-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cinema-list > section {
+    display: contents;
+  }
+
+  .cinema-list-card {
+    flex: 0 0 min(76vw, 296px);
+    height: 68px;
+    scroll-snap-align: start;
+    border-radius: 13px;
+    box-shadow:
+      0 7px 18px -7px rgba(20, 20, 30, 0.24),
+      0 2px 6px rgba(20, 20, 30, 0.08);
+  }
+
+  .cinema-list-empty {
+    flex: 0 0 auto;
+    margin: 0;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    padding: 12px 14px;
+    box-shadow: 0 6px 16px -8px rgba(20, 20, 30, 0.24);
+  }
+
+  .app-shell.sheet-open .cinema-list-panel {
+    opacity: 0;
+    pointer-events: none;
   }
 }
