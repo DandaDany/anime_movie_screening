@@ -120,8 +120,8 @@
     for (const list of document.querySelectorAll(".cinema-list")) {
       const cards = [...list.querySelectorAll(".cinema-card")];
       for (const card of cards) {
-        const lat = Number(card.dataset.lat);
-        const long = Number(card.dataset.long);
+        const lat = card.dataset.lat ? Number(card.dataset.lat) : Number.NaN;
+        const long = card.dataset.long ? Number(card.dataset.long) : Number.NaN;
         const distance = Number.isFinite(lat) && Number.isFinite(long)
           ? distanceKm(userLat, userLong, lat, long)
           : Number.POSITIVE_INFINITY;
