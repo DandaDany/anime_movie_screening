@@ -47,7 +47,7 @@ jobs:
           test -f web/robots.txt
           ls web/movie-*.html >/dev/null
           grep -q 'rel="canonical"' web/movie-*.html
-          grep -q 'movies/' web/sitemap.xml
+          grep -q 'movie-' web/sitemap.xml
           grep -q 'movieFilterCity' web/movie-*.html
           grep -q 'restore=1' web/movie-*.html
       - name: Browser acceptance for generated movie pages
