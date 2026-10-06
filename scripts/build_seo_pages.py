@@ -128,7 +128,9 @@ def poster_url(item: dict, base_url: str) -> str:
 
 
 def movie_href(item: dict) -> str:
-    return f"movies/{item['id']}/"
+    # Use a concrete root-level HTML file instead of directory-style URLs.
+    # GitHub Pages serves this path without needing /dir/ -> /dir/index.html routing.
+    return f"movie-{item['id']}.html"
 
 
 def movie_canonical(item: dict, base_url: str) -> str:
@@ -261,7 +263,7 @@ def map_href(title: str, by_date: dict[str, list[dict]], today: date) -> str:
     show_date = preferred_map_date(by_date, today)
     if show_date:
         params["date"] = show_date
-    return "../../?" + urlencode(params)
+    return "?" + urlencode(params)
 
 
 def display_update_label(map_data: dict, today: date) -> str:
@@ -471,13 +473,13 @@ def movie_page_html(
   <meta name="twitter:title" content="{escaped_title} 場次｜全台動畫電影上映地圖" />
   <meta name="twitter:description" content="{html.escape(description, quote=True)}" />
   {twitter_image}
-  <link rel="stylesheet" href="../../seo.css?v=20261006b" />
+  <link rel="stylesheet" href="seo.css?v=20261006c" />
   <script type="application/ld+json">{json.dumps(structured, ensure_ascii=False).replace("</", "<\/")}</script>
-  <script src="../../seo-movie.js?v=20261006b" defer></script>
+  <script src="seo-movie.js?v=20261006c" defer></script>
 </head>
 <body>
   <header class="site-head">
-    <a href="../../">← 回到動畫電影首頁</a>
+    <a href="./">← 回到動畫電影首頁</a>
   </header>
   <main class="movie-page">
     <section class="movie-hero">
@@ -500,16 +502,19 @@ def movie_page_html(
 
 
 def write_movie_pages(web_dir: Path, catalog: list[dict], map_data: dict, base_url: str, today: date) -> list[str]:
+    # Remove the old directory-style output and stale flat pages before rebuilding.
     movies_dir = web_dir / "movies"
     if movies_dir.exists():
         shutil.rmtree(movies_dir)
+    for stale in web_dir.glob("movie-*.html"):
+        stale.unlink()
+
     urls: list[str] = []
     for item in catalog:
         if item.get("id") is None or not item.get("title"):
             continue
         by_date = movie_features_by_date(item, map_data)
-        target = movies_dir / str(item["id"]) / "index.html"
-        target.parent.mkdir(parents=True, exist_ok=True)
+        target = web_dir / movie_href(item)
         target.write_text(movie_page_html(item, by_date, map_data, base_url, today), encoding="utf-8")
         urls.append(movie_canonical(item, base_url))
     return urls
