@@ -11,7 +11,7 @@ WEB = REPO / "web"
 
 
 def find_movie_with_showtimes() -> Path:
-    for path in sorted((WEB / "movies").glob("*/index.html")):
+    for path in sorted(WEB.glob("movie-*.html")):
         if 'class="cinema-card"' in path.read_text(encoding="utf-8"):
             return path
     raise AssertionError("expected at least one generated movie page with showtimes")
@@ -19,7 +19,7 @@ def find_movie_with_showtimes() -> Path:
 
 def main() -> int:
     target = find_movie_with_showtimes()
-    movie_id = target.parent.name
+    movie_file = target.name
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -32,7 +32,7 @@ def main() -> int:
                 permissions=["geolocation"],
             )
             page = context.new_page()
-            page.goto(f"http://127.0.0.1:8765/movies/{movie_id}/", wait_until="networkidle")
+            page.goto(f"http://127.0.0.1:8765/{movie_file}", wait_until="networkidle")
 
             title = page.locator("h1").inner_text().strip()
             map_href = page.locator(".map-cta").get_attribute("href") or ""

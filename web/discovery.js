@@ -164,7 +164,7 @@
 
   function posterCard(item, displayTitle, kind) {
     const button = document.createElement("a");
-    button.href = `movies/${encodeURIComponent(String(item?.id ?? ""))}/`;
+    button.href = `movie-${encodeURIComponent(String(item?.id ?? ""))}.html`;
     button.className = "movie-card";
     button.dataset.movieTitle = displayTitle;
     button.dataset.kind = kind;

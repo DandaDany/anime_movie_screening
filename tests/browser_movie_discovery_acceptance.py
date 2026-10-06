@@ -223,16 +223,16 @@ def main() -> int:
             # 首頁電影卡現在是獨立頁入口，不再直接切換地圖狀態。
             movie_c = page.locator("#comingSoonGrid .movie-card", has_text="電影 C")
             movie_a = page.locator("#nowShowingGrid .movie-card", has_text="電影 A")
-            assert movie_c.get_attribute("href") == "movies/3/"
-            assert movie_a.get_attribute("href") == "movies/1/"
+            assert movie_c.get_attribute("href") == "movie-3.html"
+            assert movie_a.get_attribute("href") == "movie-1.html"
             assert page.locator("#movieDiscovery").is_visible()
 
             artifact_dir = REPO / "artifacts"
             artifact_dir.mkdir(exist_ok=True)
             page.screenshot(path=str(artifact_dir / "movie-discovery-desktop.png"), full_page=True)
             movie_a.click()
-            page.wait_for_url("**/movies/1/")
-            assert page.url.endswith("/movies/1/")
+            page.wait_for_url("**/movie-1.html")
+            assert page.url.endswith("/movie-1.html")
             context.close()
         finally:
             browser.close()
