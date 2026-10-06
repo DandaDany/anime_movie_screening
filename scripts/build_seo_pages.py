@@ -137,6 +137,20 @@ def movie_canonical(item: dict, base_url: str) -> str:
     return urljoin(base_url, movie_href(item))
 
 
+def movie_page_links(catalog: list[dict], map_data: dict) -> dict[str, str]:
+    """Map each actual GeoJSON movie title to its canonical generated page."""
+    map_titles = list((map_data.get("movie_features_by_date") or {}).keys())
+    links: dict[str, str] = {}
+    for item in catalog:
+        if item.get("id") is None or not item.get("title"):
+            continue
+        keys = movie_keys(item)
+        for map_title in map_titles:
+            if normalize_title(map_title) in keys:
+                links[str(map_title)] = movie_href(item)
+    return links
+
+
 def render_card(item: dict, kind: str) -> str:
     title = html.escape(str(item.get("title") or ""), quote=True)
     href = html.escape(movie_href(item), quote=True)
@@ -394,6 +408,24 @@ def cinema_html(feature: dict, show_date: str) -> str:
         '</article>'
     )
 
+def compact_cinema_list_html(feature: dict) -> str:
+    props = feature.get("properties") or {}
+    name = str(props.get("location_name") or props.get("map_name") or "影城").strip()
+    location_id = str(props.get("location_id") or "").strip()
+    showtimes = props.get("showtimes") if isinstance(props.get("showtimes"), list) else []
+    time_html = "".join(
+        f'<span class="cinema-list-time">{html.escape(str(showtime.get("time") or "").strip())}</span>'
+        for showtime in showtimes
+        if str(showtime.get("time") or "").strip()
+    )
+    return (
+        f'<article class="cinema-list-card" data-location-id="{html.escape(location_id, quote=True)}">'
+        f'<h3 class="cinema-list-name">{html.escape(name)}</h3>'
+        f'<div class="cinema-list-times">{time_html}</div>'
+        '</article>'
+    )
+
+
 def filter_button(value: str, label: str, data_attr: str, *, selected: bool = False) -> str:
     selected_class = " is-selected" if selected else ""
     selected_aria = "true" if selected else "false"
@@ -492,6 +524,7 @@ def movie_page_html(
     map_data: dict,
     base_url: str,
     today: date,
+    page_links: dict[str, str],
 ) -> str:
     title = str(item.get("title") or "").strip()
     escaped_title = html.escape(title)
@@ -579,10 +612,9 @@ def movie_page_html(
         features_for_date = by_date[show_date]
         if not features_for_date:
             continue
-        cards = "".join(cinema_html(feature, show_date) for feature in features_for_date)
+        cards = "".join(compact_cinema_list_html(feature) for feature in features_for_date)
         static_sections.append(
             f'<section data-seo-show-date="{html.escape(show_date, quote=True)}">'
-            f'<p class="movie-detail-seo-copy">{html.escape(date_label(show_date))}</p>'
             f'{cards}</section>'
         )
     static_list_html = "".join(static_sections)
@@ -593,6 +625,7 @@ def movie_page_html(
         "date": default_date,
     }
     initial_state_json = json.dumps(initial_state, ensure_ascii=False).replace("</", "<\/")
+    page_links_json = json.dumps(page_links, ensure_ascii=False).replace("</", "<\/")
 
     return f"""<!doctype html>
 <html lang="zh-Hant">
@@ -621,9 +654,10 @@ def movie_page_html(
   />
   <link rel="stylesheet" href="styles.css?v=20260813a" />
   <link rel="stylesheet" href="empty-state.css?v=20260820a" />
-  <link rel="stylesheet" href="movie-detail-list.css?v=20261006a" />
+  <link rel="stylesheet" href="movie-detail-list.css?v=20261006b" />
   <script>
     window.MuseInitialMapState = Object.freeze({initial_state_json});
+    window.MuseMoviePageLinks = Object.freeze({{PAGE_LINKS_JSON}});
   </script>
 </head>
 <body>
@@ -715,10 +749,7 @@ def movie_page_html(
 
     <section class="cinema-list-panel" id="cinemaListPanel" aria-label="{escaped_title} 影城列表">
       <header class="cinema-list-head">
-        <div>
-          <h2>影城列表</h2>
-          <p class="movie-detail-seo-copy">{escaped_title} · 更新於 {html.escape(update_label)}</p>
-        </div>
+        <h2>影城列表</h2>
         <strong id="cinemaListCount">0</strong>
       </header>
       <div class="cinema-list" id="cinemaList">{static_list_html}</div>
@@ -757,8 +788,8 @@ def movie_page_html(
   <script src="time-filter.js?v=20260812a"></script>
   <script src="date-state.js?v=20260812a"></script>
   <script src="version-filter.js?v=20260925a"></script>
-  <script src="movie-detail-list.js?v=20261006a"></script>
-  <script src="app.js?v=20261006e"></script>
+  <script src="movie-detail-list.js?v=20261006b"></script>
+  <script src="app.js?v=20261006f"></script>
   <script src="empty-state.js?v=20260820a"></script>
 </body>
 </html>
@@ -772,12 +803,16 @@ def write_movie_pages(web_dir: Path, catalog: list[dict], map_data: dict, base_u
         stale.unlink()
 
     urls: list[str] = []
+    page_links = movie_page_links(catalog, map_data)
     for item in catalog:
         if item.get("id") is None or not item.get("title"):
             continue
         by_date = movie_features_by_date(item, map_data)
         target = web_dir / movie_href(item)
-        target.write_text(movie_page_html(item, by_date, map_data, base_url, today), encoding="utf-8")
+        target.write_text(
+            movie_page_html(item, by_date, map_data, base_url, today, page_links),
+            encoding="utf-8",
+        )
         urls.append(movie_canonical(item, base_url))
     return urls
 
