@@ -646,6 +646,7 @@
 
   initSheetDrag();
   ensureMap();
+  applyFilters();
 
   fetch("data/chain_logos.json", { cache: "force-cache" })
     .then((response) => response.ok ? response.json() : {})
