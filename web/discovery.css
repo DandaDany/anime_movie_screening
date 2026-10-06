@@ -41,6 +41,25 @@
   padding: 46px 0 72px;
 }
 
+.movie-discovery__brand {
+  margin: 0 0 30px;
+}
+
+.movie-discovery__brand-name {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.movie-discovery__brand-tagline {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .movie-shelf + .movie-shelf {
   margin-top: 58px;
 }
