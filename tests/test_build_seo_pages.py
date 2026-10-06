@@ -117,10 +117,10 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         self.assertEqual(result["movies"], 2)
         home = (self.web / "index.html").read_text(encoding="utf-8")
-        self.assertIn('href="movies/1/"', home)
-        self.assertIn('href="movies/2/"', home)
+        self.assertIn('href="movie-1.html"', home)
+        self.assertIn('href="movie-2.html"', home)
 
-        movie = (self.web / "movies" / "1" / "index.html").read_text(encoding="utf-8")
+        movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
         self.assertIn("測試動畫電影 場次｜全台動畫電影上映地圖", movie)
         self.assertIn("場次資料更新：<strong>今日 8:00</strong>", movie)
         self.assertNotIn("2026-10-06T07:24:04+08:00", movie)
@@ -148,11 +148,11 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertEqual(query["movie"], ["測試動畫電影"])
         self.assertEqual(query["date"], ["2026-10-06"])
 
-        upcoming = (self.web / "movies" / "2" / "index.html").read_text(encoding="utf-8")
+        upcoming = (self.web / "movie-2.html").read_text(encoding="utf-8")
         self.assertIn("目前沒有可查詢場次", upcoming)
 
         sitemap = (self.web / "sitemap.xml").read_text(encoding="utf-8")
-        self.assertIn("https://example.com/anime/movies/1/", sitemap)
+        self.assertIn("https://example.com/anime/movie-1.html", sitemap)
         robots = (self.web / "robots.txt").read_text(encoding="utf-8")
         self.assertIn("https://example.com/anime/sitemap.xml", robots)
 
