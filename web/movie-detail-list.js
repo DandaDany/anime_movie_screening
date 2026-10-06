@@ -27,19 +27,20 @@
     return 2 * earth * Math.asin(Math.sqrt(a));
   }
 
-  function sortedFeatures(features) {
-    if (!userPosition) return [...features];
+  function distanceForFeature(feature) {
+    if (!userPosition) return Number.POSITIVE_INFINITY;
     const lat = Number(userPosition.coords?.latitude);
     const lng = Number(userPosition.coords?.longitude);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return [...features];
+    const coords = coordinates(feature);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng) || !coords) {
+      return Number.POSITIVE_INFINITY;
+    }
+    return distanceKm(lat, lng, coords[0], coords[1]);
+  }
 
-    return [...features].sort((a, b) => {
-      const ac = coordinates(a);
-      const bc = coordinates(b);
-      const ad = ac ? distanceKm(lat, lng, ac[0], ac[1]) : Number.POSITIVE_INFINITY;
-      const bd = bc ? distanceKm(lat, lng, bc[0], bc[1]) : Number.POSITIVE_INFINITY;
-      return ad - bd;
-    });
+  function sortedFeatures(features) {
+    if (!userPosition) return [...features];
+    return [...features].sort((a, b) => distanceForFeature(a) - distanceForFeature(b));
   }
 
   function renderTimes(feature) {
@@ -73,6 +74,8 @@
       const article = document.createElement("article");
       article.className = "cinema-list-card";
       article.dataset.locationId = String(locationId || "");
+      const distance = distanceForFeature(feature);
+      if (Number.isFinite(distance)) article.dataset.distance = String(distance);
 
       const name = document.createElement("h3");
       name.className = "cinema-list-name";
