@@ -42,15 +42,21 @@
     });
   }
 
-  function distanceLabel(feature) {
-    if (!userPosition) return "";
-    const coords = coordinates(feature);
-    if (!coords) return "";
-    const lat = Number(userPosition.coords?.latitude);
-    const lng = Number(userPosition.coords?.longitude);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return "";
-    const distance = distanceKm(lat, lng, coords[0], coords[1]);
-    return distance < 1 ? `${Math.round(distance * 1000)} 公尺` : `${distance.toFixed(1)} 公里`;
+  function renderTimes(feature) {
+    const showtimes = Array.isArray(feature?.properties?.showtimes)
+      ? feature.properties.showtimes
+      : [];
+    const wrap = document.createElement("div");
+    wrap.className = "cinema-list-times";
+    for (const showtime of showtimes) {
+      const time = String(showtime?.time || "").trim();
+      if (!time) continue;
+      const chip = document.createElement("span");
+      chip.className = "cinema-list-time";
+      chip.textContent = time;
+      wrap.appendChild(chip);
+    }
+    return wrap;
   }
 
   function render(features = lastFeatures) {
@@ -67,21 +73,14 @@
       const article = document.createElement("article");
       article.className = "cinema-list-card";
       article.dataset.locationId = String(locationId || "");
-      article.innerHTML = integration.renderCinemaHtml(feature);
 
-      const distance = distanceLabel(feature);
-      if (distance) {
-        const badge = document.createElement("span");
-        badge.className = "cinema-list-distance";
-        badge.textContent = distance;
-        article.prepend(badge);
-      }
+      const name = document.createElement("h3");
+      name.className = "cinema-list-name";
+      name.textContent = props.location_name || props.map_name || "影城";
+      article.append(name, renderTimes(feature));
 
       if (locationId === activeLocationId) article.classList.add("is-active");
-      integration.bindBooking(article);
-
-      article.addEventListener("click", (event) => {
-        if (event.target.closest("a, button")) return;
+      article.addEventListener("click", () => {
         activeLocationId = locationId;
         setActive(locationId);
         integration.focusLocation(locationId);
