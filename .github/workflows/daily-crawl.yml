@@ -177,6 +177,9 @@ jobs:
           CARTO_BASEMAP_KEY: ${{ secrets.CARTO_BASEMAP_KEY }}
         run: python3 scripts/build_web_runtime_config.py --require-carto-key
 
+      - name: Build crawlable movie pages and sitemap
+        run: python3 scripts/build_seo_pages.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

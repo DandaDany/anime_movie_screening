@@ -1,0 +1,38 @@
+name: SEO acceptance
+
+on:
+  pull_request:
+    paths:
+      - "scripts/build_seo_pages.py"
+      - "tests/test_build_seo_pages.py"
+      - "web/index.html"
+      - "web/discovery.js"
+      - "web/discovery.css"
+      - "web/seo.css"
+      - ".github/workflows/pages.yml"
+      - ".github/workflows/daily-crawl.yml"
+      - ".github/workflows/supplemental-0600.yml"
+      - ".github/workflows/seo-acceptance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run SEO unit tests
+        run: python -m unittest tests.test_build_seo_pages -v
+      - name: Build SEO artifact from repository data
+        run: python scripts/build_seo_pages.py --today 2026-10-06
+      - name: Validate generated outputs
+        run: |
+          test -f web/sitemap.xml
+          test -f web/robots.txt
+          test -d web/movies
+          grep -q 'rel="canonical"' web/movies/*/index.html
+          grep -q 'movies/' web/sitemap.xml

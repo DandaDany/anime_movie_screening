@@ -163,8 +163,8 @@
   }
 
   function posterCard(item, displayTitle, kind) {
-    const button = document.createElement("button");
-    button.type = "button";
+    const button = document.createElement("a");
+    button.href = `movies/${encodeURIComponent(String(item?.id ?? ""))}/`;
     button.className = "movie-card";
     button.dataset.movieTitle = displayTitle;
     button.dataset.kind = kind;
@@ -466,14 +466,20 @@
     const card = event.target.closest(".movie-card");
     if (!card) return;
     const item = findCatalogItem(card.dataset.movieTitle);
-    if (item) selectNowShowing(item);
+    if (item) {
+      event.preventDefault();
+      selectNowShowing(item);
+    }
   });
 
   upcomingGrid.addEventListener("click", (event) => {
     const card = event.target.closest(".movie-card");
     if (!card) return;
     const item = findCatalogItem(card.dataset.movieTitle);
-    if (item) selectUpcoming(item);
+    if (item) {
+      event.preventDefault();
+      selectUpcoming(item);
+    }
   });
 
   const observer = new MutationObserver(() => {
