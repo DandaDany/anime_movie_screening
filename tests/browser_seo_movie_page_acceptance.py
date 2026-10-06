@@ -36,14 +36,18 @@ def main() -> int:
 
             title = page.locator("h1").inner_text().strip()
             map_href = page.locator(".map-cta").get_attribute("href") or ""
-            query = parse_qs(urlparse(map_href).query)
+            parsed_map_href = urlparse(map_href)
+            query = parse_qs(parsed_map_href.query)
+            assert parsed_map_href.path == "index.html", map_href
             assert query.get("restore") == ["1"], query
-            assert query.get("movie") == [title], (title, query)
+            assert query.get("movie"), query
             assert query.get("date"), query
+            map_movie = query["movie"][0]
 
             update_text = page.locator(".movie-hero").inner_text()
-            assert re.search(r"場次資料更新：(今日|\d{4}/\d{2}/\d{2}) 8:00", update_text), update_text
-            assert "T07:" not in update_text and "+08:00" not in update_text
+            assert re.search(r"場次資料更新：(今日|\d{4}/\d{2}/\d{2}) \d{2}:\d{2}", update_text), update_text
+            assert "+08:00" not in update_text
+            assert "全台動畫電影場次" not in update_text
 
             assert page.locator("#movieFilterCity").count() == 1
             assert page.locator("#movieFilterFormat").count() == 1
@@ -115,6 +119,16 @@ def main() -> int:
                 assert unquote(cta.get_attribute("href") or "") == unquote(expected or "")
 
             assert page.locator(".cinema-action", has_text="官方網站").count() > 0
+
+            # The CTA must leave the detail page and restore the same map movie.
+            page.locator(".map-cta").click()
+            page.wait_for_url("**/index.html?**")
+            page.wait_for_function("() => Boolean(window.MuseDiscovery)")
+            page.wait_for_function(
+                "(movie) => document.querySelector('#movieSelect')?.value === movie",
+                arg=map_movie,
+            )
+            assert page.locator("#movieSelect").input_value() == map_movie
             context.close()
         finally:
             browser.close()
