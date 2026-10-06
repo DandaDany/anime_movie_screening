@@ -5,7 +5,6 @@ import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
 
 from scripts import build_seo_pages
 
@@ -52,12 +51,15 @@ class BuildSeoPagesTests(unittest.TestCase):
                         {
                             "geometry": {"type": "Point", "coordinates": [121.5654, 25.0330]},
                             "properties": {
-                                "city": "臺北市",
+                                "location_id": 101,
+                                "chain_name": "威秀影城 / VIESHOW",
+                                "location_name": "測試影城 A",
                                 "map_name": "測試影城 A",
+                                "city": "臺北市",
                                 "address": "臺北市測試路 1 號",
                                 "location_url": "https://cinema.example/showtimes",
                                 "official_url": "https://cinema.example/",
-                                "showtime_count": 2,
+                                "showtime_count": 5,
                                 "showtimes": [
                                     {
                                         "time": "13:00",
@@ -96,8 +98,11 @@ class BuildSeoPagesTests(unittest.TestCase):
                         {
                             "geometry": {"type": "Point", "coordinates": [120.3014, 22.6273]},
                             "properties": {
-                                "city": "高雄市",
+                                "location_id": 102,
+                                "chain_name": "國賓影城",
+                                "location_name": "測試影城 B",
                                 "map_name": "測試影城 B",
+                                "city": "高雄市",
                                 "address": "高雄市測試路 2 號",
                                 "location_url": "https://cinema-b.example/showtimes",
                                 "official_url": "https://cinema-b.example/",
@@ -126,7 +131,7 @@ class BuildSeoPagesTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_builds_movie_detail_with_correct_map_state_filters_and_actions(self) -> None:
+    def test_builds_integrated_movie_map_page_with_static_seo_content(self) -> None:
         result = build_seo_pages.build(
             self.web,
             base_url="https://example.com/anime/",
@@ -139,60 +144,48 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('href="movie-2.html"', home)
 
         movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
-        self.assertIn("測試動畫電影 場次｜全台動畫電影上映地圖", movie)
-        self.assertIn("場次資料更新：<strong>今日 07:24</strong>", movie)
+        self.assertIn("<title>測試動畫電影 場次｜電影場次</title>", movie)
+        self.assertIn('class="site-brand" href="./">電影場次</a>', movie)
+        self.assertIn('id="movieMap"', movie)
+        self.assertIn('class="movie-workspace"', movie)
+        self.assertNotIn("在地圖查看影城位置", movie)
+        self.assertIn("更新於 <strong>今日 07:24</strong>", movie)
         self.assertNotIn("2026-10-06T07:24:04+08:00", movie)
 
-        self.assertIn('id="movieFilterCity"', movie)
-        self.assertIn('id="movieFilterFormat"', movie)
-        self.assertIn('id="movieFilterTime"', movie)
-        self.assertIn(">臺北市</option>", movie)
-        self.assertIn(">高雄市</option>", movie)
-        self.assertIn(">IMAX</option>", movie)
-        self.assertIn(">數位</option>", movie)
-        self.assertNotIn(">01廳(9F)</option>", movie)
-        self.assertNotIn(">日文(JPN)</option>", movie)
-        self.assertNotIn(">(日文版)劇場版 吉伊卡哇 人魚島的秘密</option>", movie)
-        self.assertNotIn("全台動畫電影場次", movie)
+        self.assertIn('data-filter-date="2026-10-06"', movie)
+        self.assertIn('data-filter-city="臺北市"', movie)
+        self.assertIn('data-filter-city="高雄市"', movie)
+        self.assertIn('data-filter-format="IMAX"', movie)
+        self.assertIn('data-filter-format="數位"', movie)
+        self.assertIn('data-filter-chain="威秀影城 / VIESHOW"', movie)
+        self.assertIn('data-filter-chain="國賓影城"', movie)
+        self.assertNotIn('data-filter-format="01廳(9F)"', movie)
+        self.assertNotIn('data-filter-format="日文(JPN)"', movie)
+        self.assertNotIn('data-filter-format="(日文版)劇場版 吉伊卡哇 人魚島的秘密"', movie)
 
+        self.assertIn('data-location-id="101"', movie)
+        self.assertIn('data-chain="威秀影城 / VIESHOW"', movie)
         self.assertIn('data-lat="25.033"', movie)
         self.assertIn('data-long="121.5654"', movie)
-        self.assertIn("seo-movie.js", movie)
-
+        self.assertIn("13:00", movie)
+        self.assertIn("21:00", movie)
         self.assertIn("前往訂票", movie)
         self.assertIn("場次入口", movie)
         self.assertIn("官方網站", movie)
-        self.assertIn("txtSessionId=abc", movie)
 
-        match = re_search_href(movie, "在地圖查看影城位置")
-        query = parse_qs(urlparse(match).query)
-        self.assertEqual(query["restore"], ["1"])
-        self.assertEqual(urlparse(match).path, "index.html")
-        self.assertEqual(query["movie"], ["測試動畫"])
-        self.assertEqual(query["date"], ["2026-10-06"])
+        self.assertIn("leaflet@1.9.4", movie)
+        self.assertIn("runtime-config.js", movie)
+        self.assertIn("carto-basemap-auth.js", movie)
+        self.assertIn("seo-movie.js?v=20261006d", movie)
 
         upcoming = (self.web / "movie-2.html").read_text(encoding="utf-8")
         self.assertIn("目前沒有可查詢場次", upcoming)
+        self.assertIn('id="movieMap"', upcoming)
 
         sitemap = (self.web / "sitemap.xml").read_text(encoding="utf-8")
         self.assertIn("https://example.com/anime/movie-1.html", sitemap)
         robots = (self.web / "robots.txt").read_text(encoding="utf-8")
         self.assertIn("https://example.com/anime/sitemap.xml", robots)
-
-
-def re_search_href(document: str, label: str) -> str:
-    import re
-
-    match = re.search(rf'<a[^>]+href="([^"]+)"[^>]*>{re.escape(label)}</a>', document)
-    if not match:
-        raise AssertionError(f"link not found: {label}")
-    return html_unescape(match.group(1))
-
-
-def html_unescape(value: str) -> str:
-    import html
-
-    return html.unescape(value)
 
 
 if __name__ == "__main__":
