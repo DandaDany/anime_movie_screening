@@ -960,6 +960,17 @@ function renderMovieOptions() {
 
 function selectMovie(movieTitle) {
   if (!movieFeaturesByTitle.has(movieTitle)) return;
+
+  const canonicalHref = window.MuseMoviePageLinks?.[movieTitle] || "";
+  if (canonicalHref) {
+    const target = new URL(canonicalHref, window.location.href);
+    if (target.pathname !== window.location.pathname) {
+      if (window.trackEvent) window.trackEvent("select_movie", { movie_title: movieTitle });
+      window.location.assign(target.href);
+      return;
+    }
+  }
+
   if (window.trackEvent) window.trackEvent("select_movie", { movie_title: movieTitle });
   selectedMovieTitle = movieTitle;
   features = movieFeaturesByTitle.get(movieTitle) || [];

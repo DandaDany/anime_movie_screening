@@ -15,7 +15,11 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.web = Path(self.temp_dir.name) / "web"
         (self.web / "data").mkdir(parents=True)
         (self.web / "index.html").write_text(
-            """<!doctype html><html><body>
+            """<!doctype html><html><head>
+<!-- SEO_MOVIE_LINKS_START -->
+<script>window.MuseMoviePageLinks = Object.freeze({});</script>
+<!-- SEO_MOVIE_LINKS_END -->
+</head><body>
 <!-- SEO_PRERENDER_NOW_START -->
 <div class="movie-grid" id="nowShowingGrid"></div>
 <!-- SEO_PRERENDER_NOW_END -->
@@ -40,6 +44,13 @@ class BuildSeoPagesTests(unittest.TestCase):
                     "aliases": [],
                     "target_date": "2026-10-20",
                     "poster_url": "https://example.com/upcoming.jpg",
+                },
+                {
+                    "id": 3,
+                    "title": "第二部動畫",
+                    "aliases": ["第二部"],
+                    "target_date": "2026-10-01",
+                    "poster_url": "assets/posters/second.webp",
                 },
             ]
         }
@@ -95,7 +106,26 @@ class BuildSeoPagesTests(unittest.TestCase):
                             },
                         },
                     ]
-                }
+                },
+                "第二部": {
+                    "2026-10-06": [
+                        {
+                            "geometry": {"type": "Point", "coordinates": [121.46, 25.01]},
+                            "properties": {
+                                "location_id": 201,
+                                "chain_name": "秀泰影城",
+                                "location_name": "第二部測試影城",
+                                "map_name": "第二部測試影城",
+                                "city": "新北市",
+                                "address": "新北市測試路 3 號",
+                                "showtime_count": 1,
+                                "showtimes": [
+                                    {"time": "18:20", "format": "數位", "label": "18:20 數位"}
+                                ],
+                            },
+                        }
+                    ]
+                },
             },
         }
         (self.web / "data" / "movie_discovery.json").write_text(
@@ -108,13 +138,17 @@ class BuildSeoPagesTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_movie_page_reuses_original_map_shell_and_inserts_list(self) -> None:
+    def test_movie_page_keeps_original_map_and_compact_cinema_list(self) -> None:
         result = build_seo_pages.build(
             self.web,
             base_url="https://example.com/anime/",
             today=date(2026, 10, 6),
         )
-        self.assertEqual(result["movies"], 2)
+        self.assertEqual(result["movies"], 3)
+
+        home = (self.web / "index.html").read_text(encoding="utf-8")
+        self.assertIn('"測試動畫": "movie-1.html"', home)
+        self.assertIn('"第二部": "movie-3.html"', home)
 
         movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
         self.assertIn("<title>測試動畫電影 場次｜電影場次</title>", movie)
@@ -124,7 +158,6 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('class="map-wrap"', movie)
         self.assertIn('id="map"', movie)
 
-        # Exact original control surface is retained.
         for needle in [
             'id="dateChips"',
             'id="movieSelect"',
@@ -142,24 +175,33 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertLess(movie.index('id="cinemaListPanel"'), movie.index('class="map-wrap"'))
 
         self.assertIn('href="styles.css?v=20260813a"', movie)
-        self.assertIn('src="app.js?v=20261006e"', movie)
-        self.assertIn('src="movie-detail-list.js?v=20261006a"', movie)
-        self.assertIn('href="movie-detail-list.css?v=20261006a"', movie)
+        self.assertIn('src="app.js?v=20261006f"', movie)
+        self.assertIn('src="movie-detail-list.js?v=20261006b"', movie)
+        self.assertIn('href="movie-detail-list.css?v=20261006b"', movie)
         self.assertNotIn('id="movieMap"', movie)
         self.assertNotIn('class="movie-workspace"', movie)
 
-        # The page still carries crawlable cinema/showtime content before JS.
-        self.assertIn("測試影城 A", movie)
-        self.assertIn("測試影城 B", movie)
-        self.assertIn("13:00", movie)
-        self.assertIn("21:00", movie)
-        self.assertIn("前往訂票", movie)
-        self.assertIn("官方網站", movie)
-        self.assertIn("今日 07:24", movie)
+        # Crawlable cinema list is intentionally compact: name + showtimes only.
+        self.assertIn('<h3 class="cinema-list-name">測試影城 A</h3>', movie)
+        self.assertIn('<span class="cinema-list-time">13:00</span>', movie)
+        self.assertIn('<span class="cinema-list-time">19:30</span>', movie)
+        self.assertIn('<h3 class="cinema-list-name">測試影城 B</h3>', movie)
+        self.assertIn('<span class="cinema-list-time">21:00</span>', movie)
+        self.assertNotIn("臺北市測試路 1 號", movie)
+        self.assertNotIn("前往訂票", movie)
+        self.assertNotIn("官方網站", movie)
+        self.assertNotIn("更新於 今日 07:24", movie)
+        self.assertNotIn("movie-detail-seo-copy", movie)
 
-        # Map app receives the intended canonical movie/date without query-string redirects.
+        # Map app receives canonical movie/date and all movie->page links.
         self.assertIn('"movie": "測試動畫"', movie)
         self.assertIn('"date": "2026-10-06"', movie)
+        self.assertIn('"測試動畫": "movie-1.html"', movie)
+        self.assertIn('"第二部": "movie-3.html"', movie)
+
+        second = (self.web / "movie-3.html").read_text(encoding="utf-8")
+        self.assertIn('id="map"', second)
+        self.assertIn('"movie": "第二部"', second)
 
         upcoming = (self.web / "movie-2.html").read_text(encoding="utf-8")
         self.assertIn("目前沒有可查詢場次", upcoming)
@@ -167,6 +209,7 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         sitemap = (self.web / "sitemap.xml").read_text(encoding="utf-8")
         self.assertIn("https://example.com/anime/movie-1.html", sitemap)
+        self.assertIn("https://example.com/anime/movie-3.html", sitemap)
 
 
 if __name__ == "__main__":

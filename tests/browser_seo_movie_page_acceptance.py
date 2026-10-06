@@ -28,7 +28,7 @@ def verify_desktop(page, movie_file: str) -> None:
     page.wait_for_function("() => Boolean(window.MuseMapIntegration)")
     page.locator("#cinemaList .cinema-list-card").first.wait_for(timeout=30000)
 
-    # Original UI elements remain present and visible.
+    # Original UI remains.
     assert page.locator(".sidebar").is_visible()
     assert page.locator("#timeSlider").is_visible()
     assert page.locator("#dateChips").count() == 1
@@ -37,44 +37,86 @@ def verify_desktop(page, movie_file: str) -> None:
     assert page.locator("#chainFilterList").count() == 1
     assert page.locator(".map-home-control-button").count() == 1
 
-    # Only the cinema-list column is inserted, with the map still farthest right.
+    # Layout remains sidebar -> list -> rightmost map. List width is intentionally unchanged.
     sidebar = page.locator(".sidebar").bounding_box()
     cinema_list = page.locator("#cinemaListPanel").bounding_box()
     map_wrap = page.locator(".map-wrap").bounding_box()
     assert sidebar and cinema_list and map_wrap
     assert sidebar["x"] < cinema_list["x"] < map_wrap["x"], (sidebar, cinema_list, map_wrap)
+    assert 330 <= cinema_list["width"] <= 410, cinema_list
     assert map_wrap["x"] + map_wrap["width"] >= 1430, map_wrap
 
-    # The inserted list is driven by the original filter result.
+    # Header no longer repeats movie title/update copy.
+    assert page.locator("#cinemaListPanel .movie-detail-seo-copy").count() == 0
+    assert page.locator(".cinema-list-head h2").inner_text() == "影城列表"
+
+    # Compact cards: name + showtimes only; fixed short height; no distance shown.
+    first_card = page.locator("#cinemaList .cinema-list-card").first
+    card_box = first_card.bounding_box()
+    assert card_box and card_box["height"] <= 72, card_box
+    assert first_card.locator(".cinema-list-name").count() == 1
+    assert first_card.locator(".cinema-list-times").count() == 1
+    assert first_card.locator("a, button, .popup-links, .cinema-list-distance").count() == 0
+    assert "公里" not in first_card.inner_text()
+    assert "公尺" not in first_card.inner_text()
+
+    # Geolocation still silently orders the list nearest-first.
+    page.wait_for_function(
+        "() => [...document.querySelectorAll('#cinemaList .cinema-list-card')].some(c => c.dataset.distance)"
+    )
+    distances = page.locator("#cinemaList .cinema-list-card").evaluate_all(
+        "cards => cards.map(c => Number(c.dataset.distance)).filter(Number.isFinite)"
+    )
+    assert distances == sorted(distances), distances
+
+    # The list remains driven by original filters.
     initial_count = int(page.locator("#cinemaListCount").inner_text())
     assert initial_count > 0
-
     city_buttons = page.locator("#cityFilterList .filter-option")
     if city_buttons.count() > 1:
         target = city_buttons.nth(0)
         target.click()
         page.wait_for_timeout(100)
         filtered_count = int(page.locator("#cinemaListCount").inner_text())
-        assert filtered_count >= 1
-        assert filtered_count <= initial_count
-        # Click again to clear the original filter.
+        assert 1 <= filtered_count <= initial_count
         target.click()
         page.wait_for_timeout(100)
 
-    # Original markers/popup are still used.
-    markers = page.locator(".cinema-marker")
-    assert markers.count() > 0
+    # Original markers and popup remain the detail/action surface.
+    assert page.locator(".cinema-marker").count() > 0
     page.locator(".leaflet-marker-icon").first.click(force=True)
     page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
     assert page.locator(".cinema-list-card.is-active").count() == 1
+    assert page.locator(".leaflet-popup:visible .popup-links").count() > 0
 
-    # Clicking the inserted list delegates to the original map focus behavior.
+    # Clicking compact list delegates to original map focus / popup.
     first_card = page.locator("#cinemaList .cinema-list-card").first
-    first_card.click(position={"x": 8, "y": 8})
+    first_card.click()
     page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
 
-    # Original popup actions are reused inside the list.
-    assert page.locator("#cinemaList .popup-links").count() > 0
+    # Movie change must navigate to that movie's canonical independent URL.
+    target_info = page.evaluate(
+        """() => {
+          const links = window.MuseMoviePageLinks || {};
+          const current = document.querySelector('#movieSelect')?.value || '';
+          const target = Object.keys(links).find(name => name !== current);
+          return target ? { target, href: links[target] } : null;
+        }"""
+    )
+    if target_info:
+        page.evaluate(
+            """({target}) => {
+              const select = document.querySelector('#movieSelect');
+              if (![...select.options].some(option => option.value === target)) {
+                select.add(new Option(target, target));
+              }
+              select.value = target;
+              select.dispatchEvent(new Event('change', { bubbles: true }));
+            }""",
+            {"target": target_info["target"]},
+        )
+        page.wait_for_url(f"**/{target_info['href']}")
+        assert page.url.endswith("/" + target_info["href"])
 
 
 def verify_mobile(playwright, movie_file: str) -> None:
@@ -94,14 +136,12 @@ def verify_mobile(playwright, movie_file: str) -> None:
         page.locator("#map.leaflet-container").wait_for(timeout=30000)
         page.locator("#mSeg").wait_for()
 
-        # Mobile remains the original map + fixed filter tray UX.
         assert page.locator("#cinemaListPanel").is_hidden()
         assert page.locator("#mSeg").is_visible()
         assert page.locator(".sidebar").is_visible()
         assert page.locator("#map").is_visible()
         assert page.locator("#mSheet").count() == 1
 
-        # Original marker click still opens the original mobile cinema sheet.
         marker = page.locator(".leaflet-marker-icon").first
         marker.wait_for(timeout=30000)
         marker.click(force=True)
