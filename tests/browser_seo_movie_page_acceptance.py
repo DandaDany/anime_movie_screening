@@ -82,17 +82,33 @@ def verify_desktop(page, movie_file: str) -> None:
         target.click()
         page.wait_for_timeout(100)
 
-    # Original markers and popup remain the detail/action surface.
+    # Original popup remains the detail/action surface.
     assert page.locator(".cinema-marker").count() > 0
-    page.locator(".leaflet-marker-icon").first.click(force=True)
-    page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
-    assert page.locator(".cinema-list-card.is-active").count() == 1
-    assert page.locator(".leaflet-popup:visible .popup-links").count() > 0
 
-    # Clicking compact list delegates to original map focus / popup.
+    # First focus through the compact list so its marker is guaranteed to be in viewport.
     first_card = page.locator("#cinemaList .cinema-list-card").first
     first_card.click()
     page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
+    assert page.locator(".leaflet-popup:visible .popup-links").count() > 0
+
+    # Then click an actually in-viewport marker and verify the list follows it.
+    marker_center = page.evaluate(
+        """() => {
+          const marker = [...document.querySelectorAll('.leaflet-marker-icon')].find((el) => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 &&
+              rect.left >= 0 && rect.right <= innerWidth &&
+              rect.top >= 0 && rect.bottom <= innerHeight;
+          });
+          if (!marker) return null;
+          const rect = marker.getBoundingClientRect();
+          return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+        }"""
+    )
+    assert marker_center, "expected an in-viewport original marker"
+    page.mouse.click(marker_center["x"], marker_center["y"])
+    page.locator(".leaflet-popup:visible").last.wait_for(timeout=5000)
+    assert page.locator(".cinema-list-card.is-active").count() == 1
 
     # Movie change must navigate to that movie's canonical independent URL.
     target_info = page.evaluate(
