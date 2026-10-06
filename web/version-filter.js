@@ -46,10 +46,13 @@
   function subLabel(showtime) {
     const label = showtime?.label || "";
     const rest = showtime?.time ? label.replace(showtime.time, "").trim() : label;
-    return rest || showtime?.format || "";
+    return [rest, showtime?.format || "", showtime?.auditorium || ""]
+      .filter(Boolean)
+      .join(" ")
+      .trim();
   }
 
-  function formatTags(showtime) {
+  function explicitFormatTags(showtime) {
     const raw = subLabel(showtime);
     if (!raw) return [];
 
@@ -66,6 +69,11 @@
     }
 
     return formats;
+  }
+
+  function formatTags(showtime) {
+    const explicit = explicitFormatTags(showtime);
+    return explicit.length ? explicit : ["數位"];
   }
 
   function languageTag(showtime) {
@@ -96,6 +104,7 @@
     FORMAT_RULES,
     LANG_RULES,
     displayTag,
+    explicitFormatTags,
     formatTags,
     languageTag,
     subLabel,
