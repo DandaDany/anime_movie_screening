@@ -13,21 +13,21 @@
   border-left: 1px solid #e8e5e9;
   border-right: 1px solid #d9dde0;
   background: #f4f5f3;
-  padding: 14px 10px 22px;
+  padding: 12px 10px 18px;
 }
 
 .cinema-list-head {
   position: sticky;
   z-index: 3;
-  top: -14px;
+  top: -12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin: 0 -10px 12px;
+  margin: 0 -10px 10px;
   border-bottom: 1px solid #e2e3df;
   background: rgba(244, 245, 243, 0.96);
-  padding: 14px 12px 11px;
+  padding: 12px;
   backdrop-filter: blur(8px);
 }
 
@@ -52,17 +52,23 @@
 
 .cinema-list {
   display: grid;
-  gap: 10px;
+  gap: 7px;
+}
+
+.cinema-list > section {
+  display: contents;
 }
 
 .cinema-list-card {
-  position: relative;
+  min-width: 0;
+  height: 68px;
   overflow: hidden;
   border: 1px solid var(--card-line);
-  border-radius: 14px;
+  border-radius: 12px;
   background: #fff;
   box-shadow: var(--card-shadow);
   cursor: pointer;
+  padding: 9px 11px 8px;
 }
 
 .cinema-list-card:hover,
@@ -73,26 +79,42 @@
     var(--card-shadow);
 }
 
-.cinema-list-card .pop-head {
-  padding-right: 72px;
-}
-
-.cinema-list-card .pop-body {
-  padding-bottom: 12px;
-}
-
-.cinema-list-distance {
-  position: absolute;
-  z-index: 2;
-  top: 12px;
-  right: 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #6b736d;
-  font-size: 10px;
+.cinema-list-name {
+  margin: 0;
+  overflow: hidden;
+  color: #2d352f;
+  font-size: 13.5px;
   font-weight: 800;
-  padding: 4px 7px;
-  box-shadow: 0 2px 7px rgba(30, 40, 34, 0.08);
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cinema-list-times {
+  display: flex;
+  gap: 6px;
+  margin-top: 7px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.cinema-list-times::-webkit-scrollbar {
+  display: none;
+}
+
+.cinema-list-time {
+  flex: 0 0 auto;
+  border-radius: 7px;
+  background: #f7f7f6;
+  color: #4a524c;
+  font-size: 11.5px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  padding: 5px 7px;
 }
 
 .cinema-list-empty {
@@ -101,13 +123,6 @@
   font-size: 13px;
   line-height: 1.6;
   text-align: center;
-}
-
-.movie-detail-seo-copy {
-  margin: 0 0 10px;
-  color: #6f7771;
-  font-size: 11px;
-  line-height: 1.45;
 }
 
 @media (max-width: 1120px) and (min-width: 761px) {
@@ -119,9 +134,8 @@
   }
 }
 
-/* Mobile keeps the original map + 40dvh filter tray UX exactly.
-   The inserted cinema list is desktop-only so it does not replace or compete
-   with the original mobile bottom sheet/popup interaction. */
+/* Mobile remains the original map + fixed 40dvh filter tray UX.
+   The inserted desktop cinema list stays hidden. */
 @media (max-width: 760px) {
   .movie-detail-shell {
     display: block;
