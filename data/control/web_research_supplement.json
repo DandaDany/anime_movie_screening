@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "for_date": "2026-10-06",
-  "generated_at": "2026-10-06T07:15:00+08:00",
+  "for_date": "2026-10-07",
+  "generated_at": "2026-10-07T07:12:37+08:00",
   "records": [
     {
       "location_id": 72,
       "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
-      "show_date": "2026-10-06",
+      "show_date": "2026-10-07",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-06（週二）《劇場版 鋼之鍊金術師 香巴拉的征服者》17:45，11廳。",
+      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-07（週三）《劇場版 鋼之鍊金術師 香巴拉的征服者》17:45，11廳。",
       "showtimes": [
         {
           "time": "17:45",
@@ -21,9 +21,9 @@
     {
       "location_id": 72,
       "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-      "show_date": "2026-10-06",
+      "show_date": "2026-10-07",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-06（週二）《劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉》19:20，13廳。",
+      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-07（週三）《劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉》19:20，13廳。",
       "showtimes": [
         {
           "time": "19:20",
@@ -36,9 +36,9 @@
     {
       "location_id": 72,
       "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-      "show_date": "2026-10-06",
+      "show_date": "2026-10-07",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-06（週二）《電影蠟筆小新：奇奇怪怪！我的妖怪假期》國語版 15:10，12廳。",
+      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-07（週三）《電影蠟筆小新：奇奇怪怪！我的妖怪假期》國語版 15:10，12廳。",
       "showtimes": [
         {
           "time": "15:10",
@@ -51,9 +51,9 @@
     {
       "location_id": 72,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-06",
+      "show_date": "2026-10-07",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-06（週二）《劇場版 吉伊卡哇 人魚島的秘密》日語版 17:20，13廳。",
+      "evidence": "高雄環球影城官方電影時刻頁明確顯示 2026-10-07（週三）《劇場版 吉伊卡哇 人魚島的秘密》日語版 17:20，13廳。",
       "showtimes": [
         {
           "time": "17:20",
@@ -66,13 +66,61 @@
     {
       "location_id": 104,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-06",
+      "show_date": "2026-10-07",
       "source_url": "https://www.instagram.com/madoucinema/p/DeEPmNrIECk/",
       "evidence": "麻豆戲院官方 Instagram 置頂貼文、caption 與完整時刻表圖片均已實看；圖片明確標示適用 2026-10-05 至 2026-10-07，《劇場版 吉伊卡哇 人魚島的秘密》17:25 數位中文版。",
       "showtimes": [
         {
           "time": "17:25",
           "format": "數位",
+          "language": "中文版",
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 69,
+      "movie_title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
+      "show_date": "2026-10-08",
+      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
+      "evidence": "桃園台茂美麗新影城官方場次頁明確顯示 2026-10-08（週四）《劇場版 鋼之鍊金術師 嘆息之丘的聖星》標準廳 10:50、17:25。",
+      "showtimes": [
+        {
+          "time": "10:50",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "17:25",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 69,
+      "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+      "show_date": "2026-10-08",
+      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
+      "evidence": "桃園台茂美麗新影城官方場次頁明確顯示 2026-10-08（週四）《角落小夥伴電影版：從天而降的雲之冒險》標準廳中文版 10:55、13:50，標準廳日文版 12:20。",
+      "showtimes": [
+        {
+          "time": "10:55",
+          "format": "標準廳",
+          "language": "中文版",
+          "auditorium": null
+        },
+        {
+          "time": "12:20",
+          "format": "標準廳",
+          "language": "日文版",
+          "auditorium": null
+        },
+        {
+          "time": "13:50",
+          "format": "標準廳",
           "language": "中文版",
           "auditorium": null
         }
