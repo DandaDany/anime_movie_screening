@@ -498,39 +498,20 @@ def movie_page_html(
     canonical = movie_canonical(item, base_url)
     poster = poster_url(item, base_url)
     target_date = date_label(item.get("target_date"))
-    description = f"查詢《{title}》全台上映影城、日期、版本與場次時間。依縣市、版本與時間篩選，直接查看影城位置與訂票入口。"
+    description = (
+        f"查詢《{title}》全台上映影城、日期、版本與場次時間。"
+        "使用原版電影場次地圖篩選縣市、版本、影城與時間。"
+    )
     update_label = display_update_label(map_data, today)
-    cities, formats, chains = collect_filter_values(by_date)
     default_date = preferred_map_date(by_date, today)
+    map_title = map_title_for_item(item, map_data)
 
-    schedule_sections: list[str] = []
-    for show_date in sorted(by_date):
-        features = sorted(
-            by_date[show_date],
-            key=lambda feature: (
-                str((feature.get("properties") or {}).get("city") or ""),
-                str((feature.get("properties") or {}).get("map_name") or ""),
-            ),
-        )
-        if not features:
-            continue
-        cards = "".join(cinema_html(feature, show_date) for feature in features)
-        hidden = "" if show_date == default_date else " hidden"
-        schedule_sections.append(
-            f'<section class="schedule-day" data-show-date="{html.escape(show_date, quote=True)}"{hidden}>'
-            f'<h2 class="schedule-day-title">{html.escape(date_label(show_date))}</h2>'
-            f'<div class="cinema-list">{cards}</div></section>'
-        )
-
-    schedules_html = "".join(schedule_sections)
-    if not schedules_html:
-        schedules_html = (
-            '<section class="schedule-empty"><h2>目前沒有可查詢場次</h2>'
-            '<p>上映資訊會隨影城公布狀況持續更新，你可以回到首頁查看其他電影。</p></section>'
-        )
-
-    release_html = f'<p class="movie-meta-line">上映日期 <strong>{html.escape(target_date)}</strong></p>' if target_date else ""
-    structured = {"@context": "https://schema.org", "@type": "Movie", "name": title, "url": canonical}
+    structured = {
+        "@context": "https://schema.org",
+        "@type": "Movie",
+        "name": title,
+        "url": canonical,
+    }
     if poster:
         structured["image"] = poster
 
@@ -541,8 +522,77 @@ def movie_page_html(
         og_image = f'<meta property="og:image" content="{escaped_poster}" />'
         twitter_image = f'<meta name="twitter:image" content="{escaped_poster}" />'
 
-    filters = filter_html(by_date, cities, formats, chains, today, default_date) if schedule_sections else ""
-    default_date_attr = html.escape(default_date, quote=True)
+    # Upcoming titles with no cinema/showtime data should not boot the map into
+    # an unrelated fallback movie. Keep them as crawlable release pages.
+    has_schedules = any(features for features in by_date.values())
+    if not has_schedules:
+        poster_html = (
+            f'<img src="{html.escape(poster, quote=True)}" alt="{escaped_title} 電影海報" '
+            'style="width:min(260px,45vw);border-radius:12px;" />'
+            if poster
+            else ""
+        )
+        release_html = (
+            f'<p>預定／上映日期：<strong>{html.escape(target_date)}</strong></p>'
+            if target_date
+            else ""
+        )
+        return f"""<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{escaped_title} 場次｜電影場次</title>
+  <meta name="description" content="{html.escape(description, quote=True)}" />
+  <link rel="canonical" href="{html.escape(canonical, quote=True)}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="電影場次" />
+  <meta property="og:title" content="{escaped_title} 場次｜電影場次" />
+  <meta property="og:description" content="{html.escape(description, quote=True)}" />
+  <meta property="og:url" content="{html.escape(canonical, quote=True)}" />
+  {og_image}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{escaped_title} 場次｜電影場次" />
+  <meta name="twitter:description" content="{html.escape(description, quote=True)}" />
+  {twitter_image}
+</head>
+<body style="margin:0;background:#f5f6f4;color:#1d2520;font-family:'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif;">
+  <main style="width:min(760px,calc(100% - 32px));margin:0 auto;padding:32px 0 64px;">
+    <a href="./" style="color:#da520d;text-decoration:none;font-weight:800;">← 電影場次</a>
+    <div style="display:flex;gap:24px;align-items:flex-start;margin-top:24px;">
+      {poster_html}
+      <div>
+        <h1 style="margin:0 0 12px;font-size:32px;">{escaped_title}</h1>
+        {release_html}
+        <p>目前沒有可查詢場次。</p>
+        <p style="color:#637068;">場次資訊會隨影城公布狀況持續更新。</p>
+      </div>
+    </div>
+  </main>
+  <script type="application/ld+json">{json.dumps(structured, ensure_ascii=False).replace("</", "<\/")}</script>
+</body>
+</html>
+"""
+
+    static_sections: list[str] = []
+    for show_date in sorted(by_date):
+        features_for_date = by_date[show_date]
+        if not features_for_date:
+            continue
+        cards = "".join(cinema_html(feature, show_date) for feature in features_for_date)
+        static_sections.append(
+            f'<section data-seo-show-date="{html.escape(show_date, quote=True)}">'
+            f'<p class="movie-detail-seo-copy">{html.escape(date_label(show_date))}</p>'
+            f'{cards}</section>'
+        )
+    static_list_html = "".join(static_sections)
+
+    initial_state = {
+        "restore": True,
+        "movie": map_title,
+        "date": default_date,
+    }
+    initial_state_json = json.dumps(initial_state, ensure_ascii=False).replace("</", "<\/")
 
     return f"""<!doctype html>
 <html lang="zh-Hant">
@@ -562,47 +612,139 @@ def movie_page_html(
   <meta name="twitter:title" content="{escaped_title} 場次｜電影場次" />
   <meta name="twitter:description" content="{html.escape(description, quote=True)}" />
   {twitter_image}
+  <script type="application/ld+json">{json.dumps(structured, ensure_ascii=False).replace("</", "<\/")}</script>
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   />
-  <link rel="stylesheet" href="seo.css?v=20261006d" />
-  <script type="application/ld+json">{json.dumps(structured, ensure_ascii=False).replace("</", "<\/")}</script>
+  <link rel="stylesheet" href="styles.css?v=20260813a" />
+  <link rel="stylesheet" href="empty-state.css?v=20260820a" />
+  <link rel="stylesheet" href="movie-detail-list.css?v=20261006a" />
+  <script>
+    window.MuseInitialMapState = Object.freeze({initial_state_json});
+  </script>
 </head>
 <body>
-  <main class="movie-map-app" data-default-date="{default_date_attr}">
-    <section class="movie-map-panel" aria-label="{escaped_title} 影城地圖">
-      <div id="movieMap"></div>
-    </section>
+  <main class="app-shell movie-detail-shell">
+    <aside class="sidebar" aria-label="影城篩選">
+      <div class="grabber" aria-hidden="true"></div>
+      <header class="panel-head">
+        <div>
+          <h1>電影場次</h1>
+          <p id="summaryText">載入中</p>
+        </div>
+      </header>
 
-    <section class="movie-workspace" id="movieWorkspace">
-      <button class="mobile-sheet-grabber" id="movieSheetGrabber" type="button" aria-label="調整場次列表高度"><span></span></button>
+      <nav class="date-chips" id="dateChips" aria-label="選擇場次日期"></nav>
 
-      <aside class="movie-controls" aria-label="電影與場次篩選">
-        <header class="movie-controls-head">
-          <a class="site-brand" href="./">電影場次</a>
-          <h1>{escaped_title}</h1>
-          {release_html}
-          <p class="movie-meta-line">更新於 <strong>{html.escape(update_label)}</strong></p>
-        </header>
-        {filters}
-        <p class="data-note">實際上映與售票狀況請以影城官方資訊為準。</p>
-      </aside>
+      <div class="m-seg" id="mSeg" role="tablist" aria-label="篩選分類">
+        <button type="button" role="tab" data-tab="movie">電影</button>
+        <button type="button" role="tab" data-tab="city">地區</button>
+        <button type="button" role="tab" data-tab="time">時間</button>
+        <button type="button" role="tab" data-tab="format">版本</button>
+        <button type="button" role="tab" data-tab="chain">影城</button>
+      </div>
 
-      <section class="movie-results" aria-label="符合條件的影城">
-        <header class="movie-results-head">
-          <div>
-            <span>影城列表</span>
-            <strong id="movieResultCount">0</strong>
-          </div>
-          <span class="result-sort-note">依距離排序</span>
-        </header>
-        <div id="movieCinemaResults">{schedules_html}</div>
-        <p class="filter-empty" id="filterEmpty" hidden>目前沒有符合篩選條件的場次。</p>
+      <label class="field" id="movieField">
+        <span>電影</span>
+        <select id="movieSelect" aria-label="選擇電影"></select>
+      </label>
+
+      <section class="m-panel" id="mMoviePanel" aria-label="選擇電影">
+        <div class="filter-head"><span>電影</span></div>
+        <div class="m-movie-list" id="mMovieList"></div>
       </section>
+
+      <label class="field" id="searchField">
+        <span>搜尋</span>
+        <div class="search-box">
+          <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="21" y1="21" x2="16.5" y2="16.5" />
+          </svg>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="影城、品牌、縣市" aria-controls="searchSuggestions" />
+          <button class="search-clear" id="clearSearchButton" type="button" aria-label="清除搜尋" hidden>✕</button>
+        </div>
+      </label>
+      <div id="searchSuggestions" class="search-suggestions" hidden></div>
+
+      <section class="m-panel" id="timeFilterPanel" aria-label="時間篩選">
+        <div class="m-time-head">
+          <span>現在可看場次</span>
+          <span class="m-time-cap" id="timeFilterCaption">載入現在時間</span>
+        </div>
+        <div class="m-slider" id="timeSlider">
+          <div class="m-track">
+            <div class="m-fill" id="timeSliderFill"></div>
+            <button class="m-knob" id="timeSliderKnob" type="button" aria-label="拖曳選擇最早場次時間">--:--</button>
+          </div>
+        </div>
+        <div class="filter-head"><span>快速時段</span></div>
+        <div class="m-period" id="timePeriodButtons">
+          <button type="button" data-period="all" class="is-selected">全天</button>
+          <button type="button" data-period="morning">上午</button>
+          <button type="button" data-period="afternoon">下午</button>
+          <button type="button" data-period="evening">晚上</button>
+        </div>
+      </section>
+
+      <div class="sheet-body" id="sheetBody">
+        <section class="filter-block" id="cityBlock" aria-label="縣市篩選">
+          <div class="filter-head"><span>縣市</span></div>
+          <div class="filter-scroll" id="cityFilterList"></div>
+        </section>
+
+        <section class="filter-block" id="formatBlock" aria-label="電影版本篩選">
+          <div class="filter-head"><span>版本</span></div>
+          <div class="filter-scroll" id="formatFilterList"></div>
+        </section>
+
+        <section class="filter-block" id="chainBlock" aria-label="品牌篩選">
+          <div class="filter-head"><span>品牌</span></div>
+          <div class="filter-scroll" id="chainFilterList"></div>
+        </section>
+      </div>
+
+      <footer class="sidebar-note" aria-label="場次資訊說明">
+        <p>場次資訊持續更新中</p>
+        <p>實際上映與售票狀況請以影城官方資訊為準。</p>
+      </footer>
+    </aside>
+
+    <section class="cinema-list-panel" id="cinemaListPanel" aria-label="{escaped_title} 影城列表">
+      <header class="cinema-list-head">
+        <div>
+          <h2>影城列表</h2>
+          <p class="movie-detail-seo-copy">{escaped_title} · 更新於 {html.escape(update_label)}</p>
+        </div>
+        <strong id="cinemaListCount">0</strong>
+      </header>
+      <div class="cinema-list" id="cinemaList">{static_list_html}</div>
     </section>
+
+    <section class="map-wrap" aria-label="台灣影城地圖">
+      <div id="map"></div>
+
+      <div class="m-search" id="mSearch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <line x1="21" y1="21" x2="16.5" y2="16.5" />
+        </svg>
+        <input id="mSearchInput" type="search" autocomplete="off" placeholder="搜尋影城、品牌、縣市" aria-controls="mSearchSuggestions" />
+        <button class="m-search-clear" id="mSearchClear" type="button" aria-label="清除搜尋" hidden>✕</button>
+      </div>
+      <div id="mSearchSuggestions" class="m-suggestions" hidden></div>
+    </section>
+
+    <div class="m-sheet" id="mSheet" aria-hidden="true">
+      <div class="m-sheet-card" role="dialog" aria-label="影城資訊">
+        <div class="m-sheet-grab" aria-hidden="true"></div>
+        <button class="m-sheet-close" id="mSheetClose" type="button" aria-label="關閉">✕</button>
+        <div class="m-sheet-body" id="mSheetBody"></div>
+      </div>
+    </div>
   </main>
 
   <script
@@ -612,7 +754,12 @@ def movie_page_html(
   ></script>
   <script src="runtime-config.js?v=20260903a"></script>
   <script src="carto-basemap-auth.js?v=20260903a"></script>
-  <script src="seo-movie.js?v=20261006d"></script>
+  <script src="time-filter.js?v=20260812a"></script>
+  <script src="date-state.js?v=20260812a"></script>
+  <script src="version-filter.js?v=20260925a"></script>
+  <script src="movie-detail-list.js?v=20261006a"></script>
+  <script src="app.js?v=20261006e"></script>
+  <script src="empty-state.js?v=20260820a"></script>
 </body>
 </html>
 """
