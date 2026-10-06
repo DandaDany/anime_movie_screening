@@ -483,6 +483,9 @@ def filter_html(
   <p id="distanceStatus">正在取得位置，將最近的影城排在前面…</p>
   <button id="distanceRetry" type="button">重新定位</button>
 </div>
+"""
+
+
 def movie_page_html(
     item: dict,
     by_date: dict[str, list[dict]],
