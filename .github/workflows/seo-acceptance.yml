@@ -56,7 +56,7 @@ jobs:
           grep -q 'class="app-shell movie-detail-shell"' web/movie-*.html
           grep -q 'id="cinemaListPanel"' web/movie-*.html
           grep -q 'id="map"' web/movie-*.html
-          grep -q 'styles.css?v=20260813a' web/movie-*.html
+          grep -q 'styles.css?v=20261007a' web/movie-*.html
       - name: Browser acceptance for generated movie pages
         run: |
           python -m http.server 8765 --directory web >/tmp/seo-http.log 2>&1 &
