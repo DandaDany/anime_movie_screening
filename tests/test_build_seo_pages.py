@@ -72,6 +72,24 @@ class BuildSeoPagesTests(unittest.TestCase):
                                         "label": "19:30 數位",
                                         "language": "日語",
                                     },
+                                    {
+                                        "time": "20:10",
+                                        "format": "01廳(9F)",
+                                        "label": "20:10 01廳(9F)",
+                                        "language": "日語",
+                                    },
+                                    {
+                                        "time": "20:20",
+                                        "format": "日文(JPN)",
+                                        "label": "20:20 日文(JPN)",
+                                        "language": "日語",
+                                    },
+                                    {
+                                        "time": "20:30",
+                                        "format": "(日文版)劇場版 吉伊卡哇 人魚島的秘密",
+                                        "label": "20:30 (日文版)劇場版 吉伊卡哇 人魚島的秘密",
+                                        "language": "日語",
+                                    },
                                 ],
                             },
                         },
@@ -122,7 +140,7 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
         self.assertIn("測試動畫電影 場次｜全台動畫電影上映地圖", movie)
-        self.assertIn("場次資料更新：<strong>今日 8:00</strong>", movie)
+        self.assertIn("場次資料更新：<strong>今日 07:24</strong>", movie)
         self.assertNotIn("2026-10-06T07:24:04+08:00", movie)
 
         self.assertIn('id="movieFilterCity"', movie)
@@ -132,6 +150,10 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn(">高雄市</option>", movie)
         self.assertIn(">IMAX</option>", movie)
         self.assertIn(">數位</option>", movie)
+        self.assertNotIn(">01廳(9F)</option>", movie)
+        self.assertNotIn(">日文(JPN)</option>", movie)
+        self.assertNotIn(">(日文版)劇場版 吉伊卡哇 人魚島的秘密</option>", movie)
+        self.assertNotIn("全台動畫電影場次", movie)
 
         self.assertIn('data-lat="25.033"', movie)
         self.assertIn('data-long="121.5654"', movie)
@@ -145,7 +167,8 @@ class BuildSeoPagesTests(unittest.TestCase):
         match = re_search_href(movie, "在地圖查看影城位置")
         query = parse_qs(urlparse(match).query)
         self.assertEqual(query["restore"], ["1"])
-        self.assertEqual(query["movie"], ["測試動畫電影"])
+        self.assertEqual(urlparse(match).path, "index.html")
+        self.assertEqual(query["movie"], ["測試動畫"])
         self.assertEqual(query["date"], ["2026-10-06"])
 
         upcoming = (self.web / "movie-2.html").read_text(encoding="utf-8")
