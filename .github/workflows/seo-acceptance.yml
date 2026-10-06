@@ -8,6 +8,9 @@ on:
       - "tests/browser_seo_movie_page_acceptance.py"
       - "tests/browser_movie_discovery_acceptance.py"
       - "web/index.html"
+      - "web/app.js"
+      - "web/movie-detail-list.js"
+      - "web/movie-detail-list.css"
       - "web/discovery.js"
       - "web/discovery.css"
       - "web/seo.css"
@@ -38,6 +41,8 @@ jobs:
           python -m unittest tests.test_build_seo_pages -v
           python -m py_compile scripts/build_seo_pages.py tests/browser_seo_movie_page_acceptance.py
           node --check web/seo-movie.js
+          node --check web/movie-detail-list.js
+          node --check web/app.js
           node --check web/discovery.js
       - name: Build SEO artifact from repository data
         run: python scripts/build_seo_pages.py
@@ -48,9 +53,10 @@ jobs:
           ls web/movie-*.html >/dev/null
           grep -q 'rel="canonical"' web/movie-*.html
           grep -q 'movie-' web/sitemap.xml
-          grep -q 'movieCityFilters' web/movie-*.html
-          grep -q 'id="movieMap"' web/movie-*.html
-          grep -q '>電影場次</a>' web/movie-*.html
+          grep -q 'class="app-shell movie-detail-shell"' web/movie-*.html
+          grep -q 'id="cinemaListPanel"' web/movie-*.html
+          grep -q 'id="map"' web/movie-*.html
+          grep -q 'styles.css?v=20260813a' web/movie-*.html
       - name: Browser acceptance for generated movie pages
         run: |
           python -m http.server 8765 --directory web >/tmp/seo-http.log 2>&1 &

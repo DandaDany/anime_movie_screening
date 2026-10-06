@@ -827,29 +827,31 @@ function normalizeMovieData(data) {
 
 function restoreMapStateFromUrl() {
   const query = new URLSearchParams(window.location.search);
-  if (query.get("restore") !== "1") {
+  const initialState = window.MuseInitialMapState || {};
+  const shouldRestore = query.get("restore") === "1" || initialState.restore === true;
+  if (!shouldRestore) {
     return { restored: false, locationId: null };
   }
 
   startupViewportCanceled = true;
 
-  const requestedDate = query.get("date") || "";
+  const requestedDate = query.get("date") || initialState.date || "";
   if (requestedDate && availableDates.includes(requestedDate)) {
     selectedDate = requestedDate;
   }
   refreshMovieDateData();
 
-  const requestedMovie = query.get("movie") || "";
+  const requestedMovie = query.get("movie") || initialState.movie || "";
   if (requestedMovie && movieFeaturesByTitle.has(requestedMovie)) {
     selectedMovieTitle = requestedMovie;
     features = movieFeaturesByTitle.get(requestedMovie) || [];
   }
 
-  selectedFormat = query.get("format") || "";
-  selectedChain = query.get("chain") || "";
-  selectedCity = query.get("city") || "";
+  selectedFormat = query.get("format") || initialState.format || "";
+  selectedChain = query.get("chain") || initialState.chain || "";
+  selectedCity = query.get("city") || initialState.city || "";
 
-  const requestedPeriod = query.get("period") || "all";
+  const requestedPeriod = query.get("period") || initialState.period || "all";
   setQuickPeriod(PERIOD_RANGES[requestedPeriod] ? requestedPeriod : "all");
 
   const requestedEarliest = Number(query.get("earliest"));
@@ -1161,6 +1163,11 @@ function renderMarkers(filtered) {
       if (activeDesktopPopupId === props.location_id) activeDesktopPopupId = null;
     });
     marker.on("click", () => {
+      window.dispatchEvent(
+        new CustomEvent("muse:cinema-focus", {
+          detail: { locationId: props.location_id },
+        }),
+      );
       if (window.trackEvent)
         window.trackEvent("select_cinema", {
           cinema: props.map_name || props.location_name || "",
@@ -1205,6 +1212,41 @@ function renderSummaryText(message = null) {
   summaryText.hidden = !text;
 }
 
+function movieListFeature(feature) {
+  const showtimes = visibleShowtimes(feature);
+  return {
+    ...feature,
+    properties: {
+      ...feature.properties,
+      showtimes,
+      showtime_count: showtimes.length,
+    },
+  };
+}
+
+function emitFilteredCinemaList(filtered) {
+  const detail = {
+    features: filtered.map(movieListFeature),
+    movieTitle: selectedMovieTitle,
+    showDate: selectedDate,
+  };
+  window.dispatchEvent(new CustomEvent("muse:filtered-cinemas", { detail }));
+}
+
+window.MuseMapIntegration = Object.freeze({
+  renderCinemaHtml(feature) {
+    return popupHtml(feature);
+  },
+  bindBooking(root) {
+    bindShowtimeBookingInteraction(root);
+  },
+  focusLocation(locationId) {
+    const id = Number(locationId);
+    const feature = features.find((item) => Number(item.properties?.location_id) === id);
+    if (feature) focusFeature(feature);
+  },
+});
+
 function applyFilters({ focusSingleResult = false } = {}) {
   // 電影、地區與影城數字共用即時時間狀態；分鐘推進時一起重繪。
   renderMovieOptions();
@@ -1213,6 +1255,7 @@ function applyFilters({ focusSingleResult = false } = {}) {
   renderMarkers(filtered);
   renderSearchSuggestions(filtered);
   renderSummaryText();
+  emitFilteredCinemaList(filtered);
 
   // 使用者主動選擇地區／版本／影城篩選後，如果結果只剩一個場館，
   // 直接聚焦並開啟該場館資訊。取消篩選、搜尋輸入、時間自動更新不觸發。
