@@ -48,8 +48,9 @@ jobs:
           ls web/movie-*.html >/dev/null
           grep -q 'rel="canonical"' web/movie-*.html
           grep -q 'movie-' web/sitemap.xml
-          grep -q 'movieFilterCity' web/movie-*.html
-          grep -q 'restore=1' web/movie-*.html
+          grep -q 'movieCityFilters' web/movie-*.html
+          grep -q 'id="movieMap"' web/movie-*.html
+          grep -q '>電影場次</a>' web/movie-*.html
       - name: Browser acceptance for generated movie pages
         run: |
           python -m http.server 8765 --directory web >/tmp/seo-http.log 2>&1 &

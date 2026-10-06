@@ -226,23 +226,27 @@ def showtime_minute(value: object) -> int | None:
     return hour * 60 + minute
 
 
-def collect_filter_values(by_date: dict[str, list[dict]]) -> tuple[list[str], list[str]]:
+def collect_filter_values(by_date: dict[str, list[dict]]) -> tuple[list[str], list[str], list[str]]:
     cities: set[str] = set()
     formats: set[str] = set()
+    chains: set[str] = set()
     for features in by_date.values():
         for feature in features:
             props = feature.get("properties") or {}
             city = str(props.get("city") or "").strip()
+            chain = str(props.get("chain_name") or "").strip()
             if city:
                 cities.add(city)
+            if chain:
+                chains.add(chain)
             for showtime in props.get("showtimes") or []:
                 formats.update(showtime_format_tags(showtime))
     city_rank = {name: index for index, name in enumerate(CITY_ORDER)}
     ordered_cities = sorted(cities, key=lambda name: (city_rank.get(name, 999), name))
     format_rank = {name: index for index, name in enumerate(FORMAT_ORDER)}
     ordered_formats = sorted(formats, key=lambda name: (format_rank.get(name, 999), name))
-    return ordered_cities, ordered_formats
-
+    ordered_chains = sorted(chains, key=lambda name: name)
+    return ordered_cities, ordered_formats, ordered_chains
 
 def preferred_map_date(by_date: dict[str, list[dict]], today: date) -> str:
     values = sorted(show_date for show_date, features in by_date.items() if features)
@@ -312,8 +316,11 @@ def cinema_html(feature: dict, show_date: str) -> str:
     longitude = coordinates[0] if len(coordinates) >= 2 else ""
     latitude = coordinates[1] if len(coordinates) >= 2 else ""
     name = str(props.get("map_name") or props.get("location_name") or "").strip()
+    location_name = str(props.get("location_name") or name).strip()
+    chain = str(props.get("chain_name") or "").strip()
     city = str(props.get("city") or "").strip()
     address = str(props.get("address") or "").strip()
+    location_id = str(props.get("location_id") or "").strip()
     showtimes = props.get("showtimes") if isinstance(props.get("showtimes"), list) else []
     location_url = str(props.get("location_url") or "").strip()
     official_url = str(props.get("official_url") or "").strip()
@@ -367,15 +374,18 @@ def cinema_html(feature: dict, show_date: str) -> str:
 
     format_html = ""
     if format_summary:
-        format_html = f'<p class="cinema-format">版本／影廳：{html.escape("、".join(format_summary))}</p>'
+        format_html = f'<p class="cinema-format">{"、".join(html.escape(value) for value in format_summary)}</p>'
     address_html = f'<p class="cinema-address">{html.escape(address)}</p>' if address else ""
-    lat_attr = html.escape(str(latitude), quote=True)
-    long_attr = html.escape(str(longitude), quote=True)
     return (
-        f'<article class="cinema-card" data-city="{html.escape(city, quote=True)}" '
-        f'data-lat="{lat_attr}" data-long="{long_attr}">'
+        f'<article class="cinema-card" tabindex="0" '
+        f'data-location-id="{html.escape(location_id, quote=True)}" '
+        f'data-name="{html.escape(location_name, quote=True)}" '
+        f'data-chain="{html.escape(chain, quote=True)}" '
+        f'data-city="{html.escape(city, quote=True)}" '
+        f'data-lat="{html.escape(str(latitude), quote=True)}" '
+        f'data-long="{html.escape(str(longitude), quote=True)}">'
         '<div class="cinema-card-head">'
-        f'<div><h3>{html.escape(name)}</h3>{address_html}</div>'
+        f'<div><p class="cinema-chain">{html.escape(chain)}</p><h3>{html.escape(location_name)}</h3>{address_html}</div>'
         '<span class="distance-label" hidden></span>'
         '</div>'
         f'<div class="showtime-list">{"".join(showtime_html)}</div>'
@@ -384,45 +394,95 @@ def cinema_html(feature: dict, show_date: str) -> str:
         '</article>'
     )
 
-
-def filter_html(cities: list[str], formats: list[str]) -> str:
-    city_options = "".join(
-        f'<option value="{html.escape(city, quote=True)}">{html.escape(city)}</option>' for city in cities
+def filter_button(value: str, label: str, data_attr: str, *, selected: bool = False) -> str:
+    selected_class = " is-selected" if selected else ""
+    selected_aria = "true" if selected else "false"
+    return (
+        f'<button type="button" class="filter-chip{selected_class}" '
+        f'{data_attr}="{html.escape(value, quote=True)}" aria-pressed="{selected_aria}">'
+        f'<span>{html.escape(label)}</span><strong></strong></button>'
     )
-    format_options = "".join(
-        f'<option value="{html.escape(value, quote=True)}">{html.escape(value)}</option>' for value in formats
+
+
+def date_chip_label(show_date: str, today: date) -> str:
+    parsed = parse_iso_date(show_date)
+    if not parsed:
+        return show_date
+    short = f"{parsed.month}/{parsed.day}"
+    delta = (parsed - today).days
+    if delta == 0:
+        return f"今天 {short}"
+    if delta == 1:
+        return f"明天 {short}"
+    weekday = "一二三四五六日"[parsed.weekday()]
+    return f"週{weekday} {short}"
+
+
+def filter_html(
+    by_date: dict[str, list[dict]],
+    cities: list[str],
+    formats: list[str],
+    chains: list[str],
+    today: date,
+    default_date: str,
+) -> str:
+    dates = sorted(show_date for show_date, features in by_date.items() if features)
+    date_buttons = "".join(
+        filter_button(
+            show_date,
+            date_chip_label(show_date, today),
+            "data-filter-date",
+            selected=show_date == default_date,
+        )
+        for show_date in dates
+    )
+    city_buttons = filter_button("", "全部", "data-filter-city", selected=True) + "".join(
+        filter_button(city, city, "data-filter-city") for city in cities
+    )
+    format_buttons = filter_button("", "全部", "data-filter-format", selected=True) + "".join(
+        filter_button(value, value, "data-filter-format") for value in formats
+    )
+    chain_buttons = filter_button("", "全部", "data-filter-chain", selected=True) + "".join(
+        filter_button(value, value.replace("影城", "").strip() or value, "data-filter-chain")
+        for value in chains
     )
     return f"""
-<section class="showtime-tools" aria-label="場次篩選">
-  <div class="showtime-filter-grid">
-    <label>縣市
-      <select id="movieFilterCity">
-        <option value="">全部縣市</option>
-        {city_options}
-      </select>
-    </label>
-    <label>版本
-      <select id="movieFilterFormat">
-        <option value="">全部版本</option>
-        {format_options}
-      </select>
-    </label>
-    <label>時間
-      <select id="movieFilterTime">
-        <option value="all">全天</option>
-        <option value="now">現在可看</option>
-        <option value="morning">上午</option>
-        <option value="afternoon">下午</option>
-        <option value="evening">晚上</option>
-      </select>
-    </label>
+<div class="filter-group">
+  <span class="filter-label">日期</span>
+  <div class="filter-chip-row" id="movieDateFilters">{date_buttons}</div>
+</div>
+<label class="movie-search">
+  <span class="filter-label">搜尋影城</span>
+  <input id="movieSearch" type="search" autocomplete="off" placeholder="影城、品牌、縣市" />
+</label>
+<div class="filter-group">
+  <div class="filter-row-head">
+    <span class="filter-label">時間</span>
+    <button type="button" class="now-toggle is-selected" id="movieNowToggle" aria-pressed="true">現在可看</button>
   </div>
-  <div class="distance-row">
-    <p id="distanceStatus">正在取得位置，將最近的影城排在前面…</p>
-    <button id="distanceRetry" type="button">重新定位</button>
+  <div class="filter-chip-row" id="moviePeriodFilters">
+    <button type="button" class="filter-chip is-selected" data-filter-period="all" aria-pressed="true"><span>全天</span></button>
+    <button type="button" class="filter-chip" data-filter-period="morning" aria-pressed="false"><span>上午</span></button>
+    <button type="button" class="filter-chip" data-filter-period="afternoon" aria-pressed="false"><span>下午</span></button>
+    <button type="button" class="filter-chip" data-filter-period="evening" aria-pressed="false"><span>晚上</span></button>
   </div>
-</section>
-<p class="filter-empty" id="filterEmpty" hidden>目前沒有符合篩選條件的場次。</p>
+</div>
+<div class="filter-group">
+  <span class="filter-label">縣市</span>
+  <div class="filter-chip-row" id="movieCityFilters">{city_buttons}</div>
+</div>
+<div class="filter-group">
+  <span class="filter-label">版本</span>
+  <div class="filter-chip-row" id="movieFormatFilters">{format_buttons}</div>
+</div>
+<div class="filter-group">
+  <span class="filter-label">影城</span>
+  <div class="filter-chip-row" id="movieChainFilters">{chain_buttons}</div>
+</div>
+<div class="distance-row">
+  <p id="distanceStatus">正在取得位置，將最近的影城排在前面…</p>
+  <button id="distanceRetry" type="button">重新定位</button>
+</div>
 """
 
 
@@ -438,9 +498,10 @@ def movie_page_html(
     canonical = movie_canonical(item, base_url)
     poster = poster_url(item, base_url)
     target_date = date_label(item.get("target_date"))
-    description = f"查詢《{title}》全台上映影城、日期、版本與場次時間。場次持續更新，實際上映與售票狀況請以影城官方資訊為準。"
+    description = f"查詢《{title}》全台上映影城、日期、版本與場次時間。依縣市、版本與時間篩選，直接查看影城位置與訂票入口。"
     update_label = display_update_label(map_data, today)
-    cities, formats = collect_filter_values(by_date)
+    cities, formats, chains = collect_filter_values(by_date)
+    default_date = preferred_map_date(by_date, today)
 
     schedule_sections: list[str] = []
     for show_date in sorted(by_date):
@@ -454,9 +515,10 @@ def movie_page_html(
         if not features:
             continue
         cards = "".join(cinema_html(feature, show_date) for feature in features)
+        hidden = "" if show_date == default_date else " hidden"
         schedule_sections.append(
-            f'<section class="schedule-day" data-show-date="{html.escape(show_date, quote=True)}">'
-            f'<h2>{html.escape(date_label(show_date))} 場次</h2>'
+            f'<section class="schedule-day" data-show-date="{html.escape(show_date, quote=True)}"{hidden}>'
+            f'<h2 class="schedule-day-title">{html.escape(date_label(show_date))}</h2>'
             f'<div class="cinema-list">{cards}</div></section>'
         )
 
@@ -464,17 +526,10 @@ def movie_page_html(
     if not schedules_html:
         schedules_html = (
             '<section class="schedule-empty"><h2>目前沒有可查詢場次</h2>'
-            '<p>上映資訊會隨影城公布狀況持續更新，你仍可回到電影地圖查看其他電影。</p></section>'
+            '<p>上映資訊會隨影城公布狀況持續更新，你可以回到首頁查看其他電影。</p></section>'
         )
 
-    poster_html = (
-        f'<img class="movie-poster" src="{html.escape(poster, quote=True)}" alt="{escaped_title} 電影海報" />'
-        if poster else ""
-    )
-    release_html = f"<p>預定／上映日期：<strong>{html.escape(target_date)}</strong></p>" if target_date else ""
-    map_title = map_title_for_item(item, map_data)
-    map_link = html.escape(map_href(map_title, by_date, today), quote=True)
-
+    release_html = f'<p class="movie-meta-line">上映日期 <strong>{html.escape(target_date)}</strong></p>' if target_date else ""
     structured = {"@context": "https://schema.org", "@type": "Movie", "name": title, "url": canonical}
     if poster:
         structured["image"] = poster
@@ -486,51 +541,81 @@ def movie_page_html(
         og_image = f'<meta property="og:image" content="{escaped_poster}" />'
         twitter_image = f'<meta name="twitter:image" content="{escaped_poster}" />'
 
+    filters = filter_html(by_date, cities, formats, chains, today, default_date) if schedule_sections else ""
+    default_date_attr = html.escape(default_date, quote=True)
+
     return f"""<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{escaped_title} 場次｜全台動畫電影上映地圖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
   <link rel="canonical" href="{html.escape(canonical, quote=True)}" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="全台動畫電影上映地圖" />
-  <meta property="og:title" content="{escaped_title} 場次｜全台動畫電影上映地圖" />
+  <meta property="og:site_name" content="電影場次" />
+  <meta property="og:title" content="{escaped_title} 場次｜電影場次" />
   <meta property="og:description" content="{html.escape(description, quote=True)}" />
   <meta property="og:url" content="{html.escape(canonical, quote=True)}" />
   {og_image}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{escaped_title} 場次｜全台動畫電影上映地圖" />
+  <meta name="twitter:title" content="{escaped_title} 場次｜電影場次" />
   <meta name="twitter:description" content="{html.escape(description, quote=True)}" />
   {twitter_image}
-  <link rel="stylesheet" href="seo.css?v=20261006c" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="seo.css?v=20261006d" />
   <script type="application/ld+json">{json.dumps(structured, ensure_ascii=False).replace("</", "<\/")}</script>
-  <script src="seo-movie.js?v=20261006c" defer></script>
 </head>
 <body>
-  <header class="site-head">
-    <a href="./">← 回到動畫電影首頁</a>
-  </header>
-  <main class="movie-page">
-    <section class="movie-hero">
-      {poster_html}
-      <div>
-        <h1>{escaped_title}</h1>
-        {release_html}
-        <p>場次資料更新：<strong>{html.escape(update_label)}</strong></p>
-        <a class="map-cta" href="{map_link}">在地圖查看影城位置</a>
-      </div>
+  <main class="movie-map-app" data-default-date="{default_date_attr}">
+    <section class="movie-map-panel" aria-label="{escaped_title} 影城地圖">
+      <div id="movieMap"></div>
     </section>
-    {filter_html(cities, formats) if schedule_sections else ""}
-    {schedules_html}
-    <p class="disclaimer">場次資訊持續更新中，實際上映與售票狀況請以影城官方資訊為準。</p>
+
+    <section class="movie-workspace" id="movieWorkspace">
+      <button class="mobile-sheet-grabber" id="movieSheetGrabber" type="button" aria-label="調整場次列表高度"><span></span></button>
+
+      <aside class="movie-controls" aria-label="電影與場次篩選">
+        <header class="movie-controls-head">
+          <a class="site-brand" href="./">電影場次</a>
+          <h1>{escaped_title}</h1>
+          {release_html}
+          <p class="movie-meta-line">更新於 <strong>{html.escape(update_label)}</strong></p>
+        </header>
+        {filters}
+        <p class="data-note">實際上映與售票狀況請以影城官方資訊為準。</p>
+      </aside>
+
+      <section class="movie-results" aria-label="符合條件的影城">
+        <header class="movie-results-head">
+          <div>
+            <span>影城列表</span>
+            <strong id="movieResultCount">0</strong>
+          </div>
+          <span class="result-sort-note">依距離排序</span>
+        </header>
+        <div id="movieCinemaResults">{schedules_html}</div>
+        <p class="filter-empty" id="filterEmpty" hidden>目前沒有符合篩選條件的場次。</p>
+      </section>
+    </section>
   </main>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="runtime-config.js?v=20260903a"></script>
+  <script src="carto-basemap-auth.js?v=20260903a"></script>
+  <script src="seo-movie.js?v=20261006d"></script>
 </body>
 </html>
 """
-
-
 def write_movie_pages(web_dir: Path, catalog: list[dict], map_data: dict, base_url: str, today: date) -> list[str]:
     # Remove the old directory-style output and stale flat pages before rebuilding.
     movies_dir = web_dir / "movies"
