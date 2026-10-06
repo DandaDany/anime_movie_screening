@@ -135,13 +135,71 @@ def verify_mobile(playwright, movie_file: str) -> None:
 
         page.locator("#map.leaflet-container").wait_for(timeout=30000)
         page.locator("#mSeg").wait_for()
+        page.locator("#cinemaList .cinema-list-card").first.wait_for(timeout=30000)
 
-        assert page.locator("#cinemaListPanel").is_hidden()
-        assert page.locator("#mSeg").is_visible()
-        assert page.locator(".sidebar").is_visible()
-        assert page.locator("#map").is_visible()
-        assert page.locator("#mSheet").count() == 1
+        # The compact cinema results become a Google-Maps-style horizontal carousel
+        # immediately above the unchanged 40dvh filter tray.
+        carousel = page.locator("#cinemaListPanel")
+        assert carousel.is_visible()
+        assert page.locator(".cinema-list-head").is_hidden()
 
+        carousel_box = carousel.bounding_box()
+        sidebar_box = page.locator(".sidebar").bounding_box()
+        assert carousel_box and sidebar_box
+        assert carousel_box["y"] + carousel_box["height"] <= sidebar_box["y"] + 4, (
+            carousel_box,
+            sidebar_box,
+        )
+
+        first_card = page.locator("#cinemaList .cinema-list-card").first
+        card_box = first_card.bounding_box()
+        assert card_box and card_box["height"] <= 72, card_box
+
+        if page.locator("#cinemaList .cinema-list-card").count() > 1:
+            overflow = page.locator("#cinemaList").evaluate(
+                "el => ({scrollWidth: el.scrollWidth, clientWidth: el.clientWidth})"
+            )
+            assert overflow["scrollWidth"] > overflow["clientWidth"], overflow
+
+        # Fixed chrome is compressed so the middle tab content gets materially more height.
+        assert page.locator(".panel-head").is_hidden()
+        assert page.locator(".sidebar-note").is_hidden()
+
+        date_chips = page.locator(".date-chip:visible")
+        if date_chips.count():
+            date_box = date_chips.first.bounding_box()
+            assert date_box and date_box["height"] <= 30, date_box
+
+        tab_box = page.locator("#mSeg button").first.bounding_box()
+        assert tab_box and tab_box["height"] <= 34, tab_box
+
+        movie_panel = page.locator("#mMoviePanel")
+        assert movie_panel.is_visible()
+        movie_panel_box = movie_panel.bounding_box()
+        assert movie_panel_box and movie_panel_box["height"] >= 170, movie_panel_box
+
+        # City tab should also inherit the larger scrollable center area.
+        page.locator("#mSeg button[data-tab='city']").click()
+        city_block = page.locator("#cityBlock")
+        city_block.wait_for()
+        city_box = city_block.bounding_box()
+        assert city_box and city_box["height"] >= 170, city_box
+
+        # Tapping a carousel result delegates to the original mobile detail sheet.
+        first_card.click()
+        page.wait_for_function(
+            "() => document.querySelector('.app-shell')?.classList.contains('sheet-open')"
+        )
+        assert page.locator("#mSheet").get_attribute("aria-hidden") == "false"
+        assert page.locator("#cinemaListPanel").evaluate(
+            "el => getComputedStyle(el).opacity"
+        ) == "0"
+
+        # Close and verify the original marker interaction still works.
+        page.locator("#mSheetClose").click()
+        page.wait_for_function(
+            "() => !document.querySelector('.app-shell')?.classList.contains('sheet-open')"
+        )
         marker = page.locator(".leaflet-marker-icon").first
         marker.wait_for(timeout=30000)
         marker.click(force=True)
