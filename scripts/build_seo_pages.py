@@ -657,9 +657,9 @@ def movie_page_html(
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   />
-  <link rel="stylesheet" href="styles.css?v=20260813a" />
+  <link rel="stylesheet" href="styles.css?v=20261007a" />
   <link rel="stylesheet" href="empty-state.css?v=20260820a" />
-  <link rel="stylesheet" href="movie-detail-list.css?v=20261006b" />
+  <link rel="stylesheet" href="movie-detail-list.css?v=20261007a" />
   <script>
     window.MuseInitialMapState = Object.freeze({initial_state_json});
     window.MuseMoviePageLinks = Object.freeze({page_links_json});
@@ -793,7 +793,7 @@ def movie_page_html(
   <script src="time-filter.js?v=20260812a"></script>
   <script src="date-state.js?v=20260812a"></script>
   <script src="version-filter.js?v=20260925a"></script>
-  <script src="movie-detail-list.js?v=20261006b"></script>
+  <script src="movie-detail-list.js?v=20261007a"></script>
   <script src="app.js?v=20261006f"></script>
   <script src="empty-state.js?v=20260820a"></script>
 </body>
