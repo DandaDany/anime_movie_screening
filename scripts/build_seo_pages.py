@@ -662,7 +662,7 @@ def movie_page_html(
   <link rel="stylesheet" href="movie-detail-list.css?v=20261006b" />
   <script>
     window.MuseInitialMapState = Object.freeze({initial_state_json});
-    window.MuseMoviePageLinks = Object.freeze({{PAGE_LINKS_JSON}});
+    window.MuseMoviePageLinks = Object.freeze({page_links_json});
   </script>
 </head>
 <body>
