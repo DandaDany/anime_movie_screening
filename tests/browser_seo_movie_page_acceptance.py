@@ -216,9 +216,21 @@ def verify_mobile(playwright, movie_file: str) -> None:
         page.wait_for_function(
             "() => !document.querySelector('.app-shell')?.classList.contains('sheet-open')"
         )
-        marker = page.locator(".leaflet-marker-icon").first
-        marker.wait_for(timeout=30000)
-        marker.click(force=True)
+        marker_center = page.evaluate(
+            """() => {
+              const marker = [...document.querySelectorAll('.leaflet-marker-icon')].find((el) => {
+                const rect = el.getBoundingClientRect();
+                return rect.width > 0 && rect.height > 0 &&
+                  rect.left >= 0 && rect.right <= innerWidth &&
+                  rect.top >= 0 && rect.bottom <= innerHeight;
+              });
+              if (!marker) return null;
+              const rect = marker.getBoundingClientRect();
+              return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+            }"""
+        )
+        assert marker_center, "expected an in-viewport mobile marker"
+        page.mouse.click(marker_center["x"], marker_center["y"])
         page.wait_for_function(
             "() => document.querySelector('.app-shell')?.classList.contains('sheet-open')"
         )
