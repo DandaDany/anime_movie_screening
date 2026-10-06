@@ -462,25 +462,8 @@
     }
   }
 
-  nowGrid.addEventListener("click", (event) => {
-    const card = event.target.closest(".movie-card");
-    if (!card) return;
-    const item = findCatalogItem(card.dataset.movieTitle);
-    if (item) {
-      event.preventDefault();
-      selectNowShowing(item);
-    }
-  });
-
-  upcomingGrid.addEventListener("click", (event) => {
-    const card = event.target.closest(".movie-card");
-    if (!card) return;
-    const item = findCatalogItem(card.dataset.movieTitle);
-    if (item) {
-      event.preventDefault();
-      selectUpcoming(item);
-    }
-  });
+  // Movie cards are real links. The homepage is the discovery layer; the
+  // movie detail page is the next step, and the map is entered from there.
 
   const observer = new MutationObserver(() => {
     window.clearTimeout(renderTimer);
