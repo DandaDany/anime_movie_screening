@@ -22,6 +22,8 @@ NOW_START = "<!-- SEO_PRERENDER_NOW_START -->"
 NOW_END = "<!-- SEO_PRERENDER_NOW_END -->"
 UPCOMING_START = "<!-- SEO_PRERENDER_UPCOMING_START -->"
 UPCOMING_END = "<!-- SEO_PRERENDER_UPCOMING_END -->"
+MOVIE_LINKS_START = "<!-- SEO_MOVIE_LINKS_START -->"
+MOVIE_LINKS_END = "<!-- SEO_MOVIE_LINKS_END -->"
 
 FORMAT_RULES = [
     ("IMAX", re.compile(r"imax", re.I)),
@@ -201,6 +203,9 @@ def prerender_home(index_path: Path, catalog: list[dict], map_data: dict, today:
     upcoming_html = '<div class="movie-grid" id="comingSoonGrid">' + "".join(render_card(item, "upcoming") for item in upcoming_items) + "</div>"
     source = replace_marker_block(source, NOW_START, NOW_END, now_html)
     source = replace_marker_block(source, UPCOMING_START, UPCOMING_END, upcoming_html)
+    page_links_json = json.dumps(movie_page_links(catalog, map_data), ensure_ascii=False).replace("</", "<\\/")
+    links_html = f"<script>window.MuseMoviePageLinks = Object.freeze({page_links_json});</script>"
+    source = replace_marker_block(source, MOVIE_LINKS_START, MOVIE_LINKS_END, links_html)
     index_path.write_text(source, encoding="utf-8")
 
 
