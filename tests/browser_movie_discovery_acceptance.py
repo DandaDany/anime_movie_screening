@@ -199,7 +199,7 @@ def main() -> int:
             page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
 
             page.wait_for_function("() => Boolean(window.MuseDiscovery)")
-            assert page.locator("#nowShowingTitle").inner_text() == "現正熱映"
+            assert page.locator("#nowShowingTitle").inner_text() == "正在上映"
             page.locator("#nowShowingGrid .movie-card").first.wait_for()
             # 「正在上映」只保留目前能直接進今天地圖，或至少有其他可進日期的電影。
             # E 完全沒有場次；F 今天最後一場 20:30 已過且沒有未來日期，兩者都不可顯示。
@@ -234,6 +234,39 @@ def main() -> int:
             page.wait_for_url("**/movie-1.html")
             assert page.url.endswith("/movie-1.html")
             context.close()
+
+            # Mobile uses the same discovery homepage/data, with both shelves visible.
+            mobile = browser.new_context(
+                viewport={"width": 390, "height": 844},
+                timezone_id="Asia/Taipei",
+                locale="zh-TW",
+            )
+            mobile_page = mobile.new_page()
+            install_fixture(mobile_page)
+            mobile_page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+            mobile_page.wait_for_function("() => Boolean(window.MuseDiscovery)")
+            mobile_page.locator("#nowShowingGrid .movie-card").first.wait_for()
+
+            assert mobile_page.locator("#movieDiscovery").is_visible()
+            assert mobile_page.locator("#nowShowingTitle").inner_text() == "正在上映"
+            assert mobile_page.locator("#comingSoonTitle").inner_text() == "即將上映"
+            assert mobile_page.locator("#nowShowingGrid .movie-card").count() == 3
+            assert mobile_page.locator("#comingSoonGrid .movie-card").count() == 3
+
+            # The mobile homepage is genuinely a two-column poster grid, not a hidden desktop overlay.
+            first = mobile_page.locator("#nowShowingGrid .movie-card").nth(0).bounding_box()
+            second = mobile_page.locator("#nowShowingGrid .movie-card").nth(1).bounding_box()
+            assert first and second
+            assert abs(first["y"] - second["y"]) < 4, (first, second)
+            assert second["x"] > first["x"] + first["width"] * 0.7, (first, second)
+
+            mobile_movie = mobile_page.locator("#nowShowingGrid .movie-card").first
+            mobile_href = mobile_movie.get_attribute("href")
+            assert mobile_href and mobile_href.startswith("movie-") and mobile_href.endswith(".html")
+            mobile_movie.click()
+            mobile_page.wait_for_url(f"**/{mobile_href}")
+            assert mobile_page.url.endswith("/" + mobile_href)
+            mobile.close()
         finally:
             browser.close()
     return 0
