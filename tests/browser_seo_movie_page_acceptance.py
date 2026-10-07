@@ -235,6 +235,21 @@ def verify_mobile(playwright, movie_file: str) -> None:
             "() => document.querySelector('.app-shell')?.classList.contains('sheet-open')"
         )
         assert page.locator("#mSheet").get_attribute("aria-hidden") == "false"
+
+        # Independent movie pages do not contain the discovery overlay themselves:
+        # Home must navigate to the real homepage where mobile discovery lives.
+        page.locator("#mSheetClose").click()
+        page.wait_for_function(
+            "() => !document.querySelector('.app-shell')?.classList.contains('sheet-open')"
+        )
+        home = page.locator(".map-home-control-button")
+        assert home.get_attribute("href") == "./"
+        home.click()
+        page.wait_for_url("http://127.0.0.1:8765/")
+        page.locator("#movieDiscovery").wait_for()
+        assert page.locator("#movieDiscovery").is_visible()
+        assert page.locator("#nowShowingTitle").inner_text() == "正在上映"
+        assert page.locator("#comingSoonTitle").inner_text() == "即將上映"
         context.close()
     finally:
         browser.close()
