@@ -87,18 +87,22 @@ const HomeControl = L.Control.extend({
   onAdd() {
     const container = L.DomUtil.create("div", "leaflet-bar map-home-control");
     const link = L.DomUtil.create("a", "map-home-control-button", container);
-    link.href = "#";
-    link.title = "清除篩選並回到台灣視角";
+    link.href = "./";
+    link.title = "回到電影首頁";
     link.setAttribute("role", "button");
-    link.setAttribute("aria-label", "清除篩選並回到台灣視角");
+    link.setAttribute("aria-label", "回到電影首頁");
     link.textContent = "⌂";
     L.DomEvent.disableClickPropagation(container);
     L.DomEvent.disableScrollPropagation(container);
     L.DomEvent.on(link, "click", (event) => {
       L.DomEvent.preventDefault(event);
       startupViewportCanceled = true;
-      clearFiltersAndResetView();
-      window.MuseDiscovery?.open?.();
+      if (window.MuseDiscovery?.open) {
+        clearFiltersAndResetView();
+        window.MuseDiscovery.open();
+        return;
+      }
+      window.location.assign("./");
     });
     return container;
   },
