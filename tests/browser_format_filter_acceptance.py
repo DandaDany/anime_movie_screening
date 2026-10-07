@@ -94,7 +94,7 @@ def assert_single_result_auto_focus(
 
 
 def run_case(page, mobile: bool):
-    page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+    page.goto("http://127.0.0.1:8765/", wait_until="domcontentloaded")
     enter_map(page)
 
     if mobile:
