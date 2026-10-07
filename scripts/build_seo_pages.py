@@ -153,6 +153,55 @@ def movie_page_links(catalog: list[dict], map_data: dict) -> dict[str, str]:
     return links
 
 
+def poster_index_from_payload(payload: dict) -> dict[str, dict]:
+    index: dict[str, dict] = {}
+    for item in payload.get("movies") or []:
+        if not isinstance(item, dict):
+            continue
+        for value in [item.get("title"), *(item.get("aliases") or [])]:
+            key = normalize_title(value)
+            if key:
+                index[key] = item
+    return index
+
+
+def archive_catalog(web_dir: Path, today: date) -> list[dict]:
+    """Keep previously tracked, already-released inactive movies as stable archive URLs."""
+    tracked_path = web_dir.parent / "data" / "control" / "tracked_movies.json"
+    if not tracked_path.exists():
+        return []
+
+    tracked_payload = load_json(tracked_path)
+    poster_path = web_dir / "data" / "movie_posters.json"
+    poster_index = poster_index_from_payload(load_json(poster_path)) if poster_path.exists() else {}
+
+    result: list[dict] = []
+    for raw in tracked_payload.get("movies") or []:
+        if not isinstance(raw, dict) or raw.get("is_active") is not False:
+            continue
+        target = parse_iso_date(raw.get("target_date"))
+        # Only preserve movies that have actually reached their release date.
+        # This avoids exposing disabled future drafts as indexable archive pages.
+        if target is None or target > today:
+            continue
+        if raw.get("id") is None or not raw.get("title"):
+            continue
+
+        item = dict(raw)
+        item["_archive"] = True
+        poster = None
+        for value in [raw.get("title"), *(raw.get("aliases") or [])]:
+            poster = poster_index.get(normalize_title(value))
+            if poster:
+                break
+        if poster:
+            for key in ("poster_url", "poster_fallback_url", "poster_fit"):
+                if poster.get(key):
+                    item[key] = poster[key]
+        result.append(item)
+    return result
+
+
 def render_card(item: dict, kind: str) -> str:
     title = html.escape(str(item.get("title") or ""), quote=True)
     href = html.escape(movie_href(item), quote=True)
@@ -529,6 +578,70 @@ def filter_html(
 """
 
 
+def archive_page_html(item: dict, base_url: str) -> str:
+    title = str(item.get("title") or "").strip()
+    escaped_title = html.escape(title)
+    canonical = movie_canonical(item, base_url)
+    poster = poster_url(item, base_url)
+    target = parse_iso_date(item.get("target_date"))
+    target_iso = target.isoformat() if target else ""
+    target_label = target.strftime("%Y/%m/%d") if target else ""
+    description = f"《{title}》上映資訊存檔。目前已無上映場次，可回到電影場次首頁查看其他正在上映與即將上映電影。"
+
+    structured = {
+        "@context": "https://schema.org",
+        "@type": "Movie",
+        "name": title,
+        "url": canonical,
+    }
+    if poster:
+        structured["image"] = poster
+
+    poster_html = (
+        f'<img src="{html.escape(poster, quote=True)}" alt="{escaped_title} 電影海報" '
+        'style="width:min(260px,45vw);border-radius:12px;" />'
+        if poster
+        else ""
+    )
+    release_html = (
+        f'<p>上映日期：<time datetime="{html.escape(target_iso, quote=True)}"><strong>{html.escape(target_label)}</strong></time></p>'
+        if target
+        else ""
+    )
+
+    return f"""<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{escaped_title}｜已無上映場次｜電影場次</title>
+  <meta name="description" content="{html.escape(description, quote=True)}" />
+  <link rel="canonical" href="{html.escape(canonical, quote=True)}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="電影場次" />
+  <meta property="og:title" content="{escaped_title}｜已無上映場次｜電影場次" />
+  <meta property="og:description" content="{html.escape(description, quote=True)}" />
+  <meta property="og:url" content="{html.escape(canonical, quote=True)}" />
+</head>
+<body style="margin:0;background:#f5f6f4;color:#1d2520;font-family:'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif;">
+  <main style="width:min(760px,calc(100% - 32px));margin:0 auto;padding:32px 0 64px;">
+    <a href="./" style="color:#da520d;text-decoration:none;font-weight:800;">← 電影場次</a>
+    <div style="display:flex;gap:24px;align-items:flex-start;margin-top:24px;">
+      {poster_html}
+      <div>
+        <h1 style="margin:0 0 12px;font-size:32px;">{escaped_title} 場次</h1>
+        {release_html}
+        <p><strong>目前已無上映場次。</strong></p>
+        <p style="color:#637068;">此頁保留作為上映資訊存檔；目前場次請回首頁查看正在上映電影。</p>
+      </div>
+    </div>
+  </main>
+  <script type="application/ld+json">{json.dumps(structured, ensure_ascii=False).replace("</", "<\/")}</script>
+</body>
+</html>
+"""
+
+
 def movie_page_html(
     item: dict,
     by_date: dict[str, list[dict]],
@@ -537,6 +650,9 @@ def movie_page_html(
     today: date,
     page_links: dict[str, str],
 ) -> str:
+    if item.get("_archive"):
+        return archive_page_html(item, base_url)
+
     title = str(item.get("title") or "").strip()
     escaped_title = html.escape(title)
     canonical = movie_canonical(item, base_url)
@@ -576,9 +692,10 @@ def movie_page_html(
             if poster
             else ""
         )
+        release_date = parse_iso_date(item.get("target_date"))
         release_html = (
-            f'<p>預定／上映日期：<strong>{html.escape(target_date)}</strong></p>'
-            if target_date
+            f'<p>預定／上映日期：<time datetime="{release_date.isoformat()}"><strong>{html.escape(target_date)}</strong></time></p>'
+            if release_date
             else ""
         )
         return f"""<!doctype html>
@@ -606,7 +723,7 @@ def movie_page_html(
     <div style="display:flex;gap:24px;align-items:flex-start;margin-top:24px;">
       {poster_html}
       <div>
-        <h1 style="margin:0 0 12px;font-size:32px;">{escaped_title}</h1>
+        <h1 style="margin:0 0 12px;font-size:32px;">{escaped_title} 場次</h1>
         {release_html}
         <p>目前沒有可查詢場次。</p>
         <p style="color:#637068;">場次資訊會隨影城公布狀況持續更新。</p>
@@ -626,6 +743,8 @@ def movie_page_html(
         cards = "".join(compact_cinema_list_html(feature) for feature in features_for_date)
         static_sections.append(
             f'<section data-seo-show-date="{html.escape(show_date, quote=True)}">'
+            f'<h2 class="seo-visually-hidden"><time datetime="{html.escape(show_date, quote=True)}">'
+            f'{html.escape(date_label(show_date))}</time> 場次</h2>'
             f'{cards}</section>'
         )
     static_list_html = "".join(static_sections)
@@ -637,6 +756,12 @@ def movie_page_html(
     }
     initial_state_json = json.dumps(initial_state, ensure_ascii=False).replace("</", "<\/")
     page_links_json = json.dumps(page_links, ensure_ascii=False).replace("</", "<\/")
+    release_date = parse_iso_date(item.get("target_date"))
+    semantic_release_html = (
+        f'<p>上映日期：<time datetime="{release_date.isoformat()}">{html.escape(date_label(release_date.isoformat()))}</time></p>'
+        if release_date
+        else ""
+    )
 
     return f"""<!doctype html>
 <html lang="zh-Hant">
@@ -665,7 +790,7 @@ def movie_page_html(
   />
   <link rel="stylesheet" href="styles.css?v=20261007a" />
   <link rel="stylesheet" href="empty-state.css?v=20260820a" />
-  <link rel="stylesheet" href="movie-detail-list.css?v=20261007a" />
+  <link rel="stylesheet" href="movie-detail-list.css?v=20261007b" />
   <script>
     window.MuseInitialMapState = Object.freeze({initial_state_json});
     window.MuseMoviePageLinks = Object.freeze({page_links_json});
@@ -673,11 +798,15 @@ def movie_page_html(
 </head>
 <body>
   <main class="app-shell movie-detail-shell">
+    <section class="seo-visually-hidden" aria-label="{escaped_title} 場次頁面資訊">
+      <h1>{escaped_title} 場次</h1>
+      {semantic_release_html}
+    </section>
     <aside class="sidebar" aria-label="影城篩選">
       <div class="grabber" aria-hidden="true"></div>
       <header class="panel-head">
         <div>
-          <h1>電影場次</h1>
+          <p class="panel-title">電影場次</p>
           <p id="summaryText">載入中</p>
         </div>
       </header>
@@ -805,7 +934,14 @@ def movie_page_html(
 </body>
 </html>
 """
-def write_movie_pages(web_dir: Path, catalog: list[dict], map_data: dict, base_url: str, today: date) -> list[str]:
+def write_movie_pages(
+    web_dir: Path,
+    active_catalog: list[dict],
+    archive_items: list[dict],
+    map_data: dict,
+    base_url: str,
+    today: date,
+) -> list[str]:
     # Remove the old directory-style output and stale flat pages before rebuilding.
     movies_dir = web_dir / "movies"
     if movies_dir.exists():
@@ -814,6 +950,7 @@ def write_movie_pages(web_dir: Path, catalog: list[dict], map_data: dict, base_u
         stale.unlink()
 
     urls: list[str] = []
+    catalog = [*active_catalog, *archive_items]
     page_links = movie_page_links(catalog, map_data)
     for item in catalog:
         if item.get("id") is None or not item.get("title"):
@@ -854,8 +991,16 @@ def build(web_dir: Path, base_url: str = DEFAULT_BASE_URL, today: date | None = 
     map_data = load_json(web_dir / "data" / "locations.geojson")
     catalog = [item for item in catalog_payload.get("movies", []) if isinstance(item, dict)]
     current_date = today or datetime.now(TAIPEI).date()
+    archive_items = archive_catalog(web_dir, current_date)
     prerender_home(web_dir / "index.html", catalog, map_data, current_date)
-    movie_urls = write_movie_pages(web_dir, catalog, map_data, base_url, current_date)
+    movie_urls = write_movie_pages(
+        web_dir,
+        catalog,
+        archive_items,
+        map_data,
+        base_url,
+        current_date,
+    )
     write_sitemap(web_dir, movie_urls, map_data, base_url)
     write_robots(web_dir, base_url)
     return {"movies": len(movie_urls), "sitemap_urls": len(movie_urls) + 1, "base_url": base_url}
