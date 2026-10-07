@@ -4,7 +4,10 @@ on:
   pull_request:
     paths:
       - "scripts/build_seo_pages.py"
+      - "scripts/submit_indexnow.py"
       - "tests/test_build_seo_pages.py"
+      - "tests/test_submit_indexnow.py"
+      - "web/836c466d1aa7e23aa7c824b5c66d8581.txt"
       - "tests/browser_seo_movie_page_acceptance.py"
       - "tests/browser_movie_discovery_acceptance.py"
       - "web/index.html"
@@ -38,8 +41,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Run SEO unit and syntax tests
         run: |
-          python -m unittest tests.test_build_seo_pages -v
-          python -m py_compile scripts/build_seo_pages.py tests/browser_seo_movie_page_acceptance.py
+          python -m unittest tests.test_build_seo_pages tests.test_submit_indexnow -v
+          python -m py_compile scripts/build_seo_pages.py scripts/submit_indexnow.py tests/browser_seo_movie_page_acceptance.py
           node --check web/seo-movie.js
           node --check web/movie-detail-list.js
           node --check web/version-filter.js
@@ -60,6 +63,15 @@ jobs:
           grep -q 'id="cinemaListPanel"' web/movie-*.html
           grep -q 'id="map"' web/movie-*.html
           grep -q 'styles.css?v=20261007a' web/movie-*.html
+          grep -q 'User-agent: OAI-SearchBot' web/robots.txt
+          grep -q 'User-agent: PerplexityBot' web/robots.txt
+          grep -q 'User-agent: Bingbot' web/robots.txt
+          grep -q '"@type": "ScreeningEvent"' web/movie-*.html
+          grep -q '"@type": "MovieTheater"' web/movie-*.html
+          grep -q '"dateModified":' web/movie-*.html
+          test "$(cat web/836c466d1aa7e23aa7c824b5c66d8581.txt)" = "836c466d1aa7e23aa7c824b5c66d8581"
+          python scripts/submit_indexnow.py --sitemap web/sitemap.xml --dry-run >/tmp/indexnow-payload.json
+          grep -q '"host": "dandadany.github.io"' /tmp/indexnow-payload.json
       - name: Browser acceptance for generated movie pages
         run: |
           python -m http.server 8765 --directory web >/tmp/seo-http.log 2>&1 &
