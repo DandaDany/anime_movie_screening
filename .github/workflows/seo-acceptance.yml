@@ -63,6 +63,8 @@ jobs:
           grep -q 'id="cinemaListPanel"' web/movie-*.html
           grep -q 'id="map"' web/movie-*.html
           grep -q 'styles.css?v=20261007a' web/movie-*.html
+          grep -q 'name="robots" content="index, follow, max-image-preview:large"' web/index.html
+          grep -q 'name="robots" content="index, follow, max-image-preview:large"' web/movie-*.html
           grep -q 'User-agent: OAI-SearchBot' web/robots.txt
           grep -q 'User-agent: PerplexityBot' web/robots.txt
           grep -q 'User-agent: Bingbot' web/robots.txt
