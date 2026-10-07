@@ -45,6 +45,7 @@ jobs:
           node --check web/version-filter.js
           node --check web/app.js
           node --check web/discovery.js
+          grep -q "gtag('config', 'G-9C8B8ZCL6M');" web/index.html
           node tests/frontend_version_filter_test.js
       - name: Build SEO artifact from repository data
         run: python scripts/build_seo_pages.py

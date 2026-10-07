@@ -38,9 +38,8 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
-      window.GA4_MEASUREMENT_ID = 'G-9C8B8ZCL6M';
       gtag('js', new Date());
-      gtag('config', window.GA4_MEASUREMENT_ID);
+      gtag('config', 'G-9C8B8ZCL6M');
       // 安全的自訂事件 helper：GA 未載入（或被擋）時也不會報錯。
       window.trackEvent = function (name, params) {
         try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
