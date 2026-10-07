@@ -280,11 +280,22 @@ class BuildSeoPagesTests(unittest.TestCase):
             'data-formats="數位">21:00</time>',
             movie,
         )
-        self.assertNotIn("臺北市測試路 1 號", movie)
-        self.assertNotIn("前往訂票", movie)
-        self.assertNotIn("官方網站", movie)
-        self.assertNotIn("更新於 今日 07:24", movie)
-        self.assertNotIn("movie-detail-seo-copy", movie)
+        visible_list = movie[
+            movie.index('<section class="cinema-list-panel"'):
+            movie.index('<section class="map-wrap"')
+        ]
+        self.assertNotIn("臺北市測試路 1 號", visible_list)
+        self.assertNotIn("前往訂票", visible_list)
+        self.assertNotIn("官方網站", visible_list)
+        self.assertNotIn("更新於 今日 07:24", visible_list)
+        self.assertNotIn("movie-detail-seo-copy", visible_list)
+
+        # Address/source details are intentionally machine-readable in JSON-LD,
+        # not added to the compact visible list.
+        self.assertEqual(
+            by_type["MovieTheater"][0]["address"]["streetAddress"],
+            "臺北市測試路 1 號",
+        )
 
         # Map app receives canonical movie/date and all movie->page links.
         self.assertIn('"movie": "測試動畫"', movie)
