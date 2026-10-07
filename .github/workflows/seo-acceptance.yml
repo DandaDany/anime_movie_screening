@@ -42,8 +42,10 @@ jobs:
           python -m py_compile scripts/build_seo_pages.py tests/browser_seo_movie_page_acceptance.py
           node --check web/seo-movie.js
           node --check web/movie-detail-list.js
+          node --check web/version-filter.js
           node --check web/app.js
           node --check web/discovery.js
+          node tests/frontend_version_filter_test.js
       - name: Build SEO artifact from repository data
         run: python scripts/build_seo_pages.py
       - name: Validate generated outputs
@@ -63,3 +65,4 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID' EXIT
           python tests/browser_seo_movie_page_acceptance.py
+          python tests/browser_format_filter_acceptance.py
