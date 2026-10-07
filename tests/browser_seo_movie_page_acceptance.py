@@ -31,6 +31,13 @@ def verify_desktop(page, movie_file: str) -> None:
     # Original UI remains.
     assert page.locator(".sidebar").is_visible()
     assert page.locator("#timeSlider").is_visible()
+
+    # SEO semantics are present but visually hidden, so the established UI geometry is unchanged.
+    semantic = page.locator(".seo-visually-hidden").first
+    semantic_box = semantic.bounding_box()
+    assert semantic_box and semantic_box["width"] <= 1.1 and semantic_box["height"] <= 1.1, semantic_box
+    assert page.locator(".seo-visually-hidden h1").inner_text().strip().endswith("場次")
+    assert page.locator(".panel-title").inner_text().strip() == "電影場次"
     assert page.locator("#dateChips").count() == 1
     assert page.locator("#cityFilterList").count() == 1
     assert page.locator("#formatFilterList").count() == 1
