@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import tempfile
 import unittest
 from datetime import date
@@ -196,6 +197,41 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('<time datetime="2026-10-01">2026/10/01</time>', movie)
         self.assertIn('<h2 class="seo-visually-hidden"><time datetime="2026-10-06">2026/10/06</time> 場次</h2>', movie)
         self.assertIn('<p class="panel-title">電影場次</p>', movie)
+
+        jsonld_match = re.search(
+            r'<script type="application/ld\+json">(.*?)</script>',
+            movie,
+            flags=re.S,
+        )
+        self.assertIsNotNone(jsonld_match)
+        structured = json.loads(jsonld_match.group(1))
+        graph = structured["@graph"]
+        by_type = {}
+        for node in graph:
+            by_type.setdefault(node.get("@type"), []).append(node)
+
+        webpage = by_type["WebPage"][0]
+        self.assertEqual(webpage["dateModified"], "2026-10-06T07:24:04+08:00")
+        self.assertEqual(webpage["publisher"]["@id"], "https://example.com/anime/#publisher")
+        self.assertIn("https://cinema.example/", webpage["citation"])
+        self.assertIn("https://cinema-b.example/", webpage["citation"])
+        self.assertEqual(by_type["Organization"][0]["name"], "電影場次")
+        self.assertEqual(by_type["Movie"][0]["name"], "測試動畫電影")
+        self.assertEqual(len(by_type["MovieTheater"]), 2)
+
+        screening = next(
+            node for node in by_type["ScreeningEvent"]
+            if node["startDate"] == "2026-10-06T13:00:00+08:00"
+        )
+        self.assertEqual(screening["workPresented"]["@id"], "https://example.com/anime/movie-1.html#movie")
+        self.assertEqual(
+            screening["offers"]["url"],
+            "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?txtSessionId=abc",
+        )
+        self.assertEqual(
+            [value["name"] for value in screening["about"]],
+            ["IMAX", "2D"],
+        )
         self.assertIn('class="app-shell movie-detail-shell"', movie)
         self.assertIn('class="sidebar"', movie)
         self.assertIn('id="cinemaListPanel"', movie)
@@ -227,10 +263,23 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         # Crawlable cinema list is intentionally compact: name + showtimes only.
         self.assertIn('<h3 class="cinema-list-name">測試影城 A</h3>', movie)
-        self.assertIn('<span class="cinema-list-time">13:00</span>', movie)
-        self.assertIn('<span class="cinema-list-time">19:30</span>', movie)
+        self.assertIn(
+            '<time class="cinema-list-time" datetime="2026-10-06T13:00:00+08:00" '
+            'data-formats="IMAX|2D" '
+            'data-booking-url="https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?txtSessionId=abc">13:00</time>',
+            movie,
+        )
+        self.assertIn(
+            '<time class="cinema-list-time" datetime="2026-10-06T19:30:00+08:00" '
+            'data-formats="數位">19:30</time>',
+            movie,
+        )
         self.assertIn('<h3 class="cinema-list-name">測試影城 B</h3>', movie)
-        self.assertIn('<span class="cinema-list-time">21:00</span>', movie)
+        self.assertIn(
+            '<time class="cinema-list-time" datetime="2026-10-06T21:00:00+08:00" '
+            'data-formats="數位">21:00</time>',
+            movie,
+        )
         self.assertNotIn("臺北市測試路 1 號", movie)
         self.assertNotIn("前往訂票", movie)
         self.assertNotIn("官方網站", movie)
@@ -268,6 +317,12 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn("https://example.com/anime/movie-3.html", sitemap)
         self.assertIn("https://example.com/anime/movie-4.html", sitemap)
         self.assertNotIn("https://example.com/anime/movie-5.html", sitemap)
+
+        robots = (self.web / "robots.txt").read_text(encoding="utf-8")
+        for agent in ("OAI-SearchBot", "PerplexityBot", "Googlebot", "Bingbot"):
+            self.assertIn(f"User-agent: {agent}\nAllow: /", robots)
+        self.assertIn("User-agent: *\nAllow: /", robots)
+        self.assertIn("Sitemap: https://example.com/anime/sitemap.xml", robots)
 
 
 if __name__ == "__main__":
