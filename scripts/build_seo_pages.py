@@ -383,6 +383,178 @@ def display_update_label(map_data: dict, today: date) -> str:
     return "更新時間未提供"
 
 
+def machine_update_iso(map_data: dict, item: dict | None = None) -> str:
+    """Return the freshest trustworthy machine-readable modification timestamp."""
+    if item and item.get("_archive"):
+        archived = parse_update_datetime(item.get("updated_at"))
+        if archived:
+            return archived.isoformat(timespec="seconds")
+
+    updated = parse_update_datetime(map_data.get("updated_at"))
+    if updated:
+        return updated.isoformat(timespec="seconds")
+
+    generated = str(map_data.get("generated_at") or "").strip()
+    if generated:
+        parsed = parse_update_datetime(generated)
+        if parsed:
+            return parsed.isoformat(timespec="seconds")
+        parsed_date = parse_iso_date(generated)
+        if parsed_date:
+            return parsed_date.isoformat()
+    return ""
+
+
+def collect_source_urls(by_date: dict[str, list[dict]]) -> list[str]:
+    """Collect first-party/source URLs already carried by the canonical map data."""
+    values: list[str] = []
+
+    def add(value: object) -> None:
+        if isinstance(value, str):
+            url = value.strip()
+            if url.startswith(("http://", "https://")) and url not in values:
+                values.append(url)
+        elif isinstance(value, list):
+            for entry in value:
+                add(entry)
+        elif isinstance(value, dict):
+            for entry in value.values():
+                add(entry)
+
+    for features in by_date.values():
+        for feature in features:
+            props = feature.get("properties") or {}
+            for key in ("crawl_url", "supplemental_web_source", "official_url"):
+                add(props.get(key))
+    return values[:50]
+
+
+def screening_start_iso(show_date: str, time_value: str) -> str:
+    if parse_iso_date(show_date) is None or showtime_minute(time_value) is None:
+        return ""
+    return f"{show_date}T{time_value}:00+08:00"
+
+
+def movie_structured_data(
+    item: dict,
+    by_date: dict[str, list[dict]],
+    map_data: dict,
+    base_url: str,
+    canonical: str,
+    poster: str,
+) -> dict:
+    """Build one JSON-LD graph for AI/search extraction without changing visible UI."""
+    title = str(item.get("title") or "").strip()
+    publisher_id = urljoin(base_url, "#publisher")
+    webpage_id = canonical + "#webpage"
+    movie_id = canonical + "#movie"
+
+    webpage: dict = {
+        "@type": "WebPage",
+        "@id": webpage_id,
+        "url": canonical,
+        "name": f"{title} 場次",
+        "publisher": {"@id": publisher_id},
+        "mainEntity": {"@id": movie_id},
+    }
+    modified = machine_update_iso(map_data, item)
+    if modified:
+        webpage["dateModified"] = modified
+
+    sources = collect_source_urls(by_date)
+    if sources:
+        webpage["citation"] = sources
+
+    movie: dict = {
+        "@type": "Movie",
+        "@id": movie_id,
+        "name": title,
+        "url": canonical,
+    }
+    if poster:
+        movie["image"] = poster
+
+    graph: list[dict] = [
+        webpage,
+        {
+            "@type": "Organization",
+            "@id": publisher_id,
+            "name": "電影場次",
+            "url": base_url,
+        },
+        movie,
+    ]
+
+    theaters: dict[str, dict] = {}
+    events: list[dict] = []
+
+    for show_date in sorted(by_date):
+        for feature_index, feature in enumerate(by_date.get(show_date) or []):
+            props = feature.get("properties") or {}
+            location_id = str(props.get("location_id") or "").strip()
+            location_name = str(props.get("location_name") or props.get("map_name") or "影城").strip()
+            stable_location = location_id or f"{feature_index}-{normalize_title(location_name)[:40]}"
+            fragment = re.sub(r"[^A-Za-z0-9_-]+", "-", stable_location).strip("-") or str(feature_index)
+            theater_id = f"{canonical}#cinema-{fragment}"
+
+            if theater_id not in theaters:
+                theater: dict = {
+                    "@type": "MovieTheater",
+                    "@id": theater_id,
+                    "name": location_name,
+                }
+                address = str(props.get("address") or "").strip()
+                city = str(props.get("city") or "").strip()
+                if address or city:
+                    theater["address"] = {
+                        "@type": "PostalAddress",
+                        "streetAddress": address,
+                        "addressLocality": city,
+                        "addressCountry": "TW",
+                    }
+                location_url = str(props.get("location_url") or "").strip()
+                official_url = str(props.get("official_url") or "").strip()
+                if location_url.startswith(("http://", "https://")):
+                    theater["url"] = location_url
+                if official_url.startswith(("http://", "https://")):
+                    theater["sameAs"] = official_url
+                theaters[theater_id] = theater
+
+            showtimes = props.get("showtimes") if isinstance(props.get("showtimes"), list) else []
+            for showtime_index, showtime in enumerate(showtimes):
+                time_value = str(showtime.get("time") or "").strip()
+                start_date = screening_start_iso(show_date, time_value)
+                if not start_date:
+                    continue
+                tags = showtime_format_tags(showtime)
+                event: dict = {
+                    "@type": "ScreeningEvent",
+                    "@id": f"{canonical}#screening-{fragment}-{show_date}-{time_value.replace(':', '')}-{showtime_index}",
+                    "name": f"{title} {date_label(show_date)} {time_value} 場次",
+                    "startDate": start_date,
+                    "eventStatus": "https://schema.org/EventScheduled",
+                    "location": {"@id": theater_id},
+                    "workPresented": {"@id": movie_id},
+                    "url": canonical,
+                }
+                if tags:
+                    event["about"] = [{"@type": "Thing", "name": tag} for tag in tags]
+                language = str(showtime.get("language") or "").strip()
+                if language:
+                    event["inLanguage"] = language
+                booking_url = str(showtime.get("booking_url") or "").strip()
+                if booking_url.startswith(("http://", "https://")):
+                    event["offers"] = {
+                        "@type": "Offer",
+                        "url": booking_url,
+                    }
+                events.append(event)
+
+    graph.extend(theaters.values())
+    graph.extend(events)
+    return {"@context": "https://schema.org", "@graph": graph}
+
+
 def cinema_html(feature: dict, show_date: str) -> str:
     props = feature.get("properties") or {}
     geometry = feature.get("geometry") or {}
@@ -468,20 +640,36 @@ def cinema_html(feature: dict, show_date: str) -> str:
         '</article>'
     )
 
-def compact_cinema_list_html(feature: dict) -> str:
+def compact_cinema_list_html(feature: dict, show_date: str) -> str:
     props = feature.get("properties") or {}
     name = str(props.get("location_name") or props.get("map_name") or "影城").strip()
     location_id = str(props.get("location_id") or "").strip()
     showtimes = props.get("showtimes") if isinstance(props.get("showtimes"), list) else []
-    time_html = "".join(
-        f'<span class="cinema-list-time">{html.escape(str(showtime.get("time") or "").strip())}</span>'
-        for showtime in showtimes
-        if str(showtime.get("time") or "").strip()
-    )
+    parts: list[str] = []
+    for showtime in showtimes:
+        time_value = str(showtime.get("time") or "").strip()
+        if not time_value:
+            continue
+        start_date = screening_start_iso(show_date, time_value)
+        tags = showtime_format_tags(showtime)
+        booking_url = str(showtime.get("booking_url") or "").strip()
+        attrs = [
+            f'datetime="{html.escape(start_date, quote=True)}"' if start_date else "",
+            f'data-formats="{html.escape("|".join(tags), quote=True)}"',
+            (
+                f'data-booking-url="{html.escape(booking_url, quote=True)}"'
+                if booking_url.startswith(("http://", "https://"))
+                else ""
+            ),
+        ]
+        attrs_text = " ".join(value for value in attrs if value)
+        parts.append(
+            f'<time class="cinema-list-time" {attrs_text}>{html.escape(time_value)}</time>'
+        )
     return (
         f'<article class="cinema-list-card" data-location-id="{html.escape(location_id, quote=True)}">'
         f'<h3 class="cinema-list-name">{html.escape(name)}</h3>'
-        f'<div class="cinema-list-times">{time_html}</div>'
+        f'<div class="cinema-list-times">{"".join(parts)}</div>'
         '</article>'
     )
 
