@@ -804,6 +804,7 @@ def archive_page_html(item: dict, base_url: str, map_data: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{escaped_title}｜已無上映場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{html.escape(canonical, quote=True)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="電影場次" />
@@ -893,6 +894,7 @@ def movie_page_html(
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{html.escape(canonical, quote=True)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="電影場次" />
@@ -961,6 +963,7 @@ def movie_page_html(
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{html.escape(canonical, quote=True)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="電影場次" />
