@@ -90,8 +90,8 @@ def install_fixture(page):
             "movies": [
                 {
                     "id": 1,
-                    "title": "電影 A",
-                    "aliases": [],
+                    "title": "電影 A：這是一個非常非常長而且需要完整顯示的動畫電影標題",
+                    "aliases": ["電影 A"],
                     "target_date": "2026-08-01",
                     "poster_url": "https://example.com/a.jpg",
                 },
@@ -227,6 +227,21 @@ def main() -> int:
             assert movie_a.get_attribute("href") == "movie-1.html"
             assert page.locator("#movieDiscovery").is_visible()
 
+            long_title = page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
+            long_metrics = long_title.evaluate(
+                """el => ({
+                    text: el.textContent,
+                    scrollHeight: el.scrollHeight,
+                    clientHeight: el.clientHeight,
+                    overflow: getComputedStyle(el).overflow,
+                    lineClamp: getComputedStyle(el).webkitLineClamp,
+                })"""
+            )
+            assert "非常非常長" in long_metrics["text"]
+            assert long_metrics["scrollHeight"] <= long_metrics["clientHeight"] + 1, long_metrics
+            assert long_metrics["overflow"] == "visible", long_metrics
+            assert long_metrics["lineClamp"] in ("none", ""), long_metrics
+
             artifact_dir = REPO / "artifacts"
             artifact_dir.mkdir(exist_ok=True)
             page.screenshot(path=str(artifact_dir / "movie-discovery-desktop.png"), full_page=True)
@@ -259,6 +274,29 @@ def main() -> int:
             assert first and second
             assert abs(first["y"] - second["y"]) < 4, (first, second)
             assert second["x"] > first["x"] + first["width"] * 0.7, (first, second)
+
+            mobile_long_title = mobile_page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
+            mobile_long_metrics = mobile_long_title.evaluate(
+                """el => ({
+                    scrollHeight: el.scrollHeight,
+                    clientHeight: el.clientHeight,
+                    overflow: getComputedStyle(el).overflow,
+                    lineClamp: getComputedStyle(el).webkitLineClamp,
+                })"""
+            )
+            assert mobile_long_metrics["scrollHeight"] <= mobile_long_metrics["clientHeight"] + 1, mobile_long_metrics
+            assert mobile_long_metrics["overflow"] == "visible", mobile_long_metrics
+            assert mobile_long_metrics["lineClamp"] in ("none", ""), mobile_long_metrics
+
+            # With two columns, card 3 starts on the next row. Its poster must not cover
+            # the full title under card 1.
+            first_title_box = mobile_long_title.bounding_box()
+            next_row_poster = mobile_page.locator("#nowShowingGrid .movie-card").nth(2).locator(".movie-card__poster").bounding_box()
+            assert first_title_box and next_row_poster
+            assert first_title_box["y"] + first_title_box["height"] + 4 <= next_row_poster["y"], (
+                first_title_box,
+                next_row_poster,
+            )
 
             mobile_movie = mobile_page.locator("#nowShowingGrid .movie-card").first
             mobile_href = mobile_movie.get_attribute("href")
