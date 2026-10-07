@@ -321,6 +321,7 @@ const {
   FORMAT_ORDER,
   FORMAT_RULES,
   displayTag: showtimeTag,
+  explicitFormatTags: showtimeExplicitFormatTags,
   formatTags: showtimeFormatTags,
   subLabel: showtimeSubLabel,
 } = window.MuseVersionFilter;
@@ -344,7 +345,10 @@ function auditShowtimeSpecs() {
       for (const showtime of feature.properties.showtimes || []) {
         const raw = showtimeSubLabel(showtime);
         if (!raw || flagged.has(raw)) continue;
-        const tokens = suspiciousSpecTokens(raw, showtimeTag(showtime));
+        const tokens = suspiciousSpecTokens(
+          raw,
+          showtimeExplicitFormatTags(showtime).join(" "),
+        );
         if (tokens.length) flagged.set(raw, tokens);
       }
     }

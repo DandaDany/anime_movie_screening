@@ -94,7 +94,7 @@ def assert_single_result_auto_focus(
 
 
 def run_case(page, mobile: bool):
-    page.goto("http://127.0.0.1:8765/", wait_until="networkidle")
+    page.goto("http://127.0.0.1:8765/", wait_until="domcontentloaded")
     enter_map(page)
 
     if mobile:
@@ -108,6 +108,10 @@ def run_case(page, mobile: bool):
     assert "Dolby" in labels
     assert "INFINITY VISION" in labels
     assert "數位" in labels
+
+    # One explicit 數位 session + one language-only session must both count as standard digital.
+    digital = page.locator("#formatFilterList .filter-option", has_text="數位")
+    assert digital.locator("strong").inner_text() == "2"
 
     # Important: IMAX has TWO sessions but only ONE venue. Auto-focus must be
     # based on remaining venue count, not the numeric showtime count on the button.
@@ -142,6 +146,23 @@ def run_case(page, mobile: bool):
         mobile,
         expected_times=["18:00"],
         excluded_times=["21:00"],
+    )
+
+    close_info_surface(page, mobile)
+    if mobile:
+        page.locator("#mSeg button[data-tab='format']").click()
+
+    # Toggle 4DX off, then verify the unlabeled/language-only session is part of 數位.
+    page.locator("#formatFilterList .filter-option", has_text="4DX").click()
+    page.wait_for_timeout(120)
+    digital = page.locator("#formatFilterList .filter-option", has_text="數位")
+    assert digital.locator("strong").inner_text() == "2"
+    digital.click()
+    assert_single_result_auto_focus(
+        page,
+        mobile,
+        expected_times=["19:00", "20:00"],
+        excluded_times=["16:00", "17:00", "18:00", "21:00"],
     )
 
 

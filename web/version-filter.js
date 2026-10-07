@@ -49,7 +49,7 @@
     return rest || showtime?.format || "";
   }
 
-  function formatTags(showtime) {
+  function explicitFormatTags(showtime) {
     const raw = subLabel(showtime);
     if (!raw) return [];
 
@@ -66,6 +66,13 @@
     }
 
     return formats;
+  }
+
+  function formatTags(showtime) {
+    const formats = explicitFormatTags(showtime);
+    // 影城來源常只回傳廳號、語言、片名，沒有明確寫「數位／2D」。
+    // 產品規則：沒有辨識出任何明確版本時，一律視為一般數位場。
+    return formats.length ? formats : ["數位"];
   }
 
   function languageTag(showtime) {
@@ -96,6 +103,7 @@
     FORMAT_RULES,
     LANG_RULES,
     displayTag,
+    explicitFormatTags,
     formatTags,
     languageTag,
     subLabel,

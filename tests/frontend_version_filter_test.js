@@ -14,6 +14,7 @@ vm.runInContext(source, sandbox);
 const {
   FORMAT_ORDER,
   displayTag,
+  explicitFormatTags,
   formatTags,
   languageTag,
 } = sandbox.window.MuseVersionFilter;
@@ -55,5 +56,22 @@ assert(
   "display tag should include Dolby",
 );
 assert(FORMAT_ORDER.indexOf("IMAX") < FORMAT_ORDER.indexOf("數位"), "Premium formats should sort before standard 2D");
+
+assert(
+  JSON.stringify(tags("07廳")) === JSON.stringify(["數位"]),
+  "hall-number-only showtime should default to standard digital",
+);
+assert(
+  JSON.stringify(tags("日文(JPN)")) === JSON.stringify(["數位"]),
+  "language-only showtime should default to standard digital",
+);
+assert(
+  JSON.stringify(tags("")) === JSON.stringify(["數位"]),
+  "blank version should default to standard digital",
+);
+assert(
+  explicitFormatTags({ time: "19:30", format: "07廳", label: "19:30 07廳" }).length === 0,
+  "audit path must still know that 07廳 had no explicit version",
+);
 
 console.log("frontend_version_filter_test: ok");

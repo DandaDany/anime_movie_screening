@@ -138,6 +138,20 @@ class BuildSeoPagesTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
+    def test_unlabeled_showtime_defaults_to_digital(self) -> None:
+        self.assertEqual(
+            build_seo_pages.showtime_format_tags(
+                {"time": "20:00", "format": "日文(JPN)", "label": "20:00 日文(JPN)"}
+            ),
+            ["數位"],
+        )
+        self.assertEqual(
+            build_seo_pages.showtime_explicit_format_tags(
+                {"time": "20:00", "format": "日文(JPN)", "label": "20:00 日文(JPN)"}
+            ),
+            [],
+        )
+
     def test_movie_page_keeps_original_map_and_compact_cinema_list(self) -> None:
         result = build_seo_pages.build(
             self.web,
@@ -175,7 +189,7 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertLess(movie.index('id="cinemaListPanel"'), movie.index('class="map-wrap"'))
 
         self.assertIn('href="styles.css?v=20261007a"', movie)
-        self.assertIn('src="app.js?v=20261007b"', movie)
+        self.assertIn('src="app.js?v=20261007c"', movie)
         self.assertIn('src="movie-detail-list.js?v=20261007a"', movie)
         self.assertIn('href="movie-detail-list.css?v=20261007a"', movie)
         self.assertNotIn('id="movieMap"', movie)

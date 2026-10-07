@@ -76,6 +76,7 @@
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
   gap: 30px 18px;
 }
 
@@ -152,22 +153,21 @@
 }
 
 .movie-card__title {
-  display: -webkit-box;
-  overflow: hidden;
+  display: block;
+  overflow: visible;
   margin-top: 9px;
   color: rgba(255, 255, 255, 0.92);
   font-size: 13.5px;
   font-weight: 600;
   line-height: 1.45;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .movie-card:hover {
     z-index: 2;
-    transform: translateY(-8px) scale(1.04);
+    transform: none;
     filter: brightness(1.035);
   }
 
@@ -182,7 +182,7 @@
 .movie-card:focus-visible {
   z-index: 2;
   outline: 0;
-  transform: translateY(-8px) scale(1.04);
+  transform: none;
 }
 
 .movie-card:focus-visible .movie-card__poster {
