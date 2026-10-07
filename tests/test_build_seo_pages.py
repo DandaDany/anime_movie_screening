@@ -175,7 +175,7 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertLess(movie.index('id="cinemaListPanel"'), movie.index('class="map-wrap"'))
 
         self.assertIn('href="styles.css?v=20261007a"', movie)
-        self.assertIn('src="app.js?v=20261006f"', movie)
+        self.assertIn('src="app.js?v=20261007b"', movie)
         self.assertIn('src="movie-detail-list.js?v=20261007a"', movie)
         self.assertIn('href="movie-detail-list.css?v=20261007a"', movie)
         self.assertNotIn('id="movieMap"', movie)
