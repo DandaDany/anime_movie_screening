@@ -766,7 +766,7 @@ def filter_html(
 """
 
 
-def archive_page_html(item: dict, base_url: str) -> str:
+def archive_page_html(item: dict, base_url: str, map_data: dict) -> str:
     title = str(item.get("title") or "").strip()
     escaped_title = html.escape(title)
     canonical = movie_canonical(item, base_url)
@@ -776,14 +776,14 @@ def archive_page_html(item: dict, base_url: str) -> str:
     target_label = target.strftime("%Y/%m/%d") if target else ""
     description = f"《{title}》上映資訊存檔。目前已無上映場次，可回到電影場次首頁查看其他正在上映與即將上映電影。"
 
-    structured = {
-        "@context": "https://schema.org",
-        "@type": "Movie",
-        "name": title,
-        "url": canonical,
-    }
-    if poster:
-        structured["image"] = poster
+    structured = movie_structured_data(
+        item,
+        {},
+        map_data,
+        base_url,
+        canonical,
+        poster,
+    )
 
     poster_html = (
         f'<img src="{html.escape(poster, quote=True)}" alt="{escaped_title} 電影海報" '
@@ -839,7 +839,7 @@ def movie_page_html(
     page_links: dict[str, str],
 ) -> str:
     if item.get("_archive"):
-        return archive_page_html(item, base_url)
+        return archive_page_html(item, base_url, map_data)
 
     title = str(item.get("title") or "").strip()
     escaped_title = html.escape(title)
@@ -854,14 +854,14 @@ def movie_page_html(
     default_date = preferred_map_date(by_date, today)
     map_title = map_title_for_item(item, map_data)
 
-    structured = {
-        "@context": "https://schema.org",
-        "@type": "Movie",
-        "name": title,
-        "url": canonical,
-    }
-    if poster:
-        structured["image"] = poster
+    structured = movie_structured_data(
+        item,
+        by_date,
+        map_data,
+        base_url,
+        canonical,
+        poster,
+    )
 
     og_image = ""
     twitter_image = ""
@@ -928,7 +928,10 @@ def movie_page_html(
         features_for_date = by_date[show_date]
         if not features_for_date:
             continue
-        cards = "".join(compact_cinema_list_html(feature) for feature in features_for_date)
+        cards = "".join(
+            compact_cinema_list_html(feature, show_date)
+            for feature in features_for_date
+        )
         static_sections.append(
             f'<section data-seo-show-date="{html.escape(show_date, quote=True)}">'
             f'<h2 class="seo-visually-hidden"><time datetime="{html.escape(show_date, quote=True)}">'
@@ -1169,7 +1172,10 @@ def write_sitemap(web_dir: Path, urls: list[str], map_data: dict, base_url: str)
 
 
 def write_robots(web_dir: Path, base_url: str) -> None:
-    payload = f"User-agent: *\nAllow: /\n\nSitemap: {urljoin(base_url, 'sitemap.xml')}\n"
+    agents = ("OAI-SearchBot", "PerplexityBot", "Googlebot", "Bingbot")
+    blocks = [f"User-agent: {agent}\nAllow: /" for agent in agents]
+    blocks.append("User-agent: *\nAllow: /")
+    payload = "\n\n".join(blocks) + f"\n\nSitemap: {urljoin(base_url, 'sitemap.xml')}\n"
     (web_dir / "robots.txt").write_text(payload, encoding="utf-8")
 
 
