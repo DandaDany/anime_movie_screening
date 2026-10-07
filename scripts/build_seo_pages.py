@@ -798,9 +798,9 @@ def movie_page_html(
   <script src="carto-basemap-auth.js?v=20260903a"></script>
   <script src="time-filter.js?v=20260812a"></script>
   <script src="date-state.js?v=20260812a"></script>
-  <script src="version-filter.js?v=20260925a"></script>
+  <script src="version-filter.js?v=20261007b"></script>
   <script src="movie-detail-list.js?v=20261007a"></script>
-  <script src="app.js?v=20261007b"></script>
+  <script src="app.js?v=20261007c"></script>
   <script src="empty-state.js?v=20260820a"></script>
 </body>
 </html>
