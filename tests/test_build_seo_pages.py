@@ -187,10 +187,12 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertEqual(result["movies"], 4)
 
         home = (self.web / "index.html").read_text(encoding="utf-8")
+        self.assertIn('<meta name="robots" content="index, follow, max-image-preview:large" />', home)
         self.assertIn('"測試動畫": "movie-1.html"', home)
         self.assertIn('"第二部": "movie-3.html"', home)
 
         movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
+        self.assertIn('<meta name="robots" content="index, follow, max-image-preview:large" />', movie)
         self.assertIn("<title>測試動畫電影 場次｜電影場次</title>", movie)
         self.assertIn('<section class="seo-visually-hidden" aria-label="測試動畫電影 場次頁面資訊">', movie)
         self.assertIn("<h1>測試動畫電影 場次</h1>", movie)
