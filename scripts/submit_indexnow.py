@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
@@ -61,6 +62,29 @@ def submit(payload: dict, endpoint: str = INDEXNOW_ENDPOINT, timeout: int = 20) 
     return status
 
 
+def submit_with_retries(
+    payload: dict,
+    endpoint: str = INDEXNOW_ENDPOINT,
+    attempts: int = 3,
+    delay_seconds: int = 8,
+) -> int:
+    last_error: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            return submit(payload, endpoint=endpoint)
+        except Exception as error:
+            last_error = error
+            if attempt == attempts:
+                break
+            print(
+                f"IndexNow attempt {attempt}/{attempts} failed: {error}; "
+                f"retrying in {delay_seconds}s..."
+            )
+            time.sleep(delay_seconds)
+    assert last_error is not None
+    raise last_error
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Notify IndexNow after GitHub Pages deployment.")
     parser.add_argument("--sitemap", type=Path, default=Path("web/sitemap.xml"))
@@ -77,7 +101,7 @@ def main() -> None:
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return
 
-    status = submit(payload, endpoint=args.endpoint)
+    status = submit_with_retries(payload, endpoint=args.endpoint)
     print(f"IndexNow accepted {len(payload['urlList'])} URLs (HTTP {status}).")
 
 
