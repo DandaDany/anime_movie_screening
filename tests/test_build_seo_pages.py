@@ -135,6 +135,31 @@ class BuildSeoPagesTests(unittest.TestCase):
             json.dumps(locations, ensure_ascii=False), encoding="utf-8"
         )
 
+        control_dir = Path(self.temp_dir.name) / "data" / "control"
+        control_dir.mkdir(parents=True)
+        tracked = {
+            "schema_version": 1,
+            "movies": [
+                {
+                    "id": 4,
+                    "title": "已下檔動畫電影",
+                    "aliases": [],
+                    "target_date": "2026-08-01",
+                    "is_active": False,
+                },
+                {
+                    "id": 5,
+                    "title": "停用未上映草稿",
+                    "aliases": [],
+                    "target_date": "2026-12-01",
+                    "is_active": False,
+                },
+            ],
+        }
+        (control_dir / "tracked_movies.json").write_text(
+            json.dumps(tracked, ensure_ascii=False), encoding="utf-8"
+        )
+
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
@@ -158,7 +183,7 @@ class BuildSeoPagesTests(unittest.TestCase):
             base_url="https://example.com/anime/",
             today=date(2026, 10, 6),
         )
-        self.assertEqual(result["movies"], 3)
+        self.assertEqual(result["movies"], 4)
 
         home = (self.web / "index.html").read_text(encoding="utf-8")
         self.assertIn('"測試動畫": "movie-1.html"', home)
@@ -166,6 +191,11 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
         self.assertIn("<title>測試動畫電影 場次｜電影場次</title>", movie)
+        self.assertIn('<section class="seo-visually-hidden" aria-label="測試動畫電影 場次頁面資訊">', movie)
+        self.assertIn("<h1>測試動畫電影 場次</h1>", movie)
+        self.assertIn('<time datetime="2026-10-01">2026/10/01</time>', movie)
+        self.assertIn('<h2 class="seo-visually-hidden"><time datetime="2026-10-06">2026/10/06</time> 場次</h2>', movie)
+        self.assertIn('<p class="panel-title">電影場次</p>', movie)
         self.assertIn('class="app-shell movie-detail-shell"', movie)
         self.assertIn('class="sidebar"', movie)
         self.assertIn('id="cinemaListPanel"', movie)
@@ -191,7 +221,7 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('href="styles.css?v=20261007a"', movie)
         self.assertIn('src="app.js?v=20261007c"', movie)
         self.assertIn('src="movie-detail-list.js?v=20261007a"', movie)
-        self.assertIn('href="movie-detail-list.css?v=20261007a"', movie)
+        self.assertIn('href="movie-detail-list.css?v=20261007b"', movie)
         self.assertNotIn('id="movieMap"', movie)
         self.assertNotIn('class="movie-workspace"', movie)
 
@@ -221,9 +251,23 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn("目前沒有可查詢場次", upcoming)
         self.assertNotIn('id="map"', upcoming)
 
+        archive = (self.web / "movie-4.html").read_text(encoding="utf-8")
+        self.assertIn("<title>已下檔動畫電影｜已無上映場次｜電影場次</title>", archive)
+        self.assertIn("<h1", archive)
+        self.assertIn("已下檔動畫電影 場次", archive)
+        self.assertIn("目前已無上映場次", archive)
+        self.assertIn('<time datetime="2026-08-01">', archive)
+        self.assertNotIn('id="map"', archive)
+        self.assertFalse((self.web / "movie-5.html").exists())
+
+        # Archive pages remain indexable but are not reintroduced into the active homepage.
+        self.assertNotIn("已下檔動畫電影", home)
+
         sitemap = (self.web / "sitemap.xml").read_text(encoding="utf-8")
         self.assertIn("https://example.com/anime/movie-1.html", sitemap)
         self.assertIn("https://example.com/anime/movie-3.html", sitemap)
+        self.assertIn("https://example.com/anime/movie-4.html", sitemap)
+        self.assertNotIn("https://example.com/anime/movie-5.html", sitemap)
 
 
 if __name__ == "__main__":
