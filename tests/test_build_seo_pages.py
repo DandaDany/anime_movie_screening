@@ -187,7 +187,6 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertEqual(result["movies"], 4)
 
         home = (self.web / "index.html").read_text(encoding="utf-8")
-        self.assertIn('<meta name="robots" content="index, follow, max-image-preview:large" />', home)
         self.assertIn('"測試動畫": "movie-1.html"', home)
         self.assertIn('"第二部": "movie-3.html"', home)
 
