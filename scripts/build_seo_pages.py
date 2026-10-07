@@ -216,8 +216,8 @@ def showtime_sub_label(showtime: dict) -> str:
     return rest or str(showtime.get("format") or "")
 
 
-def showtime_format_tags(showtime: dict) -> list[str]:
-    """Mirror web/version-filter.js: only recognized map whitelist tags survive."""
+def showtime_explicit_format_tags(showtime: dict) -> list[str]:
+    """Mirror the explicit whitelist matching in web/version-filter.js."""
     raw = showtime_sub_label(showtime)
     values: list[str] = []
     for name, pattern in FORMAT_RULES:
@@ -226,6 +226,12 @@ def showtime_format_tags(showtime: dict) -> list[str]:
     if "數位" in values and "2D" in values:
         values.remove("2D")
     return values
+
+
+def showtime_format_tags(showtime: dict) -> list[str]:
+    """Unlabeled/unknown showtimes are treated as ordinary digital sessions."""
+    values = showtime_explicit_format_tags(showtime)
+    return values or ["數位"]
 
 
 def direct_showtime_booking_url(showtime: dict) -> str:
