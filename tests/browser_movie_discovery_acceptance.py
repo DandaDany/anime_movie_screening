@@ -240,13 +240,21 @@ def main() -> int:
             assert abs(first_poster_box["width"] - second_poster_box["width"]) <= 1
             assert abs(first_poster_box["height"] - second_poster_box["height"]) <= 1
 
-            # Desktop hover restores the poster-only zoom without changing the card grid.
+            # Restore original full-card lift/scale; the poster span must be a
+            # block, otherwise transform/aspect-ratio rules do not apply.
+            assert first_poster.evaluate("el => getComputedStyle(el).display") == "block"
+            poster_rect = first_poster.bounding_box()
+            assert poster_rect and abs(poster_rect["height"] / poster_rect["width"] - 1.5) < 0.03, poster_rect
             first_poster.hover()
-            page.wait_for_timeout(220)
-            poster_scale = first_poster.evaluate(
-                "el => new DOMMatrix(getComputedStyle(el).transform).a"
+            page.wait_for_timeout(250)
+            card_transform = first_poster.locator("xpath=..").evaluate(
+                """el => {
+                    const m = new DOMMatrix(getComputedStyle(el).transform);
+                    return { scale: m.a, lift: m.m42 };
+                }"""
             )
-            assert poster_scale >= 1.07, poster_scale
+            assert card_transform["scale"] >= 1.035, card_transform
+            assert card_transform["lift"] <= -7, card_transform
 
             long_title = page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
             assert float(long_title.evaluate("el => parseFloat(getComputedStyle(el).fontSize)")) >= 15
