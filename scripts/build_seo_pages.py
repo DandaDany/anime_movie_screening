@@ -69,7 +69,7 @@ CITY_ORDER = [
     "臺南市", "高雄市", "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣",
     "澎湖縣", "金門縣", "連江縣",
 ]
-BRAND_LOGO_PATH = "assets/brand/logo-512.png"
+BRAND_LOGO_PATH = "assets/brand/logo-256.png"
 BRAND_OG_PATH = "assets/brand/og-home.jpg"
 BRAND_FAVICON_PATH = BRAND_LOGO_PATH
 BRAND_APPLE_ICON_PATH = BRAND_LOGO_PATH
@@ -393,8 +393,8 @@ def home_today_structured_data(
                 "logo": {
                     "@type": "ImageObject",
                     "url": urljoin(base_url, BRAND_LOGO_PATH),
-                    "width": 512,
-                    "height": 512,
+                    "width": 256,
+                    "height": 256,
                 },
             },
             item_list,
@@ -1046,7 +1046,7 @@ def archive_page_html(item: dict, base_url: str, map_data: dict) -> str:
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" sizes="512x512" href="{BRAND_FAVICON_PATH}" />
+  <link rel="icon" type="image/png" sizes="256x256" href="{BRAND_FAVICON_PATH}" />
   <link rel="apple-touch-icon" href="{BRAND_APPLE_ICON_PATH}" />
   <title>{escaped_title}｜已無上映場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
@@ -1143,7 +1143,7 @@ def movie_page_html(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" sizes="512x512" href="{BRAND_FAVICON_PATH}" />
+  <link rel="icon" type="image/png" sizes="256x256" href="{BRAND_FAVICON_PATH}" />
   <link rel="apple-touch-icon" href="{BRAND_APPLE_ICON_PATH}" />
   <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
@@ -1234,7 +1234,7 @@ def movie_page_html(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <link rel="icon" type="image/png" sizes="512x512" href="{BRAND_FAVICON_PATH}" />
+  <link rel="icon" type="image/png" sizes="256x256" href="{BRAND_FAVICON_PATH}" />
   <link rel="apple-touch-icon" href="{BRAND_APPLE_ICON_PATH}" />
   <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
