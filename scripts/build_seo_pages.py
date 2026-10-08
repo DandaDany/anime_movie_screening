@@ -689,6 +689,12 @@ def movie_structured_data(
             "@id": publisher_id,
             "name": "電影場次",
             "url": base_url,
+            "logo": {
+                "@type": "ImageObject",
+                "url": urljoin(base_url, BRAND_LOGO_PATH),
+                "width": 256,
+                "height": 256,
+            },
         },
         movie,
     ]
