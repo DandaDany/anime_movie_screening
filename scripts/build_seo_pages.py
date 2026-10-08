@@ -24,6 +24,8 @@ UPCOMING_START = "<!-- SEO_PRERENDER_UPCOMING_START -->"
 UPCOMING_END = "<!-- SEO_PRERENDER_UPCOMING_END -->"
 MOVIE_LINKS_START = "<!-- SEO_MOVIE_LINKS_START -->"
 MOVIE_LINKS_END = "<!-- SEO_MOVIE_LINKS_END -->"
+HOME_TODAY_AI_START = "<!-- SEO_TODAY_AI_START -->"
+HOME_TODAY_AI_END = "<!-- SEO_TODAY_AI_END -->"
 
 FORMAT_RULES = [
     ("IMAX", re.compile(r"imax", re.I)),
@@ -235,7 +237,165 @@ def replace_marker_block(source: str, start: str, end: str, inner: str) -> str:
     return updated
 
 
-def prerender_home(index_path: Path, catalog: list[dict], map_data: dict, today: date) -> None:
+def city_sort_key(name: str) -> tuple[int, str]:
+    rank = {city: index for index, city in enumerate(CITY_ORDER)}
+    return (rank.get(name, 999), name)
+
+
+def home_today_structured_data(
+    catalog: list[dict],
+    map_data: dict,
+    today: date,
+    base_url: str,
+) -> dict:
+    """Describe the product's core question: what can I watch today, and where?"""
+    publisher_id = urljoin(base_url, "#publisher")
+    page_id = urljoin(base_url, "#webpage")
+    item_list_id = urljoin(base_url, "#today-movies")
+    today_value = today.isoformat()
+
+    list_items: list[dict] = []
+    position = 1
+
+    for item in catalog:
+        if item.get("id") is None or not item.get("title"):
+            continue
+        target = parse_iso_date(item.get("target_date"))
+        if target and target > today:
+            continue
+
+        schedules = movie_features_by_date(item, map_data)
+        features = schedules.get(today_value) or []
+        if not features:
+            continue
+
+        cities: set[str] = set()
+        formats: set[str] = set()
+        valid_times: list[str] = []
+        theater_ids: set[str] = set()
+        showtime_count = 0
+
+        for feature in features:
+            props = feature.get("properties") or {}
+            city = str(props.get("city") or "").strip()
+            if city:
+                cities.add(city)
+            location_id = str(props.get("location_id") or "").strip()
+            location_name = str(props.get("location_name") or props.get("map_name") or "").strip()
+            theater_key = location_id or normalize_title(location_name)
+            if theater_key:
+                theater_ids.add(theater_key)
+
+            for showtime in props.get("showtimes") or []:
+                time_value = str(showtime.get("time") or "").strip()
+                if showtime_minute(time_value) is None:
+                    continue
+                showtime_count += 1
+                valid_times.append(time_value)
+                formats.update(showtime_format_tags(showtime))
+
+        if showtime_count <= 0:
+            continue
+
+        ordered_cities = sorted(cities, key=city_sort_key)
+        ordered_formats = sorted(
+            formats,
+            key=lambda value: (
+                FORMAT_ORDER.index(value) if value in FORMAT_ORDER else 999,
+                value,
+            ),
+        )
+        earliest = min(valid_times, key=lambda value: showtime_minute(value) or 0)
+        latest = max(valid_times, key=lambda value: showtime_minute(value) or 0)
+        canonical = movie_canonical(item, base_url)
+
+        summary: dict = {
+            "@type": "Dataset",
+            "name": f"{item['title']} {date_label(today_value)} 場次摘要",
+            "temporalCoverage": today_value,
+            "variableMeasured": [
+                {"@type": "PropertyValue", "name": "今日場次數", "value": showtime_count},
+                {"@type": "PropertyValue", "name": "上映影城數", "value": len(theater_ids)},
+                {"@type": "PropertyValue", "name": "最早場次", "value": earliest},
+                {"@type": "PropertyValue", "name": "最晚場次", "value": latest},
+            ],
+        }
+        if ordered_cities:
+            summary["spatialCoverage"] = [
+                {"@type": "City", "name": city}
+                for city in ordered_cities
+            ]
+        if ordered_formats:
+            summary["variableMeasured"].append(
+                {
+                    "@type": "PropertyValue",
+                    "name": "上映版本",
+                    "value": "、".join(ordered_formats),
+                }
+            )
+
+        movie: dict = {
+            "@type": "Movie",
+            "@id": canonical + "#movie",
+            "name": str(item.get("title") or "").strip(),
+            "url": canonical,
+            "subjectOf": summary,
+        }
+        poster = poster_url(item, base_url)
+        if poster:
+            movie["image"] = poster
+
+        list_items.append(
+            {
+                "@type": "ListItem",
+                "position": position,
+                "url": canonical,
+                "item": movie,
+            }
+        )
+        position += 1
+
+    item_list: dict = {
+        "@type": "ItemList",
+        "@id": item_list_id,
+        "name": f"{date_label(today_value)} 今天可看的動畫電影",
+        "numberOfItems": len(list_items),
+        "itemListElement": list_items,
+    }
+    webpage: dict = {
+        "@type": "WebPage",
+        "@id": page_id,
+        "url": base_url,
+        "name": "電影場次｜今天可以看什麼動畫電影",
+        "publisher": {"@id": publisher_id},
+        "mainEntity": {"@id": item_list_id},
+    }
+    modified = machine_update_iso(map_data)
+    if modified:
+        webpage["dateModified"] = modified
+
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            webpage,
+            {
+                "@type": "Organization",
+                "@id": publisher_id,
+                "name": "電影場次",
+                "url": base_url,
+            },
+            item_list,
+        ],
+    }
+
+
+def prerender_home(
+    index_path: Path,
+    catalog: list[dict],
+    map_data: dict,
+    today: date,
+    base_url: str,
+) -> None:
     source = index_path.read_text(encoding="utf-8")
     now_items: list[dict] = []
     upcoming_items: list[dict] = []
@@ -255,6 +415,19 @@ def prerender_home(index_path: Path, catalog: list[dict], map_data: dict, today:
     page_links_json = json.dumps(movie_page_links(catalog, map_data), ensure_ascii=False).replace("</", "<\\/")
     links_html = f"<script>window.MuseMoviePageLinks = Object.freeze({page_links_json});</script>"
     source = replace_marker_block(source, MOVIE_LINKS_START, MOVIE_LINKS_END, links_html)
+    today_structured = home_today_structured_data(catalog, map_data, today, base_url)
+    today_json = json.dumps(today_structured, ensure_ascii=False).replace("</", "<\\/")
+    today_html = (
+        '<script id="todayShowtimesStructuredData" type="application/ld+json">'
+        + today_json
+        + "</script>"
+    )
+    source = replace_marker_block(
+        source,
+        HOME_TODAY_AI_START,
+        HOME_TODAY_AI_END,
+        today_html,
+    )
     index_path.write_text(source, encoding="utf-8")
 
 
@@ -485,6 +658,7 @@ def movie_structured_data(
         movie,
     ]
 
+    cities: dict[str, dict] = {}
     theaters: dict[str, dict] = {}
     events: list[dict] = []
 
@@ -505,6 +679,25 @@ def movie_structured_data(
                 }
                 address = str(props.get("address") or "").strip()
                 city = str(props.get("city") or "").strip()
+                if city:
+                    city_fragment = re.sub(
+                        r"[^A-Za-z0-9_-]+",
+                        "-",
+                        normalize_title(city),
+                    ).strip("-") or str(len(cities) + 1)
+                    city_id = f"{canonical}#city-{city_fragment}"
+                    if city_id not in cities:
+                        cities[city_id] = {
+                            "@type": "City",
+                            "@id": city_id,
+                            "name": city,
+                            "containedInPlace": {
+                                "@type": "Country",
+                                "name": "台灣",
+                                "identifier": "TW",
+                            },
+                        }
+                    theater["containedInPlace"] = {"@id": city_id}
                 if address or city:
                     theater["address"] = {
                         "@type": "PostalAddress",
@@ -550,6 +743,9 @@ def movie_structured_data(
                     }
                 events.append(event)
 
+    if cities:
+        webpage["spatialCoverage"] = [{"@id": city_id} for city_id in cities]
+    graph.extend(cities.values())
     graph.extend(theaters.values())
     graph.extend(events)
     return {"@context": "https://schema.org", "@graph": graph}
@@ -930,15 +1126,35 @@ def movie_page_html(
         features_for_date = by_date[show_date]
         if not features_for_date:
             continue
-        cards = "".join(
-            compact_cinema_list_html(feature, show_date)
-            for feature in features_for_date
-        )
+
+        city_groups: dict[str, list[dict]] = defaultdict(list)
+        city_sequence: list[str] = []
+        for feature in features_for_date:
+            props = feature.get("properties") or {}
+            city = str(props.get("city") or "").strip() or "其他地區"
+            if city not in city_groups:
+                city_sequence.append(city)
+            city_groups[city].append(feature)
+
+        # Preserve the map's source order for visible cards while adding semantic
+        # city containers. The containers are display:contents, so UI geometry is unchanged.
+        city_html: list[str] = []
+        for city in city_sequence:
+            cards = "".join(
+                compact_cinema_list_html(feature, show_date)
+                for feature in city_groups[city]
+            )
+            city_html.append(
+                f'<section class="cinema-list-city" data-seo-city="{html.escape(city, quote=True)}">'
+                f'<h3 class="seo-visually-hidden">{html.escape(city)}</h3>'
+                f'{cards}</section>'
+            )
+
         static_sections.append(
             f'<section data-seo-show-date="{html.escape(show_date, quote=True)}">'
             f'<h2 class="seo-visually-hidden"><time datetime="{html.escape(show_date, quote=True)}">'
             f'{html.escape(date_label(show_date))}</time> 場次</h2>'
-            f'{cards}</section>'
+            f'{"".join(city_html)}</section>'
         )
     static_list_html = "".join(static_sections)
 
@@ -1189,7 +1405,13 @@ def build(web_dir: Path, base_url: str = DEFAULT_BASE_URL, today: date | None = 
     catalog = [item for item in catalog_payload.get("movies", []) if isinstance(item, dict)]
     current_date = today or datetime.now(TAIPEI).date()
     archive_items = archive_catalog(web_dir, current_date)
-    prerender_home(web_dir / "index.html", catalog, map_data, current_date)
+    prerender_home(
+        web_dir / "index.html",
+        catalog,
+        map_data,
+        current_date,
+        base_url,
+    )
     movie_urls = write_movie_pages(
         web_dir,
         catalog,
