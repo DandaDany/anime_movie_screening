@@ -227,6 +227,11 @@ def main() -> int:
             assert movie_a.get_attribute("href") == "movie-1.html"
             assert page.locator("#movieDiscovery").is_visible()
 
+            meta = page.locator(".movie-discovery__meta")
+            assert meta.is_visible()
+            assert "實際上映與售票狀況請以影城官方資訊為準" in meta.inner_text()
+            assert meta.locator('a[href="about.html"]').count() == 1
+
             long_title = page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
             long_metrics = long_title.evaluate(
                 """el => ({
@@ -267,6 +272,9 @@ def main() -> int:
             assert mobile_page.locator("#comingSoonTitle").inner_text() == "即將上映"
             assert mobile_page.locator("#nowShowingGrid .movie-card").count() == 3
             assert mobile_page.locator("#comingSoonGrid .movie-card").count() == 3
+            mobile_meta = mobile_page.locator(".movie-discovery__meta")
+            assert mobile_meta.is_visible()
+            assert mobile_meta.locator('a[href="about.html"]').count() == 1
 
             # The mobile homepage is genuinely a two-column poster grid, not a hidden desktop overlay.
             first = mobile_page.locator("#nowShowingGrid .movie-card").nth(0).bounding_box()
