@@ -11,6 +11,8 @@ on:
       - "tests/browser_seo_movie_page_acceptance.py"
       - "tests/browser_movie_discovery_acceptance.py"
       - "web/index.html"
+      - "web/about.html"
+      - "web/404.html"
       - "web/app.js"
       - "web/movie-detail-list.js"
       - "web/movie-detail-list.css"
@@ -56,6 +58,12 @@ jobs:
         run: |
           test -f web/sitemap.xml
           test -f web/robots.txt
+          test -f web/about.html
+          test -f web/404.html
+          grep -q 'rel="canonical" href="https://dandadany.github.io/anime_movie_screening/about.html"' web/about.html
+          grep -q 'name="robots" content="noindex, follow"' web/404.html
+          grep -q 'about.html' web/sitemap.xml
+          ! grep -q '404.html' web/sitemap.xml
           ls web/movie-*.html >/dev/null
           grep -q 'rel="canonical"' web/movie-*.html
           grep -q 'movie-' web/sitemap.xml

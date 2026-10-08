@@ -23,6 +23,9 @@ class BuildSeoPagesTests(unittest.TestCase):
 <!-- SEO_TODAY_AI_START -->
 <script id="todayShowtimesStructuredData" type="application/ld+json">{"@context":"https://schema.org","@graph":[]}</script>
 <!-- SEO_TODAY_AI_END -->
+<!-- SEO_HOME_META_START -->
+<footer class="movie-discovery__meta"><p>placeholder</p></footer>
+<!-- SEO_HOME_META_END -->
 </head><body>
 <!-- SEO_PRERENDER_NOW_START -->
 <div class="movie-grid" id="nowShowingGrid"></div>
@@ -192,6 +195,15 @@ class BuildSeoPagesTests(unittest.TestCase):
         home = (self.web / "index.html").read_text(encoding="utf-8")
         self.assertIn('"測試動畫": "movie-1.html"', home)
         self.assertIn('"第二部": "movie-3.html"', home)
+        self.assertIn(
+            '<time datetime="2026-10-06T07:24:04+08:00">今日 07:24</time>',
+            home,
+        )
+        self.assertIn(
+            "場次資訊持續更新中｜實際上映與售票狀況請以影城官方資訊為準。",
+            home,
+        )
+        self.assertIn('<a href="about.html">資料來源與更新方式</a>', home)
 
         today_match = re.search(
             r'<script id="todayShowtimesStructuredData" type="application/ld\+json">(.*?)</script>',
@@ -392,6 +404,7 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertNotIn("已下檔動畫電影", home)
 
         sitemap = (self.web / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertIn("https://example.com/anime/about.html", sitemap)
         self.assertIn("https://example.com/anime/movie-1.html", sitemap)
         self.assertIn("https://example.com/anime/movie-3.html", sitemap)
         self.assertIn("https://example.com/anime/movie-4.html", sitemap)
