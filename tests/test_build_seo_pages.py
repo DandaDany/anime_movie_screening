@@ -401,6 +401,8 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         upcoming = (self.web / "movie-2.html").read_text(encoding="utf-8")
         self.assertIn("目前沒有可查詢場次", upcoming)
+        self.assertIn("background:linear-gradient(90deg,rgba(10,11,15,.96)", upcoming)
+        self.assertIn("color:#fff", upcoming)
         self.assertNotIn('id="map"', upcoming)
 
         archive = (self.web / "movie-4.html").read_text(encoding="utf-8")
