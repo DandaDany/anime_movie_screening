@@ -274,6 +274,10 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn("https://cinema.example/", webpage["citation"])
         self.assertIn("https://cinema-b.example/", webpage["citation"])
         self.assertEqual(by_type["Organization"][0]["name"], "電影場次")
+        self.assertEqual(
+            by_type["Organization"][0]["logo"]["url"],
+            "https://example.com/anime/assets/brand/logo-256.png",
+        )
         self.assertEqual(by_type["Movie"][0]["name"], "測試動畫電影")
         self.assertEqual(len(by_type["MovieTheater"]), 2)
         self.assertEqual(
@@ -326,13 +330,21 @@ class BuildSeoPagesTests(unittest.TestCase):
 
         self.assertIn('href="styles.css?v=20261007a"', movie)
         self.assertIn('src="app.js?v=20261007c"', movie)
-        self.assertIn('src="movie-detail-list.js?v=20261007a"', movie)
-        self.assertIn('href="movie-detail-list.css?v=20261008a"', movie)
+        self.assertIn('src="movie-detail-list.js?v=20261008a"', movie)
+        self.assertIn('href="movie-detail-list.css?v=20261008b"', movie)
+        self.assertIn(
+            'rel="icon" type="image/png" sizes="256x256" href="assets/brand/logo-256.png"',
+            movie,
+        )
+        self.assertIn('rel="apple-touch-icon" href="assets/brand/logo-256.png"', movie)
         self.assertNotIn('id="movieMap"', movie)
         self.assertNotIn('class="movie-workspace"', movie)
 
         # Crawlable cinema list is intentionally compact: name + showtimes only.
         self.assertIn('<h3 class="cinema-list-name">測試影城 A</h3>', movie)
+        self.assertIn('<span class="cinema-list-city-tag">臺北市</span>', movie)
+        self.assertIn('<span class="cinema-list-city-tag">高雄市</span>', movie)
+        self.assertNotIn('id="cinemaListCount"', movie)
         self.assertIn(
             '<time class="cinema-list-time" datetime="2026-10-06T13:00:00+08:00" '
             'data-formats="IMAX|2D" '

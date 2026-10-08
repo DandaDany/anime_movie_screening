@@ -69,6 +69,11 @@ CITY_ORDER = [
     "臺南市", "高雄市", "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣",
     "澎湖縣", "金門縣", "連江縣",
 ]
+BRAND_LOGO_PATH = "assets/brand/logo-256.png"
+BRAND_OG_PATH = "assets/brand/og-home.jpg"
+BRAND_FAVICON_PATH = BRAND_LOGO_PATH
+BRAND_APPLE_ICON_PATH = BRAND_LOGO_PATH
+
 DIRECT_BOOKING_PATTERNS = [
     re.compile(r"vscinemas\.com\.tw/vsTicketing/ticketing/booking\.aspx.*[?&]txtSessionId=", re.I),
     re.compile(r"miramarcinemas\.tw/Booking/TicketType\?.*[?&]session=", re.I),
@@ -385,6 +390,12 @@ def home_today_structured_data(
                 "@id": publisher_id,
                 "name": "電影場次",
                 "url": base_url,
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": urljoin(base_url, BRAND_LOGO_PATH),
+                    "width": 256,
+                    "height": 256,
+                },
             },
             item_list,
         ],
@@ -678,6 +689,12 @@ def movie_structured_data(
             "@id": publisher_id,
             "name": "電影場次",
             "url": base_url,
+            "logo": {
+                "@type": "ImageObject",
+                "url": urljoin(base_url, BRAND_LOGO_PATH),
+                "width": 256,
+                "height": 256,
+            },
         },
         movie,
     ]
@@ -862,6 +879,7 @@ def cinema_html(feature: dict, show_date: str) -> str:
 def compact_cinema_list_html(feature: dict, show_date: str) -> str:
     props = feature.get("properties") or {}
     name = str(props.get("location_name") or props.get("map_name") or "影城").strip()
+    city = str(props.get("city") or "").strip()
     location_id = str(props.get("location_id") or "").strip()
     showtimes = props.get("showtimes") if isinstance(props.get("showtimes"), list) else []
     parts: list[str] = []
@@ -885,9 +903,16 @@ def compact_cinema_list_html(feature: dict, show_date: str) -> str:
         parts.append(
             f'<time class="cinema-list-time" {attrs_text}>{html.escape(time_value)}</time>'
         )
+    city_tag = (
+        f'<span class="cinema-list-city-tag">{html.escape(city)}</span>'
+        if city
+        else ""
+    )
     return (
         f'<article class="cinema-list-card" data-location-id="{html.escape(location_id, quote=True)}">'
+        '<div class="cinema-list-title-row">'
         f'<h3 class="cinema-list-name">{html.escape(name)}</h3>'
+        f'{city_tag}</div>'
         f'<div class="cinema-list-times">{"".join(parts)}</div>'
         '</article>'
     )
@@ -1015,12 +1040,20 @@ def archive_page_html(item: dict, base_url: str, map_data: dict) -> str:
         if target
         else ""
     )
+    archive_og = ""
+    archive_twitter = ""
+    if poster:
+        escaped_poster = html.escape(poster, quote=True)
+        archive_og = f'<meta property="og:image" content="{escaped_poster}" />'
+        archive_twitter = f'<meta name="twitter:image" content="{escaped_poster}" />'
 
     return f"""<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="256x256" href="{BRAND_FAVICON_PATH}" />
+  <link rel="apple-touch-icon" href="{BRAND_APPLE_ICON_PATH}" />
   <title>{escaped_title}｜已無上映場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -1030,6 +1063,11 @@ def archive_page_html(item: dict, base_url: str, map_data: dict) -> str:
   <meta property="og:title" content="{escaped_title}｜已無上映場次｜電影場次" />
   <meta property="og:description" content="{html.escape(description, quote=True)}" />
   <meta property="og:url" content="{html.escape(canonical, quote=True)}" />
+  {archive_og}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{escaped_title}｜已無上映場次｜電影場次" />
+  <meta name="twitter:description" content="{html.escape(description, quote=True)}" />
+  {archive_twitter}
 </head>
 <body style="margin:0;background:#f5f6f4;color:#1d2520;font-family:'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif;">
   <main style="width:min(760px,calc(100% - 32px));margin:0 auto;padding:32px 0 64px;">
@@ -1111,6 +1149,8 @@ def movie_page_html(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="256x256" href="{BRAND_FAVICON_PATH}" />
+  <link rel="apple-touch-icon" href="{BRAND_APPLE_ICON_PATH}" />
   <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -1200,6 +1240,8 @@ def movie_page_html(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" type="image/png" sizes="256x256" href="{BRAND_FAVICON_PATH}" />
+  <link rel="apple-touch-icon" href="{BRAND_APPLE_ICON_PATH}" />
   <title>{escaped_title} 場次｜電影場次</title>
   <meta name="description" content="{html.escape(description, quote=True)}" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -1223,7 +1265,7 @@ def movie_page_html(
   />
   <link rel="stylesheet" href="styles.css?v=20261007a" />
   <link rel="stylesheet" href="empty-state.css?v=20260820a" />
-  <link rel="stylesheet" href="movie-detail-list.css?v=20261008a" />
+  <link rel="stylesheet" href="movie-detail-list.css?v=20261008b" />
   <script>
     window.MuseInitialMapState = Object.freeze({initial_state_json});
     window.MuseMoviePageLinks = Object.freeze({page_links_json});
@@ -1323,7 +1365,6 @@ def movie_page_html(
     <section class="cinema-list-panel" id="cinemaListPanel" aria-label="{escaped_title} 影城列表">
       <header class="cinema-list-head">
         <h2>影城列表</h2>
-        <strong id="cinemaListCount">0</strong>
       </header>
       <div class="cinema-list" id="cinemaList">{static_list_html}</div>
     </section>
@@ -1361,7 +1402,7 @@ def movie_page_html(
   <script src="time-filter.js?v=20260812a"></script>
   <script src="date-state.js?v=20260812a"></script>
   <script src="version-filter.js?v=20261007b"></script>
-  <script src="movie-detail-list.js?v=20261007a"></script>
+  <script src="movie-detail-list.js?v=20261008a"></script>
   <script src="app.js?v=20261007c"></script>
   <script src="empty-state.js?v=20260820a"></script>
 </body>

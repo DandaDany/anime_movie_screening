@@ -56,12 +56,16 @@ def verify_desktop(page, movie_file: str) -> None:
     # Header no longer repeats movie title/update copy.
     assert page.locator("#cinemaListPanel .movie-detail-seo-copy").count() == 0
     assert page.locator(".cinema-list-head h2").inner_text() == "影城列表"
+    assert page.locator("#cinemaListCount").count() == 0
 
-    # Compact cards: name + showtimes only; fixed short height; no distance shown.
+    # Compact cards: name + city pill + showtimes; fixed short height; no distance shown.
     first_card = page.locator("#cinemaList .cinema-list-card").first
     card_box = first_card.bounding_box()
     assert card_box and card_box["height"] <= 72, card_box
     assert first_card.locator(".cinema-list-name").count() == 1
+    assert first_card.locator(".cinema-list-city-tag").count() == 1
+    assert first_card.locator(".cinema-list-city-tag").inner_text().strip()
+    assert "#" not in first_card.locator(".cinema-list-city-tag").inner_text()
     assert first_card.locator(".cinema-list-times").count() == 1
     assert first_card.locator("a, button, .popup-links, .cinema-list-distance").count() == 0
     assert "公里" not in first_card.inner_text()
@@ -77,14 +81,14 @@ def verify_desktop(page, movie_file: str) -> None:
     assert distances == sorted(distances), distances
 
     # The list remains driven by original filters.
-    initial_count = int(page.locator("#cinemaListCount").inner_text())
+    initial_count = page.locator("#cinemaList .cinema-list-card").count()
     assert initial_count > 0
     city_buttons = page.locator("#cityFilterList .filter-option")
     if city_buttons.count() > 1:
         target = city_buttons.nth(0)
         target.click()
         page.wait_for_timeout(100)
-        filtered_count = int(page.locator("#cinemaListCount").inner_text())
+        filtered_count = page.locator("#cinemaList .cinema-list-card").count()
         assert 1 <= filtered_count <= initial_count
         target.click()
         page.wait_for_timeout(100)
@@ -177,6 +181,8 @@ def verify_mobile(playwright, movie_file: str) -> None:
         first_card = page.locator("#cinemaList .cinema-list-card").first
         card_box = first_card.bounding_box()
         assert card_box and card_box["height"] <= 72, card_box
+        assert first_card.locator(".cinema-list-city-tag").count() == 1
+        assert "#" not in first_card.locator(".cinema-list-city-tag").inner_text()
 
         if page.locator("#cinemaList .cinema-list-card").count() > 1:
             overflow = page.locator("#cinemaList").evaluate(
