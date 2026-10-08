@@ -128,7 +128,7 @@
 }
 
 .movie-card__poster.is-contain img {
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .movie-card__poster.is-missing img {
@@ -157,8 +157,8 @@
   overflow: visible;
   margin-top: 9px;
   color: rgba(255, 255, 255, 0.92);
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 15.5px;
+  font-weight: 650;
   line-height: 1.45;
   overflow-wrap: anywhere;
   word-break: normal;
@@ -172,6 +172,7 @@
   }
 
   .movie-card:hover .movie-card__poster {
+    transform: scale(1.045);
     box-shadow:
       0 22px 44px rgba(0, 0, 0, 0.5),
       0 6px 16px rgba(0, 0, 0, 0.28);
@@ -289,7 +290,7 @@
 
   .movie-card__title {
     margin-top: 7px;
-    font-size: 12.5px;
+    font-size: 14px;
   }
 
   .movie-discovery__meta {
