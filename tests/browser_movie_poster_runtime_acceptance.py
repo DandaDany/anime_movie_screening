@@ -60,7 +60,8 @@ def main() -> int:
                 '#comingSoonGrid .movie-card[data-movie-title="BanG Dream! Ave Mujica prima aurora"]'
             )
             bang_img = bangdream.locator("img")
-            assert bang_img.evaluate("img => getComputedStyle(img).objectFit") == "cover"
+            assert bang_img.evaluate("img => getComputedStyle(img).objectFit") == "contain"
+            assert bang_img.evaluate("img => getComputedStyle(img).objectPosition") in ("50% 50%", "center")
 
             anpanman = page.locator(
                 '#comingSoonGrid .movie-card[data-movie-title="麵包超人電影版：潘坦與約定之星"]'
@@ -75,7 +76,8 @@ def main() -> int:
             kusuriya_img = kusuriya.locator("img")
             kusuriya_src = kusuriya_img.evaluate("img => img.currentSrc || img.src")
             assert kusuriya_src.endswith("/assets/posters/kusuriya-movie-tw-20270129-hq.webp"), kusuriya_src
-            assert kusuriya_img.evaluate("img => getComputedStyle(img).objectFit") == "cover"
+            assert kusuriya_img.evaluate("img => getComputedStyle(img).objectFit") == "contain"
+            assert kusuriya_img.evaluate("img => getComputedStyle(img).objectPosition") in ("50% 50%", "center")
 
             required_local_assets = [
                 ("assets/posters/anpanman-pantan-2026-hq.webp", 1400, 2000),
