@@ -11,6 +11,7 @@ on:
       - "tests/browser_seo_movie_page_acceptance.py"
       - "tests/browser_movie_discovery_acceptance.py"
       - "web/index.html"
+      - "scripts/prepare_brand_assets.py"
       - "web/assets/brand/**"
       - "web/about.html"
       - "web/404.html"
@@ -53,6 +54,8 @@ jobs:
           node --check web/discovery.js
           grep -q "gtag('config', 'G-9C8B8ZCL6M');" web/index.html
           node tests/frontend_version_filter_test.js
+      - name: Prepare transparent brand icons
+        run: python scripts/prepare_brand_assets.py
       - name: Build SEO artifact from repository data
         run: python scripts/build_seo_pages.py
       - name: Validate generated outputs
@@ -62,9 +65,12 @@ jobs:
           test -f web/about.html
           test -f web/404.html
           test -f web/assets/brand/logo-256.png
+          test -f web/assets/brand/logo-transparent.png
+          test -f web/assets/brand/favicon-48.png
+          test -f web/assets/brand/apple-touch-icon.png
           test -f web/assets/brand/og-home.jpg
           grep -q 'assets/brand/og-home.jpg' web/index.html
-          grep -q 'assets/brand/logo-256.png' web/index.html
+          grep -q 'assets/brand/logo-transparent.png' web/index.html
           grep -q 'rel="canonical" href="https://dandadany.github.io/anime_movie_screening/about.html"' web/about.html
           grep -q 'name="robots" content="noindex, follow"' web/404.html
           grep -q 'about.html' web/sitemap.xml

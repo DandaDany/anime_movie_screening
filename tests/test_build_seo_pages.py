@@ -276,7 +276,7 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertEqual(by_type["Organization"][0]["name"], "電影場次")
         self.assertEqual(
             by_type["Organization"][0]["logo"]["url"],
-            "https://example.com/anime/assets/brand/logo-256.png",
+            "https://example.com/anime/assets/brand/logo-transparent.png",
         )
         self.assertEqual(by_type["Movie"][0]["name"], "測試動畫電影")
         self.assertEqual(len(by_type["MovieTheater"]), 2)
@@ -333,10 +333,10 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('src="movie-detail-list.js?v=20261008a"', movie)
         self.assertIn('href="movie-detail-list.css?v=20261008b"', movie)
         self.assertIn(
-            'rel="icon" type="image/png" sizes="256x256" href="assets/brand/logo-256.png"',
+            'rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon-48.png"',
             movie,
         )
-        self.assertIn('rel="apple-touch-icon" href="assets/brand/logo-256.png"', movie)
+        self.assertIn('rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png"', movie)
         self.assertNotIn('id="movieMap"', movie)
         self.assertNotIn('class="movie-workspace"', movie)
 
