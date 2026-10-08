@@ -1168,7 +1168,7 @@ def movie_page_html(
 </head>
 <body style="margin:0;background:linear-gradient(90deg,rgba(10,11,15,.96) 0%,rgba(10,11,15,.91) 48%,rgba(10,11,15,.76) 100%),#090a0e;color:#fff;font-family:'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif;">
   <main style="width:min(760px,calc(100% - 32px));margin:0 auto;padding:32px 0 64px;">
-    <a href="./" style="color:#da520d;text-decoration:none;font-weight:800;">← 電影場次</a>
+    <a href="./" style="color:#f59a5d;text-decoration:none;font-weight:800;">← 電影場次</a>
     <div style="display:flex;gap:24px;align-items:flex-start;margin-top:24px;">
       {poster_html}
       <div>
