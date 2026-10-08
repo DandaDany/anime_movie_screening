@@ -232,7 +232,24 @@ def main() -> int:
             assert "實際上映與售票狀況請以影城官方資訊為準" in meta.inner_text()
             assert meta.locator('a[href="about.html"]').count() == 1
 
+            first_poster = page.locator("#nowShowingGrid .movie-card__poster").nth(0)
+            second_poster = page.locator("#nowShowingGrid .movie-card__poster").nth(1)
+            first_poster_box = first_poster.bounding_box()
+            second_poster_box = second_poster.bounding_box()
+            assert first_poster_box and second_poster_box
+            assert abs(first_poster_box["width"] - second_poster_box["width"]) <= 1
+            assert abs(first_poster_box["height"] - second_poster_box["height"]) <= 1
+
+            # Desktop hover restores the poster-only zoom without changing the card grid.
+            first_poster.hover()
+            page.wait_for_timeout(220)
+            poster_scale = first_poster.evaluate(
+                "el => new DOMMatrix(getComputedStyle(el).transform).a"
+            )
+            assert poster_scale >= 1.04, poster_scale
+
             long_title = page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
+            assert float(long_title.evaluate("el => parseFloat(getComputedStyle(el).fontSize)")) >= 15
             long_metrics = long_title.evaluate(
                 """el => ({
                     text: el.textContent,
@@ -283,7 +300,16 @@ def main() -> int:
             assert abs(first["y"] - second["y"]) < 4, (first, second)
             assert second["x"] > first["x"] + first["width"] * 0.7, (first, second)
 
+            mobile_first_poster = mobile_page.locator("#nowShowingGrid .movie-card__poster").nth(0)
+            mobile_second_poster = mobile_page.locator("#nowShowingGrid .movie-card__poster").nth(1)
+            mobile_first_box = mobile_first_poster.bounding_box()
+            mobile_second_box = mobile_second_poster.bounding_box()
+            assert mobile_first_box and mobile_second_box
+            assert abs(mobile_first_box["width"] - mobile_second_box["width"]) <= 1
+            assert abs(mobile_first_box["height"] - mobile_second_box["height"]) <= 1
+
             mobile_long_title = mobile_page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
+            assert float(mobile_long_title.evaluate("el => parseFloat(getComputedStyle(el).fontSize)")) >= 14
             mobile_long_metrics = mobile_long_title.evaluate(
                 """el => ({
                     scrollHeight: el.scrollHeight,
