@@ -58,18 +58,6 @@
   font-weight: 800;
 }
 
-.cinema-list-head strong {
-  display: grid;
-  min-width: 25px;
-  height: 25px;
-  place-items: center;
-  border-radius: 999px;
-  background: var(--peach-tint);
-  color: var(--flame-deep);
-  font-size: 11px;
-  font-weight: 850;
-}
-
 .cinema-list {
   display: grid;
   gap: 7px;
@@ -100,7 +88,15 @@
     var(--card-shadow);
 }
 
+.cinema-list-title-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+}
+
 .cinema-list-name {
+  min-width: 0;
   margin: 0;
   overflow: hidden;
   color: #2d352f;
@@ -108,6 +104,18 @@
   font-weight: 800;
   line-height: 1.35;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cinema-list-city-tag {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--peach-tint);
+  color: var(--flame-deep);
+  font-size: 10.5px;
+  font-weight: 800;
+  line-height: 1.25;
+  padding: 2px 8px;
   white-space: nowrap;
 }
 
