@@ -23,7 +23,7 @@ concurrency:
   # the 07:00 supplement from pushing locations.geojson while the full crawl
   # is still building its own update.
   group: map-data-writer
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   crawl:
