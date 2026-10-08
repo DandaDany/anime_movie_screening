@@ -26,6 +26,8 @@ MOVIE_LINKS_START = "<!-- SEO_MOVIE_LINKS_START -->"
 MOVIE_LINKS_END = "<!-- SEO_MOVIE_LINKS_END -->"
 HOME_TODAY_AI_START = "<!-- SEO_TODAY_AI_START -->"
 HOME_TODAY_AI_END = "<!-- SEO_TODAY_AI_END -->"
+HOME_META_START = "<!-- SEO_HOME_META_START -->"
+HOME_META_END = "<!-- SEO_HOME_META_END -->"
 
 FORMAT_RULES = [
     ("IMAX", re.compile(r"imax", re.I)),
@@ -427,6 +429,28 @@ def prerender_home(
         HOME_TODAY_AI_START,
         HOME_TODAY_AI_END,
         today_html,
+    )
+
+    updated_iso = machine_update_iso(map_data)
+    updated_label = display_update_label(map_data, today)
+    updated_markup = (
+        f'<time datetime="{html.escape(updated_iso, quote=True)}">'
+        f'{html.escape(updated_label)}</time>'
+        if updated_iso
+        else html.escape(updated_label)
+    )
+    home_meta_html = (
+        '<footer class="movie-discovery__meta" aria-label="場次資訊說明">'
+        '<p>場次資訊持續更新中｜實際上映與售票狀況請以影城官方資訊為準。</p>'
+        f'<p>更新：{updated_markup} · '
+        '<a href="about.html">資料來源與更新方式</a></p>'
+        '</footer>'
+    )
+    source = replace_marker_block(
+        source,
+        HOME_META_START,
+        HOME_META_END,
+        home_meta_html,
     )
     index_path.write_text(source, encoding="utf-8")
 
@@ -1377,7 +1401,7 @@ def write_movie_pages(
 def write_sitemap(web_dir: Path, urls: list[str], map_data: dict, base_url: str) -> None:
     lastmod = str(map_data.get("updated_at") or map_data.get("generated_at") or "")[:10]
     entries = []
-    for url in [base_url, *urls]:
+    for url in [base_url, urljoin(base_url, "about.html"), *urls]:
         lastmod_xml = f"<lastmod>{xml_escape(lastmod)}</lastmod>" if lastmod else ""
         entries.append(f"<url><loc>{xml_escape(url)}</loc>{lastmod_xml}</url>")
     payload = (
@@ -1421,7 +1445,7 @@ def build(web_dir: Path, base_url: str = DEFAULT_BASE_URL, today: date | None = 
     )
     write_sitemap(web_dir, movie_urls, map_data, base_url)
     write_robots(web_dir, base_url)
-    return {"movies": len(movie_urls), "sitemap_urls": len(movie_urls) + 1, "base_url": base_url}
+    return {"movies": len(movie_urls), "sitemap_urls": len(movie_urls) + 2, "base_url": base_url}
 
 
 def main() -> None:
