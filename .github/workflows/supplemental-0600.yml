@@ -18,7 +18,7 @@ permissions:
 concurrency:
   # Serialize every workflow that writes the published map dataset.
   group: map-data-writer
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   supplement:
@@ -106,7 +106,7 @@ jobs:
       id-token: write
     concurrency:
       group: pages
-      cancel-in-progress: false
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
