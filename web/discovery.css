@@ -101,6 +101,7 @@
 }
 
 .movie-card__poster {
+  display: block;
   position: relative;
   overflow: hidden;
   aspect-ratio: 2 / 3;
@@ -168,13 +169,12 @@
 @media (hover: hover) and (pointer: fine) {
   .movie-card:hover {
     z-index: 2;
-    transform: none;
+    transform: translateY(-8px) scale(1.04);
     filter: brightness(1.035);
   }
 
   .movie-card:hover .movie-card__poster {
     z-index: 3;
-    transform: scale(1.075);
     box-shadow:
       0 22px 44px rgba(0, 0, 0, 0.5),
       0 6px 16px rgba(0, 0, 0, 0.28);
@@ -185,7 +185,7 @@
 .movie-card:focus-visible {
   z-index: 2;
   outline: 0;
-  transform: none;
+  transform: translateY(-8px) scale(1.04);
 }
 
 .movie-card:focus-visible .movie-card__poster {
