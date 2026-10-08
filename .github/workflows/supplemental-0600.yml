@@ -18,7 +18,7 @@ permissions:
 concurrency:
   # Serialize every workflow that writes the published map dataset.
   group: map-data-writer
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   supplement:
