@@ -680,11 +680,10 @@ def movie_structured_data(
                 address = str(props.get("address") or "").strip()
                 city = str(props.get("city") or "").strip()
                 if city:
-                    city_fragment = re.sub(
-                        r"[^A-Za-z0-9_-]+",
-                        "-",
-                        normalize_title(city),
-                    ).strip("-") or str(len(cities) + 1)
+                    normalized_city = normalize_title(city)
+                    city_fragment = "-".join(
+                        f"{ord(char):x}" for char in normalized_city
+                    )[:96] or "unknown"
                     city_id = f"{canonical}#city-{city_fragment}"
                     if city_id not in cities:
                         cities[city_id] = {
