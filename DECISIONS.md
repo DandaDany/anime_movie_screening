@@ -1,5 +1,7 @@
 # Technical Decisions
 
+> **Current product / UI decision authority (2026-10-08):** [docs/PRODUCT_ARCHITECTURE_UX_LOCK_20261008.md](docs/PRODUCT_ARCHITECTURE_UX_LOCK_20261008.md). This file contains older decisions, some of which describe superseded mobile controls and layouts. For current UI/UX, the dated lock document and latest approved main take precedence; do not revert to an earlier UI because this file says so.
+
 This file records technical choices that are considered confirmed for this project. It is meant to answer "why is it built this way?" without searching through the working log.
 
 ## Frontend Map
