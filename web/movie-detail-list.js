@@ -1,7 +1,6 @@
 (() => {
   const panel = document.querySelector("#cinemaListPanel");
   const list = document.querySelector("#cinemaList");
-  const count = document.querySelector("#cinemaListCount");
   if (!panel || !list) return;
 
   let lastFeatures = [];
@@ -77,10 +76,23 @@
       const distance = distanceForFeature(feature);
       if (Number.isFinite(distance)) article.dataset.distance = String(distance);
 
+      const titleRow = document.createElement("div");
+      titleRow.className = "cinema-list-title-row";
+
       const name = document.createElement("h3");
       name.className = "cinema-list-name";
       name.textContent = props.location_name || props.map_name || "影城";
-      article.append(name, renderTimes(feature));
+      titleRow.appendChild(name);
+
+      const city = String(props.city || "").trim();
+      if (city) {
+        const cityTag = document.createElement("span");
+        cityTag.className = "cinema-list-city-tag";
+        cityTag.textContent = city;
+        titleRow.appendChild(cityTag);
+      }
+
+      article.append(titleRow, renderTimes(feature));
 
       if (locationId === activeLocationId) article.classList.add("is-active");
       article.addEventListener("click", () => {
@@ -93,7 +105,6 @@
     }
 
     list.replaceChildren(fragment);
-    if (count) count.textContent = String(sorted.length);
     panel.classList.toggle("is-empty", sorted.length === 0);
 
     if (!sorted.length) {
