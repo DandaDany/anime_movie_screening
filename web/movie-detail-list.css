@@ -75,7 +75,8 @@
   gap: 7px;
 }
 
-.cinema-list > section {
+.cinema-list > section,
+.cinema-list-city {
   display: contents;
 }
 

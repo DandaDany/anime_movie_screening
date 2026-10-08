@@ -20,6 +20,9 @@ class BuildSeoPagesTests(unittest.TestCase):
 <!-- SEO_MOVIE_LINKS_START -->
 <script>window.MuseMoviePageLinks = Object.freeze({});</script>
 <!-- SEO_MOVIE_LINKS_END -->
+<!-- SEO_TODAY_AI_START -->
+<script id="todayShowtimesStructuredData" type="application/ld+json">{"@context":"https://schema.org","@graph":[]}</script>
+<!-- SEO_TODAY_AI_END -->
 </head><body>
 <!-- SEO_PRERENDER_NOW_START -->
 <div class="movie-grid" id="nowShowingGrid"></div>
@@ -190,6 +193,48 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('"測試動畫": "movie-1.html"', home)
         self.assertIn('"第二部": "movie-3.html"', home)
 
+        today_match = re.search(
+            r'<script id="todayShowtimesStructuredData" type="application/ld\+json">(.*?)</script>',
+            home,
+            flags=re.S,
+        )
+        self.assertIsNotNone(today_match)
+        today_structured = json.loads(today_match.group(1))
+        today_graph = today_structured["@graph"]
+        today_by_type = {}
+        for node in today_graph:
+            today_by_type.setdefault(node.get("@type"), []).append(node)
+
+        today_page = today_by_type["WebPage"][0]
+        self.assertEqual(today_page["dateModified"], "2026-10-06T07:24:04+08:00")
+        today_list = today_by_type["ItemList"][0]
+        self.assertEqual(today_list["name"], "2026/10/06 今天可看的動畫電影")
+        self.assertEqual(today_list["numberOfItems"], 2)
+        today_movies = [entry["item"] for entry in today_list["itemListElement"]]
+        self.assertEqual(
+            {movie["name"] for movie in today_movies},
+            {"測試動畫電影", "第二部動畫"},
+        )
+        first_summary = next(
+            movie["subjectOf"] for movie in today_movies
+            if movie["name"] == "測試動畫電影"
+        )
+        self.assertEqual(first_summary["temporalCoverage"], "2026-10-06")
+        self.assertEqual(
+            [place["name"] for place in first_summary["spatialCoverage"]],
+            ["臺北市", "高雄市"],
+        )
+        summary_values = {
+            value["name"]: value["value"]
+            for value in first_summary["variableMeasured"]
+        }
+        self.assertEqual(summary_values["今日場次數"], 3)
+        self.assertEqual(summary_values["上映影城數"], 2)
+        self.assertEqual(summary_values["最早場次"], "13:00")
+        self.assertEqual(summary_values["最晚場次"], "21:00")
+        self.assertEqual(summary_values["上映版本"], "IMAX、數位、2D")
+        self.assertNotIn("未來動畫電影", json.dumps(today_structured, ensure_ascii=False))
+
         movie = (self.web / "movie-1.html").read_text(encoding="utf-8")
         self.assertIn('<meta name="robots" content="index, follow, max-image-preview:large" />', movie)
         self.assertIn("<title>測試動畫電影 場次｜電影場次</title>", movie)
@@ -219,6 +264,18 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertEqual(by_type["Organization"][0]["name"], "電影場次")
         self.assertEqual(by_type["Movie"][0]["name"], "測試動畫電影")
         self.assertEqual(len(by_type["MovieTheater"]), 2)
+        self.assertEqual(
+            {city["name"] for city in by_type["City"]},
+            {"臺北市", "高雄市"},
+        )
+        self.assertEqual(len(webpage["spatialCoverage"]), 2)
+        city_ids = {city["@id"] for city in by_type["City"]}
+        self.assertTrue(
+            all(
+                theater["containedInPlace"]["@id"] in city_ids
+                for theater in by_type["MovieTheater"]
+            )
+        )
 
         screening = next(
             node for node in by_type["ScreeningEvent"]
@@ -258,7 +315,7 @@ class BuildSeoPagesTests(unittest.TestCase):
         self.assertIn('href="styles.css?v=20261007a"', movie)
         self.assertIn('src="app.js?v=20261007c"', movie)
         self.assertIn('src="movie-detail-list.js?v=20261007a"', movie)
-        self.assertIn('href="movie-detail-list.css?v=20261007b"', movie)
+        self.assertIn('href="movie-detail-list.css?v=20261008a"', movie)
         self.assertNotIn('id="movieMap"', movie)
         self.assertNotIn('class="movie-workspace"', movie)
 
@@ -276,6 +333,16 @@ class BuildSeoPagesTests(unittest.TestCase):
             movie,
         )
         self.assertIn('<h3 class="cinema-list-name">測試影城 B</h3>', movie)
+        self.assertIn(
+            '<section class="cinema-list-city" data-seo-city="臺北市">'
+            '<h3 class="seo-visually-hidden">臺北市</h3>',
+            movie,
+        )
+        self.assertIn(
+            '<section class="cinema-list-city" data-seo-city="高雄市">'
+            '<h3 class="seo-visually-hidden">高雄市</h3>',
+            movie,
+        )
         self.assertIn(
             '<time class="cinema-list-time" datetime="2026-10-06T21:00:00+08:00" '
             'data-formats="數位">21:00</time>',
