@@ -246,7 +246,7 @@ def main() -> int:
             poster_scale = first_poster.evaluate(
                 "el => new DOMMatrix(getComputedStyle(el).transform).a"
             )
-            assert poster_scale >= 1.04, poster_scale
+            assert poster_scale >= 1.07, poster_scale
 
             long_title = page.locator("#nowShowingGrid .movie-card", has_text="電影 A").locator(".movie-card__title")
             assert float(long_title.evaluate("el => parseFloat(getComputedStyle(el).fontSize)")) >= 15
