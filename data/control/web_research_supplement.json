@@ -1,56 +1,17 @@
 {
   "schema_version": 1,
-  "for_date": "2026-10-15",
-  "generated_at": "2026-10-15T07:02:19+08:00",
+  "for_date": "2026-10-16",
+  "generated_at": "2026-10-16T07:07:20+08:00",
   "records": [
     {
       "location_id": 69,
-      "movie_title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
-      "show_date": "2026-10-15",
-      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "桃園台茂美麗新影城官方場次頁；影城=桃園台茂、日期=2026-10-15、canonical片名與場次時間均明確。",
-      "showtimes": [
-        {
-          "time": "10:50",
-          "format": "標準廳",
-          "language": null,
-          "auditorium": null
-        },
-        {
-          "time": "16:55",
-          "format": "標準廳",
-          "language": null,
-          "auditorium": null
-        }
-      ]
-    },
-    {
-      "location_id": 69,
       "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
-      "show_date": "2026-10-15",
+      "show_date": "2026-10-16",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "桃園台茂美麗新影城官方場次頁；影城=桃園台茂、日期=2026-10-15、片名、語言與場次時間均明確。",
+      "evidence": "桃園台茂美麗新影城官方場次頁；影城=桃園台茂、日期=2026-10-16、canonical片名、中文版與HH:MM場次均明確。",
       "showtimes": [
         {
-          "time": "11:00",
-          "format": "標準廳",
-          "language": "中文版",
-          "auditorium": null
-        },
-        {
-          "time": "12:30",
-          "format": "標準廳",
-          "language": "日文版",
-          "auditorium": null
-        },
-        {
-          "time": "14:00",
-          "format": "標準廳",
-          "language": "中文版",
-          "auditorium": null
-        },
-        {
-          "time": "15:30",
+          "time": "12:55",
           "format": "標準廳",
           "language": "中文版",
           "auditorium": null
@@ -60,51 +21,33 @@
     {
       "location_id": 72,
       "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
-      "show_date": "2026-10-15",
+      "show_date": "2026-10-16",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-15，片名、語言、影廳與HH:MM均明確。",
+      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-16，canonical片名、語言、影廳與HH:MM均明確。",
       "showtimes": [
         {
-          "time": "12:30",
+          "time": "12:45",
           "format": null,
           "language": "日語版",
-          "auditorium": "3廳"
+          "auditorium": "13廳"
         },
         {
-          "time": "14:55",
+          "time": "17:30",
           "format": null,
           "language": "國語版",
           "auditorium": "12廳"
-        },
-        {
-          "time": "16:15",
-          "format": null,
-          "language": "國語版",
-          "auditorium": "12廳"
-        },
-        {
-          "time": "18:40",
-          "format": null,
-          "language": "日語版",
-          "auditorium": "6廳"
         }
       ]
     },
     {
       "location_id": 72,
       "movie_title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
-      "show_date": "2026-10-15",
+      "show_date": "2026-10-16",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-15，canonical片名、影廳與HH:MM均明確。",
+      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-16，canonical片名、影廳與HH:MM均明確。",
       "showtimes": [
         {
-          "time": "12:50",
-          "format": null,
-          "language": null,
-          "auditorium": "12廳"
-        },
-        {
-          "time": "20:30",
+          "time": "13:00",
           "format": null,
           "language": null,
           "auditorium": "12廳"
@@ -114,29 +57,14 @@
     {
       "location_id": 72,
       "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-      "show_date": "2026-10-15",
+      "show_date": "2026-10-16",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-15，canonical片名、影廳與HH:MM均明確。",
+      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-16，canonical片名、影廳與HH:MM均明確。",
       "showtimes": [
         {
-          "time": "18:15",
+          "time": "12:20",
           "format": null,
           "language": null,
-          "auditorium": "13廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-      "show_date": "2026-10-15",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-15，片名、國語版、影廳與HH:MM均明確。",
-      "showtimes": [
-        {
-          "time": "13:05",
-          "format": null,
-          "language": "國語版",
           "auditorium": "11廳"
         }
       ]
@@ -144,44 +72,35 @@
     {
       "location_id": 72,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-15",
+      "show_date": "2026-10-16",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-15，片名、日語版、影廳與HH:MM均明確。",
+      "evidence": "高雄環球影城官方時刻頁；頁面選定2026-10-16，canonical片名、日語版、影廳與HH:MM均明確。",
       "showtimes": [
         {
-          "time": "18:35",
+          "time": "17:05",
           "format": null,
           "language": "日語版",
-          "auditorium": "12廳"
+          "auditorium": "6廳"
         }
       ]
     },
     {
       "location_id": 104,
-      "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
-      "show_date": "2026-10-15",
-      "source_url": "https://www.instagram.com/madoucinema/p/DeY4bC7IEN3/",
-      "evidence": "麻豆戲院官方Instagram最新排程貼文與完整圖片；圖片標示麻豆戲院、適用2026-10-13至2026-10-15，數位中文版場次18:20。",
+      "movie_title": "麵包超人電影版：潘坦與約定之星",
+      "show_date": "2026-10-16",
+      "source_url": "https://www.instagram.com/madoucinema/p/Degj9_RoHDC/",
+      "evidence": "麻豆戲院官方Instagram置頂排程貼文及展開圖片；貼文明示麻豆戲院2026-10-16一天時刻表，圖片列出本片數位中文版13:50、18:05。",
       "showtimes": [
         {
-          "time": "18:20",
+          "time": "13:50",
           "format": "數位",
           "language": "中文版",
           "auditorium": null
-        }
-      ]
-    },
-    {
-      "location_id": 104,
-      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-15",
-      "source_url": "https://www.instagram.com/madoucinema/p/DeY4bC7IEN3/",
-      "evidence": "麻豆戲院官方Instagram最新排程貼文與完整圖片；圖片標示麻豆戲院、適用2026-10-13至2026-10-15，數位日文版場次17:25。",
-      "showtimes": [
+        },
         {
-          "time": "17:25",
+          "time": "18:05",
           "format": "數位",
-          "language": "日文版",
+          "language": "中文版",
           "auditorium": null
         }
       ]
