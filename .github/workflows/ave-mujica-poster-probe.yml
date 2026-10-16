@@ -111,3 +111,35 @@ jobs:
                           print("IMAGE_INFO", json.dumps({"url": u, **image_info(u, r.url)}, ensure_ascii=False))
               except Exception as exc:
                   print("PAGE_ERROR", repr(exc))
+
+      - name: Download verified Taiwan poster candidate
+        shell: python
+        run: |
+          import hashlib
+          import io
+          import requests
+          from pathlib import Path
+          from PIL import Image
+
+          url = "https://images.gamme.com.tw/movie/2026/41/4/nZySnqOZkaWkrZmW.jpg"
+          r = requests.get(url, headers={
+              "User-Agent": "Mozilla/5.0",
+              "Referer": "https://movie.gamme.com.tw/85116",
+          }, timeout=30)
+          r.raise_for_status()
+          if "image" not in r.headers.get("content-type", ""):
+              raise SystemExit(f"not an image: {r.headers.get('content-type')}")
+          im = Image.open(io.BytesIO(r.content))
+          if (im.width, im.height) != (496, 700):
+              raise SystemExit(f"unexpected dimensions: {im.width}x{im.height}")
+          out = Path("/tmp/ave-mujica-tw-poster.jpg")
+          out.write_bytes(r.content)
+          print("POSTER", out, im.width, im.height, im.format, len(r.content), hashlib.sha256(r.content).hexdigest())
+
+      - name: Upload verified poster artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ave-mujica-tw-poster
+          path: /tmp/ave-mujica-tw-poster.jpg
+          if-no-files-found: error
+          retention-days: 1
