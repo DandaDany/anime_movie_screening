@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30T22:25:00+08:00",
-  "version": 2026093001,
+  "generated_at": "2026-10-18T10:31:13+08:00",
+  "version": 2026101801,
   "lookahead_days": 7,
   "movies": [
     {
@@ -288,9 +288,9 @@
       "target_date": "2026-10-16",
       "is_active": true,
       "sort_order": 0,
-      "notes": "曼迪傳播確認 2026-10-16 全台上映",
+      "notes": "曼迪傳播確認 2026-10-16 全台上映 2026-10-18：日本原圖維持 last-known-good（1400x2000 本地資產），已上映，台灣正式高畫質版本未完成 runtime 核對，不為了尺寸/地區主動降級。",
       "created_at": "2026-09-27T15:00:00+08:00",
-      "updated_at": "2026-09-27T15:00:00+08:00"
+      "updated_at": "2026-10-18T10:31:13+08:00"
     },
     {
       "id": 26,
@@ -407,6 +407,116 @@
       "notes": "羚邦於 2026-09-29 宣布 2026-10-30 台灣上映；另於 2026 TIAF 有先行放映。",
       "created_at": "2026-09-30T22:25:00+08:00",
       "updated_at": "2026-09-30T22:25:00+08:00"
+    },
+    {
+      "id": 34,
+      "title": "嘟嘟魚的冒險",
+      "aliases": [
+        "The Pout-Pout Fish"
+      ],
+      "target_date": "2026-10-23",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 威秀正式電影頁：動畫電影；2026-10-23 台灣上映；發行：可樂電影。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 35,
+      "title": "煙囪小鎮的普佩2：約定的鐘樓",
+      "aliases": [
+        "煙囪小鎮的普佩 2 約定的鐘樓",
+        "Chimney Town: Frozen in Time"
+      ],
+      "target_date": "2026-10-23",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 威秀正式電影頁及車庫娛樂院線電影清單：2026-10-23 台灣上映；發行：車庫娛樂。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 36,
+      "title": "同級生：10週年重映",
+      "aliases": [
+        "同級生 10週年重映",
+        "Doukyusei"
+      ],
+      "target_date": "2026-11-06",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 威秀正式電影頁：2026-11-06 10週年重映；發行：采昌國際。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 37,
+      "title": "劇場版 魔法科高中的劣等生 四葉繼承篇",
+      "aliases": [
+        "魔法科高中的劣等生 四葉繼承篇",
+        "The Irregular at Magic High School: Yotsuba Succession Arc"
+      ],
+      "target_date": "2026-11-13",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "曼迪傳播 2026-10-12 官方新聞稿（CCPA刊載）：2026-11-13 全台威秀獨家上映，含台灣正式海報。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 38,
+      "title": "歡迎光臨魔法秘境",
+      "aliases": [
+        "Disney's Hexed",
+        "Hexed"
+      ],
+      "target_date": "2026-11-26",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 秀泰正式電影頁：Disney's Hexed，2026-11-26 台灣上映；目前僅找到中文先導海報。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 39,
+      "title": "憤怒鳥玩電影3：全家總動員",
+      "aliases": [
+        "憤怒鳥玩電影 3 全家總動員",
+        "The Angry Birds Movie 3"
+      ],
+      "target_date": "2027-01-01",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 秀泰正式電影頁：2027-01-01 台灣上映；網站片長1分鐘為占位資訊未採用。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 40,
+      "title": "汪汪隊立大功：恐龍大電影",
+      "aliases": [
+        "汪汪隊立大功 恐龍大電影",
+        "Paw Patrol: The Dino Movie"
+      ],
+      "target_date": "2026-08-14",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 威秀影城仍有國語場次（南港LaLaport等）；台灣原上映 2026-08-14，不能僅因已過上映日停用。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
+    },
+    {
+      "id": 41,
+      "title": "誤闖遺忘島",
+      "aliases": [
+        "Forgotten Island"
+      ],
+      "target_date": "2026-09-25",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-10-18 國賓官方 10/18 實際有場次，秀泰正式電影頁台灣上映日 2026-09-25。",
+      "created_at": "2026-10-18T10:31:13+08:00",
+      "updated_at": "2026-10-18T10:31:13+08:00"
     }
   ]
 }
