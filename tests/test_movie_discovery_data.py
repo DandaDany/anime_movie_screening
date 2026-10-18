@@ -105,6 +105,32 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                     "Japanese poster fallback is only allowed before the Taiwan release date",
                 )
 
+    def test_active_titles_aliases_have_unique_canonical_owner(self):
+        # Normalize using the same production matching rule to guard against
+        # accidentally adding a duplicate from another cinema or distributor.
+        owners = {}
+        for movie in self.tracked["movies"]:
+            if not movie.get("is_active"):
+                continue
+            for raw in [movie["title"], *(movie.get("aliases") or [])]:
+                key = discovery.normalize_title(raw)
+                if key in owners:
+                    self.assertEqual(owners[key], movie["id"], f"alias collision: {raw}")
+                owners[key] = movie["id"]
+
+    def test_remote_poster_urls_never_embed_expiring_signed_tokens(self):
+        from urllib.parse import parse_qs, urlsplit
+
+        signed_keys = {"oe", "signature", "sig", "token", "expires", "x-amz-signature"}
+        for poster in self.posters["movies"]:
+            for field in ("poster_url", "poster_fallback_url"):
+                url = str(poster.get(field) or "")
+                if not url.startswith("https://"):
+                    continue
+                keys = {key.lower() for key in parse_qs(urlsplit(url).query)}
+                with self.subTest(title=poster["title"], field=field):
+                    self.assertFalse(keys & signed_keys, f"unstable signed CDN URL: {url}")
+
     def test_generated_feed_uses_canonical_active_movies_and_dates(self):
         payload = discovery.build_payload(self.tracked, self.posters)
         expected = [movie for movie in self.tracked["movies"] if movie["is_active"]]

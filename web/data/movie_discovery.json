@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026093001,
-  "generated_at": "2026-09-30T22:25:00+08:00",
+  "source_version": 2026101801,
+  "generated_at": "2026-10-18T09:30:00+08:00",
   "lookahead_days": 7,
-  "count": 31,
+  "count": 38,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -280,7 +280,7 @@
       "poster_url": "assets/posters/anpanman-pantan-2026-hq.webp",
       "poster_fallback_url": null,
       "poster_fit": "contain",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source": "日本官方 Poster（RELEASED LAST-KNOWN-GOOD；台灣正式高畫質海報待替換）",
       "poster_source_url": "https://news.anpan-movie.com/2026/463/"
     },
     {
@@ -398,6 +398,105 @@
       "poster_fit": "contain",
       "poster_source": "日本官方主視覺（Animate Times 收錄）",
       "poster_source_url": "https://www.animatetimes.com/tag/details.php?id=27649"
+    },
+    {
+      "id": 34,
+      "title": "汪汪隊立大功：恐龍大電影",
+      "aliases": [
+        "汪汪隊立大功 恐龍大電影",
+        "PAW PATROL: THE DINO MOVIE"
+      ],
+      "target_date": "2026-08-14",
+      "poster_url": "https://assets.showtimes.com.tw/images/63afc0f9c4a805a05f5c9e4449d8cda7.jpg",
+      "poster_fallback_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260401001.jpg",
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣正式院線海報（2026/08/14 中文檔期；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/12626/"
+    },
+    {
+      "id": 35,
+      "title": "嘟嘟魚的冒險",
+      "aliases": [
+        "THE POUT-POUT FISH",
+        "THE POUT POUT FISH"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014002.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式電影海報（LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9048"
+    },
+    {
+      "id": 36,
+      "title": "煙囪小鎮的普佩2：約定的鐘樓",
+      "aliases": [
+        "煙囪小鎮的普佩 2：約定的鐘樓",
+        "Chimney Town: Frozen in Time"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261008002.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城／車庫娛樂台灣正式電影海報（LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9030"
+    },
+    {
+      "id": 37,
+      "title": "歡迎來到朵莉之家",
+      "aliases": [
+        "WELCOME TO DOLLY'S HOUSE",
+        "朵莉之家"
+      ],
+      "target_date": "2026-10-30",
+      "poster_url": "https://assets.showtimes.com.tw/images/71b030dbeea2f78fc6e4ae610756752c.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣正式電影海報（LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/13044/"
+    },
+    {
+      "id": 38,
+      "title": "同級生：10週年重映",
+      "aliases": [
+        "同級生 10週年重映",
+        "同級生10周年重映"
+      ],
+      "target_date": "2026-11-06",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261015005.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式十週年重映海報（LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9055"
+    },
+    {
+      "id": 39,
+      "title": "歡迎光臨魔法秘境",
+      "aliases": [
+        "DISNEY'S HEXED",
+        "HEXED",
+        "迪士尼魔咒"
+      ],
+      "target_date": "2026-11-26",
+      "poster_url": "https://assets.showtimes.com.tw/images/c944d5c226866154abc551dc7c33658f.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城／迪士尼台灣正式電影海報（LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/12808/"
+    },
+    {
+      "id": 40,
+      "title": "戴帽子的貓",
+      "aliases": [
+        "THE CAT IN THE HAT",
+        "蘇斯博士 戴帽子的貓"
+      ],
+      "target_date": "2026-12-03",
+      "poster_url": "https://assets.showtimes.com.tw/images/4029fec2ed274e1ab035ce36de1c1e2a.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城展示之華納兄弟台灣正式電影海報（印有12/03；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/12969/"
     }
   ]
 }
