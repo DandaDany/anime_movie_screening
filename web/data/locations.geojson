@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
-  "generated_at": "2026-10-19",
-  "updated_at": "2026-10-20T07:17:06+08:00",
+  "generated_at": "2026-10-20",
+  "updated_at": "2026-10-20T10:10:49+08:00",
   "movie_title": "BanG Dream! Ave Mujica prima aurora",
   "show_date": "2026-10-20",
   "movies": [
@@ -13,7 +13,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 14
+      "feature_count": 15
     },
     {
       "title": "人狼 4K數位修復版",
@@ -22,7 +22,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 9
+      "feature_count": 10
     },
     {
       "title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
@@ -31,7 +31,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 2
+      "feature_count": 3
     },
     {
       "title": "劇場版 吉伊卡哇 人魚島的秘密",
@@ -41,7 +41,7 @@
         "2026-10-21",
         "2026-10-22"
       ],
-      "feature_count": 24
+      "feature_count": 29
     },
     {
       "title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
@@ -60,7 +60,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 1
+      "feature_count": 2
     },
     {
       "title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
@@ -69,7 +69,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 19
+      "feature_count": 21
     },
     {
       "title": "名偵探柯南 高速公路的墮天使",
@@ -78,7 +78,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 1
+      "feature_count": 2
     },
     {
       "title": "角落小夥伴電影版：從天而降的雲之冒險",
@@ -88,7 +88,7 @@
         "2026-10-21",
         "2026-10-22"
       ],
-      "feature_count": 37
+      "feature_count": 49
     },
     {
       "title": "電影哆啦A夢：新．大雄的海底鬼岩城",
@@ -97,7 +97,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 1
+      "feature_count": 2
     },
     {
       "title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
@@ -106,7 +106,7 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "feature_count": 4
+      "feature_count": 5
     },
     {
       "title": "麵包超人電影版：潘坦與約定之星",
@@ -116,7 +116,7 @@
         "2026-10-21",
         "2026-10-22"
       ],
-      "feature_count": 23
+      "feature_count": 28
     },
     {
       "title": "遊戲人生（電視動畫 後篇）",
@@ -812,6 +812,34 @@
           ],
           "start_times": "10:05, 13:50, 15:35, 17:45"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "BanG Dream! Ave Mujica prima aurora",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "人狼 4K數位修復版": [
@@ -1193,6 +1221,34 @@
           ],
           "start_times": "15:00, 21:00"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "人狼 4K數位修復版",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party": [
@@ -1265,6 +1321,34 @@
           ],
           "start_times": "10:50"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+        }
       }
     ],
     "劇場版 吉伊卡哇 人魚島的秘密": [
@@ -1336,6 +1420,76 @@
             }
           ],
           "start_times": "12:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.4920364,
+            22.6706255
+          ]
+        },
+        "properties": {
+          "location_id": 73,
+          "chain_name": "中影屏東影城",
+          "location_name": "中影屏東影城",
+          "map_name": "中影屏東影城 中影屏東影城",
+          "address": "屏東縣屏東市民生路248號",
+          "city": "屏東縣",
+          "location_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+          "official_url": "https://ptcinema.movie.com.tw/",
+          "crawl_url": "https://ptcinema.movie.com.tw/lightbox/index?id=3239",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "15:00",
+              "format": "日文版-劇場版 吉伊卡哇 人魚島的秘密",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+              "label": "15:00 日文版-劇場版 吉伊卡哇 人魚島的秘密"
+            }
+          ],
+          "start_times": "15:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.61127671349537,
+            25.070089175979927
+          ]
+        },
+        "properties": {
+          "location_id": 76,
+          "chain_name": "哈拉影城",
+          "location_name": "哈拉影城",
+          "map_name": "哈拉影城 哈拉影城",
+          "address": "臺北市內湖區南湖里康寧路三段72號",
+          "city": "臺北市",
+          "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "official_url": "https://www.halarcity.com/",
+          "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "12:05",
+              "format": "(日)劇場版 吉伊卡哇 人魚島的秘密",
+              "language": null,
+              "auditorium": "跨腳廳",
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "12:05 (日)劇場版 吉伊卡哇 人魚島的秘密 / 跨腳廳"
+            }
+          ],
+          "start_times": "12:05"
         }
       },
       {
@@ -1650,7 +1804,7 @@
           "map_name": "威秀影城 / VIESHOW 台北信義威秀影城",
           "address": "台北市信義區松壽路20號2樓",
           "city": "臺北市",
-          "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1882873",
+          "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "official_url": "https://www.vscinemas.com.tw/",
           "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
@@ -1662,7 +1816,7 @@
               "format": "(4DX 日)劇場版 吉伊卡哇 人魚島的秘密 (保護級)",
               "language": null,
               "auditorium": null,
-              "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1882873",
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
               "label": "09:30 (4DX 日)劇場版 吉伊卡哇 人魚島的秘密 (保護級)"
             },
             {
@@ -2132,6 +2286,113 @@
             }
           ],
           "start_times": "11:50, 14:30, 22:40"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.536644362629,
+            25.010805770294
+          ]
+        },
+        "properties": {
+          "location_id": 51,
+          "chain_name": "百老匯影城",
+          "location_name": "公館百老匯影城",
+          "map_name": "百老匯影城 公館百老匯影城",
+          "address": "台北市文山區羅斯福路四段200號",
+          "city": "臺北市",
+          "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+          "official_url": "https://www.broadway-cineplex.com.tw/",
+          "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Taipei",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "11:45",
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "1廳 3樓",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+              "label": "11:45 數位/日語 / 1廳 3樓",
+              "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Taipei,0000884,2026-10-20,11-45,0001"
+            }
+          ],
+          "start_times": "11:45"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.02123777733,
+            24.809823168098
+          ]
+        },
+        "properties": {
+          "location_id": 52,
+          "chain_name": "百老匯影城",
+          "location_name": "竹北百老匯影城",
+          "map_name": "百老匯影城 竹北百老匯影城",
+          "address": "新竹縣竹北市自強南路36號3~5樓",
+          "city": "新竹縣",
+          "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+          "official_url": "https://www.broadway-cineplex.com.tw/",
+          "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "11:30",
+              "format": "數位/日語",
+              "language": "日語",
+              "auditorium": "5廳",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+              "label": "11:30 數位/日語 / 5廳",
+              "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Zhubei,0000884,2026-10-20,11-30,0005"
+            }
+          ],
+          "start_times": "11:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.6921689,
+            24.1603157
+          ]
+        },
+        "properties": {
+          "location_id": 70,
+          "chain_name": "親親影城 / 親親戲院",
+          "location_name": "親親影城",
+          "map_name": "親親影城 / 親親戲院 親親影城",
+          "address": "台中市北區北屯路14號",
+          "city": "臺中市",
+          "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+          "official_url": "https://www.ccmovie.com.tw/",
+          "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+          "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "00:10",
+              "format": "2D-日語",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+              "label": "00:10 2D-日語"
+            }
+          ],
+          "start_times": "00:10"
         }
       },
       {
@@ -2707,6 +2968,34 @@
             }
           ],
           "start_times": "11:05"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -3375,6 +3664,49 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.64371,
+            24.16526
+          ]
+        },
+        "properties": {
+          "location_id": 43,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台中中港",
+          "map_name": "新光影城 新光影城台中中港",
+          "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+          "city": "臺中市",
+          "location_url": "https://www.skcinemas.com/films?c=1003",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "10:20",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1003",
+              "label": "10:20 日語版"
+            },
+            {
+              "time": "15:00",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1003",
+              "label": "15:00 日語版"
+            }
+          ],
+          "start_times": "10:20, 15:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.55751470000001,
             25.083348479857356
           ]
@@ -3403,6 +3735,41 @@
             }
           ],
           "start_times": "17:50"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.6921689,
+            24.1603157
+          ]
+        },
+        "properties": {
+          "location_id": 70,
+          "chain_name": "親親影城 / 親親戲院",
+          "location_name": "親親影城",
+          "map_name": "親親影城 / 親親戲院 親親影城",
+          "address": "台中市北區北屯路14號",
+          "city": "臺中市",
+          "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+          "official_url": "https://www.ccmovie.com.tw/",
+          "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+          "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "12:50",
+              "format": "2D-日語",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+              "label": "12:50 2D-日語"
+            }
+          ],
+          "start_times": "12:50"
         }
       },
       {
@@ -3476,6 +3843,34 @@
             }
           ],
           "start_times": "12:05"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "名偵探柯南 高速公路的墮天使",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -3802,6 +4197,41 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.4920364,
+            22.6706255
+          ]
+        },
+        "properties": {
+          "location_id": 73,
+          "chain_name": "中影屏東影城",
+          "location_name": "中影屏東影城",
+          "map_name": "中影屏東影城 中影屏東影城",
+          "address": "屏東縣屏東市民生路248號",
+          "city": "屏東縣",
+          "location_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+          "official_url": "https://ptcinema.movie.com.tw/",
+          "crawl_url": "https://ptcinema.movie.com.tw/lightbox/index?id=3312",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "16:30",
+              "format": "中文版-角落小夥伴電影版：從天而降的雲之冒險",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+              "label": "16:30 中文版-角落小夥伴電影版：從天而降的雲之冒險"
+            }
+          ],
+          "start_times": "16:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.3037,
             22.60394
           ]
@@ -3846,6 +4276,49 @@
             }
           ],
           "start_times": "11:50, 14:40, 17:10"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.61127671349537,
+            25.070089175979927
+          ]
+        },
+        "properties": {
+          "location_id": 76,
+          "chain_name": "哈拉影城",
+          "location_name": "哈拉影城",
+          "map_name": "哈拉影城 哈拉影城",
+          "address": "臺北市內湖區南湖里康寧路三段72號",
+          "city": "臺北市",
+          "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "official_url": "https://www.halarcity.com/",
+          "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "10:00",
+              "format": "(中)角落小夥伴電影版：從天而降的雲之冒險",
+              "language": "國語",
+              "auditorium": "V-hall",
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "10:00 (中)角落小夥伴電影版：從天而降的雲之冒險 / V-hall"
+            },
+            {
+              "time": "14:40",
+              "format": "(中)角落小夥伴電影版：從天而降的雲之冒險",
+              "language": "國語",
+              "auditorium": "跨腳廳",
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "14:40 (中)角落小夥伴電影版：從天而降的雲之冒險 / 跨腳廳"
+            }
+          ],
+          "start_times": "10:00, 14:40"
         }
       },
       {
@@ -4174,6 +4647,49 @@
             }
           ],
           "start_times": "13:30, 17:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.96788174233023,
+            23.965775164190305
+          ]
+        },
+        "properties": {
+          "location_id": 77,
+          "chain_name": "埔里山明影城",
+          "location_name": "埔里山明影城",
+          "map_name": "埔里山明影城 埔里山明影城",
+          "address": "南投縣埔里鎮中山路二段289號5樓",
+          "city": "南投縣",
+          "location_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+          "official_url": "https://www.shanmingcinema.com.tw/showtimes.php",
+          "crawl_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "13:50",
+              "format": "(數位) 角落小夥伴電影版：從天而降的雲之冒險",
+              "language": null,
+              "auditorium": "E廳",
+              "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+              "label": "13:50 (數位) 角落小夥伴電影版：從天而降的雲之冒險 / E廳"
+            },
+            {
+              "time": "15:10",
+              "format": "(數位) 角落小夥伴電影版：從天而降的雲之冒險",
+              "language": null,
+              "auditorium": "E廳",
+              "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+              "label": "15:10 (數位) 角落小夥伴電影版：從天而降的雲之冒險 / E廳"
+            }
+          ],
+          "start_times": "13:50, 15:10"
         }
       },
       {
@@ -4869,7 +5385,7 @@
           "map_name": "威秀影城 / VIESHOW 高雄大遠百威秀影城",
           "address": "高雄市苓雅區三多四路21號13樓",
           "city": "高雄市",
-          "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1856946",
+          "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "official_url": "https://www.vscinemas.com.tw/",
           "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
@@ -4881,7 +5397,7 @@
               "format": "(數位 國)角落小夥伴電影版：從天而降的雲之冒險 (普遍級)",
               "language": null,
               "auditorium": null,
-              "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1856946",
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
               "label": "10:05 (數位 國)角落小夥伴電影版：從天而降的雲之冒險 (普遍級)"
             },
             {
@@ -4894,6 +5410,146 @@
             }
           ],
           "start_times": "10:05, 13:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.64371,
+            24.16526
+          ]
+        },
+        "properties": {
+          "location_id": 43,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台中中港",
+          "map_name": "新光影城 新光影城台中中港",
+          "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+          "city": "臺中市",
+          "location_url": "https://www.skcinemas.com/films?c=1003",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "14:10",
+              "format": "中文版",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1003",
+              "label": "14:10 中文版"
+            }
+          ],
+          "start_times": "14:10"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.5342,
+            25.118
+          ]
+        },
+        "properties": {
+          "location_id": 44,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台北天母",
+          "map_name": "新光影城 新光影城台北天母",
+          "address": "台北市士林區忠誠路二段202號4樓（新光三越台北天母店B棟）",
+          "city": "臺北市",
+          "location_url": "https://www.skcinemas.com/films?c=1005",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t02d04/a02/",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "15:20",
+              "format": "中文版",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1005",
+              "label": "15:20 中文版"
+            }
+          ],
+          "start_times": "15:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.197693,
+            22.986882
+          ]
+        },
+        "properties": {
+          "location_id": 46,
+          "chain_name": "新光影城",
+          "location_name": "新光影城台南西門",
+          "map_name": "新光影城 新光影城台南西門",
+          "address": "台南市中西區西門路一段658號9樓（新光三越台南新天地）",
+          "city": "臺南市",
+          "location_url": "https://www.skcinemas.com/films?c=1002",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t06607/a06/",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "18:00",
+              "format": "中文版",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1002",
+              "label": "18:00 中文版"
+            }
+          ],
+          "start_times": "18:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.213758,
+            25.017327
+          ]
+        },
+        "properties": {
+          "location_id": 47,
+          "chain_name": "新光影城",
+          "location_name": "新光影城桃園青埔",
+          "map_name": "新光影城 新光影城桃園青埔",
+          "address": "桃園市中壢區春德路107號3-5樓（置地廣場·桃園）",
+          "city": "桃園市",
+          "location_url": "https://www.skcinemas.com/films?c=1004",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t03315/a03/",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "15:15",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1004",
+              "label": "15:15 日文版"
+            }
+          ],
+          "start_times": "15:15"
         }
       },
       {
@@ -5020,6 +5676,121 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.661777770455,
+            24.1552672182
+          ]
+        },
+        "properties": {
+          "location_id": 50,
+          "chain_name": "王牌映画影城",
+          "location_name": "王牌映画影城－廣三SOGO店",
+          "map_name": "王牌映画影城 王牌映画影城－廣三SOGO店",
+          "address": "台中市西區臺灣大道二段459號18樓",
+          "city": "臺中市",
+          "location_url": "https://www.acecinema.com.tw/movie/now",
+          "official_url": "https://www.acecinema.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04428/a04/",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "14:50",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.acecinema.com.tw/movie/now",
+              "label": "14:50 日文版"
+            },
+            {
+              "time": "18:10",
+              "format": "日文版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.acecinema.com.tw/movie/now",
+              "label": "18:10 日文版"
+            }
+          ],
+          "start_times": "14:50, 18:10"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.536644362629,
+            25.010805770294
+          ]
+        },
+        "properties": {
+          "location_id": 51,
+          "chain_name": "百老匯影城",
+          "location_name": "公館百老匯影城",
+          "map_name": "百老匯影城 公館百老匯影城",
+          "address": "台北市文山區羅斯福路四段200號",
+          "city": "臺北市",
+          "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+          "official_url": "https://www.broadway-cineplex.com.tw/",
+          "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Taipei",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "10:20",
+              "format": "數位/中文",
+              "language": "國語",
+              "auditorium": "1廳 3樓",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+              "label": "10:20 數位/中文 / 1廳 3樓",
+              "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Taipei,0000954,2026-10-20,10-20,0001"
+            }
+          ],
+          "start_times": "10:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.02123777733,
+            24.809823168098
+          ]
+        },
+        "properties": {
+          "location_id": 52,
+          "chain_name": "百老匯影城",
+          "location_name": "竹北百老匯影城",
+          "map_name": "百老匯影城 竹北百老匯影城",
+          "address": "新竹縣竹北市自強南路36號3~5樓",
+          "city": "新竹縣",
+          "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+          "official_url": "https://www.broadway-cineplex.com.tw/",
+          "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "10:00",
+              "format": "數位/中文",
+              "language": "國語",
+              "auditorium": "5廳",
+              "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+              "label": "10:00 數位/中文 / 5廳",
+              "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Zhubei,0000954,2026-10-20,10-00,0005"
+            }
+          ],
+          "start_times": "10:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.287749028433,
             25.053000983341
           ]
@@ -5099,6 +5870,49 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.6921689,
+            24.1603157
+          ]
+        },
+        "properties": {
+          "location_id": 70,
+          "chain_name": "親親影城 / 親親戲院",
+          "location_name": "親親影城",
+          "map_name": "親親影城 / 親親戲院 親親影城",
+          "address": "台中市北區北屯路14號",
+          "city": "臺中市",
+          "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+          "official_url": "https://www.ccmovie.com.tw/",
+          "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "12:00",
+              "format": "2D-國語",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+              "label": "12:00 2D-國語"
+            },
+            {
+              "time": "13:30",
+              "format": "2D-國語",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+              "label": "13:30 2D-國語"
+            }
+          ],
+          "start_times": "12:00, 13:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.3253452,
             22.6319673
           ]
@@ -5137,6 +5951,49 @@
           "start_times": "12:45, 17:30",
           "supplemental_web_source": true
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.42482718650463,
+            25.023188244257295
+          ]
+        },
+        "properties": {
+          "location_id": 80,
+          "chain_name": "鴻金寶麻吉影城",
+          "location_name": "鴻金寶麻吉影城",
+          "map_name": "鴻金寶麻吉影城 鴻金寶麻吉影城",
+          "address": "新北市新莊區八德里民安路188巷5號4F",
+          "city": "新北市",
+          "location_url": "https://fmmfilmmate.tixi.com.tw/",
+          "official_url": "https://machicinema.wordpress.com/",
+          "crawl_url": "https://fmmfilmmate.tixi.com.tw/",
+          "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "12:30",
+              "format": "3廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國",
+              "language": "國語",
+              "auditorium": "3廳",
+              "booking_url": "https://fmmfilmmate.tixi.com.tw/",
+              "label": "12:30 3廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國 / 3廳"
+            },
+            {
+              "time": "16:45",
+              "format": "1廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國",
+              "language": "國語",
+              "auditorium": "1廳",
+              "booking_url": "https://fmmfilmmate.tixi.com.tw/",
+              "label": "16:45 1廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國 / 1廳"
+            }
+          ],
+          "start_times": "12:30, 16:45"
+        }
       }
     ],
     "電影哆啦A夢：新．大雄的海底鬼岩城": [
@@ -5173,6 +6030,34 @@
             }
           ],
           "start_times": "10:50"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -5323,6 +6208,34 @@
             }
           ],
           "start_times": "17:30"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       }
     ],
@@ -5536,6 +6449,57 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            121.61127671349537,
+            25.070089175979927
+          ]
+        },
+        "properties": {
+          "location_id": 76,
+          "chain_name": "哈拉影城",
+          "location_name": "哈拉影城",
+          "map_name": "哈拉影城 哈拉影城",
+          "address": "臺北市內湖區南湖里康寧路三段72號",
+          "city": "臺北市",
+          "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "official_url": "https://www.halarcity.com/",
+          "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+          "movie_title": "麵包超人電影版：潘坦與約定之星",
+          "show_date": "2026-10-20",
+          "showtime_count": 3,
+          "showtimes": [
+            {
+              "time": "10:30",
+              "format": "(中)麵包超人電影版：潘坦與約定之星",
+              "language": "國語",
+              "auditorium": null,
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "10:30 (中)麵包超人電影版：潘坦與約定之星"
+            },
+            {
+              "time": "13:20",
+              "format": "(中)麵包超人電影版：潘坦與約定之星",
+              "language": "國語",
+              "auditorium": "跨腳廳",
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "13:20 (中)麵包超人電影版：潘坦與約定之星 / 跨腳廳"
+            },
+            {
+              "time": "16:05",
+              "format": "(中)麵包超人電影版：潘坦與約定之星",
+              "language": "國語",
+              "auditorium": "跨腳廳",
+              "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+              "label": "16:05 (中)麵包超人電影版：潘坦與約定之星 / 跨腳廳"
+            }
+          ],
+          "start_times": "10:30, 13:20, 16:05"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.458702134648,
             25.06381770366
           ]
@@ -5647,6 +6611,49 @@
             }
           ],
           "start_times": "14:10, 15:25, 18:45, 20:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.96788174233023,
+            23.965775164190305
+          ]
+        },
+        "properties": {
+          "location_id": 77,
+          "chain_name": "埔里山明影城",
+          "location_name": "埔里山明影城",
+          "map_name": "埔里山明影城 埔里山明影城",
+          "address": "南投縣埔里鎮中山路二段289號5樓",
+          "city": "南投縣",
+          "location_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+          "official_url": "https://www.shanmingcinema.com.tw/showtimes.php",
+          "crawl_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+          "movie_title": "麵包超人電影版：潘坦與約定之星",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "11:30",
+              "format": "(數位) 麵包超人電影版：潘坦與約定之星",
+              "language": null,
+              "auditorium": "E廳",
+              "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+              "label": "11:30 (數位) 麵包超人電影版：潘坦與約定之星 / E廳"
+            },
+            {
+              "time": "12:40",
+              "format": "(數位) 麵包超人電影版：潘坦與約定之星",
+              "language": null,
+              "auditorium": "E廳",
+              "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+              "label": "12:40 (數位) 麵包超人電影版：潘坦與約定之星 / E廳"
+            }
+          ],
+          "start_times": "11:30, 12:40"
         }
       },
       {
@@ -5826,7 +6833,7 @@
           "map_name": "威秀影城 / VIESHOW 台北信義威秀影城",
           "address": "台北市信義區松壽路20號2樓",
           "city": "臺北市",
-          "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1883490",
+          "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "official_url": "https://www.vscinemas.com.tw/",
           "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "movie_title": "麵包超人電影版：潘坦與約定之星",
@@ -5838,7 +6845,7 @@
               "format": "(數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)",
               "language": null,
               "auditorium": null,
-              "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1883490",
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
               "label": "09:30 (數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)"
             },
             {
@@ -6293,7 +7300,7 @@
           "map_name": "威秀影城 / VIESHOW 高雄大遠百威秀影城",
           "address": "高雄市苓雅區三多四路21號13樓",
           "city": "高雄市",
-          "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1857004",
+          "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "official_url": "https://www.vscinemas.com.tw/",
           "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
           "movie_title": "麵包超人電影版：潘坦與約定之星",
@@ -6305,7 +7312,7 @@
               "format": "(數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)",
               "language": null,
               "auditorium": null,
-              "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1857004",
+              "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
               "label": "10:05 (數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)"
             },
             {
@@ -6326,6 +7333,49 @@
             }
           ],
           "start_times": "10:05, 13:35, 17:35"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.213758,
+            25.017327
+          ]
+        },
+        "properties": {
+          "location_id": 47,
+          "chain_name": "新光影城",
+          "location_name": "新光影城桃園青埔",
+          "map_name": "新光影城 新光影城桃園青埔",
+          "address": "桃園市中壢區春德路107號3-5樓（置地廣場·桃園）",
+          "city": "桃園市",
+          "location_url": "https://www.skcinemas.com/films?c=1004",
+          "official_url": "https://www.skcinemas.com/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t03315/a03/",
+          "movie_title": "麵包超人電影版：潘坦與約定之星",
+          "show_date": "2026-10-20",
+          "showtime_count": 2,
+          "showtimes": [
+            {
+              "time": "11:35",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1004",
+              "label": "11:35 日語版"
+            },
+            {
+              "time": "15:50",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.skcinemas.com/films?c=1004",
+              "label": "15:50 日語版"
+            }
+          ],
+          "start_times": "11:35, 15:50"
         }
       },
       {
@@ -6452,6 +7502,57 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.661777770455,
+            24.1552672182
+          ]
+        },
+        "properties": {
+          "location_id": 50,
+          "chain_name": "王牌映画影城",
+          "location_name": "王牌映画影城－廣三SOGO店",
+          "map_name": "王牌映画影城 王牌映画影城－廣三SOGO店",
+          "address": "台中市西區臺灣大道二段459號18樓",
+          "city": "臺中市",
+          "location_url": "https://www.acecinema.com.tw/movie/now",
+          "official_url": "https://www.acecinema.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04428/a04/",
+          "movie_title": "麵包超人電影版：潘坦與約定之星",
+          "show_date": "2026-10-20",
+          "showtime_count": 3,
+          "showtimes": [
+            {
+              "time": "11:40",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.acecinema.com.tw/movie/now",
+              "label": "11:40 日語版"
+            },
+            {
+              "time": "13:30",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.acecinema.com.tw/movie/now",
+              "label": "13:30 日語版"
+            },
+            {
+              "time": "16:20",
+              "format": "日語版",
+              "language": "日語",
+              "auditorium": null,
+              "booking_url": "https://www.acecinema.com.tw/movie/now",
+              "label": "16:20 日語版"
+            }
+          ],
+          "start_times": "11:40, 13:30, 16:20"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             121.55751470000001,
             25.083348479857356
           ]
@@ -6496,6 +7597,34 @@
             }
           ],
           "start_times": "10:40, 13:35, 16:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "麵包超人電影版：潘坦與約定之星",
+          "show_date": "2026-10-20",
+          "showtime_count": 0,
+          "showtimes": [],
+          "start_times": "",
+          "showtime_unavailable": true,
+          "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
         }
       },
       {
@@ -7228,6 +8357,34 @@
               }
             ],
             "start_times": "10:05, 13:50, 15:35, 17:45"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "BanG Dream! Ave Mujica prima aurora",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -8296,6 +9453,34 @@
             ],
             "start_times": "15:00, 21:00"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "人狼 4K數位修復版",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-10-21": [
@@ -8751,6 +9936,34 @@
             ],
             "start_times": "10:50"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "劇場版 Love Live! 蓮之空女學院學園偶像俱樂部 Bloom Garden Party",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-10-21": [
@@ -8896,6 +10109,76 @@
               }
             ],
             "start_times": "12:20"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.4920364,
+              22.6706255
+            ]
+          },
+          "properties": {
+            "location_id": 73,
+            "chain_name": "中影屏東影城",
+            "location_name": "中影屏東影城",
+            "map_name": "中影屏東影城 中影屏東影城",
+            "address": "屏東縣屏東市民生路248號",
+            "city": "屏東縣",
+            "location_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+            "official_url": "https://ptcinema.movie.com.tw/",
+            "crawl_url": "https://ptcinema.movie.com.tw/lightbox/index?id=3239",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "15:00",
+                "format": "日文版-劇場版 吉伊卡哇 人魚島的秘密",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+                "label": "15:00 日文版-劇場版 吉伊卡哇 人魚島的秘密"
+              }
+            ],
+            "start_times": "15:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.61127671349537,
+              25.070089175979927
+            ]
+          },
+          "properties": {
+            "location_id": 76,
+            "chain_name": "哈拉影城",
+            "location_name": "哈拉影城",
+            "map_name": "哈拉影城 哈拉影城",
+            "address": "臺北市內湖區南湖里康寧路三段72號",
+            "city": "臺北市",
+            "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "official_url": "https://www.halarcity.com/",
+            "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "12:05",
+                "format": "(日)劇場版 吉伊卡哇 人魚島的秘密",
+                "language": null,
+                "auditorium": "跨腳廳",
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "12:05 (日)劇場版 吉伊卡哇 人魚島的秘密 / 跨腳廳"
+              }
+            ],
+            "start_times": "12:05"
           }
         },
         {
@@ -9210,7 +10493,7 @@
             "map_name": "威秀影城 / VIESHOW 台北信義威秀影城",
             "address": "台北市信義區松壽路20號2樓",
             "city": "臺北市",
-            "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1882873",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "official_url": "https://www.vscinemas.com.tw/",
             "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
@@ -9222,7 +10505,7 @@
                 "format": "(4DX 日)劇場版 吉伊卡哇 人魚島的秘密 (保護級)",
                 "language": null,
                 "auditorium": null,
-                "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1882873",
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
                 "label": "09:30 (4DX 日)劇場版 吉伊卡哇 人魚島的秘密 (保護級)"
               },
               {
@@ -9692,6 +10975,113 @@
               }
             ],
             "start_times": "11:50, 14:30, 22:40"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.536644362629,
+              25.010805770294
+            ]
+          },
+          "properties": {
+            "location_id": 51,
+            "chain_name": "百老匯影城",
+            "location_name": "公館百老匯影城",
+            "map_name": "百老匯影城 公館百老匯影城",
+            "address": "台北市文山區羅斯福路四段200號",
+            "city": "臺北市",
+            "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Taipei",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "11:45",
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "1廳 3樓",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+                "label": "11:45 數位/日語 / 1廳 3樓",
+                "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Taipei,0000884,2026-10-20,11-45,0001"
+              }
+            ],
+            "start_times": "11:45"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.02123777733,
+              24.809823168098
+            ]
+          },
+          "properties": {
+            "location_id": 52,
+            "chain_name": "百老匯影城",
+            "location_name": "竹北百老匯影城",
+            "map_name": "百老匯影城 竹北百老匯影城",
+            "address": "新竹縣竹北市自強南路36號3~5樓",
+            "city": "新竹縣",
+            "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "11:30",
+                "format": "數位/日語",
+                "language": "日語",
+                "auditorium": "5廳",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+                "label": "11:30 數位/日語 / 5廳",
+                "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Zhubei,0000884,2026-10-20,11-30,0005"
+              }
+            ],
+            "start_times": "11:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.6921689,
+              24.1603157
+            ]
+          },
+          "properties": {
+            "location_id": 70,
+            "chain_name": "親親影城 / 親親戲院",
+            "location_name": "親親影城",
+            "map_name": "親親影城 / 親親戲院 親親影城",
+            "address": "台中市北區北屯路14號",
+            "city": "臺中市",
+            "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "official_url": "https://www.ccmovie.com.tw/",
+            "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "00:10",
+                "format": "2D-日語",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "00:10 2D-日語"
+              }
+            ],
+            "start_times": "00:10"
           }
         },
         {
@@ -10772,6 +12162,41 @@
               }
             ],
             "start_times": "11:50, 17:25"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.6921689,
+              24.1603157
+            ]
+          },
+          "properties": {
+            "location_id": 70,
+            "chain_name": "親親影城 / 親親戲院",
+            "location_name": "親親影城",
+            "map_name": "親親影城 / 親親戲院 親親影城",
+            "address": "台中市北區北屯路14號",
+            "city": "臺中市",
+            "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "official_url": "https://www.ccmovie.com.tw/",
+            "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+            "show_date": "2026-10-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "00:20",
+                "format": "2D-日語",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "00:20 2D-日語"
+              }
+            ],
+            "start_times": "00:20"
           }
         }
       ],
@@ -11864,6 +13289,41 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.298119010543,
+              22.621851005881
+            ]
+          },
+          "properties": {
+            "location_id": 9,
+            "chain_name": "in89 豪華影城",
+            "location_name": "高雄大立 in89豪華影城",
+            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
+            "address": "高雄市前金區五福三路57號9樓",
+            "city": "高雄市",
+            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+            "official_url": "https://www.in89cinemax.com/",
+            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "movie_title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
+            "show_date": "2026-10-22",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "18:00",
+                "format": "BOOM廳(10F)",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+                "label": "18:00 BOOM廳(10F)"
+              }
+            ],
+            "start_times": "18:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.458702134648,
               25.06381770366
             ]
@@ -11939,6 +13399,34 @@
               }
             ],
             "start_times": "11:05"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "劇場版 鋼之鍊金術師 香巴拉的征服者",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -12681,6 +14169,49 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.64371,
+              24.16526
+            ]
+          },
+          "properties": {
+            "location_id": 43,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台中中港",
+            "map_name": "新光影城 新光影城台中中港",
+            "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+            "city": "臺中市",
+            "location_url": "https://www.skcinemas.com/films?c=1003",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:20",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1003",
+                "label": "10:20 日語版"
+              },
+              {
+                "time": "15:00",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1003",
+                "label": "15:00 日語版"
+              }
+            ],
+            "start_times": "10:20, 15:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.55751470000001,
               25.083348479857356
             ]
@@ -12709,6 +14240,41 @@
               }
             ],
             "start_times": "17:50"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.6921689,
+              24.1603157
+            ]
+          },
+          "properties": {
+            "location_id": 70,
+            "chain_name": "親親影城 / 親親戲院",
+            "location_name": "親親影城",
+            "map_name": "親親影城 / 親親戲院 親親影城",
+            "address": "台中市北區北屯路14號",
+            "city": "臺中市",
+            "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "official_url": "https://www.ccmovie.com.tw/",
+            "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "12:50",
+                "format": "2D-日語",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "12:50 2D-日語"
+              }
+            ],
+            "start_times": "12:50"
           }
         },
         {
@@ -13453,6 +15019,41 @@
             ],
             "start_times": "17:50"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.6921689,
+              24.1603157
+            ]
+          },
+          "properties": {
+            "location_id": 70,
+            "chain_name": "親親影城 / 親親戲院",
+            "location_name": "親親影城",
+            "map_name": "親親影城 / 親親戲院 親親影城",
+            "address": "台中市北區北屯路14號",
+            "city": "臺中市",
+            "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "official_url": "https://www.ccmovie.com.tw/",
+            "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
+            "show_date": "2026-10-21",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "12:50",
+                "format": "2D-日語",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "12:50 2D-日語"
+              }
+            ],
+            "start_times": "12:50"
+          }
         }
       ]
     },
@@ -13491,6 +15092,34 @@
               }
             ],
             "start_times": "12:05"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "名偵探柯南 高速公路的墮天使",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -13856,6 +15485,41 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.4920364,
+              22.6706255
+            ]
+          },
+          "properties": {
+            "location_id": 73,
+            "chain_name": "中影屏東影城",
+            "location_name": "中影屏東影城",
+            "map_name": "中影屏東影城 中影屏東影城",
+            "address": "屏東縣屏東市民生路248號",
+            "city": "屏東縣",
+            "location_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+            "official_url": "https://ptcinema.movie.com.tw/",
+            "crawl_url": "https://ptcinema.movie.com.tw/lightbox/index?id=3312",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "16:30",
+                "format": "中文版-角落小夥伴電影版：從天而降的雲之冒險",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.ezding.com.tw/cinemabooking?cinemaid=2c28121ae2c711e292f7000bdb90dba4",
+                "label": "16:30 中文版-角落小夥伴電影版：從天而降的雲之冒險"
+              }
+            ],
+            "start_times": "16:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.3037,
               22.60394
             ]
@@ -13900,6 +15564,49 @@
               }
             ],
             "start_times": "11:50, 14:40, 17:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.61127671349537,
+              25.070089175979927
+            ]
+          },
+          "properties": {
+            "location_id": 76,
+            "chain_name": "哈拉影城",
+            "location_name": "哈拉影城",
+            "map_name": "哈拉影城 哈拉影城",
+            "address": "臺北市內湖區南湖里康寧路三段72號",
+            "city": "臺北市",
+            "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "official_url": "https://www.halarcity.com/",
+            "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:00",
+                "format": "(中)角落小夥伴電影版：從天而降的雲之冒險",
+                "language": "國語",
+                "auditorium": "V-hall",
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "10:00 (中)角落小夥伴電影版：從天而降的雲之冒險 / V-hall"
+              },
+              {
+                "time": "14:40",
+                "format": "(中)角落小夥伴電影版：從天而降的雲之冒險",
+                "language": "國語",
+                "auditorium": "跨腳廳",
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "14:40 (中)角落小夥伴電影版：從天而降的雲之冒險 / 跨腳廳"
+              }
+            ],
+            "start_times": "10:00, 14:40"
           }
         },
         {
@@ -14228,6 +15935,49 @@
               }
             ],
             "start_times": "13:30, 17:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.96788174233023,
+              23.965775164190305
+            ]
+          },
+          "properties": {
+            "location_id": 77,
+            "chain_name": "埔里山明影城",
+            "location_name": "埔里山明影城",
+            "map_name": "埔里山明影城 埔里山明影城",
+            "address": "南投縣埔里鎮中山路二段289號5樓",
+            "city": "南投縣",
+            "location_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+            "official_url": "https://www.shanmingcinema.com.tw/showtimes.php",
+            "crawl_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "13:50",
+                "format": "(數位) 角落小夥伴電影版：從天而降的雲之冒險",
+                "language": null,
+                "auditorium": "E廳",
+                "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+                "label": "13:50 (數位) 角落小夥伴電影版：從天而降的雲之冒險 / E廳"
+              },
+              {
+                "time": "15:10",
+                "format": "(數位) 角落小夥伴電影版：從天而降的雲之冒險",
+                "language": null,
+                "auditorium": "E廳",
+                "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=810",
+                "label": "15:10 (數位) 角落小夥伴電影版：從天而降的雲之冒險 / E廳"
+              }
+            ],
+            "start_times": "13:50, 15:10"
           }
         },
         {
@@ -14923,7 +16673,7 @@
             "map_name": "威秀影城 / VIESHOW 高雄大遠百威秀影城",
             "address": "高雄市苓雅區三多四路21號13樓",
             "city": "高雄市",
-            "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1856946",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "official_url": "https://www.vscinemas.com.tw/",
             "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
@@ -14935,7 +16685,7 @@
                 "format": "(數位 國)角落小夥伴電影版：從天而降的雲之冒險 (普遍級)",
                 "language": null,
                 "auditorium": null,
-                "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1856946",
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
                 "label": "10:05 (數位 國)角落小夥伴電影版：從天而降的雲之冒險 (普遍級)"
               },
               {
@@ -14948,6 +16698,146 @@
               }
             ],
             "start_times": "10:05, 13:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.64371,
+              24.16526
+            ]
+          },
+          "properties": {
+            "location_id": 43,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台中中港",
+            "map_name": "新光影城 新光影城台中中港",
+            "address": "台中市西屯區臺灣大道三段301號14樓（新光三越台中中港店）",
+            "city": "臺中市",
+            "location_url": "https://www.skcinemas.com/films?c=1003",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04401/a04/",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "14:10",
+                "format": "中文版",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1003",
+                "label": "14:10 中文版"
+              }
+            ],
+            "start_times": "14:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.5342,
+              25.118
+            ]
+          },
+          "properties": {
+            "location_id": 44,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台北天母",
+            "map_name": "新光影城 新光影城台北天母",
+            "address": "台北市士林區忠誠路二段202號4樓（新光三越台北天母店B棟）",
+            "city": "臺北市",
+            "location_url": "https://www.skcinemas.com/films?c=1005",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t02d04/a02/",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "15:20",
+                "format": "中文版",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1005",
+                "label": "15:20 中文版"
+              }
+            ],
+            "start_times": "15:20"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.197693,
+              22.986882
+            ]
+          },
+          "properties": {
+            "location_id": 46,
+            "chain_name": "新光影城",
+            "location_name": "新光影城台南西門",
+            "map_name": "新光影城 新光影城台南西門",
+            "address": "台南市中西區西門路一段658號9樓（新光三越台南新天地）",
+            "city": "臺南市",
+            "location_url": "https://www.skcinemas.com/films?c=1002",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t06607/a06/",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "18:00",
+                "format": "中文版",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1002",
+                "label": "18:00 中文版"
+              }
+            ],
+            "start_times": "18:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.213758,
+              25.017327
+            ]
+          },
+          "properties": {
+            "location_id": 47,
+            "chain_name": "新光影城",
+            "location_name": "新光影城桃園青埔",
+            "map_name": "新光影城 新光影城桃園青埔",
+            "address": "桃園市中壢區春德路107號3-5樓（置地廣場·桃園）",
+            "city": "桃園市",
+            "location_url": "https://www.skcinemas.com/films?c=1004",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t03315/a03/",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "15:15",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1004",
+                "label": "15:15 日文版"
+              }
+            ],
+            "start_times": "15:15"
           }
         },
         {
@@ -15074,6 +16964,121 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.661777770455,
+              24.1552672182
+            ]
+          },
+          "properties": {
+            "location_id": 50,
+            "chain_name": "王牌映画影城",
+            "location_name": "王牌映画影城－廣三SOGO店",
+            "map_name": "王牌映画影城 王牌映画影城－廣三SOGO店",
+            "address": "台中市西區臺灣大道二段459號18樓",
+            "city": "臺中市",
+            "location_url": "https://www.acecinema.com.tw/movie/now",
+            "official_url": "https://www.acecinema.com.tw/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04428/a04/",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "14:50",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.acecinema.com.tw/movie/now",
+                "label": "14:50 日文版"
+              },
+              {
+                "time": "18:10",
+                "format": "日文版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.acecinema.com.tw/movie/now",
+                "label": "18:10 日文版"
+              }
+            ],
+            "start_times": "14:50, 18:10"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.536644362629,
+              25.010805770294
+            ]
+          },
+          "properties": {
+            "location_id": 51,
+            "chain_name": "百老匯影城",
+            "location_name": "公館百老匯影城",
+            "map_name": "百老匯影城 公館百老匯影城",
+            "address": "台北市文山區羅斯福路四段200號",
+            "city": "臺北市",
+            "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Taipei",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "10:20",
+                "format": "數位/中文",
+                "language": "國語",
+                "auditorium": "1廳 3樓",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Taipei&v25080101",
+                "label": "10:20 數位/中文 / 1廳 3樓",
+                "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Taipei,0000954,2026-10-20,10-20,0001"
+              }
+            ],
+            "start_times": "10:20"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.02123777733,
+              24.809823168098
+            ]
+          },
+          "properties": {
+            "location_id": 52,
+            "chain_name": "百老匯影城",
+            "location_name": "竹北百老匯影城",
+            "map_name": "百老匯影城 竹北百老匯影城",
+            "address": "新竹縣竹北市自強南路36號3~5樓",
+            "city": "新竹縣",
+            "location_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+            "official_url": "https://www.broadway-cineplex.com.tw/",
+            "crawl_url": "https://www.broadway-cineplex.com.tw/Movie/GetMovieList/Zhubei",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "10:00",
+                "format": "數位/中文",
+                "language": "國語",
+                "auditorium": "5廳",
+                "booking_url": "https://www.broadway-cineplex.com.tw/book.html?obj=Zhubei&v25080101",
+                "label": "10:00 數位/中文 / 5廳",
+                "seat_preview_url": "https://www.broadway-cineplex.com.tw/quick-view.html?obj=Zhubei,0000954,2026-10-20,10-00,0005"
+              }
+            ],
+            "start_times": "10:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.287749028433,
               25.053000983341
             ]
@@ -15153,6 +17158,49 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.6921689,
+              24.1603157
+            ]
+          },
+          "properties": {
+            "location_id": 70,
+            "chain_name": "親親影城 / 親親戲院",
+            "location_name": "親親影城",
+            "map_name": "親親影城 / 親親戲院 親親影城",
+            "address": "台中市北區北屯路14號",
+            "city": "臺中市",
+            "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "official_url": "https://www.ccmovie.com.tw/",
+            "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "12:00",
+                "format": "2D-國語",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "12:00 2D-國語"
+              },
+              {
+                "time": "13:30",
+                "format": "2D-國語",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "13:30 2D-國語"
+              }
+            ],
+            "start_times": "12:00, 13:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.3253452,
               22.6319673
             ]
@@ -15190,6 +17238,49 @@
             ],
             "start_times": "12:45, 17:30",
             "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.42482718650463,
+              25.023188244257295
+            ]
+          },
+          "properties": {
+            "location_id": 80,
+            "chain_name": "鴻金寶麻吉影城",
+            "location_name": "鴻金寶麻吉影城",
+            "map_name": "鴻金寶麻吉影城 鴻金寶麻吉影城",
+            "address": "新北市新莊區八德里民安路188巷5號4F",
+            "city": "新北市",
+            "location_url": "https://fmmfilmmate.tixi.com.tw/",
+            "official_url": "https://machicinema.wordpress.com/",
+            "crawl_url": "https://fmmfilmmate.tixi.com.tw/",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "12:30",
+                "format": "3廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國",
+                "language": "國語",
+                "auditorium": "3廳",
+                "booking_url": "https://fmmfilmmate.tixi.com.tw/",
+                "label": "12:30 3廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國 / 3廳"
+              },
+              {
+                "time": "16:45",
+                "format": "1廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國",
+                "language": "國語",
+                "auditorium": "1廳",
+                "booking_url": "https://fmmfilmmate.tixi.com.tw/",
+                "label": "16:45 1廳 (2D)角落小夥伴電影版：從天而降的雲之冒險 -國 / 1廳"
+              }
+            ],
+            "start_times": "12:30, 16:45"
           }
         }
       ],
@@ -16850,9 +18941,95 @@
             ],
             "start_times": "10:10, 17:00"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.6921689,
+              24.1603157
+            ]
+          },
+          "properties": {
+            "location_id": 70,
+            "chain_name": "親親影城 / 親親戲院",
+            "location_name": "親親影城",
+            "map_name": "親親影城 / 親親戲院 親親影城",
+            "address": "台中市北區北屯路14號",
+            "city": "臺中市",
+            "location_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "official_url": "https://www.ccmovie.com.tw/",
+            "crawl_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-21",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "12:00",
+                "format": "2D-國語",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "12:00 2D-國語"
+              },
+              {
+                "time": "13:30",
+                "format": "2D-國語",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.ccmovie.com.tw/product.php?_path=product_showtimes",
+                "label": "13:30 2D-國語"
+              }
+            ],
+            "start_times": "12:00, 13:30"
+          }
         }
       ],
       "2026-10-22": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.298119010543,
+              22.621851005881
+            ]
+          },
+          "properties": {
+            "location_id": 9,
+            "chain_name": "in89 豪華影城",
+            "location_name": "高雄大立 in89豪華影城",
+            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
+            "address": "高雄市前金區五福三路57號9樓",
+            "city": "高雄市",
+            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+            "official_url": "https://www.in89cinemax.com/",
+            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
+            "show_date": "2026-10-22",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:30",
+                "format": "BOOM廳(10F)",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+                "label": "10:30 BOOM廳(10F)"
+              },
+              {
+                "time": "13:20",
+                "format": "BOOM廳(10F)",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+                "label": "13:20 BOOM廳(10F)"
+              }
+            ],
+            "start_times": "10:30, 13:20"
+          }
+        },
         {
           "type": "Feature",
           "geometry": {
@@ -17262,6 +19439,34 @@
             ],
             "start_times": "10:50"
           }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "電影哆啦A夢：新．大雄的海底鬼岩城",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+          }
         }
       ],
       "2026-10-21": [
@@ -17450,6 +19655,34 @@
               }
             ],
             "start_times": "17:30"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         }
       ],
@@ -17780,6 +20013,57 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              121.61127671349537,
+              25.070089175979927
+            ]
+          },
+          "properties": {
+            "location_id": 76,
+            "chain_name": "哈拉影城",
+            "location_name": "哈拉影城",
+            "map_name": "哈拉影城 哈拉影城",
+            "address": "臺北市內湖區南湖里康寧路三段72號",
+            "city": "臺北市",
+            "location_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "official_url": "https://www.halarcity.com/",
+            "crawl_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+            "movie_title": "麵包超人電影版：潘坦與約定之星",
+            "show_date": "2026-10-20",
+            "showtime_count": 3,
+            "showtimes": [
+              {
+                "time": "10:30",
+                "format": "(中)麵包超人電影版：潘坦與約定之星",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "10:30 (中)麵包超人電影版：潘坦與約定之星"
+              },
+              {
+                "time": "13:20",
+                "format": "(中)麵包超人電影版：潘坦與約定之星",
+                "language": "國語",
+                "auditorium": "跨腳廳",
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "13:20 (中)麵包超人電影版：潘坦與約定之星 / 跨腳廳"
+              },
+              {
+                "time": "16:05",
+                "format": "(中)麵包超人電影版：潘坦與約定之星",
+                "language": "國語",
+                "auditorium": "跨腳廳",
+                "booking_url": "https://halarcity.com.tw/Browsing/Cinemas/Details/0000000001",
+                "label": "16:05 (中)麵包超人電影版：潘坦與約定之星 / 跨腳廳"
+              }
+            ],
+            "start_times": "10:30, 13:20, 16:05"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.458702134648,
               25.06381770366
             ]
@@ -17891,6 +20175,49 @@
               }
             ],
             "start_times": "14:10, 15:25, 18:45, 20:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.96788174233023,
+              23.965775164190305
+            ]
+          },
+          "properties": {
+            "location_id": 77,
+            "chain_name": "埔里山明影城",
+            "location_name": "埔里山明影城",
+            "map_name": "埔里山明影城 埔里山明影城",
+            "address": "南投縣埔里鎮中山路二段289號5樓",
+            "city": "南投縣",
+            "location_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+            "official_url": "https://www.shanmingcinema.com.tw/showtimes.php",
+            "crawl_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+            "movie_title": "麵包超人電影版：潘坦與約定之星",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "11:30",
+                "format": "(數位) 麵包超人電影版：潘坦與約定之星",
+                "language": null,
+                "auditorium": "E廳",
+                "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+                "label": "11:30 (數位) 麵包超人電影版：潘坦與約定之星 / E廳"
+              },
+              {
+                "time": "12:40",
+                "format": "(數位) 麵包超人電影版：潘坦與約定之星",
+                "language": null,
+                "auditorium": "E廳",
+                "booking_url": "https://www.shanmingcinema.com.tw/showtimes.php?id=812",
+                "label": "12:40 (數位) 麵包超人電影版：潘坦與約定之星 / E廳"
+              }
+            ],
+            "start_times": "11:30, 12:40"
           }
         },
         {
@@ -18070,7 +20397,7 @@
             "map_name": "威秀影城 / VIESHOW 台北信義威秀影城",
             "address": "台北市信義區松壽路20號2樓",
             "city": "臺北市",
-            "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1883490",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "official_url": "https://www.vscinemas.com.tw/",
             "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "movie_title": "麵包超人電影版：潘坦與約定之星",
@@ -18082,7 +20409,7 @@
                 "format": "(數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)",
                 "language": null,
                 "auditorium": null,
-                "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=1&txtSessionId=1883490",
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
                 "label": "09:30 (數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)"
               },
               {
@@ -18537,7 +20864,7 @@
             "map_name": "威秀影城 / VIESHOW 高雄大遠百威秀影城",
             "address": "高雄市苓雅區三多四路21號13樓",
             "city": "高雄市",
-            "location_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1857004",
+            "location_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "official_url": "https://www.vscinemas.com.tw/",
             "crawl_url": "https://www.vscinemas.com.tw/ShowTimes/",
             "movie_title": "麵包超人電影版：潘坦與約定之星",
@@ -18549,7 +20876,7 @@
                 "format": "(數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)",
                 "language": null,
                 "auditorium": null,
-                "booking_url": "https://www.vscinemas.com.tw/vsTicketing/ticketing/booking.aspx?cinemacode=6&txtSessionId=1857004",
+                "booking_url": "https://www.vscinemas.com.tw/ShowTimes/",
                 "label": "10:05 (數位 國)麵包超人電影版：潘坦與約定之星 (普遍級)"
               },
               {
@@ -18570,6 +20897,49 @@
               }
             ],
             "start_times": "10:05, 13:35, 17:35"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              121.213758,
+              25.017327
+            ]
+          },
+          "properties": {
+            "location_id": 47,
+            "chain_name": "新光影城",
+            "location_name": "新光影城桃園青埔",
+            "map_name": "新光影城 新光影城桃園青埔",
+            "address": "桃園市中壢區春德路107號3-5樓（置地廣場·桃園）",
+            "city": "桃園市",
+            "location_url": "https://www.skcinemas.com/films?c=1004",
+            "official_url": "https://www.skcinemas.com/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t03315/a03/",
+            "movie_title": "麵包超人電影版：潘坦與約定之星",
+            "show_date": "2026-10-20",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "11:35",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1004",
+                "label": "11:35 日語版"
+              },
+              {
+                "time": "15:50",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.skcinemas.com/films?c=1004",
+                "label": "15:50 日語版"
+              }
+            ],
+            "start_times": "11:35, 15:50"
           }
         },
         {
@@ -18696,6 +21066,57 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.661777770455,
+              24.1552672182
+            ]
+          },
+          "properties": {
+            "location_id": 50,
+            "chain_name": "王牌映画影城",
+            "location_name": "王牌映画影城－廣三SOGO店",
+            "map_name": "王牌映画影城 王牌映画影城－廣三SOGO店",
+            "address": "台中市西區臺灣大道二段459號18樓",
+            "city": "臺中市",
+            "location_url": "https://www.acecinema.com.tw/movie/now",
+            "official_url": "https://www.acecinema.com.tw/",
+            "crawl_url": "https://www.atmovies.com.tw/showtime/t04428/a04/",
+            "movie_title": "麵包超人電影版：潘坦與約定之星",
+            "show_date": "2026-10-20",
+            "showtime_count": 3,
+            "showtimes": [
+              {
+                "time": "11:40",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.acecinema.com.tw/movie/now",
+                "label": "11:40 日語版"
+              },
+              {
+                "time": "13:30",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.acecinema.com.tw/movie/now",
+                "label": "13:30 日語版"
+              },
+              {
+                "time": "16:20",
+                "format": "日語版",
+                "language": "日語",
+                "auditorium": null,
+                "booking_url": "https://www.acecinema.com.tw/movie/now",
+                "label": "16:20 日語版"
+              }
+            ],
+            "start_times": "11:40, 13:30, 16:20"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               121.55751470000001,
               25.083348479857356
             ]
@@ -18740,6 +21161,34 @@
               }
             ],
             "start_times": "10:40, 13:35, 16:00"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "麵包超人電影版：潘坦與約定之星",
+            "show_date": "2026-10-20",
+            "showtime_count": 0,
+            "showtimes": [],
+            "start_times": "",
+            "showtime_unavailable": true,
+            "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
           }
         },
         {
@@ -19966,6 +22415,49 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.298119010543,
+              22.621851005881
+            ]
+          },
+          "properties": {
+            "location_id": 9,
+            "chain_name": "in89 豪華影城",
+            "location_name": "高雄大立 in89豪華影城",
+            "map_name": "in89 豪華影城 高雄大立 in89豪華影城",
+            "address": "高雄市前金區五福三路57號9樓",
+            "city": "高雄市",
+            "location_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+            "official_url": "https://www.in89cinemax.com/",
+            "crawl_url": "https://talee.in89.com.tw/api/api_movie.php?method=getStagesByDate",
+            "movie_title": "麵包超人電影版：潘坦與約定之星",
+            "show_date": "2026-10-22",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "12:00",
+                "format": "BOOM廳(10F)",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+                "label": "12:00 BOOM廳(10F)"
+              },
+              {
+                "time": "14:50",
+                "format": "BOOM廳(10F)",
+                "language": "國語",
+                "auditorium": null,
+                "booking_url": "https://www.in89cinemax.com/film_list.aspx?TheaterId=16",
+                "label": "14:50 BOOM廳(10F)"
+              }
+            ],
+            "start_times": "12:00, 14:50"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.3037,
               22.60394
             ]
@@ -20682,7 +23174,7 @@
     "2026-10-24",
     "2026-10-25"
   ],
-  "feature_count": 14,
+  "feature_count": 15,
   "features": [
     {
       "type": "Feature",
@@ -21365,9 +23857,37 @@
         ],
         "start_times": "10:05, 13:50, 15:35, 17:45"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.3253452,
+          22.6319673
+        ]
+      },
+      "properties": {
+        "location_id": 72,
+        "chain_name": "高雄環球影城",
+        "location_name": "高雄環球影城",
+        "map_name": "高雄環球影城 高雄環球影城",
+        "address": "高雄市苓雅區大順三路108號",
+        "city": "高雄市",
+        "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+        "official_url": "https://www.u-movie.com.tw/",
+        "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+        "movie_title": "BanG Dream! Ave Mujica prima aurora",
+        "show_date": "2026-10-20",
+        "showtime_count": 0,
+        "showtimes": [],
+        "start_times": "",
+        "showtime_unavailable": true,
+        "showtime_unavailable_reason": "官方時刻表暫時無法自動取得，請前往場次入口查看。"
+      }
     }
   ],
-  "supplemental_updated_at": "2026-10-20T07:16:38+08:00",
-  "supplemental_preserved_at": "2026-10-19T08:43:27+08:00",
-  "supplemental_finalized_at": "2026-10-20T07:17:06+08:00"
+  "supplemental_updated_at": "2026-10-20T10:10:21+08:00",
+  "supplemental_preserved_at": "2026-10-20T09:59:05+08:00",
+  "supplemental_finalized_at": "2026-10-20T10:10:49+08:00"
 }
