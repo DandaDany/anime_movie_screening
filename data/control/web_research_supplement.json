@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "for_date": "2026-10-20",
-  "generated_at": "2026-10-20T07:08:00+08:00",
+  "for_date": "2026-10-21",
+  "generated_at": "2026-10-21T07:08:00+08:00",
   "records": [
     {
       "location_id": 69,
       "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
-      "show_date": "2026-10-20",
+      "show_date": "2026-10-21",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "桃園台茂美麗新影城官方場次頁明列 2026-10-20、片名、標準廳中文版與 12:55 場次。",
+      "evidence": "桃園台茂美麗新影城官方場次頁明列 2026-10-21、片名、標準廳中文版與 12:55 場次。",
       "showtimes": [
         {
           "time": "12:55",
@@ -19,75 +19,9 @@
       ]
     },
     {
-      "location_id": 72,
-      "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
-      "show_date": "2026-10-20",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻表明列 2026-10-20 日語版 12:45（13廳）及國語版 17:30（12廳）。",
-      "showtimes": [
-        {
-          "time": "12:45",
-          "format": null,
-          "language": "日語",
-          "auditorium": "13廳"
-        },
-        {
-          "time": "17:30",
-          "format": null,
-          "language": "國語",
-          "auditorium": "12廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "劇場版 鋼之鍊金術師 嘆息之丘的聖星",
-      "show_date": "2026-10-20",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻表明列 2026-10-20、片名與 13:00（12廳）。",
-      "showtimes": [
-        {
-          "time": "13:00",
-          "format": null,
-          "language": null,
-          "auditorium": "12廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "劇場版 魔法少女小圓〈瓦爾普吉斯的迴天〉",
-      "show_date": "2026-10-20",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻表明列 2026-10-20、片名與 12:20（11廳）。",
-      "showtimes": [
-        {
-          "time": "12:20",
-          "format": null,
-          "language": null,
-          "auditorium": "11廳"
-        }
-      ]
-    },
-    {
-      "location_id": 72,
-      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-20",
-      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方時刻表明列 2026-10-20 日語版 12:15（5廳）。",
-      "showtimes": [
-        {
-          "time": "12:15",
-          "format": null,
-          "language": "日語",
-          "auditorium": "5廳"
-        }
-      ]
-    },
-    {
       "location_id": 104,
       "movie_title": "麵包超人電影版：潘坦與約定之星",
-      "show_date": "2026-10-20",
+      "show_date": "2026-10-21",
       "source_url": "https://www.instagram.com/madoucinema/p/DeoX0SGoCqv/",
       "evidence": "麻豆戲院官方 Instagram 置頂排程貼文明列適用 10/19–10/21；完整圖片顯示數位中文版 14:35、18:05。",
       "showtimes": [
@@ -108,7 +42,7 @@
     {
       "location_id": 104,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-20",
+      "show_date": "2026-10-21",
       "source_url": "https://www.instagram.com/madoucinema/p/DeoX0SGoCqv/",
       "evidence": "麻豆戲院官方 Instagram 置頂排程貼文明列適用 10/19–10/21；完整圖片顯示數位中文版 17:40。",
       "showtimes": [
