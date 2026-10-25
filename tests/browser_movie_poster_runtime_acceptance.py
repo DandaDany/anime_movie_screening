@@ -100,6 +100,12 @@ def main() -> int:
                 print("[poster-runtime] NEW_OR_REPLACED", movie["title"], json.dumps(state, ensure_ascii=False), flush=True)
                 if state["outcome"] != "loaded" or not state["complete"] or not w or not h:
                     failures.append({"title": movie["title"], **state})
+                if movie["id"] == 5 and (w < 1000 or h < 1400):
+                    failures.append({
+                        "title": movie["title"],
+                        "error": "upgraded Taiwan poster below verified 1000x1400 target",
+                        **state,
+                    })
                 if w and h and (w < 800 or h < 1200):
                     print(
                         "[poster-runtime] LOW_RES_PENDING_UPGRADE",
