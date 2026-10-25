@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30",
-  "movie_count": 32,
+  "generated_at": "2026-10-25",
+  "movie_count": 40,
   "movies": [
     {
       "title": "BanG Dream! Ave Mujica prima aurora",
@@ -50,7 +50,7 @@
       "title": "加速世界 劇場版 INFINITE BURST",
       "aliases": [],
       "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source": "日本官方 Poster（既有 last-known-good；2026-10-23 已在台上映，台灣版低解析待升級；TW_POSTER_PENDING_UPGRADE）",
       "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377",
       "poster_fallback_url": null
     },
@@ -216,7 +216,7 @@
         "麵包超人電影版 潘坦與約定之星"
       ],
       "poster_url": "assets/posters/anpanman-pantan-2026-hq.webp",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source": "日本官方 Poster（既有高解析 last-known-good；2026-10-16 已在台上映，台灣版待畫質升級；TW_POSTER_PENDING_UPGRADE）",
       "poster_source_url": "https://news.anpan-movie.com/2026/463/",
       "poster_fallback_url": null,
       "poster_fit": "contain"
@@ -315,6 +315,104 @@
       "poster_url": "https://img2.animatetimes.com/2026/02/197ebc1f7869a9153adbb63715a3f6a56a60290da9b615_48951276_86b089998437a9cf97e067468d0e1ad1c2a6e2d0.png",
       "poster_source": "日本官方主視覺（Animate Times 收錄）",
       "poster_source_url": "https://www.animatetimes.com/tag/details.php?id=27649",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "嘟嘟魚的冒險",
+      "aliases": [
+        "The Pout-Pout Fish",
+        "THE POUT POUT FISH"
+      ],
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014002.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 701×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9048",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "煙囪小鎮的普佩2：約定的鐘樓",
+      "aliases": [
+        "煙囪小鎮的普佩 2：約定的鐘樓",
+        "CHIMNEY TOWN: FROZEN IN TIME"
+      ],
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261008002.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 604×876，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.vscinemas.com.tw/VsWeb/film/detail.aspx?id=9030",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "歡迎來到朵莉之家",
+      "aliases": [
+        "WELCOME TO DOLLYS HOUSE",
+        "WELCOME TO DOLLY'S HOUSE"
+      ],
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261012003.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 707×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9038",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "劇場版 魔法科高中的劣等生 四葉繼承篇",
+      "aliases": [
+        "魔法科高中的劣等生 四葉繼承篇",
+        "劇場版《魔法科高中的劣等生 四葉繼承篇》",
+        "The Irregular at Magic High School THE MOVIE -Yotsuba Succession Arc-"
+      ],
+      "poster_url": "https://www.ccpa.org.tw/ccpa/images/ckfinder/2/images/%E4%B8%BB%E8%A6%96%E8%A6%BA%281%29.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 691×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=789&tpl=",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "歡迎光臨魔法秘境",
+      "aliases": [
+        "DISNEY'S HEXED",
+        "Hexed"
+      ],
+      "poster_url": "https://assets.showtimes.com.tw/images/c944d5c226866154abc551dc7c33658f.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 700×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/12808/",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "庫洛魔法使 劇場版：被封印的卡片",
+      "aliases": [
+        "劇場版 庫洛魔法使 被封印的卡片",
+        "庫洛魔法使 劇場版 被封印的卡片",
+        "カードキャプターさくら 封印されたカード"
+      ],
+      "poster_url": "https://uch-movies.tw/upload/movies/S_2026101402432229ne.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 601×841，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://uch-movies.tw/showmovie.aspx?getId=06DAF57F662277A2&getId1=E52DEF631A2A89AA",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "戴帽子的貓",
+      "aliases": [
+        "The Cat in the Hat"
+      ],
+      "poster_url": "https://assets.showtimes.com.tw/images/4029fec2ed274e1ab035ce36de1c1e2a.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 700×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/12969/",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "憤怒鳥玩電影3：全家總動員",
+      "aliases": [
+        "憤怒鳥玩電影3 全家總動員",
+        "THE ANGRY BIRD MOVIE 3",
+        "The Angry Birds Movie 3"
+      ],
+      "poster_url": "https://assets.showtimes.com.tw/images/e24b73e1e2451e8abc352c11c63df468.jpg",
+      "poster_source": "台灣主要院線／發行正式海報（原站 675×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/13016/",
       "poster_fallback_url": null,
       "poster_fit": "contain"
     }
