@@ -30,6 +30,11 @@ jobs:
             'hexed-old': 'https://www.halarcity.com/image/data/movie/2611/78168935222296203104.jpg',
             'hexed-bahamut': 'https://p2.bahamut.com.tw/B/2KU/94/9e0d9a8037b3623174c6a8abaf1z3965.JPG',
             'jim-queen-old': 'https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261015001.jpg',
+            'hexed-oct-official-pr-media-560': 'https://images.livio.com.tw/uploads/livio-2-655-jpg-aspect-ratio-400-560.webp',
+            'hexed-oct-original-jpg': 'https://images.livio.com.tw/uploads/livio-2-655.jpg',
+            'hexed-oct-original-webp': 'https://images.livio.com.tw/uploads/livio-2-655-jpg.webp',
+            'hexed-oct-upsize': 'https://images.livio.com.tw/uploads/livio-2-655-jpg-aspect-ratio-1200-1680.webp',
+            'hexed-oct-udn': 'https://p2.bahamut.com.tw/B/2KU/94/9e0d9a8037b3623174c6a8abaf1z3965.JPG',
             'jim-queen-eslite': 'https://meet.eslite.com/Content/Images/ArtShow/JimQueen_20261012182858.jpg',
           }
           for name,url in urls.items():
