@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "web" / "data" / "movie_discovery.json"
 ASSETS = ROOT / "web" / "assets" / "posters"
-UPDATED_IDS = set(range(34, 43)) | {5, 25}
+UPDATED_IDS = set(range(34, 45)) | {5, 25}
 BASE_URL = "http://127.0.0.1:8765/"
 
 
