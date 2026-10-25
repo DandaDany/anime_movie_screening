@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T09:39:47+08:00",
+  "generated_at": "2026-10-25T09:45:00+08:00",
   "version": 2026102502,
   "lookahead_days": 7,
   "movies": [
@@ -91,9 +91,9 @@
       "target_date": "2026-11-06",
       "is_active": true,
       "sort_order": 0,
-      "notes": "",
+      "notes": "原 ao-buta.com/kv_dearfriend.jpg 在 2026-10-25 GitHub Chromium runtime 失效；暫以日本官方劇場主視覺 ORICON 收錄作 UPCOMING FALLBACK，台灣正式高解析 Poster 待升級。",
       "created_at": "2026-08-17T05:51:43.569570+00:00",
-      "updated_at": "2026-08-17T05:51:43.569583+00:00"
+      "updated_at": "2026-10-25T09:45:00+08:00"
     },
     {
       "id": 2,
