@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T09:10:00+08:00",
-  "version": 2026102501,
+  "generated_at": "2026-10-25T09:39:47+08:00",
+  "version": 2026102502,
   "lookahead_days": 7,
   "movies": [
     {
@@ -536,6 +536,35 @@
       "notes": "哈拉正式電影頁2026-11-27、木棉花公布重映。隨片同場加映《包在小可身上！》；屬單場連映，後者不拆新canonical。台灣正式高解析海報未獲可直連穩定版本；暫用正確作品主視覺並標記待升級。",
       "created_at": "2026-10-25T09:10:00+08:00",
       "updated_at": "2026-10-25T09:10:00+08:00"
+    },
+    {
+      "id": 43,
+      "title": "歡迎來到朵莉之家",
+      "aliases": [
+        "WELCOME TO DOLLYS HOUSE",
+        "WELCOME TO DOLLY'S HOUSE"
+      ],
+      "target_date": "2026-10-30",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "威秀正式頁明示 2026-10-30 上映，類型為動畫、奇幻。 台灣正式來源：https://www.vscinemas.com.tw/film/detail.aspx?id=9038",
+      "created_at": "2026-10-25T08:46:17+08:00",
+      "updated_at": "2026-10-25T08:46:17+08:00"
+    },
+    {
+      "id": 44,
+      "title": "劇場版 魔法科高中的劣等生 四葉繼承篇",
+      "aliases": [
+        "魔法科高中的劣等生 四葉繼承篇",
+        "劇場版《魔法科高中的劣等生 四葉繼承篇》",
+        "The Irregular at Magic High School THE MOVIE -Yotsuba Succession Arc-"
+      ],
+      "target_date": "2026-11-13",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "台灣發行商曼迪公告 2026-11-13 起威秀獨家上映；海報為曼迪台灣版主視覺。 台灣正式來源：https://www.ccpa.org.tw/ccpa/data.php?id=789&tpl=",
+      "created_at": "2026-10-25T08:46:17+08:00",
+      "updated_at": "2026-10-25T08:46:17+08:00"
     }
   ]
 }
