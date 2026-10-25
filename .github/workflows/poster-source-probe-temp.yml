@@ -1,0 +1,43 @@
+name: Poster source quality probe (temporary)
+on:
+  push:
+    branches:
+      - research/poster-hq-20261025
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pillow requests
+      - name: Inspect candidate source bytes and image dimensions
+        run: |
+          python - <<'PY'
+          from io import BytesIO
+          from PIL import Image
+          import requests
+          urls = {
+            'accel-old': 'https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014001.jpg',
+            'accel-4gamers': 'https://img.4gamers.com.tw/puku-clone-version/54dda451d6acfda017d827359dacb368942c45cc.jpg',
+            'dolly-old': 'https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261012003.jpg',
+            'dolly-mirror': 'https://v3-statics.mirrormedia.mg/images/c8a5aad3-e155-47e6-8714-fe75d5bfde11.jpg',
+            'dolly-wowscreen': 'https://cdn.wowscreen.com.tw/uploadfile/202609/movie_023382_443094.jpg',
+            'hexed-old': 'https://www.halarcity.com/image/data/movie/2611/78168935222296203104.jpg',
+            'hexed-bahamut': 'https://p2.bahamut.com.tw/B/2KU/94/9e0d9a8037b3623174c6a8abaf1z3965.JPG',
+            'jim-queen-old': 'https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261015001.jpg',
+            'jim-queen-eslite': 'https://meet.eslite.com/Content/Images/ArtShow/JimQueen_20261012182858.jpg',
+          }
+          for name,url in urls.items():
+            try:
+              r=requests.get(url,timeout=22,headers={'User-Agent':'Mozilla/5.0'})
+              r.raise_for_status()
+              im=Image.open(BytesIO(r.content))
+              print(f'POSTER_PROBE {name} dims={im.size} format={im.format} bytes={len(r.content)} url={url}',flush=True)
+            except Exception as e:
+              print(f'POSTER_PROBE {name} ERROR={repr(e)}',flush=True)
+          PY
