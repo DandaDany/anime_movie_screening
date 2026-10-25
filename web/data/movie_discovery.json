@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026093001,
-  "generated_at": "2026-09-30T22:25:00+08:00",
+  "source_version": 2026102502,
+  "generated_at": "2026-10-25T09:45:00+08:00",
   "lookahead_days": 7,
-  "count": 31,
+  "count": 42,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -68,11 +68,11 @@
       "title": "加速世界 劇場版 INFINITE BURST",
       "aliases": [],
       "target_date": "2026-10-23",
-      "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014001.jpg",
       "poster_fallback_url": null,
-      "poster_fit": null,
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式院線海報（含2026-10-23台灣日期；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/"
     },
     {
       "id": 10,
@@ -93,11 +93,11 @@
       "title": "青春豬頭少年不會夢到親愛好朋友",
       "aliases": [],
       "target_date": "2026-11-06",
-      "poster_url": "https://ao-buta.com/assets/img/kv_dearfriend.jpg",
+      "poster_url": "https://contents.oricon.co.jp/upimg/news/2425000/2424883/20251214_190308_p_o_28161682.jpg",
       "poster_fallback_url": null,
-      "poster_fit": null,
+      "poster_fit": "contain",
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://ao-buta.com/"
+      "poster_source_url": "https://www.oricon.co.jp/news/2424883/full/"
     },
     {
       "id": 11,
@@ -277,11 +277,11 @@
         "麵包超人電影版 潘坦與約定之星"
       ],
       "target_date": "2026-10-16",
-      "poster_url": "assets/posters/anpanman-pantan-2026-hq.webp",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261001008.jpg",
       "poster_fallback_url": null,
       "poster_fit": "contain",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://news.anpan-movie.com/2026/463/"
+      "poster_source": "威秀影城台灣正式院線海報（含2026-10-16台灣日期；先前日本6/26海報保留原WebP資產供稽核，LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.halarcity.com/"
     },
     {
       "id": 26,
@@ -398,6 +398,164 @@
       "poster_fit": "contain",
       "poster_source": "日本官方主視覺（Animate Times 收錄）",
       "poster_source_url": "https://www.animatetimes.com/tag/details.php?id=27649"
+    },
+    {
+      "id": 34,
+      "title": "同級生：十週年重映",
+      "aliases": [
+        "同級生：10週年重映",
+        "同級生 10周年重映",
+        "DOUKYUSEI"
+      ],
+      "target_date": "2026-11-06",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261015005.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣十週年重映正式海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9055"
+    },
+    {
+      "id": 35,
+      "title": "歡迎光臨魔法秘境",
+      "aliases": [
+        "HEXED",
+        "Hexed"
+      ],
+      "target_date": "2026-11-26",
+      "poster_url": "https://www.halarcity.com/image/data/movie/2611/78168935222296203104.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "哈拉影城台灣中文正式直式海報；秀泰 CDN 版在真實 Chromium 失敗；LOW_RES_PENDING_UPGRADE（CI 量測後複核）",
+      "poster_source_url": "https://www.halarcity.com/movie/catalog/category/11/page/1"
+    },
+    {
+      "id": 36,
+      "title": "戴帽子的貓",
+      "aliases": [
+        "The Cat in the Hat",
+        "戴帽子貓"
+      ],
+      "target_date": "2026-12-03",
+      "poster_url": "https://www.halarcity.com/image/data/movie/2612/TW_TCITH_Intl_1Sheet.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "哈拉影城台灣中文正式院線海報，印有台灣 12/03；秀泰 CDN 在真實 Chromium 失敗；LOW_RES_PENDING_UPGRADE（CI 量測後複核）",
+      "poster_source_url": "https://www.halarcity.com/movie/catalog/category/11/page/1"
+    },
+    {
+      "id": 37,
+      "title": "憤怒鳥玩電影3：全家總動員",
+      "aliases": [
+        "The Angry Birds Movie 3",
+        "憤怒鳥玩電影 3"
+      ],
+      "target_date": "2027-01-01",
+      "poster_url": "https://www.halarcity.com/image/data/movie/2701/0260921173526.png",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "哈拉影城台灣中文正式海報，並非 YouTube 圖；秀泰 CDN 版真實 Chromium 失敗；LOW_RES_PENDING_UPGRADE（CI 量測後複核）",
+      "poster_source_url": "https://www.halarcity.com/movie/catalog/category/11/page/1"
+    },
+    {
+      "id": 38,
+      "title": "煙囪小鎮的普佩2：約定的鐘樓",
+      "aliases": [
+        "煙囪小鎮的普佩2 約定的鐘樓",
+        "Chimney Town: Frozen in Time"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261008002.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣院線正式電影海報（車庫娛樂）",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2125"
+    },
+    {
+      "id": 39,
+      "title": "嘟嘟魚的冒險",
+      "aliases": [
+        "The Pout-Pout Fish",
+        "The Pout Pout Fish"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014002.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式電影海報",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2119"
+    },
+    {
+      "id": 40,
+      "title": "Jim Queen：肌情四射",
+      "aliases": [
+        "JIM QUEEN：肌情四射",
+        "Jim Queen: 肌情四射",
+        "JIM QUEEN"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261015001.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式直式電影海報（印 10.23）；取代秀泰 CDN 真實 Chromium 失敗的 URL；LOW_RES_PENDING_UPGRADE（CI 量測後複核）",
+      "poster_source_url": "https://www.vscinemas.com.tw/VsWeb/film/detail.aspx?id=9051"
+    },
+    {
+      "id": 41,
+      "title": "汪汪隊立大功：恐龍大電影",
+      "aliases": [
+        "PAW Patrol: The Dino Movie",
+        "汪汪隊立大功 恐龍大電影"
+      ],
+      "target_date": "2026-08-14",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20260401001.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式電影主視覺海報；取代秀泰 CDN 真實 Chromium 失敗的 URL；LOW_RES_PENDING_UPGRADE（CI 量測後複核）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=8657"
+    },
+    {
+      "id": 42,
+      "title": "庫洛魔法使 劇場版：被封印的卡片",
+      "aliases": [
+        "庫洛魔法使劇場版：被封印的卡片",
+        "劇場版庫洛魔法使 被封印的卡片",
+        "Cardcaptor Sakura: The Sealed Card"
+      ],
+      "target_date": "2026-11-27",
+      "poster_url": "https://uch-movies.tw/upload/movies/S_2026101402432229ne.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "環球中華影城台灣正式劇場版電影海報（601×808；LOW_RES_PENDING_UPGRADE；原 1200×630 媒體橫幅非正式海報）",
+      "poster_source_url": "https://uch-movies.tw/showmovie.aspx?getId=06DAF57F662277A2&getId1=E52DEF631A2A89AA"
+    },
+    {
+      "id": 43,
+      "title": "歡迎來到朵莉之家",
+      "aliases": [
+        "WELCOME TO DOLLYS HOUSE",
+        "WELCOME TO DOLLY'S HOUSE"
+      ],
+      "target_date": "2026-10-30",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261012003.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "台灣主要院線／發行正式海報（原站 707×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9038"
+    },
+    {
+      "id": 44,
+      "title": "劇場版 魔法科高中的劣等生 四葉繼承篇",
+      "aliases": [
+        "魔法科高中的劣等生 四葉繼承篇",
+        "劇場版《魔法科高中的劣等生 四葉繼承篇》",
+        "The Irregular at Magic High School THE MOVIE -Yotsuba Succession Arc-"
+      ],
+      "target_date": "2026-11-13",
+      "poster_url": "https://www.ccpa.org.tw/ccpa/images/ckfinder/2/images/%E4%B8%BB%E8%A6%96%E8%A6%BA%281%29.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "台灣主要院線／發行正式海報（原站 691×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
+      "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=789&tpl="
     }
   ]
 }
