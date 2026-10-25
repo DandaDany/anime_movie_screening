@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026093001,
-  "generated_at": "2026-09-30T22:25:00+08:00",
+  "source_version": 2026102501,
+  "generated_at": "2026-10-25T09:10:00+08:00",
   "lookahead_days": 7,
-  "count": 31,
+  "count": 40,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -68,11 +68,11 @@
       "title": "加速世界 劇場版 INFINITE BURST",
       "aliases": [],
       "target_date": "2026-10-23",
-      "poster_url": "https://img.sunrise-inc.co.jp/images/datacard/377_main.jpg",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014001.jpg",
       "poster_fallback_url": null,
-      "poster_fit": null,
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://www.sunrise-inc.co.jp/work/detail.php?cid=377"
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式院線海報（含2026-10-23台灣日期；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/"
     },
     {
       "id": 10,
@@ -277,11 +277,11 @@
         "麵包超人電影版 潘坦與約定之星"
       ],
       "target_date": "2026-10-16",
-      "poster_url": "assets/posters/anpanman-pantan-2026-hq.webp",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261001008.jpg",
       "poster_fallback_url": null,
       "poster_fit": "contain",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
-      "poster_source_url": "https://news.anpan-movie.com/2026/463/"
+      "poster_source": "威秀影城台灣正式院線海報（含2026-10-16台灣日期；先前日本6/26海報保留原WebP資產供稽核，LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.halarcity.com/"
     },
     {
       "id": 26,
@@ -398,6 +398,135 @@
       "poster_fit": "contain",
       "poster_source": "日本官方主視覺（Animate Times 收錄）",
       "poster_source_url": "https://www.animatetimes.com/tag/details.php?id=27649"
+    },
+    {
+      "id": 34,
+      "title": "同級生：十週年重映",
+      "aliases": [
+        "同級生：10週年重映",
+        "同級生 10周年重映",
+        "DOUKYUSEI"
+      ],
+      "target_date": "2026-11-06",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261015005.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣十週年重映正式海報",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9055"
+    },
+    {
+      "id": 35,
+      "title": "歡迎光臨魔法秘境",
+      "aliases": [
+        "HEXED",
+        "Hexed"
+      ],
+      "target_date": "2026-11-26",
+      "poster_url": "https://assets.showtimes.com.tw/images/c944d5c226866154abc551dc7c33658f.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣電影官方主視覺海報",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/"
+    },
+    {
+      "id": 36,
+      "title": "戴帽子的貓",
+      "aliases": [
+        "The Cat in the Hat",
+        "戴帽子貓"
+      ],
+      "target_date": "2026-12-03",
+      "poster_url": "https://assets.showtimes.com.tw/images/4029fec2ed274e1ab035ce36de1c1e2a.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣正式電影海報（圖上標12月3日）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/"
+    },
+    {
+      "id": 37,
+      "title": "憤怒鳥玩電影3：全家總動員",
+      "aliases": [
+        "The Angry Birds Movie 3",
+        "憤怒鳥玩電影 3"
+      ],
+      "target_date": "2027-01-01",
+      "poster_url": "https://assets.showtimes.com.tw/images/e24b73e1e2451e8abc352c11c63df468.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣官方電影海報（台灣發行商派拉蒙公告）",
+      "poster_source_url": "https://www.showtimes.com.tw/programs/"
+    },
+    {
+      "id": 38,
+      "title": "煙囪小鎮的普佩2：約定的鐘樓",
+      "aliases": [
+        "煙囪小鎮的普佩2 約定的鐘樓",
+        "Chimney Town: Frozen in Time"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261008002.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣院線正式電影海報（車庫娛樂）",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2125"
+    },
+    {
+      "id": 39,
+      "title": "嘟嘟魚的冒險",
+      "aliases": [
+        "The Pout-Pout Fish",
+        "The Pout Pout Fish"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261014002.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式電影海報",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2119"
+    },
+    {
+      "id": 40,
+      "title": "Jim Queen：肌情四射",
+      "aliases": [
+        "JIM QUEEN：肌情四射",
+        "Jim Queen: 肌情四射",
+        "JIM QUEEN"
+      ],
+      "target_date": "2026-10-23",
+      "poster_url": "https://assets.showtimes.com.tw/images/ff54a0cbf59a020440a58b1c6eda0643.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣正式電影海報（法國成人動畫）",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2104"
+    },
+    {
+      "id": 41,
+      "title": "汪汪隊立大功：恐龍大電影",
+      "aliases": [
+        "PAW Patrol: The Dino Movie",
+        "汪汪隊立大功 恐龍大電影"
+      ],
+      "target_date": "2026-08-14",
+      "poster_url": "https://assets.showtimes.com.tw/images/63afc0f9c4a805a05f5c9e4449d8cda7.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "秀泰影城台灣正式電影海報",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2009"
+    },
+    {
+      "id": 42,
+      "title": "庫洛魔法使 劇場版：被封印的卡片",
+      "aliases": [
+        "庫洛魔法使劇場版：被封印的卡片",
+        "劇場版庫洛魔法使 被封印的卡片",
+        "Cardcaptor Sakura: The Sealed Card"
+      ],
+      "target_date": "2026-11-27",
+      "poster_url": "https://cdn.sounova.com/upload/gPl4H6HW0TupHUaN_aFOn.webp",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "木棉花台灣官方公告圖之媒體收錄裁切主視覺（非正式電影海報；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.halarcity.com/movie/detail/2127"
     }
   ]
 }
