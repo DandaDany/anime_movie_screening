@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "for_date": "2026-10-26",
-  "generated_at": "2026-10-26T07:00:44+08:00",
+  "for_date": "2026-10-27",
+  "generated_at": "2026-10-27T07:06:42+08:00",
   "records": [
     {
       "location_id": 68,
       "movie_title": "煙囪小鎮的普佩2：約定的鐘樓",
-      "show_date": "2026-10-26",
+      "show_date": "2026-10-27",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方動態時刻表選擇台北大直美麗新皇家影城後，頁面明列 2026-10-26 至 2026-10-28 共用排程；《煙囪小鎮的普佩2：約定的鐘樓》皇家廳日文版 14:20、19:10。",
+      "evidence": "美麗新影城官方動態時刻表選擇台北大直美麗新皇家影城後，頁面明列 2026-10-27 至 2026-10-28 共用排程；《煙囪小鎮的普佩2：約定的鐘樓》皇家廳日文版 14:20、19:10。",
       "showtimes": [
         {
           "time": "14:20",
@@ -27,12 +27,12 @@
     {
       "location_id": 69,
       "movie_title": "煙囪小鎮的普佩2：約定的鐘樓",
-      "show_date": "2026-10-26",
+      "show_date": "2026-10-27",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方動態時刻表選擇桃園台茂美麗新影城後，頁面明列 2026-10-26 至 2026-10-28 共用排程；《煙囪小鎮的普佩2：約定的鐘樓》標準廳中文版 17:25、日文版 19:20。",
+      "evidence": "美麗新影城官方動態時刻表選擇桃園台茂美麗新影城後，頁面明列 2026-10-27 至 2026-10-28 共用排程；《煙囪小鎮的普佩2：約定的鐘樓》標準廳中文版 12:50、日文版 19:20。",
       "showtimes": [
         {
-          "time": "17:25",
+          "time": "12:50",
           "format": null,
           "language": "中文",
           "auditorium": "標準廳"
@@ -48,12 +48,18 @@
     {
       "location_id": 69,
       "movie_title": "Jim Queen：肌情四射",
-      "show_date": "2026-10-26",
+      "show_date": "2026-10-27",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方動態時刻表選擇桃園台茂美麗新影城後，頁面明列 2026-10-26 至 2026-10-28 共用排程；《JIM QUEEN：肌情四射》數位廳 22:55，並安全對應 canonical title。",
+      "evidence": "美麗新影城官方動態時刻表選擇桃園台茂美麗新影城後，頁面明列 2026-10-27 至 2026-10-28 共用排程；《JIM QUEEN：肌情四射》標準廳中文版 17:45、數位廳 23:00，安全對應 canonical title。",
       "showtimes": [
         {
-          "time": "22:55",
+          "time": "17:45",
+          "format": null,
+          "language": "中文",
+          "auditorium": "標準廳"
+        },
+        {
+          "time": "23:00",
           "format": "數位",
           "language": null,
           "auditorium": "數位廳"
@@ -62,55 +68,13 @@
     },
     {
       "location_id": 104,
-      "movie_title": "角落小夥伴電影版：從天而降的雲之冒險",
-      "show_date": "2026-10-26",
-      "source_url": "https://www.instagram.com/madoucinema/p/De1czklGFbG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂排程貼文明列麻豆戲院 2026-10-24 至 2026-10-26 時刻表；完整圖片顯示數位中文版 10:30、16:10，官方 Facebook 最新排程圖片交叉確認。",
-      "showtimes": [
-        {
-          "time": "10:30",
-          "format": "數位",
-          "language": "中文",
-          "auditorium": null
-        },
-        {
-          "time": "16:10",
-          "format": "數位",
-          "language": "中文",
-          "auditorium": null
-        }
-      ]
-    },
-    {
-      "location_id": 104,
       "movie_title": "麵包超人電影版：潘坦與約定之星",
-      "show_date": "2026-10-26",
-      "source_url": "https://www.instagram.com/madoucinema/p/De1czklGFbG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂排程貼文明列麻豆戲院 2026-10-24 至 2026-10-26 時刻表；完整圖片顯示數位中文版 10:50、18:15，官方 Facebook 最新排程圖片交叉確認。",
+      "show_date": "2026-10-27",
+      "source_url": "https://www.instagram.com/madoucinema/p/De84OfhIOwW/",
+      "evidence": "麻豆戲院官方 Instagram 置頂排程貼文與完整圖片明列麻豆戲院 2026-10-27 至 2026-10-29 時刻表；《麵包超人電影版：潘坦與約定之星》數位中文版 18:00，官方 Facebook 最新排程圖片交叉確認。",
       "showtimes": [
         {
-          "time": "10:50",
-          "format": "數位",
-          "language": "中文",
-          "auditorium": null
-        },
-        {
-          "time": "18:15",
-          "format": "數位",
-          "language": "中文",
-          "auditorium": null
-        }
-      ]
-    },
-    {
-      "location_id": 104,
-      "movie_title": "電影蠟筆小新：奇奇怪怪！我的妖怪假期",
-      "show_date": "2026-10-26",
-      "source_url": "https://www.instagram.com/madoucinema/p/De1czklGFbG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂排程貼文明列麻豆戲院 2026-10-24 至 2026-10-26 時刻表；完整圖片顯示數位中文版 11:45，官方 Facebook 最新排程圖片交叉確認。",
-      "showtimes": [
-        {
-          "time": "11:45",
+          "time": "18:00",
           "format": "數位",
           "language": "中文",
           "auditorium": null
@@ -120,12 +84,12 @@
     {
       "location_id": 104,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-26",
-      "source_url": "https://www.instagram.com/madoucinema/p/De1czklGFbG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂排程貼文明列麻豆戲院 2026-10-24 至 2026-10-26 時刻表；完整圖片顯示數位中文版 17:25，官方 Facebook 最新排程圖片交叉確認。",
+      "show_date": "2026-10-27",
+      "source_url": "https://www.instagram.com/madoucinema/p/De84OfhIOwW/",
+      "evidence": "麻豆戲院官方 Instagram 置頂排程貼文與完整圖片明列麻豆戲院 2026-10-27 至 2026-10-29 時刻表；《劇場版 吉伊卡哇 人魚島的秘密》數位中文版 12:35，官方 Facebook 最新排程圖片交叉確認。",
       "showtimes": [
         {
-          "time": "17:25",
+          "time": "12:35",
           "format": "數位",
           "language": "中文",
           "auditorium": null
