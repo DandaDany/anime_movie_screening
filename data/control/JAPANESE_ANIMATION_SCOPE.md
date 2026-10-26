@@ -15,7 +15,7 @@ This collection tracks **Japanese-produced animated films playing in Taiwan**, n
 | 歡迎光臨魔法秘境 | 美國 Walt Disney Animation Studios 製作 | https://thewaltdisneycompany.com/news/disneys-hexed-billie-alice/ |
 | 戴帽子的貓 | 美國 Warner Bros. Pictures Animation 製作 | https://www.catinthehatfilm.com/ |
 | 憤怒鳥玩電影3：全家總動員 | 國際製作，DNEG Animation 為主要動畫團隊；日本廠商參與不代表日本動畫 | https://www.rovio.com/articles/the-angry-birds-movie-3-is-in-production/ |
-| 嘟嘟魚的冒險 | 美國動畫電影 The Pout-Pout Fish | https://cdn.atmovies.com.tw/movie/fpen12824390/ |
+| 嘟嘟魚的冒險 | 澳洲主導製作（Like A Photon Creative／MIMO Studios），非日本動畫 | https://www.screenaustralia.gov.au/screen-guide/pout-pout-fish-the-movie-41572/ |
 | Jim Queen：肌情四射 | 法國與比利時製作 | https://www.cnc.fr/professionnels/visas-et-classification/161890 |
 | 汪汪隊立大功：恐龍大電影 | Spin Master Entertainment／Paramount Animation，非日本動畫 | https://www.mikrosanimation.com/en/project/paw-patrol-the-dino-movie/ |
 | 歡迎來到朵莉之家 | 台灣原創製作 | https://pavilion.taicca.tw/portfolio-item/welcome-to-dollys-house/ |
