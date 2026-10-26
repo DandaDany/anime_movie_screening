@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T09:45:00+08:00",
-  "version": 2026102502,
+  "generated_at": "2026-10-26T10:55:00+08:00",
+  "version": 2026102601,
   "lookahead_days": 7,
   "movies": [
     {
@@ -424,48 +424,6 @@
       "updated_at": "2026-10-25T09:10:00+08:00"
     },
     {
-      "id": 35,
-      "title": "歡迎光臨魔法秘境",
-      "aliases": [
-        "HEXED",
-        "Hexed"
-      ],
-      "target_date": "2026-11-26",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "秀泰／哈拉官方即將上映電影頁明列2026-11-26；迪士尼動畫電影。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 36,
-      "title": "戴帽子的貓",
-      "aliases": [
-        "The Cat in the Hat",
-        "戴帽子貓"
-      ],
-      "target_date": "2026-12-03",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "台灣秀泰電影資料頁標2026-12-04，但其台灣海報及哈拉／美麗華官方院線標2026-12-03；暫採多數官方來源及海報的12/03，持續複核。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 37,
-      "title": "憤怒鳥玩電影3：全家總動員",
-      "aliases": [
-        "The Angry Birds Movie 3",
-        "憤怒鳥玩電影 3"
-      ],
-      "target_date": "2027-01-01",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "秀泰／哈拉正式即將上映頁，及派拉蒙台灣官方預告確認2027-01-01。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
       "id": 38,
       "title": "煙囪小鎮的普佩2：約定的鐘樓",
       "aliases": [
@@ -476,49 +434,6 @@
       "is_active": true,
       "sort_order": 0,
       "notes": "威秀／哈拉影城官方標2026-10-23；2026-10-25院線正式場次仍可查，故追蹤。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 39,
-      "title": "嘟嘟魚的冒險",
-      "aliases": [
-        "The Pout-Pout Fish",
-        "The Pout Pout Fish"
-      ],
-      "target_date": "2026-10-23",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "威秀／哈拉官方確認2026-10-23；2026-10-25官方院線仍有場次。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 40,
-      "title": "Jim Queen：肌情四射",
-      "aliases": [
-        "JIM QUEEN：肌情四射",
-        "Jim Queen: 肌情四射",
-        "JIM QUEEN"
-      ],
-      "target_date": "2026-10-23",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "秀泰／哈拉官方確認2026-10-23，片型為法國成人動畫電影；2026-10-25仍有院線場次。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 41,
-      "title": "汪汪隊立大功：恐龍大電影",
-      "aliases": [
-        "PAW Patrol: The Dino Movie",
-        "汪汪隊立大功 恐龍大電影"
-      ],
-      "target_date": "2026-08-14",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "2026-08-14首映；2026-10-25威秀影城官網仍有實際排片，首映日已過仍須納入片庫。",
       "created_at": "2026-10-25T09:10:00+08:00",
       "updated_at": "2026-10-25T09:10:00+08:00"
     },
@@ -536,20 +451,6 @@
       "notes": "哈拉正式電影頁2026-11-27、木棉花公布重映。隨片同場加映《包在小可身上！》；屬單場連映，後者不拆新canonical。台灣正式高解析海報未獲可直連穩定版本；暫用正確作品主視覺並標記待升級。",
       "created_at": "2026-10-25T09:10:00+08:00",
       "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 43,
-      "title": "歡迎來到朵莉之家",
-      "aliases": [
-        "WELCOME TO DOLLYS HOUSE",
-        "WELCOME TO DOLLY'S HOUSE"
-      ],
-      "target_date": "2026-10-30",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "威秀正式頁明示 2026-10-30 上映，類型為動畫、奇幻。 台灣正式來源：https://www.vscinemas.com.tw/film/detail.aspx?id=9038",
-      "created_at": "2026-10-25T08:46:17+08:00",
-      "updated_at": "2026-10-25T08:46:17+08:00"
     },
     {
       "id": 44,
