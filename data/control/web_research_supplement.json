@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "for_date": "2026-10-31",
-  "generated_at": "2026-10-31T07:05:59+08:00",
+  "for_date": "2026-11-01",
+  "generated_at": "2026-11-01T07:03:28+08:00",
   "records": [
     {
       "location_id": 104,
       "movie_title": "麵包超人電影版：潘坦與約定之星",
-      "show_date": "2026-10-31",
-      "source_url": "https://www.facebook.com/profile.php?id=61564946135169",
-      "evidence": "麻豆戲院官方 Facebook 最新排程貼文及圖片，明示適用 10月31日(六) 至 11月01日(日)；官方 Instagram 同期貼文交叉確認。",
+      "show_date": "2026-11-01",
+      "source_url": "https://www.instagram.com/madoucinema/",
+      "evidence": "麻豆戲院官方 Instagram 最新時刻表貼文（DfHOEj6IM4N），caption 明示適用 10月31日(六) 至 11月01日(日)，圖片明示麻豆戲院、片名及 10:40 數位中文版場次。",
       "showtimes": [
         {
           "time": "10:40",
@@ -21,9 +21,9 @@
     {
       "location_id": 104,
       "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
-      "show_date": "2026-10-31",
-      "source_url": "https://www.facebook.com/profile.php?id=61564946135169",
-      "evidence": "麻豆戲院官方 Facebook 最新排程貼文及圖片，明示適用 10月31日(六) 至 11月01日(日)；官方 Instagram 同期貼文交叉確認。",
+      "show_date": "2026-11-01",
+      "source_url": "https://www.instagram.com/madoucinema/",
+      "evidence": "麻豆戲院官方 Instagram 最新時刻表貼文（DfHOEj6IM4N），caption 明示適用 10月31日(六) 至 11月01日(日)，圖片明示麻豆戲院、片名及 17:40 數位中文版場次。",
       "showtimes": [
         {
           "time": "17:40",
@@ -36,9 +36,9 @@
     {
       "location_id": 68,
       "movie_title": "歡迎來到朵莉之家",
-      "show_date": "2026-10-31",
+      "show_date": "2026-11-01",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，台北大直美麗新皇家影城，頁面明示 10/31(六) 與皇家廳場次。",
+      "evidence": "美麗新影城官方場次資訊，台北大直美麗新皇家影城，頁面明示 11/01(日) 與皇家廳場次。",
       "showtimes": [
         {
           "time": "10:55",
@@ -87,9 +87,9 @@
     {
       "location_id": 69,
       "movie_title": "歡迎來到朵莉之家",
-      "show_date": "2026-10-31",
+      "show_date": "2026-11-01",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，桃園台茂美麗新影城，頁面明示 10/31(六) 與標準廳場次。",
+      "evidence": "美麗新影城官方場次資訊，桃園台茂美麗新影城，頁面明示 11/01(日) 與標準廳場次。",
       "showtimes": [
         {
           "time": "11:10",
@@ -126,9 +126,9 @@
     {
       "location_id": 69,
       "movie_title": "致遙不可及彼方的你",
-      "show_date": "2026-10-31",
+      "show_date": "2026-11-01",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，桃園台茂美麗新影城，頁面明示 10/31(六) 與標準廳場次。",
+      "evidence": "美麗新影城官方場次資訊，桃園台茂美麗新影城，頁面明示 11/01(日) 與標準廳場次。",
       "showtimes": [
         {
           "time": "10:50",
@@ -147,9 +147,9 @@
     {
       "location_id": 69,
       "movie_title": "煙囪小鎮的普佩2：約定的鐘樓",
-      "show_date": "2026-10-31",
+      "show_date": "2026-11-01",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，桃園台茂美麗新影城，頁面明示 10/31(六) 標準廳中文版場次。",
+      "evidence": "美麗新影城官方場次資訊，桃園台茂美麗新影城，頁面明示 11/01(日) 標準廳中文版場次。",
       "showtimes": [
         {
           "time": "10:45",
@@ -162,9 +162,9 @@
     {
       "location_id": 72,
       "movie_title": "歡迎來到朵莉之家",
-      "show_date": "2026-10-31",
+      "show_date": "2026-11-01",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表，頁面標題及每場行事曆連結均明示 10/31。",
+      "evidence": "高雄環球影城官方電影時刻表，頁面標題及場次明示 11/1(日)、場館、片名、時間與影廳。",
       "showtimes": [
         {
           "time": "12:35",
@@ -183,9 +183,9 @@
     {
       "location_id": 72,
       "movie_title": "Jim Queen：肌情四射",
-      "show_date": "2026-10-31",
+      "show_date": "2026-11-01",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表，頁面明示 10/31 並標示國語版。",
+      "evidence": "高雄環球影城官方電影時刻表，頁面標題及場次明示 11/1(日)、場館、片名、時間、影廳，並標示國語版。",
       "showtimes": [
         {
           "time": "19:20",
