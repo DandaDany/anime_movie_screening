@@ -25,13 +25,9 @@ jobs:
           from PIL import Image
           S=requests.Session();S.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36','Accept':'text/html,image/avif,image/webp,image/apng,*/*;q=0.8'})
           pages=[
-           ('rakuen1-gamme','https://movie.gamme.com.tw/85204'),
-           ('rakuen1-moviego','https://moviego.funorange.com.tw/movie/2061'),
-           ('rakuen2-moviego','https://moviego.funorange.com.tw/movie/2062'),
-           ('rakuen2-youranimes','https://youranimes.tw/animes/4974'),
-           ('rakuen-press','https://www.mirrormedia.mg/story/20261028-90ent-163122'),
+           ('hanabi-original','https://kimi-hana-movie.com/index.html'),
+           ('hanabi-film-gallery','https://www.cinematoday.jp/movie/T0032152/photo'),
            ('hanabi-jp-official','https://shin-ei-animation.jp/works/kimi-hana/'),
-           ('hanabi-jp-movie','https://kimihanamovie.com/'),
           ]
           extra=[
            ('hanabi-garage-cdn','https://flicksbank.console360.net/images/5228/gpmovie/1920x1080.jpg'),
@@ -62,7 +58,9 @@ jobs:
              if u in seen or u.startswith('data:'):continue
              seen.add(u);uniq.append((typ,u))
             print('TOTAL_CANDIDATES',label,len(uniq),flush=True)
-            for typ,u in uniq[:20]:
+          for typ,u in uniq[:70]:
+           if any(s in u.lower() for s in ('poster','visual','kv','main')):print('CANDIDATE_URL',label,typ,u[:240],flush=True)
+            for typ,u in uniq[:30]:
              try:
               rr=S.get(u,timeout=8,headers={'Referer':resp.url},stream=False);rr.raise_for_status()
               im=Image.open(BytesIO(rr.content))
