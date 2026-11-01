@@ -36,4 +36,4 @@ jobs:
             r=requests.get(url,timeout=14,headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.google.com/'});r.raise_for_status()
             img=Image.open(BytesIO(r.content));print('DIRECT',name,img.size,img.format,len(r.content),url,flush=True)
            except Exception as e:print('DIRECT_ERROR',name,str(e)[:180],flush=True)
-                    PY
+          PY
