@@ -1,0 +1,72 @@
+name: Japanese animation poster candidate probe TEMP
+on:
+  push:
+    branches: [fix/japanese-only-film-catalog-20261026]
+    paths: ['.github/workflows/poster-jp-candidate-probe-temp.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install requests beautifulsoup4 pillow
+      - run: |
+          from io import BytesIO
+          from urllib.parse import urljoin
+          import re
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image
+          S=requests.Session();S.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36','Accept':'text/html,image/avif,image/webp,image/apng,*/*;q=0.8'})
+          pages=[
+           ('rakuen1-showtimes','https://www.showtimes.com.tw/programs/13113/'),
+           ('rakuen1-ticket','https://tickets.books.com.tw/progshow/01020001541659'),
+           ('rakuen2-vieshow','https://www.vscinemas.com.tw/film/detail.aspx?id=9089'),
+           ('rakuen2-official','https://rakuen-tsuiho.com/'),
+           ('hanabi-garageplay','https://www.garageplay.tw/news/5968'),
+           ('hanabi-detail','https://garageplay.tw/5228'),
+           ('poupelle2-garage','https://garageplay.tw/'),
+          ]
+          extra=[
+           ('rakuen1-showtimes-poster','https://assets.showtimes.com.tw/images/915ce3038071d99e586e4887a01f2569.jpg'),
+           ('rakuen1-tickets','https://addons.books.com.tw/G/9/01020001541659/01020001541659_1.jpg'),
+          ]
+          for label,url in pages:
+           try:
+            resp=S.get(url,timeout=18);print('PAGE',label,resp.status_code,resp.url,len(resp.content),resp.headers.get('content-type'),flush=True)
+            if not resp.ok:continue
+            soup=BeautifulSoup(resp.content,'html.parser')
+            candidates=[]
+            for q in soup.select('meta[property="og:image"],meta[name="twitter:image"]'):
+             u=q.get('content');
+             if u:candidates.append(('meta',urljoin(resp.url,u)))
+            for q in soup.find_all('img'):
+             for k in ('src','data-src','data-original','data-lazy','data-image','srcset','data-srcset'):
+              u=q.get(k);
+              if u:
+               if k.endswith('srcset'):u=u.split(',')[-1].strip().split()[0]
+               candidates.append(('img:'+k,urljoin(resp.url,u)))
+            for m in re.findall(r'https?:[^"\s<>]+?\.(?:jpg|jpeg|png|webp)(?:\?[^"\s<>]+)?',str(soup),re.I):
+             candidates.append(('html',m.replace('\\/','/')))
+            seen=set();uniq=[]
+            for typ,u in candidates:
+             if u in seen or u.startswith('data:'):continue
+             seen.add(u);uniq.append((typ,u))
+            print('TOTAL_CANDIDATES',label,len(uniq),flush=True)
+            for typ,u in uniq[:27]:
+             try:
+              rr=S.get(u,timeout=12,headers={'Referer':resp.url},stream=False);rr.raise_for_status()
+              im=Image.open(BytesIO(rr.content))
+              if im.width>=280 and im.height>=200:print('IMAGE',label,typ,im.size,len(rr.content),u[:250],flush=True)
+             except Exception as e:print('SKIP',label,typ,str(e)[:70],u[:150],flush=True)
+           except Exception as e:print('PAGE_ERROR',label,str(e)[:250],flush=True)
+          for label,url in extra:
+           try:
+            r=S.get(url,timeout=15);r.raise_for_status();im=Image.open(BytesIO(r.content));print('EXTRA',label,im.size,len(r.content),flush=True)
+           except Exception as e:print('EXTRA_ERROR',label,str(e)[:150],flush=True)
+          
