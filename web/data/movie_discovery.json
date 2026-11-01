@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026102601,
-  "generated_at": "2026-10-26T10:55:00+08:00",
+  "source_version": 2026110101,
+  "generated_at": "2026-11-01T08:30:53+08:00",
   "lookahead_days": 7,
-  "count": 35,
+  "count": 38,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -457,6 +457,54 @@
       "poster_fit": "contain",
       "poster_source": "台灣主要院線／發行正式海報（原站 691×1000，LOW_RES_PENDING_UPGRADE；已核對電影及台灣日期；GitHub CI Chromium decode 待驗）",
       "poster_source_url": "https://www.ccpa.org.tw/ccpa/data.php?id=789&tpl="
+    },
+    {
+      "id": 45,
+      "title": "樂園追放（10週年紀念4K修復版）",
+      "aliases": [
+        "樂園追放",
+        "樂園追放 4K修復版",
+        "樂園追放：10週年紀念4K修復版",
+        "Expelled from Paradise",
+        "楽園追放"
+      ],
+      "target_date": "2026-11-06",
+      "poster_url": "https://obs.line-scdn.net/0h31gbMKi6bB5aG3Cb_SETSQhNb3Fpd38dPi09KiQaMlACWykjZQZ5EH17enw8VHAzOQErKCBrMVUoSyMjFBYjGRpsd0UeSG43ZQJrEzR4eUU8W3cYA3xl",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "羚邦台灣發行海報（MovieGo 台灣正式上映資料頁收錄，700×1000；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://moviego.funorange.com.tw/movie/2061"
+    },
+    {
+      "id": 46,
+      "title": "樂園追放 心之共鳴",
+      "aliases": [
+        "樂園追放：心之共鳴",
+        "樂園追放 心のレゾナンス",
+        "楽園追放 心のレゾナンス",
+        "Expelled from Paradise: Resonance"
+      ],
+      "target_date": "2026-11-20",
+      "poster_url": "https://obs.line-scdn.net/0hN32b_KDEERwPGw2ZqD1uS11NEnM8dwIfay1AKHEaTX5pVBEZRXgVKExSEEd5eR0xbAFWKnVrTFd9S14hQRZeG09sCkdLSBM1MQYYKmF4BEdpWwoaVnwY",
+      "poster_fallback_url": "https://rakuen-tsuiho.com/share/images/mv_1.jpg",
+      "poster_fit": "contain",
+      "poster_source": "羚邦台灣發行電影主視覺（MovieGo 台灣上映頁收錄，707×1000；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://moviego.funorange.com.tw/movie/2062"
+    },
+    {
+      "id": 47,
+      "title": "你與花火與約定",
+      "aliases": [
+        "君と花火と約束と",
+        "你與花火與約定 電影",
+        "You, Fireworks, and Our Promise"
+      ],
+      "target_date": "2026-12-04",
+      "poster_url": "https://image.tmdb.org/t/p/original/fP2BlnOo7D8VZrKaldgQsji6QEV.jpg",
+      "poster_fallback_url": "https://img.cinematoday.jp/a/T0032152/_size_1200x/_v_1784684990/posters/1.jpg",
+      "poster_fit": "contain",
+      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source_url": "https://kimi-hana-movie.com/index.html"
     }
   ]
 }
