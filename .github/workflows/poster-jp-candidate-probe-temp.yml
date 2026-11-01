@@ -8,67 +8,32 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install requests beautifulsoup4 pillow
+      - run: python -m pip install requests pillow
       - run: |
           python - <<'PY'
           from io import BytesIO
-          from urllib.parse import urljoin
-          import re
           import requests
-          from bs4 import BeautifulSoup
           from PIL import Image
-          S=requests.Session();S.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36','Accept':'text/html,image/avif,image/webp,image/apng,*/*;q=0.8'})
-          pages=[
-           ('hanabi-original','https://kimi-hana-movie.com/index.html'),
-           ('hanabi-film-gallery','https://www.cinematoday.jp/movie/T0032152/photo'),
-           ('hanabi-jp-official','https://shin-ei-animation.jp/works/kimi-hana/'),
+          urls=[
+          ('hanabi-official-sp','https://kimi-hana-movie.com/img/kv_main-sp2.jpg'),
+          ('hanabi-official-c01','https://kimi-hana-movie.com/img/kv_c01.jpg'),
+          ('hanabi-official-c02','https://kimi-hana-movie.com/img/kv_c02.jpg'),
+          ('hanabi-official-c03','https://kimi-hana-movie.com/img/kv_c03.jpg'),
+          ('hanabi-cinema-original','https://img.cinematoday.jp/a/T0032152/_v_1784684990/posters/1.jpg'),
+          ('hanabi-cinema-size1200','https://img.cinematoday.jp/a/T0032152/_size_1200x/_v_1784684990/posters/1.jpg'),
+          ('hanabi-tmdb','https://image.tmdb.org/t/p/original/fP2BlnOo7D8VZrKaldgQsji6QEV.jpg'),
+          ('rakuen1-moviego','https://obs.line-scdn.net/0h31gbMKi6bB5aG3Cb_SETSQhNb3Fpd38dPi09KiQaMlACWykjZQZ5EH17enw8VHAzOQErKCBrMVUoSyMjFBYjGRpsd0UeSG43ZQJrEzR4eUU8W3cYA3xl'),
+          ('rakuen2-moviego','https://obs.line-scdn.net/0hN32b_KDEERwPGw2ZqD1uS11NEnM8dwIfay1AKHEaTX5pVBEZRXgVKExSEEd5eR0xbAFWKnVrTFd9S14hQRZeG09sCkdLSBM1MQYYKmF4BEdpWwoaVnwY'),
           ]
-          extra=[
-           ('hanabi-garage-cdn','https://flicksbank.console360.net/images/5228/gpmovie/1920x1080.jpg'),
-           ('hanabi-garage-cdn-poster','https://flicksbank.console360.net/images/5228/gpmovie/600x900.jpg'),
-           ('rakuen2-jp','https://rakuen-tsuiho.com/share/images/mv_1.jpg'),
-           ('rakuen1-showtimes-poster','https://assets.showtimes.com.tw/images/915ce3038071d99e586e4887a01f2569.jpg'),
-           ('rakuen1-tickets','https://addons.books.com.tw/G/9/01020001541659/01020001541659_1.jpg'),
-          ]
-          for label,url in pages:
+          for name,url in urls:
            try:
-            resp=S.get(url,timeout=18);print('PAGE',label,resp.status_code,resp.url,len(resp.content),resp.headers.get('content-type'),flush=True)
-            if not resp.ok:continue
-            soup=BeautifulSoup(resp.content,'html.parser')
-            candidates=[]
-            for q in soup.select('meta[property="og:image"],meta[name="twitter:image"]'):
-             u=q.get('content');
-             if u:candidates.append(('meta',urljoin(resp.url,u)))
-            for q in soup.find_all('img'):
-             for k in ('src','data-src','data-original','data-lazy','data-image','srcset','data-srcset'):
-              u=q.get(k);
-              if u:
-               if k.endswith('srcset'):u=u.split(',')[-1].strip().split()[0]
-               candidates.append(('img:'+k,urljoin(resp.url,u)))
-            for m in re.findall(r'https?:[^"\s<>]+?\.(?:jpg|jpeg|png|webp)(?:\?[^"\s<>]+)?',str(soup),re.I):
-             candidates.append(('html',m.replace('\\/','/')))
-            seen=set();uniq=[]
-            for typ,u in candidates:
-             if u in seen or u.startswith('data:'):continue
-             seen.add(u);uniq.append((typ,u))
-            print('TOTAL_CANDIDATES',label,len(uniq),flush=True)
-            for typ,u in uniq[:70]:
-             if any(s in u.lower() for s in ('poster','visual','kv','main')):print('CANDIDATE_URL',label,typ,u[:240],flush=True)
-            for typ,u in uniq[:30]:
-             try:
-              rr=S.get(u,timeout=8,headers={'Referer':resp.url},stream=False);rr.raise_for_status()
-              im=Image.open(BytesIO(rr.content))
-              if im.width>=280 and im.height>=200:print('IMAGE',label,typ,im.size,len(rr.content),u[:250],flush=True)
-             except Exception as e:print('SKIP',label,typ,str(e)[:70],u[:150],flush=True)
-           except Exception as e:print('PAGE_ERROR',label,str(e)[:250],flush=True)
-          for label,url in extra:
-           try:
-            r=S.get(url,timeout=15);r.raise_for_status();im=Image.open(BytesIO(r.content));print('EXTRA',label,im.size,len(r.content),flush=True)
-           except Exception as e:print('EXTRA_ERROR',label,str(e)[:150],flush=True)
-          PY
+            r=requests.get(url,timeout=14,headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.google.com/'});r.raise_for_status()
+            img=Image.open(BytesIO(r.content));print('DIRECT',name,img.size,img.format,len(r.content),url,flush=True)
+           except Exception as e:print('DIRECT_ERROR',name,str(e)[:180],flush=True)
+                    PY
