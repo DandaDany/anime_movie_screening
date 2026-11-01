@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-26T10:55:00+08:00",
-  "version": 2026102601,
+  "generated_at": "2026-11-01T08:30:53+08:00",
+  "version": 2026110101,
   "lookahead_days": 7,
   "movies": [
     {
@@ -466,6 +466,54 @@
       "notes": "台灣發行商曼迪公告 2026-11-13 起威秀獨家上映；海報為曼迪台灣版主視覺。 台灣正式來源：https://www.ccpa.org.tw/ccpa/data.php?id=789&tpl=",
       "created_at": "2026-10-25T08:46:17+08:00",
       "updated_at": "2026-10-25T08:46:17+08:00"
+    },
+    {
+      "id": 45,
+      "title": "樂園追放（10週年紀念4K修復版）",
+      "aliases": [
+        "樂園追放",
+        "樂園追放 4K修復版",
+        "樂園追放：10週年紀念4K修復版",
+        "Expelled from Paradise",
+        "楽園追放"
+      ],
+      "target_date": "2026-11-06",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本東映動畫／Nitroplus 2014年電影，2026台灣羚邦發行10週年紀念4K修復版。秀泰官方2026-11-06：https://www.showtimes.com.tw/programs/13113/；另一台灣片頁 https://moviego.funorange.com.tw/movie/2061 。MovieGo 海報700×1000低解析度，待升級。",
+      "created_at": "2026-11-01T08:30:53+08:00",
+      "updated_at": "2026-11-01T08:30:53+08:00"
+    },
+    {
+      "id": 46,
+      "title": "樂園追放 心之共鳴",
+      "aliases": [
+        "樂園追放：心之共鳴",
+        "樂園追放 心のレゾナンス",
+        "楽園追放 心のレゾナンス",
+        "Expelled from Paradise: Resonance"
+      ],
+      "target_date": "2026-11-20",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本東映動畫／Nitroplus 劇場新作。台灣羚邦正式發行，威秀官方台灣2026-11-20：https://www.vscinemas.com.tw/film/detail.aspx?id=9089；台灣片頁 https://moviego.funorange.com.tw/movie/2062 。MovieGo發行圖707×1000待升級；注意日本上映2026-11-13不同於台灣。",
+      "created_at": "2026-11-01T08:30:53+08:00",
+      "updated_at": "2026-11-01T08:30:53+08:00"
+    },
+    {
+      "id": 47,
+      "title": "你與花火與約定",
+      "aliases": [
+        "君と花火と約束と",
+        "你與花火與約定 電影",
+        "You, Fireworks, and Our Promise"
+      ],
+      "target_date": "2026-12-04",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本シンエイ動画企劃，SynergySP／アンサー・スタジオ動畫製作：https://shin-ei-animation.jp/works/kimi-hana/ 。台灣車庫娛樂於2026-10-29正式公告2026-12-04：https://www.garageplay.tw/news/5968 。台灣正式直式海報暫未能從發行商取得穩定可載入原圖，現用日本官方劇場海報TMDB收錄2000×2829（UPCOMING FALLBACK）；圖上日本2026-07-17非台灣12-04，待升級。",
+      "created_at": "2026-11-01T08:30:53+08:00",
+      "updated_at": "2026-11-01T08:30:53+08:00"
     }
   ]
 }
