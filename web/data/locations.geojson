@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
   "generated_at": "2026-11-02",
-  "updated_at": "2026-11-03T07:18:43+08:00",
+  "updated_at": "2026-11-03T07:33:21+08:00",
   "movie_title": "BanG Dream! Ave Mujica prima aurora",
   "show_date": "2026-11-03",
   "movies": [
@@ -37627,7 +37627,7 @@
       }
     }
   ],
-  "supplemental_updated_at": "2026-11-03T07:18:14+08:00",
+  "supplemental_updated_at": "2026-11-03T07:32:51+08:00",
   "supplemental_preserved_at": "2026-11-02T10:25:54+08:00",
-  "supplemental_finalized_at": "2026-11-03T07:18:43+08:00"
+  "supplemental_finalized_at": "2026-11-03T07:33:21+08:00"
 }
