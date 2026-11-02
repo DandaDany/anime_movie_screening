@@ -1,6 +1,205 @@
 {
   "schema_version": 1,
-  "for_date": "2026-11-02",
-  "generated_at": "2026-11-02T07:02:35+08:00",
-  "records": []
+  "for_date": "2026-11-03",
+  "generated_at": "2026-11-03T07:28:00+08:00",
+  "records": [
+    {
+      "location_id": 68,
+      "movie_title": "歡迎來到朵莉之家",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
+      "evidence": "美麗新官方場次頁已選定台北大直美麗新皇家影城，影片列明 11/03（二）與七個皇家廳場次。",
+      "showtimes": [
+        {
+          "time": "10:55",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "12:50",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "14:50",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "16:50",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "18:50",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "20:45",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "22:40",
+          "format": "皇家廳",
+          "language": null,
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 69,
+      "movie_title": "歡迎來到朵莉之家",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
+      "evidence": "美麗新官方場次頁已選定桃園台茂美麗新影城，影片列明 11/03（二）與五個標準廳場次。",
+      "showtimes": [
+        {
+          "time": "11:10",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "14:55",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "16:20",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "19:10",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "21:45",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 69,
+      "movie_title": "致遙不可及彼方的你",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
+      "evidence": "美麗新官方場次頁已選定桃園台茂美麗新影城，影片列明 11/03（二）與兩個標準廳場次。",
+      "showtimes": [
+        {
+          "time": "10:50",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        },
+        {
+          "time": "20:25",
+          "format": "標準廳",
+          "language": null,
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 69,
+      "movie_title": "煙囪小鎮的普佩2：約定的鐘樓",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
+      "evidence": "美麗新官方場次頁已選定桃園台茂美麗新影城，影片列明 11/03（二）10:45 標準廳中文版。",
+      "showtimes": [
+        {
+          "time": "10:45",
+          "format": "標準廳",
+          "language": "中文版",
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 72,
+      "movie_title": "歡迎來到朵莉之家",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+      "evidence": "高雄環球影城官方 11/3（二）時刻表列出《歡迎來到朵莉之家》13:00（12廳）與 17:40（13廳）。",
+      "showtimes": [
+        {
+          "time": "13:00",
+          "format": null,
+          "language": null,
+          "auditorium": "12廳"
+        },
+        {
+          "time": "17:40",
+          "format": null,
+          "language": null,
+          "auditorium": "13廳"
+        }
+      ]
+    },
+    {
+      "location_id": 72,
+      "movie_title": "Jim Queen：肌情四射",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+      "evidence": "高雄環球影城官方 11/3（二）時刻表列出國語版《Jim Queen：肌情四射》19:20、21:00，皆為 13 廳。",
+      "showtimes": [
+        {
+          "time": "19:20",
+          "format": null,
+          "language": "國語版",
+          "auditorium": "13廳"
+        },
+        {
+          "time": "21:00",
+          "format": null,
+          "language": "國語版",
+          "auditorium": "13廳"
+        }
+      ]
+    },
+    {
+      "location_id": 104,
+      "movie_title": "麵包超人電影版：潘坦與約定之星",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.instagram.com/madoucinema/p/DfMbnUFII7m/",
+      "evidence": "麻豆戲院 Instagram 置頂時刻表圖片明示適用 11/02（一）至 11/05（四），並列出本片 18:15。",
+      "showtimes": [
+        {
+          "time": "18:15",
+          "format": "數位",
+          "language": "中文發音／中文字幕",
+          "auditorium": null
+        }
+      ]
+    },
+    {
+      "location_id": 104,
+      "movie_title": "劇場版 吉伊卡哇 人魚島的秘密",
+      "show_date": "2026-11-03",
+      "source_url": "https://www.instagram.com/madoucinema/p/DfMbnUFII7m/",
+      "evidence": "麻豆戲院 Instagram 置頂時刻表圖片明示適用 11/02（一）至 11/05（四），並列出本片 17:50。",
+      "showtimes": [
+        {
+          "time": "17:50",
+          "format": "數位",
+          "language": "中文發音／中文字幕",
+          "auditorium": null
+        }
+      ]
+    }
+  ]
 }
