@@ -527,7 +527,7 @@
       "target_date": "2026-11-13",
       "is_active": true,
       "sort_order": 0,
-      "notes": "日本動畫製作：キネマシトラス（Kinema Citrus），日本電影資料庫 https://jfdb.jp/title/8973；台灣普威爾發行，威秀2026-11-13一週限定重映：https://www.vscinemas.com.tw/film/detail.aspx?id=9074。使用威秀台灣正式電影海報，印11.13，原尺寸尚低於高畫質門檻，續查升級。不同於2026-11-20《來自深淵：覺醒的神秘》。",
+      "notes": "日本動畫製作：キネマシトラス（Kinema Citrus），日本電影資料庫 https://jfdb.jp/title/8973；台灣普威爾發行，威秀2026-11-13一週限定重映：https://www.vscinemas.com.tw/film/detail.aspx?id=9074。使用威秀台灣正式電影海報，印11.13，2026-11-08 GitHub Actions Chromium實測原圖為1984×2835，符合高畫質門檻。不同於2026-11-20《來自深淵：覺醒的神秘》。",
       "created_at": "2026-11-08T08:14:23.466+08:00",
       "updated_at": "2026-11-08T08:14:23.466+08:00"
     }
