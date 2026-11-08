@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01",
-  "movie_count": 39,
+  "generated_at": "2026-11-08",
+  "movie_count": 40,
   "movies": [
     {
       "title": "BanG Dream! Ave Mujica prima aurora",
@@ -411,6 +411,20 @@
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
       "poster_source_url": "https://kimi-hana-movie.com/index.html",
       "poster_fallback_url": "https://img.cinematoday.jp/a/T0032152/_size_1200x/_v_1784684990/posters/1.jpg",
+      "poster_fit": "contain"
+    },
+    {
+      "title": "來自深淵 深沉靈魂的黎明",
+      "aliases": [
+        "劇場版 來自深淵 深沉靈魂的黎明",
+        "劇場版「來自深淵 深沉靈魂的黎明」",
+        "來自深淵：深沉靈魂的黎明",
+        "MADE IN ABYSS - DAWN OF THE DEEP SOUL -"
+      ],
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261028024.jpg",
+      "poster_source": "威秀台灣 2026-11-13 一週限定重映正式院線海報（印11.13；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9074",
+      "poster_fallback_url": null,
       "poster_fit": "contain"
     }
   ]
