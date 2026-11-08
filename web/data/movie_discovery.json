@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026110101,
-  "generated_at": "2026-11-01T08:30:53+08:00",
+  "source_version": 2026110801,
+  "generated_at": "2026-11-08T08:14:23.466+08:00",
   "lookahead_days": 7,
-  "count": 38,
+  "count": 39,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -505,6 +505,22 @@
       "poster_fit": "contain",
       "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
       "poster_source_url": "https://kimi-hana-movie.com/index.html"
+    },
+    {
+      "id": 48,
+      "title": "來自深淵 深沉靈魂的黎明",
+      "aliases": [
+        "劇場版 來自深淵 深沉靈魂的黎明",
+        "劇場版「來自深淵 深沉靈魂的黎明」",
+        "來自深淵：深沉靈魂的黎明",
+        "MADE IN ABYSS - DAWN OF THE DEEP SOUL -"
+      ],
+      "target_date": "2026-11-13",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261028024.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀台灣 2026-11-13 一週限定重映正式院線海報（印11.13；LOW_RES_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9074"
     }
   ]
 }
