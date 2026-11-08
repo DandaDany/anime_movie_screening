@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-01T08:30:53+08:00",
-  "version": 2026110101,
+  "generated_at": "2026-11-08T08:14:23.466+08:00",
+  "version": 2026110801,
   "lookahead_days": 7,
   "movies": [
     {
@@ -514,6 +514,22 @@
       "notes": "日本シンエイ動画企劃，SynergySP／アンサー・スタジオ動畫製作：https://shin-ei-animation.jp/works/kimi-hana/ 。台灣車庫娛樂於2026-10-29正式公告2026-12-04：https://www.garageplay.tw/news/5968 。台灣正式直式海報暫未能從發行商取得穩定可載入原圖，現用日本官方劇場海報TMDB收錄2000×2829（UPCOMING FALLBACK）；圖上日本2026-07-17非台灣12-04，待升級。",
       "created_at": "2026-11-01T08:30:53+08:00",
       "updated_at": "2026-11-01T08:30:53+08:00"
+    },
+    {
+      "id": 48,
+      "title": "來自深淵 深沉靈魂的黎明",
+      "aliases": [
+        "劇場版 來自深淵 深沉靈魂的黎明",
+        "劇場版「來自深淵 深沉靈魂的黎明」",
+        "來自深淵：深沉靈魂的黎明",
+        "MADE IN ABYSS - DAWN OF THE DEEP SOUL -"
+      ],
+      "target_date": "2026-11-13",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本動畫製作：キネマシトラス（Kinema Citrus），日本電影資料庫 https://jfdb.jp/title/8973；台灣普威爾發行，威秀2026-11-13一週限定重映：https://www.vscinemas.com.tw/film/detail.aspx?id=9074。使用威秀台灣正式電影海報，印11.13，原尺寸尚低於高畫質門檻，續查升級。不同於2026-11-20《來自深淵：覺醒的神秘》。",
+      "created_at": "2026-11-08T08:14:23.466+08:00",
+      "updated_at": "2026-11-08T08:14:23.466+08:00"
     }
   ]
 }
