@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-25T09:45:00+08:00",
-  "version": 2026102502,
+  "generated_at": "2026-11-08T08:14:23.466+08:00",
+  "version": 2026110801,
   "lookahead_days": 7,
   "movies": [
     {
@@ -91,9 +91,9 @@
       "target_date": "2026-11-06",
       "is_active": true,
       "sort_order": 0,
-      "notes": "原 ao-buta.com/kv_dearfriend.jpg 在 2026-10-25 GitHub Chromium runtime 失效；暫以日本官方劇場主視覺 ORICON 收錄作 UPCOMING FALLBACK，台灣正式高解析 Poster 待升級。",
+      "notes": "2026-11-06台灣上映。木棉花台灣官方2026-11-02新聞稿 https://www.ccpa.org.tw/ccpa/data.php?id=807&tpl= 已提供印有台灣11/6日期的正式電影海報；取代日本ORICON暫用主視覺，原圖較低解析度，待升級。威秀海外版圖印11/26為港澳日期，禁止誤用。",
       "created_at": "2026-08-17T05:51:43.569570+00:00",
-      "updated_at": "2026-10-25T09:45:00+08:00"
+      "updated_at": "2026-11-08T12:00:00+08:00"
     },
     {
       "id": 2,
@@ -424,48 +424,6 @@
       "updated_at": "2026-10-25T09:10:00+08:00"
     },
     {
-      "id": 35,
-      "title": "歡迎光臨魔法秘境",
-      "aliases": [
-        "HEXED",
-        "Hexed"
-      ],
-      "target_date": "2026-11-26",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "秀泰／哈拉官方即將上映電影頁明列2026-11-26；迪士尼動畫電影。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 36,
-      "title": "戴帽子的貓",
-      "aliases": [
-        "The Cat in the Hat",
-        "戴帽子貓"
-      ],
-      "target_date": "2026-12-03",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "台灣秀泰電影資料頁標2026-12-04，但其台灣海報及哈拉／美麗華官方院線標2026-12-03；暫採多數官方來源及海報的12/03，持續複核。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 37,
-      "title": "憤怒鳥玩電影3：全家總動員",
-      "aliases": [
-        "The Angry Birds Movie 3",
-        "憤怒鳥玩電影 3"
-      ],
-      "target_date": "2027-01-01",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "秀泰／哈拉正式即將上映頁，及派拉蒙台灣官方預告確認2027-01-01。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
       "id": 38,
       "title": "煙囪小鎮的普佩2：約定的鐘樓",
       "aliases": [
@@ -476,49 +434,6 @@
       "is_active": true,
       "sort_order": 0,
       "notes": "威秀／哈拉影城官方標2026-10-23；2026-10-25院線正式場次仍可查，故追蹤。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 39,
-      "title": "嘟嘟魚的冒險",
-      "aliases": [
-        "The Pout-Pout Fish",
-        "The Pout Pout Fish"
-      ],
-      "target_date": "2026-10-23",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "威秀／哈拉官方確認2026-10-23；2026-10-25官方院線仍有場次。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 40,
-      "title": "Jim Queen：肌情四射",
-      "aliases": [
-        "JIM QUEEN：肌情四射",
-        "Jim Queen: 肌情四射",
-        "JIM QUEEN"
-      ],
-      "target_date": "2026-10-23",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "秀泰／哈拉官方確認2026-10-23，片型為法國成人動畫電影；2026-10-25仍有院線場次。",
-      "created_at": "2026-10-25T09:10:00+08:00",
-      "updated_at": "2026-10-25T09:10:00+08:00"
-    },
-    {
-      "id": 41,
-      "title": "汪汪隊立大功：恐龍大電影",
-      "aliases": [
-        "PAW Patrol: The Dino Movie",
-        "汪汪隊立大功 恐龍大電影"
-      ],
-      "target_date": "2026-08-14",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "2026-08-14首映；2026-10-25威秀影城官網仍有實際排片，首映日已過仍須納入片庫。",
       "created_at": "2026-10-25T09:10:00+08:00",
       "updated_at": "2026-10-25T09:10:00+08:00"
     },
@@ -538,20 +453,6 @@
       "updated_at": "2026-10-25T09:10:00+08:00"
     },
     {
-      "id": 43,
-      "title": "歡迎來到朵莉之家",
-      "aliases": [
-        "WELCOME TO DOLLYS HOUSE",
-        "WELCOME TO DOLLY'S HOUSE"
-      ],
-      "target_date": "2026-10-30",
-      "is_active": true,
-      "sort_order": 0,
-      "notes": "威秀正式頁明示 2026-10-30 上映，類型為動畫、奇幻。 台灣正式來源：https://www.vscinemas.com.tw/film/detail.aspx?id=9038",
-      "created_at": "2026-10-25T08:46:17+08:00",
-      "updated_at": "2026-10-25T08:46:17+08:00"
-    },
-    {
       "id": 44,
       "title": "劇場版 魔法科高中的劣等生 四葉繼承篇",
       "aliases": [
@@ -565,6 +466,70 @@
       "notes": "台灣發行商曼迪公告 2026-11-13 起威秀獨家上映；海報為曼迪台灣版主視覺。 台灣正式來源：https://www.ccpa.org.tw/ccpa/data.php?id=789&tpl=",
       "created_at": "2026-10-25T08:46:17+08:00",
       "updated_at": "2026-10-25T08:46:17+08:00"
+    },
+    {
+      "id": 45,
+      "title": "樂園追放（10週年紀念4K修復版）",
+      "aliases": [
+        "樂園追放",
+        "樂園追放 4K修復版",
+        "樂園追放：10週年紀念4K修復版",
+        "Expelled from Paradise",
+        "楽園追放"
+      ],
+      "target_date": "2026-11-06",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本東映動畫／Nitroplus 2014年電影，2026台灣羚邦發行10週年紀念4K修復版。秀泰官方2026-11-06：https://www.showtimes.com.tw/programs/13113/；另一台灣片頁 https://moviego.funorange.com.tw/movie/2061 。MovieGo 海報700×1000低解析度，待升級。",
+      "created_at": "2026-11-01T08:30:53+08:00",
+      "updated_at": "2026-11-01T08:30:53+08:00"
+    },
+    {
+      "id": 46,
+      "title": "樂園追放 心之共鳴",
+      "aliases": [
+        "樂園追放：心之共鳴",
+        "樂園追放 心のレゾナンス",
+        "楽園追放 心のレゾナンス",
+        "Expelled from Paradise: Resonance"
+      ],
+      "target_date": "2026-11-20",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本東映動畫／Nitroplus 劇場新作。台灣羚邦正式發行，威秀官方台灣2026-11-20：https://www.vscinemas.com.tw/film/detail.aspx?id=9089；台灣片頁 https://moviego.funorange.com.tw/movie/2062 。MovieGo發行圖707×1000待升級；注意日本上映2026-11-13不同於台灣。",
+      "created_at": "2026-11-01T08:30:53+08:00",
+      "updated_at": "2026-11-01T08:30:53+08:00"
+    },
+    {
+      "id": 47,
+      "title": "你與花火與約定",
+      "aliases": [
+        "君と花火と約束と",
+        "你與花火與約定 電影",
+        "You, Fireworks, and Our Promise"
+      ],
+      "target_date": "2026-12-04",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本シンエイ動画企劃，SynergySP／アンサー・スタジオ動畫製作：https://shin-ei-animation.jp/works/kimi-hana/ 。台灣車庫娛樂於2026-10-29正式公告2026-12-04：https://www.garageplay.tw/news/5968 。台灣正式直式海報暫未能從發行商取得穩定可載入原圖，現用日本官方劇場海報TMDB收錄2000×2829（UPCOMING FALLBACK）；圖上日本2026-07-17非台灣12-04，待升級。",
+      "created_at": "2026-11-01T08:30:53+08:00",
+      "updated_at": "2026-11-01T08:30:53+08:00"
+    },
+    {
+      "id": 48,
+      "title": "來自深淵 深沉靈魂的黎明",
+      "aliases": [
+        "劇場版 來自深淵 深沉靈魂的黎明",
+        "劇場版「來自深淵 深沉靈魂的黎明」",
+        "來自深淵：深沉靈魂的黎明",
+        "MADE IN ABYSS - DAWN OF THE DEEP SOUL -"
+      ],
+      "target_date": "2026-11-13",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本動畫製作：キネマシトラス（Kinema Citrus），日本電影資料庫 https://jfdb.jp/title/8973；台灣普威爾發行，威秀2026-11-13一週限定重映：https://www.vscinemas.com.tw/film/detail.aspx?id=9074。使用威秀台灣正式電影海報，印11.13，2026-11-08 GitHub Actions Chromium實測原圖為1984×2835，符合高畫質門檻。不同於2026-11-20《來自深淵：覺醒的神秘》。",
+      "created_at": "2026-11-08T08:14:23.466+08:00",
+      "updated_at": "2026-11-08T08:14:23.466+08:00"
     }
   ]
 }
