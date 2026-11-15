@@ -169,21 +169,29 @@ def main() -> int:
                 '#comingSoonGrid .movie-card[data-movie-title="劇場版 藥師少女的獨語 亡妃的秘寶"]'
             )
             test_card.wait_for(timeout=30000)
-            test_card.scroll_into_view_if_needed()
-            test_img = test_card.locator("img")
-            test_img.evaluate(
-                """img => new Promise(resolve => {
-                    if (img.dataset.posterFallbackTried === '1' && img.complete && img.naturalWidth > 0) {
-                        resolve(true); return;
-                    }
-                    const check = setInterval(() => {
-                        if (img.dataset.posterFallbackTried === '1' && img.complete) {
-                            clearInterval(check); resolve(true);
-                        }
-                    }, 50);
-                    setTimeout(() => {clearInterval(check); resolve(false)}, 15000);
-                })"""
+            # The discovery grid may re-render while the intentionally broken
+            # source switches to its fallback. Resolve the CURRENT DOM node on
+            # every poll rather than waiting on a detached element handle.
+            fallback_page.evaluate(
+                """() => {
+                    document.querySelector(
+                      '#comingSoonGrid .movie-card[data-movie-title="劇場版 藥師少女的獨語 亡妃的秘寶"]'
+                    )?.scrollIntoView({block: 'center'});
+                }"""
             )
+            fallback_page.wait_for_function(
+                """() => {
+                    const img = document.querySelector(
+                      '#comingSoonGrid .movie-card[data-movie-title="劇場版 藥師少女的獨語 亡妃的秘寶"] img'
+                    );
+                    return Boolean(
+                        img && img.dataset.posterFallbackTried === '1'
+                        && img.complete && img.naturalWidth > 0
+                    );
+                }""",
+                timeout=30000,
+            )
+            test_img = test_card.locator("img")
             fallback_state = wait_img(test_img)
             print("[poster-runtime] FALLBACK_BEHAVIOUR", json.dumps(fallback_state, ensure_ascii=False), flush=True)
             if (
