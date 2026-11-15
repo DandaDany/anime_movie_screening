@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
-  "for_date": "2026-11-15",
-  "generated_at": "2026-11-15T07:02:06+08:00",
+  "for_date": "2026-11-16",
+  "generated_at": "2026-11-16T07:08:16+08:00",
   "records": [
     {
       "location_id": 68,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新大直皇家影城官方時刻表明確顯示 2026-11-15（日）本片場次 11:30、18:00。",
+      "evidence": "美麗新影城官方時刻表，台北大直皇家影城，日期 2026-11-16，片名與場次時間明確。",
       "showtimes": [
         {
           "time": "11:30",
           "format": null,
-          "language": "日語",
+          "language": "日文",
           "auditorium": "皇家廳"
         },
         {
           "time": "18:00",
           "format": null,
-          "language": "日語",
+          "language": "日文",
           "auditorium": "皇家廳"
         }
       ]
@@ -27,9 +27,9 @@
     {
       "location_id": 68,
       "movie_title": "歡迎來到朵莉之家",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新大直皇家影城官方時刻表明確顯示 2026-11-15（日）本片場次 10:45、17:25。",
+      "evidence": "美麗新影城官方時刻表，台北大直皇家影城，日期 2026-11-16，片名與場次時間明確。",
       "showtimes": [
         {
           "time": "10:45",
@@ -48,20 +48,20 @@
     {
       "location_id": 69,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新台茂影城官方時刻表明確顯示 2026-11-15（日）本片場次 10:50、21:40。",
+      "evidence": "美麗新影城官方時刻表，桃園台茂影城，日期 2026-11-16，片名與場次時間明確。",
       "showtimes": [
         {
           "time": "10:50",
           "format": null,
-          "language": "日語",
+          "language": "日文",
           "auditorium": "標準廳"
         },
         {
           "time": "21:40",
           "format": null,
-          "language": "日語",
+          "language": "日文",
           "auditorium": "標準廳"
         }
       ]
@@ -69,9 +69,9 @@
     {
       "location_id": 69,
       "movie_title": "歡迎來到朵莉之家",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新台茂影城官方時刻表明確顯示 2026-11-15（日）本片場次 12:50、17:05。",
+      "evidence": "美麗新影城官方時刻表，桃園台茂影城，日期 2026-11-16，片名與場次時間明確。",
       "showtimes": [
         {
           "time": "12:50",
@@ -90,9 +90,9 @@
     {
       "location_id": 69,
       "movie_title": "致遙不可及彼方的你",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新台茂影城官方時刻表明確顯示 2026-11-15（日）本片場次 14:40。",
+      "evidence": "美麗新影城官方時刻表，桃園台茂影城，日期 2026-11-16，片名與場次時間明確。",
       "showtimes": [
         {
           "time": "14:40",
@@ -105,9 +105,9 @@
     {
       "location_id": 72,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方現正熱映頁明確顯示 2026-11-15（日）本片各場次與影廳。",
+      "evidence": "高雄環球影城官方時刻表，頁面日期 2026-11-16，片名、廳別與場次時間明確。",
       "showtimes": [
         {
           "time": "10:30",
@@ -116,55 +116,31 @@
           "auditorium": "3廳"
         },
         {
-          "time": "12:15",
+          "time": "12:30",
           "format": null,
           "language": null,
           "auditorium": "3廳"
         },
         {
-          "time": "14:00",
+          "time": "14:30",
           "format": null,
           "language": null,
           "auditorium": "3廳"
         },
         {
-          "time": "14:40",
-          "format": null,
-          "language": null,
-          "auditorium": "13廳"
-        },
-        {
-          "time": "15:45",
+          "time": "16:30",
           "format": null,
           "language": null,
           "auditorium": "3廳"
         },
         {
-          "time": "17:30",
+          "time": "18:30",
           "format": null,
           "language": null,
           "auditorium": "3廳"
         },
         {
-          "time": "18:35",
-          "format": null,
-          "language": null,
-          "auditorium": "13廳"
-        },
-        {
-          "time": "19:15",
-          "format": null,
-          "language": null,
-          "auditorium": "3廳"
-        },
-        {
-          "time": "20:20",
-          "format": null,
-          "language": null,
-          "auditorium": "13廳"
-        },
-        {
-          "time": "21:00",
+          "time": "20:30",
           "format": null,
           "language": null,
           "auditorium": "3廳"
@@ -174,15 +150,15 @@
     {
       "location_id": 72,
       "movie_title": "Jim Queen：肌情四射",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方現正熱映頁明確顯示 2026-11-15（日）國語版場次 12:20、20:50 與影廳。",
+      "evidence": "高雄環球影城官方時刻表，頁面日期 2026-11-16，國語版片名、廳別與場次時間明確。",
       "showtimes": [
         {
           "time": "12:20",
           "format": null,
           "language": "國語",
-          "auditorium": "8廳"
+          "auditorium": "6廳"
         },
         {
           "time": "20:50",
@@ -193,55 +169,28 @@
       ]
     },
     {
-      "location_id": 103,
-      "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-15",
-      "source_url": "https://www.cm-movie.com.tw/category/time/",
-      "evidence": "全美戲院官方時刻表文章明確列出本片 2026-11-15 場次 13:00、16:40，頁尾場館地址為台南市中西區永福路二段187號。",
-      "showtimes": [
-        {
-          "time": "13:00",
-          "format": null,
-          "language": "日語",
-          "auditorium": null
-        },
-        {
-          "time": "16:40",
-          "format": null,
-          "language": "日語",
-          "auditorium": null
-        }
-      ]
-    },
-    {
       "location_id": 104,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-15",
+      "show_date": "2026-11-16",
       "source_url": "https://www.instagram.com/madoucinema/",
-      "evidence": "麻豆戲院官方 Instagram 置頂時刻表標示適用 2026-11-13 至 2026-11-15，圖中明確列出本片 12:50、16:35、18:20、20:05。",
+      "evidence": "麻豆戲院官方 Instagram 置頂時刻表，圖片明示適用 2026-11-16 至 2026-11-19，場館、片名與時間明確。",
       "showtimes": [
         {
-          "time": "12:50",
+          "time": "12:35",
           "format": null,
-          "language": null,
+          "language": "日文",
           "auditorium": null
         },
         {
-          "time": "16:35",
+          "time": "16:25",
           "format": null,
-          "language": null,
-          "auditorium": null
-        },
-        {
-          "time": "18:20",
-          "format": null,
-          "language": null,
+          "language": "日文",
           "auditorium": null
         },
         {
           "time": "20:05",
           "format": null,
-          "language": null,
+          "language": "日文",
           "auditorium": null
         }
       ]
