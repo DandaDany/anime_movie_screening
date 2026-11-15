@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T08:14:23.466+08:00",
-  "version": 2026110801,
+  "generated_at": "2026-11-15T13:00:00+08:00",
+  "version": 2026111501,
   "lookahead_days": 7,
   "movies": [
     {
@@ -530,6 +530,39 @@
       "notes": "日本動畫製作：キネマシトラス（Kinema Citrus），日本電影資料庫 https://jfdb.jp/title/8973；台灣普威爾發行，威秀2026-11-13一週限定重映：https://www.vscinemas.com.tw/film/detail.aspx?id=9074。使用威秀台灣正式電影海報，印11.13，2026-11-08 GitHub Actions Chromium實測原圖為1984×2835，符合高畫質門檻。不同於2026-11-20《來自深淵：覺醒的神秘》。",
       "created_at": "2026-11-08T08:14:23.466+08:00",
       "updated_at": "2026-11-08T08:14:23.466+08:00"
+    },
+    {
+      "id": 49,
+      "title": "綻放的巴黎之星",
+      "aliases": [
+        "パリに咲くエトワール",
+        "Samurai Ballerina",
+        "L'étoile de Paris en fleur",
+        "巴黎的繁花之星"
+      ],
+      "target_date": "2026-11-27",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本 ARVO Animation（アルボアニメーション）製作，導演谷口悟朗；日本正式製作：https://sh-anime.shochiku.co.jp/parieto-movie/；台灣威秀官方 https://www.vscinemas.com.tw/film/detail.aspx?id=9118 及秀泰 https://www.showtimes.com.tw/programs/13166/ 確認2026-11-27台灣院線；華映娛樂發行。採台灣威秀11月27日正式海報。",
+      "created_at": "2026-11-15T13:00:00+08:00",
+      "updated_at": "2026-11-15T13:00:00+08:00"
+    },
+    {
+      "id": 50,
+      "title": "神隱少女（25週年數位紀念版）",
+      "aliases": [
+        "神隱少女",
+        "神隱少女 25周年紀念",
+        "神隱少女_25周年紀念",
+        "千と千尋の神隠し",
+        "Spirited Away"
+      ],
+      "target_date": "2026-11-27",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "日本 Studio Ghibli 原製作，宮崎駿監督；甲上娛樂台灣2026-11-10公告 2026-11-27重映，美麗華正式Coming Soon https://www.miramarcinemas.tw/Movie/Index?type=coming 與 ibon 官方票券 https://tour.ibon.com.tw/event/6aed8bd2c151d50ddc990836 證實。採台灣2022方序中×董十行原版海報（無2022上映日期），因2026 25週年新增雲層隱藏角色特殊印刷尚無穩定可直連單張數位原稿；同作品同版面，標記2026版待升級，不冒用海外日期。",
+      "created_at": "2026-11-15T13:00:00+08:00",
+      "updated_at": "2026-11-15T13:00:00+08:00"
     }
   ]
 }
