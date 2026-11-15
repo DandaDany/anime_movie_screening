@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026110801,
-  "generated_at": "2026-11-08T08:14:23.466+08:00",
+  "source_version": 2026111501,
+  "generated_at": "2026-11-15T13:00:00+08:00",
   "lookahead_days": 7,
-  "count": 39,
+  "count": 41,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -521,6 +521,39 @@
       "poster_fit": "contain",
       "poster_source": "威秀台灣 2026-11-13 一週限定重映正式院線海報（印11.13；GitHub Chromium實測1984×2835，HIGH_RES VERIFIED）",
       "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9074"
+    },
+    {
+      "id": 49,
+      "title": "綻放的巴黎之星",
+      "aliases": [
+        "パリに咲くエトワール",
+        "Samurai Ballerina",
+        "L'étoile de Paris en fleur",
+        "巴黎的繁花之星"
+      ],
+      "target_date": "2026-11-27",
+      "poster_url": "https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20261111003.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "威秀影城台灣正式院線海報（印2026-11-27台灣日期，華映發行；LOW_RES_PENDING_UPGRADE待測尺寸）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=9118"
+    },
+    {
+      "id": 50,
+      "title": "神隱少女（25週年數位紀念版）",
+      "aliases": [
+        "神隱少女",
+        "神隱少女 25周年紀念",
+        "神隱少女_25周年紀念",
+        "千と千尋の神隠し",
+        "Spirited Away"
+      ],
+      "target_date": "2026-11-27",
+      "poster_url": "https://media.vogue.com.tw/photos/63201ed91f237f541c6c9ad5/master/pass/1.%E5%8F%B0%E7%81%A3%E7%9F%A5%E5%90%8D%E8%A8%AD%E8%A8%88%E5%B8%AB%E6%96%B9%E5%BA%8F%E4%B8%AD%E6%89%93%E9%80%A0%E3%80%8A%E7%A5%9E%E9%9A%B1%E5%B0%91%E5%A5%B3%E3%80%8B%E5%85%A8%E7%90%83%E5%94%AF%E4%B8%80%E5%8F%B0%E7%81%A3%E9%99%90%E5%AE%9A%E6%B5%B7%E5%A0%B1.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "甲上娛樂2026再發行之台灣限定方序中×董十行海報原版主視覺（Vogue保存2022獨立原圖；2026 25週年新增雲層上光彩蛋尚未取得可直連單張版本，2026_TW_POSTER_PENDING_UPGRADE）",
+      "poster_source_url": "https://www.marieclaire.com.tw/entertainment/movie/97046"
     }
   ]
 }
