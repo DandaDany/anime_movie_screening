@@ -2,50 +2,48 @@
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
   "generated_at": "2026-11-11",
-  "updated_at": "2026-11-21T07:31:51+08:00",
+  "updated_at": "2026-11-22T07:22:27+08:00",
   "movie_title": "名偵探柯南 第30號殺人事件",
-  "show_date": "2026-11-21",
+  "show_date": "2026-11-22",
   "movies": [
     {
       "title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-21",
+      "show_date": "2026-11-22",
       "available_dates": [
-        "2026-11-21",
         "2026-11-22",
         "2026-11-23",
         "2026-11-24",
         "2026-11-25",
         "2026-11-26"
       ],
-      "feature_count": 5
+      "feature_count": 7
     },
     {
       "title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-21",
+      "show_date": "2026-11-22",
       "available_dates": [
-        "2026-11-21"
+        "2026-11-22"
       ],
       "feature_count": 3
     },
     {
       "title": "Jim Queen：肌情四射",
-      "show_date": "2026-11-21",
+      "show_date": "2026-11-22",
       "available_dates": [
-        "2026-11-22",
-        "2026-11-21"
+        "2026-11-22"
       ],
-      "feature_count": 1
+      "feature_count": 2
     },
     {
       "title": "致遙不可及彼方的你",
-      "show_date": "2026-11-21",
+      "show_date": "2026-11-22",
       "available_dates": [
         "2026-11-22",
         "2026-11-23",
         "2026-11-24",
         "2026-11-25"
       ],
-      "feature_count": 0
+      "feature_count": 3
     }
   ],
   "movie_features": {
@@ -55,34 +53,218 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
-            120.20145,
-            22.99521
+            120.44181,
+            23.47799
           ]
         },
         "properties": {
-          "location_id": 103,
-          "chain_name": "全美戲院",
-          "location_name": "全美戲院",
-          "map_name": "全美戲院 全美戲院",
-          "address": "台南市中西區永福路二段187號",
-          "city": "臺南市",
-          "location_url": "https://www.cm-movie.com.tw/",
-          "official_url": "https://www.cm-movie.com.tw/",
-          "crawl_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
+          "location_id": 102,
+          "chain_name": "嘉年華戲院",
+          "location_name": "嘉年華戲院",
+          "map_name": "嘉年華戲院 嘉年華戲院",
+          "address": "嘉義市東區中山路617號",
+          "city": "嘉義市",
+          "location_url": "https://www.3d-movies.tw/",
+          "official_url": "https://www.3d-movies.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
           "movie_title": "名偵探柯南 第30號殺人事件",
-          "show_date": "2026-11-21",
-          "showtime_count": 1,
+          "show_date": "2026-11-22",
+          "showtime_count": 8,
           "showtimes": [
             {
-              "time": "16:40",
-              "format": null,
-              "language": "日語",
+              "time": "10:10",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
               "auditorium": null,
-              "booking_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
-              "label": "16:40"
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "10:10 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "12:00",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "12:00 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "13:50",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "13:50 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "15:40",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "15:40 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "17:30",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "17:30 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "19:20",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "19:20 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "21:10",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "21:10 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "23:00",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "23:00 名偵探柯南 第30號殺人事件"
             }
           ],
-          "start_times": "16:40",
+          "start_times": "10:10, 12:00, 13:50, 15:40, 17:30, 19:20, 21:10, 23:00",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.67534,
+            24.14367
+          ]
+        },
+        "properties": {
+          "location_id": 99,
+          "chain_name": "日日新影城",
+          "location_name": "日日新影城",
+          "map_name": "日日新影城 日日新影城",
+          "address": "台中市中區中華路一段58號",
+          "city": "臺中市",
+          "location_url": "https://www.srm.com.tw/",
+          "official_url": "https://www.srm.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+          "movie_title": "名偵探柯南 第30號殺人事件",
+          "show_date": "2026-11-22",
+          "showtime_count": 5,
+          "showtimes": [
+            {
+              "time": "10:00",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+              "label": "10:00 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "12:20",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+              "label": "12:20 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "14:50",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+              "label": "14:50 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "17:20",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+              "label": "17:20 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "19:40",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+              "label": "19:40 名偵探柯南 第30號殺人事件"
+            }
+          ],
+          "start_times": "10:00, 12:20, 14:50, 17:20, 19:40",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.22844,
+            25.0014
+          ]
+        },
+        "properties": {
+          "location_id": 98,
+          "chain_name": "星橋國際影城",
+          "location_name": "星橋國際影城",
+          "map_name": "星橋國際影城 星橋國際影城",
+          "address": "桃園市中壢區中園路二段501號5樓",
+          "city": "桃園市",
+          "location_url": "https://www.sbcmovies.com.tw/",
+          "official_url": "https://www.sbcmovies.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+          "movie_title": "名偵探柯南 第30號殺人事件",
+          "show_date": "2026-11-22",
+          "showtime_count": 4,
+          "showtimes": [
+            {
+              "time": "10:00",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+              "label": "10:00 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "12:15",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+              "label": "12:15 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "14:40",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+              "label": "14:40 名偵探柯南 第30號殺人事件"
+            },
+            {
+              "time": "16:25",
+              "format": "名偵探柯南 第30號殺人事件",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+              "label": "16:25 名偵探柯南 第30號殺人事件"
+            }
+          ],
+          "start_times": "10:00, 12:15, 14:40, 16:25",
           "supplemental_web_source": true
         }
       },
@@ -106,7 +288,7 @@
           "official_url": "https://www.miranewcinemas.com/",
           "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
           "movie_title": "名偵探柯南 第30號殺人事件",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 1,
           "showtimes": [
             {
@@ -114,7 +296,7 @@
               "format": "名偵探柯南 第30號殺人事件",
               "language": null,
               "auditorium": null,
-              "booking_url": "https://www.atmovies.com.tw/showtime/t02d06/a02/20261121/",
+              "booking_url": "https://www.atmovies.com.tw/showtime/t02d06/a02/20261122/",
               "label": "16:30 名偵探柯南 第30號殺人事件"
             }
           ],
@@ -142,19 +324,19 @@
           "official_url": "https://www.miranewcinemas.com/",
           "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
           "movie_title": "名偵探柯南 第30號殺人事件",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 1,
           "showtimes": [
             {
-              "time": "17:25",
+              "time": "16:15",
               "format": "名偵探柯南 第30號殺人事件",
               "language": null,
               "auditorium": null,
-              "booking_url": "https://www.atmovies.com.tw/showtime/t03301/a03/20261121/",
-              "label": "17:25 名偵探柯南 第30號殺人事件"
+              "booking_url": "https://www.atmovies.com.tw/showtime/t03301/a03/20261122/",
+              "label": "16:15 名偵探柯南 第30號殺人事件"
             }
           ],
-          "start_times": "17:25",
+          "start_times": "16:15",
           "supplemental_web_source": true
         }
       },
@@ -178,7 +360,7 @@
           "official_url": "https://www.u-movie.com.tw/",
           "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
           "movie_title": "名偵探柯南 第30號殺人事件",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 6,
           "showtimes": [
             {
@@ -254,7 +436,7 @@
           "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
           "crawl_url": "https://www.instagram.com/madoucinema/",
           "movie_title": "名偵探柯南 第30號殺人事件",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 2,
           "showtimes": [
             {
@@ -300,35 +482,35 @@
           "official_url": "https://www.miranewcinemas.com/",
           "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
           "movie_title": "劇場版 來自深淵：覺醒的神秘",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 3,
           "showtimes": [
             {
-              "time": "10:40",
+              "time": "12:35",
               "format": null,
               "language": null,
               "auditorium": "標準廳",
               "booking_url": "https://www.miranewcinemas.com/Booking/Timetable",
-              "label": "10:40"
+              "label": "12:35"
             },
             {
-              "time": "14:40",
+              "time": "18:10",
               "format": null,
               "language": null,
               "auditorium": "標準廳",
               "booking_url": "https://www.miranewcinemas.com/Booking/Timetable",
-              "label": "14:40"
+              "label": "18:10"
             },
             {
-              "time": "20:45",
+              "time": "21:25",
               "format": null,
               "language": null,
               "auditorium": "標準廳",
               "booking_url": "https://www.miranewcinemas.com/Booking/Timetable",
-              "label": "20:45"
+              "label": "21:25"
             }
           ],
-          "start_times": "10:40, 14:40, 20:45",
+          "start_times": "12:35, 18:10, 21:25",
           "supplemental_web_source": true
         }
       },
@@ -352,7 +534,7 @@
           "official_url": "https://www.u-movie.com.tw/",
           "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
           "movie_title": "劇場版 來自深淵：覺醒的神秘",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 5,
           "showtimes": [
             {
@@ -420,7 +602,7 @@
           "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
           "crawl_url": "https://www.instagram.com/madoucinema/",
           "movie_title": "劇場版 來自深淵：覺醒的神秘",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 3,
           "showtimes": [
             {
@@ -459,6 +641,58 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.44181,
+            23.47799
+          ]
+        },
+        "properties": {
+          "location_id": 102,
+          "chain_name": "嘉年華戲院",
+          "location_name": "嘉年華戲院",
+          "map_name": "嘉年華戲院 嘉年華戲院",
+          "address": "嘉義市東區中山路617號",
+          "city": "嘉義市",
+          "location_url": "https://www.3d-movies.tw/",
+          "official_url": "https://www.3d-movies.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+          "movie_title": "Jim Queen：肌情四射",
+          "show_date": "2026-11-22",
+          "showtime_count": 3,
+          "showtimes": [
+            {
+              "time": "12:00",
+              "format": "Jim Queen：肌情四射",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "12:00 Jim Queen：肌情四射"
+            },
+            {
+              "time": "17:30",
+              "format": "Jim Queen：肌情四射",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "17:30 Jim Queen：肌情四射"
+            },
+            {
+              "time": "21:40",
+              "format": "Jim Queen：肌情四射",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "21:40 Jim Queen：肌情四射"
+            }
+          ],
+          "start_times": "12:00, 17:30, 21:40",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.3253452,
             22.6319673
           ]
@@ -474,7 +708,7 @@
           "official_url": "https://www.u-movie.com.tw/",
           "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
           "movie_title": "Jim Queen：肌情四射",
-          "show_date": "2026-11-21",
+          "show_date": "2026-11-22",
           "showtime_count": 1,
           "showtimes": [
             {
@@ -491,240 +725,135 @@
         }
       }
     ],
-    "致遙不可及彼方的你": []
+    "致遙不可及彼方的你": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.44181,
+            23.47799
+          ]
+        },
+        "properties": {
+          "location_id": 102,
+          "chain_name": "嘉年華戲院",
+          "location_name": "嘉年華戲院",
+          "map_name": "嘉年華戲院 嘉年華戲院",
+          "address": "嘉義市東區中山路617號",
+          "city": "嘉義市",
+          "location_url": "https://www.3d-movies.tw/",
+          "official_url": "https://www.3d-movies.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+          "movie_title": "致遙不可及彼方的你",
+          "show_date": "2026-11-22",
+          "showtime_count": 3,
+          "showtimes": [
+            {
+              "time": "12:10",
+              "format": "致遙不可及彼方的你",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "12:10 致遙不可及彼方的你"
+            },
+            {
+              "time": "14:50",
+              "format": "致遙不可及彼方的你",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "14:50 致遙不可及彼方的你"
+            },
+            {
+              "time": "18:50",
+              "format": "致遙不可及彼方的你",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+              "label": "18:50 致遙不可及彼方的你"
+            }
+          ],
+          "start_times": "12:10, 14:50, 18:50",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.67534,
+            24.14367
+          ]
+        },
+        "properties": {
+          "location_id": 99,
+          "chain_name": "日日新影城",
+          "location_name": "日日新影城",
+          "map_name": "日日新影城 日日新影城",
+          "address": "台中市中區中華路一段58號",
+          "city": "臺中市",
+          "location_url": "https://www.srm.com.tw/",
+          "official_url": "https://www.srm.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+          "movie_title": "致遙不可及彼方的你",
+          "show_date": "2026-11-22",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "10:20",
+              "format": "致遙不可及彼方的你",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+              "label": "10:20 致遙不可及彼方的你"
+            }
+          ],
+          "start_times": "10:20",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.22844,
+            25.0014
+          ]
+        },
+        "properties": {
+          "location_id": 98,
+          "chain_name": "星橋國際影城",
+          "location_name": "星橋國際影城",
+          "map_name": "星橋國際影城 星橋國際影城",
+          "address": "桃園市中壢區中園路二段501號5樓",
+          "city": "桃園市",
+          "location_url": "https://www.sbcmovies.com.tw/",
+          "official_url": "https://www.sbcmovies.com.tw/",
+          "crawl_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+          "movie_title": "致遙不可及彼方的你",
+          "show_date": "2026-11-22",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "10:00",
+              "format": "致遙不可及彼方的你",
+              "language": null,
+              "auditorium": null,
+              "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+              "label": "10:00 致遙不可及彼方的你"
+            }
+          ],
+          "start_times": "10:00",
+          "supplemental_web_source": true
+        }
+      }
+    ]
   },
   "movie_features_by_date": {
     "名偵探柯南 第30號殺人事件": {
-      "2026-11-21": [
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.20145,
-              22.99521
-            ]
-          },
-          "properties": {
-            "location_id": 103,
-            "chain_name": "全美戲院",
-            "location_name": "全美戲院",
-            "map_name": "全美戲院 全美戲院",
-            "address": "台南市中西區永福路二段187號",
-            "city": "臺南市",
-            "location_url": "https://www.cm-movie.com.tw/",
-            "official_url": "https://www.cm-movie.com.tw/",
-            "crawl_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
-            "movie_title": "名偵探柯南 第30號殺人事件",
-            "show_date": "2026-11-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "16:40",
-                "format": null,
-                "language": "日語",
-                "auditorium": null,
-                "booking_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
-                "label": "16:40"
-              }
-            ],
-            "start_times": "16:40",
-            "supplemental_web_source": true
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              121.553791389593,
-              25.085050405508
-            ]
-          },
-          "properties": {
-            "location_id": 68,
-            "chain_name": "美麗新影城",
-            "location_name": "台北大直美麗新皇家影城",
-            "map_name": "美麗新影城 台北大直美麗新皇家影城",
-            "address": "台北市中山區北安路780號B2",
-            "city": "臺北市",
-            "location_url": "https://www.miranewcinemas.com/Booking/Timetable",
-            "official_url": "https://www.miranewcinemas.com/",
-            "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
-            "movie_title": "名偵探柯南 第30號殺人事件",
-            "show_date": "2026-11-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "16:30",
-                "format": "名偵探柯南 第30號殺人事件",
-                "language": null,
-                "auditorium": null,
-                "booking_url": "https://www.atmovies.com.tw/showtime/t02d06/a02/20261121/",
-                "label": "16:30 名偵探柯南 第30號殺人事件"
-              }
-            ],
-            "start_times": "16:30",
-            "supplemental_web_source": true
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              121.287749028433,
-              25.053000983341
-            ]
-          },
-          "properties": {
-            "location_id": 69,
-            "chain_name": "美麗新影城",
-            "location_name": "桃園台茂美麗新影城",
-            "map_name": "美麗新影城 桃園台茂美麗新影城",
-            "address": "桃園市蘆竹區南崁路一段112號7樓",
-            "city": "桃園市",
-            "location_url": "https://www.miranewcinemas.com/Booking/Timetable",
-            "official_url": "https://www.miranewcinemas.com/",
-            "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
-            "movie_title": "名偵探柯南 第30號殺人事件",
-            "show_date": "2026-11-21",
-            "showtime_count": 1,
-            "showtimes": [
-              {
-                "time": "17:25",
-                "format": "名偵探柯南 第30號殺人事件",
-                "language": null,
-                "auditorium": null,
-                "booking_url": "https://www.atmovies.com.tw/showtime/t03301/a03/20261121/",
-                "label": "17:25 名偵探柯南 第30號殺人事件"
-              }
-            ],
-            "start_times": "17:25",
-            "supplemental_web_source": true
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.3253452,
-              22.6319673
-            ]
-          },
-          "properties": {
-            "location_id": 72,
-            "chain_name": "高雄環球影城",
-            "location_name": "高雄環球影城",
-            "map_name": "高雄環球影城 高雄環球影城",
-            "address": "高雄市苓雅區大順三路108號",
-            "city": "高雄市",
-            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-            "official_url": "https://www.u-movie.com.tw/",
-            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-            "movie_title": "名偵探柯南 第30號殺人事件",
-            "show_date": "2026-11-21",
-            "showtime_count": 6,
-            "showtimes": [
-              {
-                "time": "10:30",
-                "format": null,
-                "language": null,
-                "auditorium": "13廳",
-                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-                "label": "10:30"
-              },
-              {
-                "time": "12:15",
-                "format": null,
-                "language": null,
-                "auditorium": "13廳",
-                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-                "label": "12:15"
-              },
-              {
-                "time": "14:00",
-                "format": null,
-                "language": null,
-                "auditorium": "13廳",
-                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-                "label": "14:00"
-              },
-              {
-                "time": "16:00",
-                "format": null,
-                "language": null,
-                "auditorium": "13廳",
-                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-                "label": "16:00"
-              },
-              {
-                "time": "18:00",
-                "format": null,
-                "language": null,
-                "auditorium": "13廳",
-                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-                "label": "18:00"
-              },
-              {
-                "time": "20:00",
-                "format": null,
-                "language": null,
-                "auditorium": "13廳",
-                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-                "label": "20:00"
-              }
-            ],
-            "start_times": "10:30, 12:15, 14:00, 16:00, 18:00, 20:00",
-            "supplemental_web_source": true
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              120.25125,
-              23.18362
-            ]
-          },
-          "properties": {
-            "location_id": 104,
-            "chain_name": "麻豆戲院",
-            "location_name": "麻豆戲院",
-            "map_name": "麻豆戲院 麻豆戲院",
-            "address": "台南市麻豆區興中路106號3樓",
-            "city": "臺南市",
-            "location_url": "https://www.facebook.com/profile.php?id=61564946135169",
-            "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
-            "crawl_url": "https://www.instagram.com/madoucinema/",
-            "movie_title": "名偵探柯南 第30號殺人事件",
-            "show_date": "2026-11-21",
-            "showtime_count": 2,
-            "showtimes": [
-              {
-                "time": "10:25",
-                "format": "數位",
-                "language": "日文",
-                "auditorium": null,
-                "booking_url": "https://www.instagram.com/madoucinema/",
-                "label": "10:25 數位"
-              },
-              {
-                "time": "16:50",
-                "format": "數位",
-                "language": "日文",
-                "auditorium": null,
-                "booking_url": "https://www.instagram.com/madoucinema/",
-                "label": "16:50 數位"
-              }
-            ],
-            "start_times": "10:25, 16:50",
-            "supplemental_web_source": true
-          }
-        }
-      ],
       "2026-11-22": [
         {
           "type": "Feature",
@@ -964,7 +1093,7 @@
             "city": "臺北市",
             "location_url": "https://www.miranewcinemas.com/Booking/Timetable",
             "official_url": "https://www.miranewcinemas.com/",
-            "crawl_url": "https://www.atmovies.com.tw/showtime/t02d06/a02/20261122/",
+            "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
             "movie_title": "名偵探柯南 第30號殺人事件",
             "show_date": "2026-11-22",
             "showtime_count": 1,
@@ -1000,7 +1129,7 @@
             "city": "桃園市",
             "location_url": "https://www.miranewcinemas.com/Booking/Timetable",
             "official_url": "https://www.miranewcinemas.com/",
-            "crawl_url": "https://www.atmovies.com.tw/showtime/t03301/a03/20261122/",
+            "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
             "movie_title": "名偵探柯南 第30號殺人事件",
             "show_date": "2026-11-22",
             "showtime_count": 1,
@@ -1015,6 +1144,126 @@
               }
             ],
             "start_times": "16:15",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "名偵探柯南 第30號殺人事件",
+            "show_date": "2026-11-22",
+            "showtime_count": 6,
+            "showtimes": [
+              {
+                "time": "10:30",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "10:30"
+              },
+              {
+                "time": "12:15",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "12:15"
+              },
+              {
+                "time": "14:00",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "14:00"
+              },
+              {
+                "time": "16:00",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "16:00"
+              },
+              {
+                "time": "18:00",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "18:00"
+              },
+              {
+                "time": "20:00",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "20:00"
+              }
+            ],
+            "start_times": "10:30, 12:15, 14:00, 16:00, 18:00, 20:00",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.25125,
+              23.18362
+            ]
+          },
+          "properties": {
+            "location_id": 104,
+            "chain_name": "麻豆戲院",
+            "location_name": "麻豆戲院",
+            "map_name": "麻豆戲院 麻豆戲院",
+            "address": "台南市麻豆區興中路106號3樓",
+            "city": "臺南市",
+            "location_url": "https://www.facebook.com/profile.php?id=61564946135169",
+            "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
+            "crawl_url": "https://www.instagram.com/madoucinema/",
+            "movie_title": "名偵探柯南 第30號殺人事件",
+            "show_date": "2026-11-22",
+            "showtime_count": 2,
+            "showtimes": [
+              {
+                "time": "10:25",
+                "format": "數位",
+                "language": "日文",
+                "auditorium": null,
+                "booking_url": "https://www.instagram.com/madoucinema/",
+                "label": "10:25 數位"
+              },
+              {
+                "time": "16:50",
+                "format": "數位",
+                "language": "日文",
+                "auditorium": null,
+                "booking_url": "https://www.instagram.com/madoucinema/",
+                "label": "16:50 數位"
+              }
+            ],
+            "start_times": "10:25, 16:50",
             "supplemental_web_source": true
           }
         }
@@ -1389,7 +1638,7 @@
       ]
     },
     "劇場版 來自深淵：覺醒的神秘": {
-      "2026-11-21": [
+      "2026-11-22": [
         {
           "type": "Feature",
           "geometry": {
@@ -1410,35 +1659,35 @@
             "official_url": "https://www.miranewcinemas.com/",
             "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
             "movie_title": "劇場版 來自深淵：覺醒的神秘",
-            "show_date": "2026-11-21",
+            "show_date": "2026-11-22",
             "showtime_count": 3,
             "showtimes": [
               {
-                "time": "10:40",
+                "time": "12:35",
                 "format": null,
                 "language": null,
                 "auditorium": "標準廳",
                 "booking_url": "https://www.miranewcinemas.com/Booking/Timetable",
-                "label": "10:40"
+                "label": "12:35"
               },
               {
-                "time": "14:40",
+                "time": "18:10",
                 "format": null,
                 "language": null,
                 "auditorium": "標準廳",
                 "booking_url": "https://www.miranewcinemas.com/Booking/Timetable",
-                "label": "14:40"
+                "label": "18:10"
               },
               {
-                "time": "20:45",
+                "time": "21:25",
                 "format": null,
                 "language": null,
                 "auditorium": "標準廳",
                 "booking_url": "https://www.miranewcinemas.com/Booking/Timetable",
-                "label": "20:45"
+                "label": "21:25"
               }
             ],
-            "start_times": "10:40, 14:40, 20:45",
+            "start_times": "12:35, 18:10, 21:25",
             "supplemental_web_source": true
           }
         },
@@ -1462,7 +1711,7 @@
             "official_url": "https://www.u-movie.com.tw/",
             "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
             "movie_title": "劇場版 來自深淵：覺醒的神秘",
-            "show_date": "2026-11-21",
+            "show_date": "2026-11-22",
             "showtime_count": 5,
             "showtimes": [
               {
@@ -1530,7 +1779,7 @@
             "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
             "crawl_url": "https://www.instagram.com/madoucinema/",
             "movie_title": "劇場版 來自深淵：覺醒的神秘",
-            "show_date": "2026-11-21",
+            "show_date": "2026-11-22",
             "showtime_count": 3,
             "showtimes": [
               {
@@ -1617,9 +1866,7 @@
             "start_times": "12:00, 17:30, 21:40",
             "supplemental_web_source": true
           }
-        }
-      ],
-      "2026-11-21": [
+        },
         {
           "type": "Feature",
           "geometry": {
@@ -1640,7 +1887,7 @@
             "official_url": "https://www.u-movie.com.tw/",
             "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
             "movie_title": "Jim Queen：肌情四射",
-            "show_date": "2026-11-21",
+            "show_date": "2026-11-22",
             "showtime_count": 1,
             "showtimes": [
               {
@@ -1902,48 +2149,231 @@
     }
   },
   "available_dates": [
-    "2026-11-21",
     "2026-11-22",
     "2026-11-23",
     "2026-11-24",
     "2026-11-25",
     "2026-11-26"
   ],
-  "feature_count": 5,
+  "feature_count": 7,
   "features": [
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          120.20145,
-          22.99521
+          120.44181,
+          23.47799
         ]
       },
       "properties": {
-        "location_id": 103,
-        "chain_name": "全美戲院",
-        "location_name": "全美戲院",
-        "map_name": "全美戲院 全美戲院",
-        "address": "台南市中西區永福路二段187號",
-        "city": "臺南市",
-        "location_url": "https://www.cm-movie.com.tw/",
-        "official_url": "https://www.cm-movie.com.tw/",
-        "crawl_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
+        "location_id": 102,
+        "chain_name": "嘉年華戲院",
+        "location_name": "嘉年華戲院",
+        "map_name": "嘉年華戲院 嘉年華戲院",
+        "address": "嘉義市東區中山路617號",
+        "city": "嘉義市",
+        "location_url": "https://www.3d-movies.tw/",
+        "official_url": "https://www.3d-movies.tw/",
+        "crawl_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
         "movie_title": "名偵探柯南 第30號殺人事件",
-        "show_date": "2026-11-21",
-        "showtime_count": 1,
+        "show_date": "2026-11-22",
+        "showtime_count": 8,
         "showtimes": [
           {
-            "time": "16:40",
-            "format": null,
-            "language": "日語",
+            "time": "10:10",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
             "auditorium": null,
-            "booking_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
-            "label": "16:40"
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "10:10 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "12:00",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "12:00 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "13:50",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "13:50 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "15:40",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "15:40 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "17:30",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "17:30 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "19:20",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "19:20 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "21:10",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "21:10 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "23:00",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t05502/a05/20261122/",
+            "label": "23:00 名偵探柯南 第30號殺人事件"
           }
         ],
-        "start_times": "16:40",
+        "start_times": "10:10, 12:00, 13:50, 15:40, 17:30, 19:20, 21:10, 23:00",
+        "supplemental_web_source": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.67534,
+          24.14367
+        ]
+      },
+      "properties": {
+        "location_id": 99,
+        "chain_name": "日日新影城",
+        "location_name": "日日新影城",
+        "map_name": "日日新影城 日日新影城",
+        "address": "台中市中區中華路一段58號",
+        "city": "臺中市",
+        "location_url": "https://www.srm.com.tw/",
+        "official_url": "https://www.srm.com.tw/",
+        "crawl_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+        "movie_title": "名偵探柯南 第30號殺人事件",
+        "show_date": "2026-11-22",
+        "showtime_count": 5,
+        "showtimes": [
+          {
+            "time": "10:00",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+            "label": "10:00 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "12:20",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+            "label": "12:20 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "14:50",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+            "label": "14:50 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "17:20",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+            "label": "17:20 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "19:40",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t04404/a04/20261122/",
+            "label": "19:40 名偵探柯南 第30號殺人事件"
+          }
+        ],
+        "start_times": "10:00, 12:20, 14:50, 17:20, 19:40",
+        "supplemental_web_source": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.22844,
+          25.0014
+        ]
+      },
+      "properties": {
+        "location_id": 98,
+        "chain_name": "星橋國際影城",
+        "location_name": "星橋國際影城",
+        "map_name": "星橋國際影城 星橋國際影城",
+        "address": "桃園市中壢區中園路二段501號5樓",
+        "city": "桃園市",
+        "location_url": "https://www.sbcmovies.com.tw/",
+        "official_url": "https://www.sbcmovies.com.tw/",
+        "crawl_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+        "movie_title": "名偵探柯南 第30號殺人事件",
+        "show_date": "2026-11-22",
+        "showtime_count": 4,
+        "showtimes": [
+          {
+            "time": "10:00",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+            "label": "10:00 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "12:15",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+            "label": "12:15 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "14:40",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+            "label": "14:40 名偵探柯南 第30號殺人事件"
+          },
+          {
+            "time": "16:25",
+            "format": "名偵探柯南 第30號殺人事件",
+            "language": null,
+            "auditorium": null,
+            "booking_url": "https://www.atmovies.com.tw/showtime/t03302/a03/20261122/",
+            "label": "16:25 名偵探柯南 第30號殺人事件"
+          }
+        ],
+        "start_times": "10:00, 12:15, 14:40, 16:25",
         "supplemental_web_source": true
       }
     },
@@ -1967,7 +2397,7 @@
         "official_url": "https://www.miranewcinemas.com/",
         "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
         "movie_title": "名偵探柯南 第30號殺人事件",
-        "show_date": "2026-11-21",
+        "show_date": "2026-11-22",
         "showtime_count": 1,
         "showtimes": [
           {
@@ -1975,7 +2405,7 @@
             "format": "名偵探柯南 第30號殺人事件",
             "language": null,
             "auditorium": null,
-            "booking_url": "https://www.atmovies.com.tw/showtime/t02d06/a02/20261121/",
+            "booking_url": "https://www.atmovies.com.tw/showtime/t02d06/a02/20261122/",
             "label": "16:30 名偵探柯南 第30號殺人事件"
           }
         ],
@@ -2003,19 +2433,19 @@
         "official_url": "https://www.miranewcinemas.com/",
         "crawl_url": "https://www.miranewcinemas.com/Booking/Timetable",
         "movie_title": "名偵探柯南 第30號殺人事件",
-        "show_date": "2026-11-21",
+        "show_date": "2026-11-22",
         "showtime_count": 1,
         "showtimes": [
           {
-            "time": "17:25",
+            "time": "16:15",
             "format": "名偵探柯南 第30號殺人事件",
             "language": null,
             "auditorium": null,
-            "booking_url": "https://www.atmovies.com.tw/showtime/t03301/a03/20261121/",
-            "label": "17:25 名偵探柯南 第30號殺人事件"
+            "booking_url": "https://www.atmovies.com.tw/showtime/t03301/a03/20261122/",
+            "label": "16:15 名偵探柯南 第30號殺人事件"
           }
         ],
-        "start_times": "17:25",
+        "start_times": "16:15",
         "supplemental_web_source": true
       }
     },
@@ -2039,7 +2469,7 @@
         "official_url": "https://www.u-movie.com.tw/",
         "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
         "movie_title": "名偵探柯南 第30號殺人事件",
-        "show_date": "2026-11-21",
+        "show_date": "2026-11-22",
         "showtime_count": 6,
         "showtimes": [
           {
@@ -2115,7 +2545,7 @@
         "official_url": "https://www.facebook.com/profile.php?id=61564946135169",
         "crawl_url": "https://www.instagram.com/madoucinema/",
         "movie_title": "名偵探柯南 第30號殺人事件",
-        "show_date": "2026-11-21",
+        "show_date": "2026-11-22",
         "showtime_count": 2,
         "showtimes": [
           {
@@ -2140,7 +2570,7 @@
       }
     }
   ],
-  "supplemental_updated_at": "2026-11-21T07:31:22+08:00",
+  "supplemental_updated_at": "2026-11-22T07:21:58+08:00",
   "supplemental_preserved_at": "2026-11-11T10:42:17+08:00",
-  "supplemental_finalized_at": "2026-11-21T07:31:51+08:00"
+  "supplemental_finalized_at": "2026-11-22T07:22:27+08:00"
 }
