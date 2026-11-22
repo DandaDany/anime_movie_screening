@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "name": "全台動畫電影上映地圖",
   "generated_at": "2026-11-11",
-  "updated_at": "2026-11-23T07:18:58+08:00",
+  "updated_at": "2026-11-23T07:34:04+08:00",
   "movie_title": "名偵探柯南 第30號殺人事件",
   "show_date": "2026-11-23",
   "movies": [
@@ -15,7 +15,7 @@
         "2026-11-25",
         "2026-11-26"
       ],
-      "feature_count": 4
+      "feature_count": 5
     },
     {
       "title": "劇場版 來自深淵：覺醒的神秘",
@@ -23,7 +23,7 @@
       "available_dates": [
         "2026-11-23"
       ],
-      "feature_count": 2
+      "feature_count": 3
     },
     {
       "title": "致遙不可及彼方的你",
@@ -32,6 +32,14 @@
         "2026-11-23",
         "2026-11-24",
         "2026-11-25"
+      ],
+      "feature_count": 1
+    },
+    {
+      "title": "Jim Queen：肌情四射",
+      "show_date": "2026-11-23",
+      "available_dates": [
+        "2026-11-23"
       ],
       "feature_count": 1
     }
@@ -175,6 +183,66 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "名偵探柯南 第30號殺人事件",
+          "show_date": "2026-11-23",
+          "showtime_count": 4,
+          "showtimes": [
+            {
+              "time": "10:15",
+              "format": null,
+              "language": null,
+              "auditorium": "3廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "10:15"
+            },
+            {
+              "time": "12:00",
+              "format": null,
+              "language": null,
+              "auditorium": "3廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "12:00"
+            },
+            {
+              "time": "18:50",
+              "format": null,
+              "language": null,
+              "auditorium": "13廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "18:50"
+            },
+            {
+              "time": "20:40",
+              "format": null,
+              "language": null,
+              "auditorium": "13廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "20:40"
+            }
+          ],
+          "start_times": "10:15, 12:00, 18:50, 20:40",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.25125,
             23.18362
           ]
@@ -273,6 +341,66 @@
         "geometry": {
           "type": "Point",
           "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "劇場版 來自深淵：覺醒的神秘",
+          "show_date": "2026-11-23",
+          "showtime_count": 4,
+          "showtimes": [
+            {
+              "time": "10:10",
+              "format": null,
+              "language": null,
+              "auditorium": "6廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "10:10"
+            },
+            {
+              "time": "15:00",
+              "format": null,
+              "language": null,
+              "auditorium": "5廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "15:00"
+            },
+            {
+              "time": "16:35",
+              "format": null,
+              "language": null,
+              "auditorium": "5廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "16:35"
+            },
+            {
+              "time": "18:10",
+              "format": null,
+              "language": null,
+              "auditorium": "5廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "18:10"
+            }
+          ],
+          "start_times": "10:10, 15:00, 16:35, 18:10",
+          "supplemental_web_source": true
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
             120.25125,
             23.18362
           ]
@@ -355,6 +483,44 @@
             }
           ],
           "start_times": "10:30",
+          "supplemental_web_source": true
+        }
+      }
+    ],
+    "Jim Queen：肌情四射": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            120.3253452,
+            22.6319673
+          ]
+        },
+        "properties": {
+          "location_id": 72,
+          "chain_name": "高雄環球影城",
+          "location_name": "高雄環球影城",
+          "map_name": "高雄環球影城 高雄環球影城",
+          "address": "高雄市苓雅區大順三路108號",
+          "city": "高雄市",
+          "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "official_url": "https://www.u-movie.com.tw/",
+          "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+          "movie_title": "Jim Queen：肌情四射",
+          "show_date": "2026-11-23",
+          "showtime_count": 1,
+          "showtimes": [
+            {
+              "time": "21:00",
+              "format": null,
+              "language": "國語",
+              "auditorium": "11廳",
+              "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+              "label": "21:00"
+            }
+          ],
+          "start_times": "21:00",
           "supplemental_web_source": true
         }
       }
@@ -492,6 +658,66 @@
               }
             ],
             "start_times": "17:40",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "名偵探柯南 第30號殺人事件",
+            "show_date": "2026-11-23",
+            "showtime_count": 4,
+            "showtimes": [
+              {
+                "time": "10:15",
+                "format": null,
+                "language": null,
+                "auditorium": "3廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "10:15"
+              },
+              {
+                "time": "12:00",
+                "format": null,
+                "language": null,
+                "auditorium": "3廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "12:00"
+              },
+              {
+                "time": "18:50",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "18:50"
+              },
+              {
+                "time": "20:40",
+                "format": null,
+                "language": null,
+                "auditorium": "13廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "20:40"
+              }
+            ],
+            "start_times": "10:15, 12:00, 18:50, 20:40",
             "supplemental_web_source": true
           }
         },
@@ -834,6 +1060,66 @@
           "geometry": {
             "type": "Point",
             "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "劇場版 來自深淵：覺醒的神秘",
+            "show_date": "2026-11-23",
+            "showtime_count": 4,
+            "showtimes": [
+              {
+                "time": "10:10",
+                "format": null,
+                "language": null,
+                "auditorium": "6廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "10:10"
+              },
+              {
+                "time": "15:00",
+                "format": null,
+                "language": null,
+                "auditorium": "5廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "15:00"
+              },
+              {
+                "time": "16:35",
+                "format": null,
+                "language": null,
+                "auditorium": "5廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "16:35"
+              },
+              {
+                "time": "18:10",
+                "format": null,
+                "language": null,
+                "auditorium": "5廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "18:10"
+              }
+            ],
+            "start_times": "10:10, 15:00, 16:35, 18:10",
+            "supplemental_web_source": true
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
               120.25125,
               23.18362
             ]
@@ -998,6 +1284,46 @@
           }
         }
       ]
+    },
+    "Jim Queen：肌情四射": {
+      "2026-11-23": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              120.3253452,
+              22.6319673
+            ]
+          },
+          "properties": {
+            "location_id": 72,
+            "chain_name": "高雄環球影城",
+            "location_name": "高雄環球影城",
+            "map_name": "高雄環球影城 高雄環球影城",
+            "address": "高雄市苓雅區大順三路108號",
+            "city": "高雄市",
+            "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "official_url": "https://www.u-movie.com.tw/",
+            "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "movie_title": "Jim Queen：肌情四射",
+            "show_date": "2026-11-23",
+            "showtime_count": 1,
+            "showtimes": [
+              {
+                "time": "21:00",
+                "format": null,
+                "language": "國語",
+                "auditorium": "11廳",
+                "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+                "label": "21:00"
+              }
+            ],
+            "start_times": "21:00",
+            "supplemental_web_source": true
+          }
+        }
+      ]
     }
   },
   "available_dates": [
@@ -1006,7 +1332,7 @@
     "2026-11-25",
     "2026-11-26"
   ],
-  "feature_count": 4,
+  "feature_count": 5,
   "features": [
     {
       "type": "Feature",
@@ -1145,6 +1471,66 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          120.3253452,
+          22.6319673
+        ]
+      },
+      "properties": {
+        "location_id": 72,
+        "chain_name": "高雄環球影城",
+        "location_name": "高雄環球影城",
+        "map_name": "高雄環球影城 高雄環球影城",
+        "address": "高雄市苓雅區大順三路108號",
+        "city": "高雄市",
+        "location_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+        "official_url": "https://www.u-movie.com.tw/",
+        "crawl_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+        "movie_title": "名偵探柯南 第30號殺人事件",
+        "show_date": "2026-11-23",
+        "showtime_count": 4,
+        "showtimes": [
+          {
+            "time": "10:15",
+            "format": null,
+            "language": null,
+            "auditorium": "3廳",
+            "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "label": "10:15"
+          },
+          {
+            "time": "12:00",
+            "format": null,
+            "language": null,
+            "auditorium": "3廳",
+            "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "label": "12:00"
+          },
+          {
+            "time": "18:50",
+            "format": null,
+            "language": null,
+            "auditorium": "13廳",
+            "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "label": "18:50"
+          },
+          {
+            "time": "20:40",
+            "format": null,
+            "language": null,
+            "auditorium": "13廳",
+            "booking_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+            "label": "20:40"
+          }
+        ],
+        "start_times": "10:15, 12:00, 18:50, 20:40",
+        "supplemental_web_source": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           120.25125,
           23.18362
         ]
@@ -1185,7 +1571,7 @@
       }
     }
   ],
-  "supplemental_updated_at": "2026-11-23T07:18:27+08:00",
+  "supplemental_updated_at": "2026-11-23T07:33:36+08:00",
   "supplemental_preserved_at": "2026-11-11T10:42:17+08:00",
-  "supplemental_finalized_at": "2026-11-23T07:18:58+08:00"
+  "supplemental_finalized_at": "2026-11-23T07:34:04+08:00"
 }
