@@ -21,3 +21,8 @@ This collection tracks **Japanese-produced animated films playing in Taiwan**, n
 | 歡迎來到朵莉之家 | 台灣原創製作 | https://pavilion.taicca.tw/portfolio-item/welcome-to-dollys-house/ |
 
 Source/origin exclusion is independent of poster quality. Do not replace or remove any valid Japanese film's last-known-good image during scope corrections.
+
+## 2026-11-22 verified Japanese film and Taiwan poster provenance
+- **劇場版 排球少年!! 垃圾場的決戰**: 2026-11-27 Taiwan limited theatrical re-release; authoritative cinema https://www.vscinemas.com.tw/film/detail.aspx?id=7142 ; Miramar Coming Soon cross-check; Japan's production committee and animation studio Production I.G: https://haikyu.jp/movie/mv2024/ .
+- 2026 Taiwan Medialink poster archived at https://www.ptt.cc/bbs/movie/M.1795067258.A.CBE.html ; direct 897×1280 JPEG https://i.mopix.cc/WO1W25.jpg ; image has 11.27, confirmed manual visual check; old cinema poster https://www.unicornpopcorn.com.tw/ForVsWeb/upload/film/film_20240227025.jpg says **4/12** and is explicitly rejected. Poster 897×1280 meets 800×1200 floor, but original 1000w+ Taiwan asset still worth seeking; image is stable non-signed mirror, not ephemeral social token CDN.
+- **劇場版 來自深淵：覺醒的神秘**: Taiwan released 2026-11-20 (official distributor Muse: https://www.youtube.com/watch?v=bFDy1OxGqQk). Previous Japanese existing image must no longer carry UPCOMING FALLBACK label. Preserve it temporarily as last-known-good, mark BLOCKED_TW_POSTER until a Taiwan official poster is found and browser decoded. No new overseas fallback has been introduced.
