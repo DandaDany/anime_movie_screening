@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-15T13:00:00+08:00",
-  "version": 2026111501,
+  "generated_at": "2026-11-22T08:42:51.188+08:00",
+  "version": 2026112201,
   "lookahead_days": 7,
   "movies": [
     {
@@ -22,9 +22,9 @@
       "target_date": "2026-11-20",
       "is_active": true,
       "sort_order": 0,
-      "notes": "木棉花台灣官方電影資訊確認 2026-11-20 在台上映",
+      "notes": "木棉花台灣官方電影資訊確認 2026-11-20 在台上映\n2026-11-22：已於台灣11/20上映，停用 UPCOMING FALLBACK 標記；保留既有原始視覺（非新導入），台灣官方海報未核實前 BLOCKED，不以未驗證圖覆寫。",
       "created_at": "2026-08-17T05:52:07.028025+00:00",
-      "updated_at": "2026-09-27T13:43:00+08:00"
+      "updated_at": "2026-11-22T08:42:51.188+08:00"
     },
     {
       "id": 3,
@@ -563,6 +563,23 @@
       "notes": "日本 Studio Ghibli 原製作，宮崎駿監督；甲上娛樂台灣2026-11-10公告 2026-11-27重映，美麗華正式Coming Soon https://www.miramarcinemas.tw/Movie/Index?type=coming 與 ibon 官方票券 https://tour.ibon.com.tw/event/6aed8bd2c151d50ddc990836 證實。採台灣2022方序中×董十行原版海報（無2022上映日期），因2026 25週年新增雲層隱藏角色特殊印刷尚無穩定可直連單張數位原稿；同作品同版面，標記2026版待升級，不冒用海外日期。",
       "created_at": "2026-11-15T13:00:00+08:00",
       "updated_at": "2026-11-15T13:00:00+08:00"
+    },
+    {
+      "id": 51,
+      "title": "劇場版 排球少年!! 垃圾場的決戰",
+      "aliases": [
+        "劇場版《排球少年!! 垃圾場的決戰》",
+        "排球少年!! 垃圾場的決戰",
+        "排球少年!!垃圾場的決戰",
+        "排球少年！！垃圾場的決戰",
+        "劇場版 排球少年！！垃圾場的決戰"
+      ],
+      "target_date": "2026-11-27",
+      "is_active": true,
+      "sort_order": 0,
+      "notes": "2026-11-27台灣院線限定重映，威秀正式電影頁 https://www.vscinemas.com.tw/film/detail.aspx?id=7142 與美麗華 Coming Soon 交叉確認；日本原動畫製作 Production I.G：https://haikyu.jp/movie/mv2024/ 。2026台灣宣傳海報明確印 11.27，由台灣羚邦發行宣傳轉載鏡像取得（https://www.ptt.cc/bbs/movie/M.1795067258.A.CBE.html ，897×1280）；舊 2024台灣海報印4/12，不可使用。",
+      "created_at": "2026-11-22T08:42:51.188+08:00",
+      "updated_at": "2026-11-22T08:42:51.188+08:00"
     }
   ]
 }
