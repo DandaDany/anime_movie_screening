@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source": "data/control/tracked_movies.json + web/data/movie_posters.json",
-  "source_version": 2026111501,
-  "generated_at": "2026-11-15T13:00:00+08:00",
+  "source_version": 2026112201,
+  "generated_at": "2026-11-22T08:42:51.188+08:00",
   "lookahead_days": 7,
-  "count": 41,
+  "count": 42,
   "missing_poster_count": 0,
   "missing_posters": [],
   "movies": [
@@ -27,7 +27,7 @@
       "poster_url": "https://miabyss.com/part1_images/news/p_015.jpg",
       "poster_fallback_url": "https://miabyss.com/part1_images/top/revival/p_004.jpg",
       "poster_fit": null,
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source": "2026-11-20已上映；日本官方既有 last-known-good 主視覺暫予保留（BLOCKED_TW_POSTER：台灣正式院線海報尚未取得經 Chromium 驗證版本；不是新海外 fallback）",
       "poster_source_url": "https://miabyss.com/news_movie/article009.html"
     },
     {
@@ -554,6 +554,23 @@
       "poster_fit": "contain",
       "poster_source": "甲上娛樂2026再發行之台灣限定方序中×董十行海報原版主視覺（Vogue保存2022獨立原圖；2026 25週年新增雲層上光彩蛋尚未取得可直連單張版本，2026_TW_POSTER_PENDING_UPGRADE）",
       "poster_source_url": "https://www.marieclaire.com.tw/entertainment/movie/97046"
+    },
+    {
+      "id": 51,
+      "title": "劇場版 排球少年!! 垃圾場的決戰",
+      "aliases": [
+        "劇場版《排球少年!! 垃圾場的決戰》",
+        "排球少年!! 垃圾場的決戰",
+        "排球少年!!垃圾場的決戰",
+        "排球少年！！垃圾場的決戰",
+        "劇場版 排球少年！！垃圾場的決戰"
+      ],
+      "target_date": "2026-11-27",
+      "poster_url": "https://i.mopix.cc/WO1W25.jpg",
+      "poster_fallback_url": null,
+      "poster_fit": "contain",
+      "poster_source": "台灣羚邦2026/11/27限定重映正式直式海報（11.27文字正確，第三方轉載穩定鏡像；GitHub Actions JPEG 897×1280；較高畫質台灣原圖待尋）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=7142"
     }
   ]
 }
