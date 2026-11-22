@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-15",
-  "movie_count": 42,
+  "generated_at": "2026-11-22",
+  "movie_count": 43,
   "movies": [
     {
       "title": "BanG Dream! Ave Mujica prima aurora",
@@ -16,7 +16,7 @@
       "title": "劇場版 來自深淵：覺醒的神秘",
       "aliases": [],
       "poster_url": "https://miabyss.com/part1_images/news/p_015.jpg",
-      "poster_source": "日本官方 Poster（UPCOMING FALLBACK）",
+      "poster_source": "2026-11-20已上映；日本官方既有 last-known-good 主視覺暫予保留（BLOCKED_TW_POSTER：台灣正式院線海報尚未取得經 Chromium 驗證版本；不是新海外 fallback）",
       "poster_source_url": "https://miabyss.com/news_movie/article009.html",
       "poster_fallback_url": "https://miabyss.com/part1_images/top/revival/p_004.jpg"
     },
@@ -453,6 +453,21 @@
       "poster_url": "https://media.vogue.com.tw/photos/63201ed91f237f541c6c9ad5/master/pass/1.%E5%8F%B0%E7%81%A3%E7%9F%A5%E5%90%8D%E8%A8%AD%E8%A8%88%E5%B8%AB%E6%96%B9%E5%BA%8F%E4%B8%AD%E6%89%93%E9%80%A0%E3%80%8A%E7%A5%9E%E9%9A%B1%E5%B0%91%E5%A5%B3%E3%80%8B%E5%85%A8%E7%90%83%E5%94%AF%E4%B8%80%E5%8F%B0%E7%81%A3%E9%99%90%E5%AE%9A%E6%B5%B7%E5%A0%B1.jpg",
       "poster_source": "甲上娛樂2026再發行之台灣限定方序中×董十行海報原版主視覺（Vogue保存2022獨立原圖；2026 25週年新增雲層上光彩蛋尚未取得可直連單張版本，2026_TW_POSTER_PENDING_UPGRADE）",
       "poster_source_url": "https://www.marieclaire.com.tw/entertainment/movie/97046",
+      "poster_fallback_url": null,
+      "poster_fit": "contain"
+    },
+    {
+      "title": "劇場版 排球少年!! 垃圾場的決戰",
+      "aliases": [
+        "劇場版《排球少年!! 垃圾場的決戰》",
+        "排球少年!! 垃圾場的決戰",
+        "排球少年!!垃圾場的決戰",
+        "排球少年！！垃圾場的決戰",
+        "劇場版 排球少年！！垃圾場的決戰"
+      ],
+      "poster_url": "https://i.mopix.cc/WO1W25.jpg",
+      "poster_source": "台灣羚邦2026/11/27限定重映正式直式海報（11.27文字正確，第三方轉載穩定鏡像；GitHub Actions JPEG 897×1280；較高畫質台灣原圖待尋）",
+      "poster_source_url": "https://www.vscinemas.com.tw/film/detail.aspx?id=7142",
       "poster_fallback_url": null,
       "poster_fit": "contain"
     }
