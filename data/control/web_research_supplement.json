@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "for_date": "2026-11-23",
-  "generated_at": "2026-11-23T07:06:18+08:00",
+  "generated_at": "2026-11-23T07:20:49+08:00",
   "records": [
     {
       "location_id": 68,
@@ -57,6 +57,87 @@
           "format": null,
           "language": null,
           "auditorium": "標準廳"
+        }
+      ]
+    },
+    {
+      "location_id": 72,
+      "movie_title": "名偵探柯南 第30號殺人事件",
+      "show_date": "2026-11-23",
+      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-23（一）柯南共四場，並逐場標示影廳與時間。",
+      "showtimes": [
+        {
+          "time": "10:15",
+          "format": null,
+          "language": null,
+          "auditorium": "3廳"
+        },
+        {
+          "time": "12:00",
+          "format": null,
+          "language": null,
+          "auditorium": "3廳"
+        },
+        {
+          "time": "18:50",
+          "format": null,
+          "language": null,
+          "auditorium": "13廳"
+        },
+        {
+          "time": "20:40",
+          "format": null,
+          "language": null,
+          "auditorium": "13廳"
+        }
+      ]
+    },
+    {
+      "location_id": 72,
+      "movie_title": "劇場版 來自深淵：覺醒的神秘",
+      "show_date": "2026-11-23",
+      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-23（一）來自深淵共四場，並逐場標示影廳與時間。",
+      "showtimes": [
+        {
+          "time": "10:10",
+          "format": null,
+          "language": null,
+          "auditorium": "6廳"
+        },
+        {
+          "time": "15:00",
+          "format": null,
+          "language": null,
+          "auditorium": "5廳"
+        },
+        {
+          "time": "16:35",
+          "format": null,
+          "language": null,
+          "auditorium": "5廳"
+        },
+        {
+          "time": "18:10",
+          "format": null,
+          "language": null,
+          "auditorium": "5廳"
+        }
+      ]
+    },
+    {
+      "location_id": 72,
+      "movie_title": "Jim Queen：肌情四射",
+      "show_date": "2026-11-23",
+      "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-23（一）國語版 Jim Queen 於 11 廳放映。",
+      "showtimes": [
+        {
+          "time": "21:00",
+          "format": null,
+          "language": "國語",
+          "auditorium": "11廳"
         }
       ]
     },
