@@ -129,6 +129,14 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                     f"non-Japanese animated films unexpectedly in {name}",
                 )
 
+    def test_2026_haikyu_japanese_revival_date_and_poster(self):
+        movie = next(x for x in self.tracked["movies"] if x["title"] == "劇場版 排球少年!! 垃圾場的決戰")
+        poster = self._poster_for(movie)
+        self.assertTrue(movie["is_active"])
+        self.assertEqual(movie["target_date"], "2026-11-27")
+        self.assertIn("11.27", poster["poster_source"])
+        self.assertTrue(poster["poster_url"].startswith("https://"))
+
     def test_generated_feed_uses_canonical_active_movies_and_dates(self):
         payload = discovery.build_payload(self.tracked, self.posters)
         expected = [movie for movie in self.tracked["movies"] if movie["is_active"]]
