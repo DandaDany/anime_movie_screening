@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "for_date": "2026-11-23",
-  "generated_at": "2026-11-23T07:20:49+08:00",
+  "for_date": "2026-11-24",
+  "generated_at": "2026-11-24T07:10:04+08:00",
   "records": [
     {
       "location_id": 68,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-23",
+      "show_date": "2026-11-24",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，已選台北大直美麗新皇家影城，2026-11-23（一）柯南場次列皇家廳、日文版。",
+      "evidence": "美麗新影城官方場次資訊，已選台北大直美麗新皇家影城，2026-11-24（二）柯南場次列皇家廳、日文版。",
       "showtimes": [
         {
           "time": "16:30",
@@ -21,9 +21,9 @@
     {
       "location_id": 69,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-23",
+      "show_date": "2026-11-24",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，已選桃園台茂美麗新影城，2026-11-23（一）柯南場次列標準廳、日文版。",
+      "evidence": "美麗新影城官方場次資訊，已選桃園台茂美麗新影城，2026-11-24（二）柯南場次列標準廳、日文版。",
       "showtimes": [
         {
           "time": "17:40",
@@ -36,9 +36,9 @@
     {
       "location_id": 69,
       "movie_title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-23",
+      "show_date": "2026-11-24",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊，已選桃園台茂美麗新影城，2026-11-23（一）來自深淵場次列標準廳。",
+      "evidence": "美麗新影城官方場次資訊，已選桃園台茂美麗新影城，2026-11-24（二）來自深淵場次列標準廳。",
       "showtimes": [
         {
           "time": "10:40",
@@ -63,9 +63,9 @@
     {
       "location_id": 72,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-23",
+      "show_date": "2026-11-24",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-23（一）柯南共四場，並逐場標示影廳與時間。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-24（二）柯南共四場，並逐場標示影廳與時間。",
       "showtimes": [
         {
           "time": "10:15",
@@ -96,9 +96,9 @@
     {
       "location_id": 72,
       "movie_title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-23",
+      "show_date": "2026-11-24",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-23（一）來自深淵共四場，並逐場標示影廳與時間。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-24（二）來自深淵共四場，並逐場標示影廳與時間。",
       "showtimes": [
         {
           "time": "10:10",
@@ -129,9 +129,9 @@
     {
       "location_id": 72,
       "movie_title": "Jim Queen：肌情四射",
-      "show_date": "2026-11-23",
+      "show_date": "2026-11-24",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-23（一）國語版 Jim Queen 於 11 廳放映。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-24（二）國語版 Jim Queen 於 11 廳放映。",
       "showtimes": [
         {
           "time": "21:00",
@@ -144,9 +144,9 @@
     {
       "location_id": 104,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-23",
-      "source_url": "https://www.instagram.com/madoucinema/",
-      "evidence": "麻豆戲院官方 Instagram 於 2026-11-22 發布的排程圖片明列 11/23（一）至 11/25（三），柯南為數位日文版並列今日場次。",
+      "show_date": "2026-11-24",
+      "source_url": "https://www.instagram.com/madoucinema/p/DgCUPeBoAD9/",
+      "evidence": "麻豆戲院官方 Instagram 置頂排程圖片明列 11/23（一）至 11/25（三），柯南為數位日文版並列 2026-11-24 場次。",
       "showtimes": [
         {
           "time": "12:10",
@@ -165,9 +165,9 @@
     {
       "location_id": 104,
       "movie_title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-23",
-      "source_url": "https://www.instagram.com/madoucinema/",
-      "evidence": "麻豆戲院官方 Instagram 於 2026-11-22 發布的排程圖片明列 11/23（一）至 11/25（三），來自深淵為數位日文版並列今日場次。",
+      "show_date": "2026-11-24",
+      "source_url": "https://www.instagram.com/madoucinema/p/DgCUPeBoAD9/",
+      "evidence": "麻豆戲院官方 Instagram 置頂排程圖片明列 11/23（一）至 11/25（三），來自深淵為數位日文版並列 2026-11-24 場次。",
       "showtimes": [
         {
           "time": "14:30",
