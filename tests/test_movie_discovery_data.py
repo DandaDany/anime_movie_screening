@@ -105,6 +105,38 @@ class MovieDiscoveryDataTests(unittest.TestCase):
                     "Japanese poster fallback is only allowed before the Taiwan release date",
                 )
 
+
+    def test_non_japanese_animation_exclusions_are_not_reintroduced(self):
+        # Exclusion is based on actual animation production, not Taiwan release,
+        # translated language, anime-looking visuals, or Japanese minority investors.
+        excluded = {
+            "歡迎光臨魔法秘境",
+            "戴帽子的貓",
+            "憤怒鳥玩電影3：全家總動員",
+            "嘟嘟魚的冒險",
+            "Jim Queen：肌情四射",
+            "汪汪隊立大功：恐龍大電影",
+            "歡迎來到朵莉之家",
+        }
+        for name, items in (
+            ("tracked", self.tracked["movies"]),
+            ("posters", self.posters["movies"]),
+            ("discovery", json.loads(DISCOVERY.read_text(encoding="utf-8"))["movies"]),
+        ):
+            with self.subTest(catalog=name):
+                self.assertFalse(
+                    excluded.intersection(item["title"] for item in items),
+                    f"non-Japanese animated films unexpectedly in {name}",
+                )
+
+    def test_2026_haikyu_japanese_revival_date_and_poster(self):
+        movie = next(x for x in self.tracked["movies"] if x["title"] == "劇場版 排球少年!! 垃圾場的決戰")
+        poster = self._poster_for(movie)
+        self.assertTrue(movie["is_active"])
+        self.assertEqual(movie["target_date"], "2026-11-27")
+        self.assertIn("11.27", poster["poster_source"])
+        self.assertTrue(poster["poster_url"].startswith("https://"))
+
     def test_generated_feed_uses_canonical_active_movies_and_dates(self):
         payload = discovery.build_payload(self.tracked, self.posters)
         expected = [movie for movie in self.tracked["movies"] if movie["is_active"]]
