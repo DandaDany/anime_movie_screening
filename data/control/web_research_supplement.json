@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "for_date": "2026-11-27",
-  "generated_at": "2026-11-27T07:05:38+08:00",
+  "for_date": "2026-11-28",
+  "generated_at": "2026-11-28T07:07:45+08:00",
   "records": [
     {
       "location_id": 68,
       "movie_title": "歡迎光臨魔法秘境",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊已選台北大直美麗新皇家影城，明列 2026-11-27（五）本片皇家廳中文版與英文版場次。",
+      "evidence": "美麗新影城官方場次資訊已選台北大直美麗新皇家影城，明列 2026-11-28（六）本片皇家廳中文版與英文版場次。",
       "showtimes": [
         {
           "time": "11:20",
@@ -81,9 +81,9 @@
     {
       "location_id": 69,
       "movie_title": "庫洛魔法使 劇場版：被封印的卡片",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊已選桃園台茂美麗新影城，明列 2026-11-27（五）本片標準廳中文版與日文版場次。",
+      "evidence": "美麗新影城官方場次資訊已選桃園台茂美麗新影城，明列 2026-11-28（六）本片標準廳中文版與日文版場次。",
       "showtimes": [
         {
           "time": "10:25",
@@ -92,13 +92,13 @@
           "auditorium": "標準廳"
         },
         {
-          "time": "15:55",
+          "time": "15:50",
           "format": null,
           "language": "中文",
           "auditorium": "標準廳"
         },
         {
-          "time": "21:10",
+          "time": "21:20",
           "format": null,
           "language": "日文",
           "auditorium": "標準廳"
@@ -108,9 +108,9 @@
     {
       "location_id": 69,
       "movie_title": "歡迎光臨魔法秘境",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊已選桃園台茂美麗新影城，明列 2026-11-27（五）本片標準廳／皇家廳中文版與英文版場次。",
+      "evidence": "美麗新影城官方場次資訊已選桃園台茂美麗新影城，明列 2026-11-28（六）本片標準廳／皇家廳中文版與英文版場次；依 repository 去重規則，同為 20:20 的標準廳中文版與皇家廳英文版僅保留一筆。",
       "showtimes": [
         {
           "time": "11:10",
@@ -149,15 +149,9 @@
           "auditorium": "標準廳"
         },
         {
-          "time": "16:50",
-          "format": null,
-          "language": "英文",
-          "auditorium": "標準廳"
-        },
-        {
           "time": "17:40",
           "format": null,
-          "language": "中文",
+          "language": "英文",
           "auditorium": "標準廳"
         },
         {
@@ -167,25 +161,25 @@
           "auditorium": "皇家廳"
         },
         {
-          "time": "19:00",
-          "format": null,
-          "language": "英文",
-          "auditorium": "標準廳"
-        },
-        {
-          "time": "19:50",
+          "time": "18:10",
           "format": null,
           "language": "中文",
           "auditorium": "標準廳"
         },
         {
-          "time": "20:20",
+          "time": "19:10",
           "format": null,
           "language": "英文",
-          "auditorium": "皇家廳"
+          "auditorium": "標準廳"
         },
         {
-          "time": "22:10",
+          "time": "20:20",
+          "format": null,
+          "language": "中文",
+          "auditorium": "標準廳"
+        },
+        {
+          "time": "22:50",
           "format": null,
           "language": "英文",
           "auditorium": "標準廳"
@@ -195,9 +189,9 @@
     {
       "location_id": 69,
       "movie_title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.miranewcinemas.com/Booking/Timetable",
-      "evidence": "美麗新影城官方場次資訊已選桃園台茂美麗新影城，明列 2026-11-27（五）本片標準廳場次。",
+      "evidence": "美麗新影城官方場次資訊已選桃園台茂美麗新影城，明列 2026-11-28（六）本片標準廳場次。",
       "showtimes": [
         {
           "time": "12:15",
@@ -210,26 +204,26 @@
     {
       "location_id": 72,
       "movie_title": "庫洛魔法使 劇場版：被封印的卡片",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-27（五）本片國語版與日語版場次，並逐場標示 13 廳與時間。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-28（六）本片國語版與日語版場次，並逐場標示 13 廳與時間。",
       "showtimes": [
         {
           "time": "10:30",
-          "format": null,
-          "language": "日語",
-          "auditorium": "13廳"
-        },
-        {
-          "time": "12:20",
           "format": null,
           "language": "國語",
           "auditorium": "13廳"
         },
         {
-          "time": "14:10",
+          "time": "12:20",
           "format": null,
           "language": "日語",
+          "auditorium": "13廳"
+        },
+        {
+          "time": "14:10",
+          "format": null,
+          "language": "國語",
           "auditorium": "13廳"
         },
         {
@@ -243,9 +237,9 @@
     {
       "location_id": 72,
       "movie_title": "歡迎光臨魔法秘境",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-27（五）本片國語版與英語版場次，並逐場標示影廳與時間。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-28（六）本片國語版與英語版場次，並逐場標示影廳與時間。",
       "showtimes": [
         {
           "time": "10:00",
@@ -257,7 +251,7 @@
           "time": "10:40",
           "format": null,
           "language": "國語",
-          "auditorium": "3廳"
+          "auditorium": "1廳"
         },
         {
           "time": "12:05",
@@ -269,7 +263,7 @@
           "time": "13:00",
           "format": null,
           "language": "國語",
-          "auditorium": "3廳"
+          "auditorium": "1廳"
         },
         {
           "time": "14:10",
@@ -281,7 +275,7 @@
           "time": "15:10",
           "format": null,
           "language": "國語",
-          "auditorium": "3廳"
+          "auditorium": "1廳"
         },
         {
           "time": "16:15",
@@ -293,7 +287,7 @@
           "time": "17:20",
           "format": null,
           "language": "國語",
-          "auditorium": "3廳"
+          "auditorium": "1廳"
         },
         {
           "time": "18:20",
@@ -305,7 +299,7 @@
           "time": "19:30",
           "format": null,
           "language": "國語",
-          "auditorium": "3廳"
+          "auditorium": "1廳"
         },
         {
           "time": "20:25",
@@ -324,9 +318,9 @@
     {
       "location_id": 72,
       "movie_title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-27（五）本片共三場，並逐場標示影廳與時間。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-28（六）本片共三場，並逐場標示影廳與時間。",
       "showtimes": [
         {
           "time": "12:40",
@@ -351,9 +345,9 @@
     {
       "location_id": 72,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-27",
+      "show_date": "2026-11-28",
       "source_url": "https://www.u-movie.com.tw/cinema/page.php?page_type=now&ver=tw&portal=cinema",
-      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-27（五）本片共三場，並逐場標示 11 廳與時間。",
+      "evidence": "高雄環球影城官方電影時刻表明列今天 2026-11-28（六）本片共三場，並逐場標示 11 廳與時間。",
       "showtimes": [
         {
           "time": "10:20",
@@ -378,14 +372,14 @@
     {
       "location_id": 103,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-27",
-      "source_url": "https://www.cm-movie.com.tw/category/time/",
-      "evidence": "今日全美戲院官方時刻表於本片條目明列 11/27 18:30；頁尾明示全美戲院地址為台南市中西區永福路二段187號。",
+      "show_date": "2026-11-28",
+      "source_url": "https://www.cm-movie.com.tw/2026/11/04/%e5%90%8d%e5%81%b5%e6%8e%a2%e6%9f%af%e5%8d%97%e7%ac%ac30%e8%99%9f%e6%ae%ba%e4%ba%ba%e4%ba%8b%e4%bb%b6/",
+      "evidence": "今日全美戲院官方本片時刻頁明列 11/28 17:00、語言為日語；頁尾明示全美戲院地址為台南市中西區永福路二段187號。",
       "showtimes": [
         {
-          "time": "18:30",
+          "time": "17:00",
           "format": null,
-          "language": null,
+          "language": "日語",
           "auditorium": null
         }
       ]
@@ -393,72 +387,84 @@
     {
       "location_id": 104,
       "movie_title": "庫洛魔法使 劇場版：被封印的卡片",
-      "show_date": "2026-11-27",
-      "source_url": "https://www.instagram.com/madoucinema/p/DgMwfBuIGVG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文於 2026-11-26 發布 11月27日（五）一天的電影時刻表圖片；圖片明列本片數位日文版與中文版場次。",
+      "show_date": "2026-11-28",
+      "source_url": "https://www.instagram.com/madoucinema/p/DgPbltrINh_/",
+      "evidence": "麻豆戲院官方 Instagram 貼文發布 11月28日（六）至11月29日（日）的電影時刻表圖片；圖片明列本片數位日文版與中文版場次，適用日期涵蓋 2026-11-28。",
       "showtimes": [
         {
-          "time": "13:45",
+          "time": "10:15",
+          "format": "數位",
+          "language": "中文",
+          "auditorium": "1廳"
+        },
+        {
+          "time": "14:15",
           "format": "數位",
           "language": "日文",
-          "auditorium": null
+          "auditorium": "1廳"
         },
         {
           "time": "17:45",
           "format": "數位",
           "language": "中文",
-          "auditorium": null
-        },
-        {
-          "time": "19:45",
-          "format": "數位",
-          "language": "日文",
-          "auditorium": null
+          "auditorium": "1廳"
         }
       ]
     },
     {
       "location_id": 104,
       "movie_title": "歡迎光臨魔法秘境",
-      "show_date": "2026-11-27",
-      "source_url": "https://www.instagram.com/madoucinema/p/DgMwfBuIGVG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文於 2026-11-26 發布 11月27日（五）一天的電影時刻表圖片；圖片明列本片數位中文版場次。",
+      "show_date": "2026-11-28",
+      "source_url": "https://www.instagram.com/madoucinema/p/DgPbltrINh_/",
+      "evidence": "麻豆戲院官方 Instagram 貼文發布 11月28日（六）至11月29日（日）的電影時刻表圖片；圖片明列本片數位中文版與英文版場次，適用日期涵蓋 2026-11-28。",
       "showtimes": [
         {
-          "time": "16:00",
+          "time": "10:30",
           "format": "數位",
           "language": "中文",
-          "auditorium": null
+          "auditorium": "1廳"
+        },
+        {
+          "time": "12:30",
+          "format": "數位",
+          "language": "英文",
+          "auditorium": "1廳"
+        },
+        {
+          "time": "17:15",
+          "format": "數位",
+          "language": "中文",
+          "auditorium": "1廳"
         }
       ]
     },
     {
       "location_id": 104,
       "movie_title": "劇場版 來自深淵：覺醒的神秘",
-      "show_date": "2026-11-27",
-      "source_url": "https://www.instagram.com/madoucinema/p/DgMwfBuIGVG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文於 2026-11-26 發布 11月27日（五）一天的電影時刻表圖片；圖片明列本片數位日文版場次。",
+      "show_date": "2026-11-28",
+      "source_url": "https://www.instagram.com/madoucinema/p/DgPbltrINh_/",
+      "evidence": "麻豆戲院官方 Instagram 貼文發布 11月28日（六）至11月29日（日）的電影時刻表圖片；圖片明列本片數位日文版場次，適用日期涵蓋 2026-11-28。",
       "showtimes": [
         {
-          "time": "11:40",
+          "time": "21:50",
           "format": "數位",
           "language": "日文",
-          "auditorium": null
+          "auditorium": "1廳"
         }
       ]
     },
     {
       "location_id": 104,
       "movie_title": "名偵探柯南 第30號殺人事件",
-      "show_date": "2026-11-27",
-      "source_url": "https://www.instagram.com/madoucinema/p/DgMwfBuIGVG/",
-      "evidence": "麻豆戲院官方 Instagram 置頂貼文於 2026-11-26 發布 11月27日（五）一天的電影時刻表圖片；圖片明列本片數位日文版場次。",
+      "show_date": "2026-11-28",
+      "source_url": "https://www.instagram.com/madoucinema/p/DgPbltrINh_/",
+      "evidence": "麻豆戲院官方 Instagram 貼文發布 11月28日（六）至11月29日（日）的電影時刻表圖片；圖片明列本片數位日文版場次，適用日期涵蓋 2026-11-28。",
       "showtimes": [
         {
-          "time": "18:00",
+          "time": "16:00",
           "format": "數位",
           "language": "日文",
-          "auditorium": null
+          "auditorium": "1廳"
         }
       ]
     }
